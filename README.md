@@ -1,6 +1,6 @@
 # stats webpage
 
-Generate `commits.csv` in the parent directory first.
+Generate `commits.csv` in this directory first.
 
 ```bash
 npm install
