@@ -1,5 +1,5 @@
 {
-  "name": "stats-webpage",
+  "name": "git-visualized-activity",
   "version": "0.1.0",
   "scripts": {
     "start": "parcel serve src/index.html",
