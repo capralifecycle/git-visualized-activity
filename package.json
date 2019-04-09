@@ -1,6 +1,7 @@
 {
   "name": "git-visualized-activity",
   "version": "0.1.0",
+  "license": "MIT",
   "scripts": {
     "start": "parcel serve src/index.html",
     "build": "parcel build --public-url . src/index.html",
