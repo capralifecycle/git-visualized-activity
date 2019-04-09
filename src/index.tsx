@@ -841,7 +841,7 @@ class App extends React.Component<
           }}
         />
         <Typography component='h1' variant='h3'>
-          Git commit activity 2018
+          Git commit activity
         </Typography>
         <dl>
           <dt>Total commits</dt>
