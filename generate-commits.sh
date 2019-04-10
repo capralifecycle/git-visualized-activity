@@ -2,7 +2,7 @@
 set -eu -o pipefail
 
 stats_remove_blank_lines() {
-  cat - | grep -a -E '.+'
+  cat - | grep -a -E '.+' || true
 }
 
 stats_merge_shortstats() {
