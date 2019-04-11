@@ -14,7 +14,7 @@
     "@types/domready": "1.0.0",
     "@types/papaparse": "4.5.9",
     "@types/react": "16.8.13",
-    "@types/react-dom": "16.8.3",
+    "@types/react-dom": "16.8.4",
     "@types/recharts": "1.1.16",
     "domready": "1.0.8",
     "papaparse": "4.6.3",
