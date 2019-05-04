@@ -13,7 +13,7 @@
     "@material-ui/styles": "3.0.0-alpha.10",
     "@types/domready": "1.0.0",
     "@types/papaparse": "4.5.9",
-    "@types/react": "16.8.15",
+    "@types/react": "16.8.16",
     "@types/react-dom": "16.8.4",
     "@types/recharts": "1.1.16",
     "domready": "1.0.8",
