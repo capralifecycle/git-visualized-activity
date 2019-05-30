@@ -17,7 +17,7 @@
     "@types/react-dom": "16.8.4",
     "@types/recharts": "1.1.16",
     "domready": "1.0.8",
-    "papaparse": "4.6.3",
+    "papaparse": "5.0.0",
     "parcel-bundler": "1.12.3",
     "react": "16.8.6",
     "react-dom": "16.8.6",
