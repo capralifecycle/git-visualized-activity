@@ -667,7 +667,7 @@ const parseValue = (value: string) => (value === '' ? null : value)
 
 const useFilterStyles = makeStyles({
   formControl: {
-    margin: 10, // theme.spacing.unit,
+    margin: 10, // theme.spacing,
     minWidth: 150,
   },
   input: {
@@ -704,7 +704,7 @@ const Filter = ({
       </InputLabel> */}
       <Select
         value={formatValue(value)}
-        onChange={handleChange(name)}
+        onChange={handleChange(name) as any} // TODO: Find out what is wrong with typings
         input={
           <Input name={name} id={`filter-${name}`} className={styles.input} />
         }
@@ -944,9 +944,9 @@ const styles = (theme: Theme) =>
   createStyles({
     layout: {
       width: 'auto',
-      marginLeft: theme.spacing.unit * 3,
-      marginRight: theme.spacing.unit * 3,
-      [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
+      marginLeft: theme.spacing(3),
+      marginRight: theme.spacing(3),
+      [theme.breakpoints.up(1100 + theme.spacing(3) * 2)]: {
         width: 1100,
         marginLeft: 'auto',
         marginRight: 'auto',
@@ -985,9 +985,6 @@ interface Row {
 }
 
 const theme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
-  },
   direction: 'ltr',
   palette: {
     type: 'light',
