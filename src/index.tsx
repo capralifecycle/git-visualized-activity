@@ -508,8 +508,8 @@ const AllContributors = ({ data }: { data: Row[] }) => {
 
   return (
     <ul>
-      {list.map(item => (
-        <li>
+      {list.map((item, idx) => (
+        <li key={idx}>
           <Typography variant='body2'>
             {item.name} <span title='Commit count'>({item.commitCount})</span>
           </Typography>
@@ -526,8 +526,8 @@ const AllRepositories = ({ data }: { data: Row[] }) => {
 
   return (
     <ul>
-      {list.map(item => (
-        <li>
+      {list.map((item, idx) => (
+        <li key={idx}>
           <Typography variant='body2'>
             <a href={`https://github.com/${item.name}`}>{item.name}</a>{' '}
             <span title='Commit count'>({item.commitCount})</span>
