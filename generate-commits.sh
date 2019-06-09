@@ -136,8 +136,8 @@ if [ "$cmd" == "add-group" ]; then
 
   if [ "${SKIP_REFRESH_STALE:-}" != "y" ]; then
     refresh_stale_repos "$repo_list" "$repo_parent_root"
-    process_group "$repo_list" "$repo_parent_root" "$repo_owner" >>commits.csv
   fi
+  process_group "$repo_list" "$repo_parent_root" "$repo_owner" >>commits.csv
   exit
 fi
 
