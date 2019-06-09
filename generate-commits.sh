@@ -134,8 +134,10 @@ if [ "$cmd" == "add-group" ]; then
   repo_owner="$3"
   repo_parent_root="$4"
 
-  refresh_stale_repos "$repo_list" "$repo_parent_root"
-  process_group "$repo_list" "$repo_parent_root" "$repo_owner" >>commits.csv
+  if [ "${SKIP_REFRESH_STALE:-}" != "y" ]; then
+    refresh_stale_repos "$repo_list" "$repo_parent_root"
+    process_group "$repo_list" "$repo_parent_root" "$repo_owner" >>commits.csv
+  fi
   exit
 fi
 
