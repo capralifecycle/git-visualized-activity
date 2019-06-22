@@ -20,7 +20,9 @@ The columns should be:
 
 The project name is used to group multiple repos.
 
-The script `generate-repositories-list.sh` can be used to generate it:
+The script `generate-repositories-list.sh` can be used to generate it,
+and will cause the currently checked out branch to be used for
+gathering history in the next step:
 
 ```bash
 ./generate-repositories-list.sh /home/henrste/projects/capraconsulting >/tmp/repositories.csv
@@ -35,3 +37,9 @@ Generate the `commits.csv` file by using:
 
 Add more `add-group` steps to concatenate multiple root directories. The script
 will fetch the remote `origin` the keep up with changes.
+
+### Some notes
+
+- The remote to GitHub must be named origin (will be checked).
+- No local workspace is modified (except for intial cloning, as we collect
+  stats using the remote ref expliclty. So fetching as we do is enough.
