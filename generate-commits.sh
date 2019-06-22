@@ -84,7 +84,7 @@ process_group() {
         exit 1
       fi
 
-      get_repo_stats $branch \
+      get_repo_stats remotes/origin/$branch \
         | sed "s#^#$owner,$repo,$project,#"
     )
   done
