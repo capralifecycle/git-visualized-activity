@@ -30,7 +30,6 @@ Generate the `commits.csv` file by using:
 
 ```bash
 ./generate-commits.sh clean
-./generate-commits.sh add-header
 ./generate-commits.sh add-group /tmp/repositories.csv capraconsulting /home/henrste/projects/capraconsulting
 ```
 
