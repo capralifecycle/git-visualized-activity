@@ -38,13 +38,14 @@ trim_long_lines() {
 }
 
 get_repo_stats() {
-  local branch=$1
+  local refname=$1
 
   # Some magic to normalize output and reformat the log.
   git log \
     --format='%h,<%p>,%ai,%aN,%s' \
-    --shortstat $branch \
+    --shortstat \
     --use-mailmap \
+    $refname \
     | trim_long_lines \
     | stats_remove_blank_lines \
     | stats_merge_shortstats \
@@ -84,7 +85,12 @@ process_group() {
         exit 1
       fi
 
-      get_repo_stats remotes/origin/$branch \
+      refname=$branch
+      if [ "$(git rev-parse --is-bare-repository)" != "true" ]; then
+        refname="remotes/origin/$refname"
+      fi
+
+      get_repo_stats "$refname" \
         | sed "s#^#$owner,$repo,$project,#"
     )
   done
