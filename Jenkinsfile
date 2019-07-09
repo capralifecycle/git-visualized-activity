@@ -19,6 +19,10 @@ buildConfig() {
         sh './generate-commits.sh clean'
       }
 
+      stage('Run normal tests') {
+        sh 'npm test'
+      }
+
       analyzeSonarCloudForNodejs([
         'sonar.organization': 'capraconsulting',
         'sonar.projectKey': 'capraconsulting_git-visualized-activity',
