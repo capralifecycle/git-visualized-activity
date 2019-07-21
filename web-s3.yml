@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Parameters:
+  Env:
+    Type: String
+
+Resources:
+
+  DeployLogBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub 'git-visualized-activity-${Env}-deploy-log'
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+
+  WebBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub 'git-visualized-activity-${Env}-web'
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      #VersioningConfiguration:
+      #  Status: Enabled
+
+  BucketWebNameParam:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Sub '/git-visualized-activity/${Env}/web-bucket-name'
+      Value: !Ref WebBucket
+      Type: String
+
+Outputs:
+  DeployLogBucketName:
+    Value: !Ref DeployLogBucket
+  WebBucketName:
+    Value: !Ref WebBucket

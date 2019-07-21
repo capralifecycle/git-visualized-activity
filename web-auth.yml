@@ -1,0 +1,121 @@
+# This template deploys a Lambda@edge function which must be located
+# in us-east-1 region.
+AWSTemplateFormatVersion: 2010-09-09
+
+Parameters:
+  Env:
+    Description: Name of environment.
+    Type: String
+  Nonce:
+    Description: Change this string when code is updated.
+    Type: String
+  Region:
+    Description: Region where parameters are stored.
+    Type: String
+
+Resources:
+
+  # Source/inspiration: https://stackoverflow.com/a/41455577
+
+  # Custom resource that creates a new version of the lambda function
+  # when the function code changes.
+  LambdaDeploy:
+    Type: Custom::LambdaVersion
+    Properties:
+      ServiceToken: !GetAtt LambdaDeployFunction.Arn
+      FunctionName: !Ref CredentialsFunction
+      Nonce: !Ref Nonce
+
+  LambdaDeployFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub 'git-visualized-activity-${Env}-web-auth-lambda-deploy'
+      Handler: index.handler
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Code:
+        ZipFile: !Sub |
+          const { Lambda } = require('aws-sdk')
+          const response = require('cfn-response')
+
+          async function main(event, context) {
+            console.log('Request received:\n', JSON.stringify(event))
+            if (event.RequestType == 'Delete') {
+              response.send(event, context, response.SUCCESS)
+              return
+            }
+
+            const lambda = new Lambda()
+            try {
+              const data = await lambda
+                .publishVersion({
+                  FunctionName: event.ResourceProperties.FunctionName
+                })
+                .promise()
+              response.send(event, context, response.SUCCESS, { Version: data.Version }, data.FunctionArn)
+            } catch (e) {
+              console.log('Error', e)
+              response.send(event, context, response.FAILED, e)
+            }
+          }
+
+          exports.handler = (event, context) => {
+            main(event, context)
+          }
+      Runtime: nodejs8.10
+
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: PublishVersion
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action: lambda:PublishVersion
+                Resource: '*' # TODO: Specify arn
+
+  CredentialsFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub 'git-visualized-activity-${Env}-auth'
+      Handler: index.handler
+      Role: !GetAtt CredentialsFunctionRole.Arn
+      # Cannot use nodejs 10 along with ZipFile due to missing CloudFormation support.
+      Runtime: nodejs8.10
+      Code: ./auth
+
+  CredentialsFunctionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+                - edgelambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Path: /service-role/
+      Policies:
+        - PolicyName: ReadParams
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action: ssm:GetParameters
+                Resource: !Sub 'arn:aws:ssm:${Region}:${AWS::AccountId}:parameter/git-visualized-activity/${Env}/*'
+
+Outputs:
+  CredentialsFunctionVersion:
+    Value: !Ref LambdaDeploy
