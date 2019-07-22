@@ -8,7 +8,7 @@ export AWS_DEFAULT_REGION=eu-central-1
 source ../sync-stack-lib.sh
 
 verify_account 923402097046
-sync_stack_prepare git-visualized-activity-build-s3
+sync_stack_prepare git-visualized-activity-build-cfn-s3
 
 # ecr-repo
 deploy git-visualized-activity-build-ecr-repo ecr-repo.yml

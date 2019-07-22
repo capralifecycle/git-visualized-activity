@@ -25,7 +25,7 @@ export AWS_DEFAULT_REGION=eu-central-1
 source ../sync-stack-lib.sh
 
 verify_account 923402097046
-sync_stack_prepare git-visualized-activity-prod-s3
+sync_stack_prepare git-visualized-activity-prod-cfn-s3
 
 # Bucket for web-auth, see next comments.
 AWS_DEFAULT_REGION=us-east-1 \
