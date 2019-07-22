@@ -27,7 +27,7 @@ Resources:
               CanonicalUser: !GetAtt AccessIdentity.S3CanonicalUserId
             Action:
               - s3:*
-            Resource: !Sub 'arn:aws:s3:::${WebBucketName}/*'
+            Resource: !Sub 'arn:aws:s3:::${WebBucketName}/web/*'
 
   Distribution:
     Type: AWS::CloudFront::Distribution
@@ -51,6 +51,7 @@ Resources:
         Origins:
           - Id: default-origin
             DomainName: !Sub '${WebBucketName}.s3.amazonaws.com'
+            OriginPath: /web
             S3OriginConfig:
               OriginAccessIdentity: !Sub 'origin-access-identity/cloudfront/${AccessIdentity}'
         PriceClass: PriceClass_100
