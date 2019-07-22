@@ -39,8 +39,8 @@ import {
   YAxis,
   ZAxis,
 } from 'recharts'
-// @ts-ignore
-import dataPath from '../commits.csv'
+
+const dataPath = 'data/commits.csv'
 
 const chartColors = [
   '#e6194b',
