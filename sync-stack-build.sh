@@ -10,5 +10,5 @@ source ../sync-stack-lib.sh
 verify_account 923402097046
 sync_stack_prepare git-visualized-activity-build-cfn-s3
 
-# ecr-repo
-deploy git-visualized-activity-build-ecr-repo ecr-repo.yml
+# Misc requirements for build.
+deploy git-visualized-activity-build build.yml
