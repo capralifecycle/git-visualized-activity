@@ -26,8 +26,10 @@ Resources:
             Principal:
               CanonicalUser: !GetAtt AccessIdentity.S3CanonicalUserId
             Action:
-              - s3:*
-            Resource: !Sub 'arn:aws:s3:::${WebBucketName}/web/*'
+              - s3:GetObject
+            Resource:
+              - !Sub 'arn:aws:s3:::${WebBucketName}/web/*'
+              - !Sub 'arn:aws:s3:::${WebBucketName}/data/*'
 
   Distribution:
     Type: AWS::CloudFront::Distribution
@@ -35,6 +37,16 @@ Resources:
       DistributionConfig:
         Aliases:
           - !Ref DomainName
+        CacheBehaviors:
+          - Compress: true
+            PathPattern: /data/*
+            ForwardedValues:
+              QueryString: false
+            LambdaFunctionAssociations:
+              - EventType: viewer-request
+                LambdaFunctionARN: !Ref CredentialsFunctionVersion
+            TargetOriginId: data-origin
+            ViewerProtocolPolicy: redirect-to-https
         DefaultCacheBehavior:
           Compress: true
           ForwardedValues:
@@ -52,6 +64,11 @@ Resources:
           - Id: default-origin
             DomainName: !Sub '${WebBucketName}.s3.amazonaws.com'
             OriginPath: /web
+            S3OriginConfig:
+              OriginAccessIdentity: !Sub 'origin-access-identity/cloudfront/${AccessIdentity}'
+          - Id: data-origin
+            DomainName: !Sub '${WebBucketName}.s3.amazonaws.com'
+            OriginPath: ''
             S3OriginConfig:
               OriginAccessIdentity: !Sub 'origin-access-identity/cloudfront/${AccessIdentity}'
         PriceClass: PriceClass_100
