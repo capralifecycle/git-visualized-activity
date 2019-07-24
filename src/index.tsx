@@ -995,6 +995,12 @@ domready(async () => {
   const data = await new Promise<Row[]>((resolve, reject) => {
     Papa.parse(dataPath, {
       download: true,
+      // Enabling fastmode also ignores the quote character,
+      // which we currently require as the input CSV is not properly
+      // escaped, but only the last column can contain "multiple"
+      // columns so it normally only means the subject line are
+      // truncated in case it contains a comma.
+      fastMode: true,
       header: true,
       skipEmptyLines: true,
       complete({ data }: { data: RawRow[] }) {
