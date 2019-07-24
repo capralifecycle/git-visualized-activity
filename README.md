@@ -1,6 +1,6 @@
 # git-visualized-activity
 
-[![Build Status](https://jenkins.capra.tv/buildStatus/icon?job=git-visualized-activity/master)](https://jenkins.capra.tv/job/git-visualized-activity/job/master/)
+[![Build Status](https://jenkins.capra.tv/buildStatus/icon?job=cals-internal/git-visualized-activity/master)](https://jenkins.capra.tv/job/cals-internal/job/git-visualized-activity/job/master/)
 
 Generate `commits.csv` in this directory first.
 
