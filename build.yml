@@ -1,7 +1,52 @@
 AWSTemplateFormatVersion: 2010-09-09
 
+Parameters:
+  JenkinsSlaveRoleArn:
+    Type: String
+
 Resources:
   EcrRepo:
     Type: AWS::ECR::Repository
     Properties:
       RepositoryName: git-visualized-activity/worker
+
+  ReleasesBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: git-visualized-activity-build-releases
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+
+  JenkinsRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS: !Ref JenkinsSlaveRoleArn
+            Action: sts:AssumeRole
+      RoleName: git-visualized-activity-jenkins
+      Policies:
+        - PolicyName: jenkins
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:PutObject
+                  - s3:GetObject
+                Resource: !Sub '${ReleasesBucket.Arn}/*'
+              - Effect: Allow
+                Action:
+                  - s3:ListBucket
+                Resource: !GetAtt ReleasesBucket.Arn
+
+Outputs:
+  JenkinsRoleArn:
+    Value: !GetAtt JenkinsRole.Arn
+  ReleasesBucketName:
+    Value: !Ref ReleasesBucket

@@ -7,6 +7,10 @@ set -eu -o pipefail
 app_image_tag=20190721-1718-3
 app_image=923402097046.dkr.ecr.eu-central-1.amazonaws.com/git-visualized-activity/worker:$app_image_tag
 
+# See https://github.com/capraconsulting/webapp-deploy-lambda
+deploy_code_s3_bucket=capra-webapp-deploy-lambda-releases
+deploy_code_s3_key=release-0.1.0.zip
+
 iam_role=arn:aws:iam::923402097046:role/CloudFormation
 tags="project=git-visualized-activity stack=prod"
 cluster_name=git-visualized-activity-prod
@@ -65,6 +69,8 @@ deploy git-visualized-activity-prod-web-cf web-cf.yml \
     "HostedZoneName=capra.tv." \
     "WebBucketName=$web_bucket_name"
 
+cf_distribution_id=$(get_output git-visualized-activity-prod-web-cf CloudFrontDistributionId)
+
 # cluster
 deploy git-visualized-activity-prod-cluster cluster.yml \
   --parameter-overrides \
@@ -79,3 +85,17 @@ deploy git-visualized-activity-prod-app app.yml \
     "Subnets=$subnet_id_list" \
     "VpcId=$vpc_id" \
     "WebBucketName=$web_bucket_name"
+
+jenkins_role_arn=$(get_output git-visualized-activity-build JenkinsRoleArn)
+releases_bucket_name=$(get_output git-visualized-activity-build ReleasesBucketName)
+
+# web-deploy
+deploy git-visualized-activity-prod-web-deploy web-deploy.yml \
+  --parameter-overrides \
+    "AssumedJenkinsRoleArn=$jenkins_role_arn" \
+    "CfDistributionId=$cf_distribution_id" \
+    "DeployCodeS3Bucket=$deploy_code_s3_bucket" \
+    "DeployCodeS3Key=$deploy_code_s3_key" \
+    "FunctionName=git-visualized-activity-prod-deploy" \
+    "ReleasesBucketName=$releases_bucket_name" \
+    "TargetBucketName=$web_bucket_name"
