@@ -33,7 +33,15 @@ buildConfig() {
       }
     }
 
-    publish()
+    releaseUrl = publish()
+
+    if (env.BRANCH_NAME == "master") {
+      deployProd(
+        releaseUrl,
+        'arn:aws:iam::923402097046:role/git-visualized-activity-jenkins',
+        'git-visualized-activity-prod-deploy'
+      )
+    }
   }
 }
 
@@ -85,4 +93,32 @@ def publish() {
   }
 
   releaseUrl
+}
+
+def deployProd(releaseUrl, roleArn, functionName) {
+  stage('Deploy to prod') {
+    withAwsRole(roleArn) {
+      echo "See CloudWatch (https://eu-central-1.console.aws.amazon.com/cloudwatch/home?region=eu-central-1#logStream:group=/aws/lambda/git-visualized-activity-prod-deploy) for deploy output"
+      sh """
+        # Exits 0 even when lambda invocation fails.
+        res=\$(
+          aws lambda invoke \\
+            --region eu-central-1 \\
+            --function-name $functionName \\
+            --payload '{
+              "artifactS3Url": "$releaseUrl"
+            }' \\
+            --query FunctionError \\
+            --output text \\
+            /dev/null
+        )
+
+        if [ "\$res" != "None" ]; then
+          echo "Deploy failed"
+          echo "Error type: \$res"
+          echo "See CloudWatch for details"
+        fi
+      """
+    }
+  }
 }
