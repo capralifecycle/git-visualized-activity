@@ -61,60 +61,73 @@ def getFullCommit() {
   sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
 }
 
+def insideAwsCli(body) {
+  insideToolImage(
+    'aws-cli',
+    [insideArgs: '-e AWS_CONTAINER_CREDENTIALS_RELATIVE_URI']
+  ) {
+    body()
+  }
+}
+
 // TODO: Move to library later.
 def publish(roleArn, releaseBucket) {
-  def shortCommit = getShortCommit()
-  def fullCommit = getFullCommit()
-  def now = new Date()
-  def releaseTime  = now.format("yyyy-MM-dd'T'HH:mm:ss'Z'", TimeZone.getTimeZone("UTC"))
+  insideAwsCli {
+    def shortCommit = getShortCommit()
+    def fullCommit = getFullCommit()
+    def now = new Date()
+    def releaseTime  = now.format("yyyy-MM-dd'T'HH:mm:ss'Z'", TimeZone.getTimeZone("UTC"))
 
-  sh """
-    jq -n '{
-      timestamp: "$releaseTime",
-      gitCommit: "$fullCommit",
-      gitBranch: "$BRANCH_NAME",
-      buildNr: $BUILD_NUMBER
-    }' >build.json
-  """
+    sh """
+      jq -n '{
+        timestamp: "$releaseTime",
+        gitCommit: "$fullCommit",
+        gitBranch: "$BRANCH_NAME",
+        buildNr: $BUILD_NUMBER
+      }' >build.json
+    """
 
-  sh 'tar zcf build.tgz -C dist .'
+    sh 'tar zcf build.tgz -C dist .'
 
-  def nowFilename = now.format("yyyyMMdd-HHmmss", TimeZone.getTimeZone("UTC"))
-  def safeBranchName = env.BRANCH_NAME.replaceAll(/[^a-zA-Z0-9\-_]/, '_')
-  def base = "$nowFilename-$shortCommit-$safeBranchName-$BUILD_NUMBER"
-  def yearMonth = now.format("yyyy-MM", TimeZone.getTimeZone("UTC"))
+    def nowFilename = now.format("yyyyMMdd-HHmmss", TimeZone.getTimeZone("UTC"))
+    def safeBranchName = env.BRANCH_NAME.replaceAll(/[^a-zA-Z0-9\-_]/, '_')
+    def base = "$nowFilename-$shortCommit-$safeBranchName-$BUILD_NUMBER"
+    def yearMonth = now.format("yyyy-MM", TimeZone.getTimeZone("UTC"))
 
-  withAwsRole(roleArn) {
-    sh "aws s3 cp build.tgz s3://$releaseBucket/$yearMonth/${base}.tgz"
-    sh "aws s3 cp build.json s3://$releaseBucket/$yearMonth/${base}.meta.json"
+    withAwsRole(roleArn) {
+      sh "aws s3 cp build.tgz s3://$releaseBucket/$yearMonth/${base}.tgz"
+      sh "aws s3 cp build.json s3://$releaseBucket/$yearMonth/${base}.meta.json"
+    }
+
+    "s3://$releaseBucket/$yearMonth/${base}.tgz"
   }
-
-  "s3://$releaseBucket/$yearMonth/${base}.tgz"
 }
 
 // TODO: Move to library later.
 def deployProd(releaseUrl, roleArn, functionName) {
-  withAwsRole(roleArn) {
-    echo "See CloudWatch (https://eu-central-1.console.aws.amazon.com/cloudwatch/home?region=eu-central-1#logStream:group=/aws/lambda/git-visualized-activity-prod-deploy) for deploy output"
-    sh """
-      # Exits 0 even when lambda invocation fails.
-      res=\$(
-        aws lambda invoke \\
-          --region eu-central-1 \\
-          --function-name $functionName \\
-          --payload '{
-            "artifactS3Url": "$releaseUrl"
-          }' \\
-          --query FunctionError \\
-          --output text \\
-          /dev/null
-      )
+  insideAwsCli {
+    withAwsRole(roleArn) {
+      echo "See CloudWatch (https://eu-central-1.console.aws.amazon.com/cloudwatch/home?region=eu-central-1#logStream:group=/aws/lambda/git-visualized-activity-prod-deploy) for deploy output"
+      sh """
+        # Exits 0 even when lambda invocation fails.
+        res=\$(
+          aws lambda invoke \\
+            --region eu-central-1 \\
+            --function-name $functionName \\
+            --payload '{
+              "artifactS3Url": "$releaseUrl"
+            }' \\
+            --query FunctionError \\
+            --output text \\
+            /dev/null
+        )
 
-      if [ "\$res" != "None" ]; then
-        echo "Deploy failed"
-        echo "Error type: \$res"
-        echo "See CloudWatch for details"
-      fi
-    """
+        if [ "\$res" != "None" ]; then
+          echo "Deploy failed"
+          echo "Error type: \$res"
+          echo "See CloudWatch for details"
+        fi
+      """
+    }
   }
 }
