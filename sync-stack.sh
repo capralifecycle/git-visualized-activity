@@ -4,7 +4,7 @@ set -eu -o pipefail
 # Configuration start
 
 # Use `update-version-sh` to update this to latest.
-app_image_tag=20190721-1718-3
+app_image_tag=20190723-1503-4
 app_image=923402097046.dkr.ecr.eu-central-1.amazonaws.com/git-visualized-activity/worker:$app_image_tag
 
 # See https://github.com/capraconsulting/webapp-deploy-lambda
