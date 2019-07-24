@@ -6,15 +6,6 @@ Parameters:
 
 Resources:
 
-  DeployLogBucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: !Sub 'git-visualized-activity-${Env}-deploy-log'
-      BucketEncryption:
-        ServerSideEncryptionConfiguration:
-          - ServerSideEncryptionByDefault:
-              SSEAlgorithm: AES256
-
   WebBucket:
     Type: AWS::S3::Bucket
     Properties:
@@ -34,7 +25,5 @@ Resources:
       Type: String
 
 Outputs:
-  DeployLogBucketName:
-    Value: !Ref DeployLogBucket
   WebBucketName:
     Value: !Ref WebBucket
