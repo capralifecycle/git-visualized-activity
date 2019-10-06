@@ -22,7 +22,7 @@
     "jest": "24.9.0",
     "jest-sonar-reporter": "2.0.0",
     "papaparse": "5.1.0",
-    "parcel-bundler": "1.12.3",
+    "parcel-bundler": "1.12.4",
     "react": "16.10.2",
     "react-dom": "16.10.2",
     "recharts": "1.7.1",
