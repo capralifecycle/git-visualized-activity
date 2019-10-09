@@ -41,6 +41,7 @@ buildConfig() {
       )
     }
 
+    /* Temporary disabled until we have a new environment up and running.
     if (env.BRANCH_NAME == "master") {
       stage('Deploy to prod') {
         deployProd(
@@ -50,6 +51,7 @@ buildConfig() {
         )
       }
     }
+    */
   }
 }
 
