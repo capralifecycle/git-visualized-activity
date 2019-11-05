@@ -13,7 +13,7 @@
     "@material-ui/core": "4.6.0",
     "@material-ui/styles": "4.6.0",
     "@types/domready": "1.0.0",
-    "@types/jest": "24.0.21",
+    "@types/jest": "24.0.22",
     "@types/papaparse": "5.0.1",
     "@types/react": "16.9.11",
     "@types/react-dom": "16.9.3",
