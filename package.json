@@ -17,7 +17,7 @@
     "@types/papaparse": "5.0.3",
     "@types/react": "16.9.17",
     "@types/react-dom": "16.9.4",
-    "@types/recharts": "1.8.3",
+    "@types/recharts": "1.8.4",
     "domready": "1.0.8",
     "jest": "24.9.0",
     "jest-sonar-reporter": "2.0.0",
