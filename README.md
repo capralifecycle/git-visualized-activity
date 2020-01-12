@@ -30,16 +30,11 @@ aws ssm put-parameter \
 
 ## Deploying resources
 
-There are two stacks. One that is for build artifacts and one
-for the application itself.
-
-```bash
-aws-vault exec capra
-./sync-stack-build.sh
-./sync-stack.sh
-```
+[CDK](https://github.com/aws/aws-cdk) is used to perform deployments.
 
 ## Troubleshooting
+
+(This is not updated for CDK.)
 
 When deploying the `web.yml` stack, the command might time out and fail
 due to the CloudFront distribution taking very long time. If this happens,
