@@ -7,3 +7,4 @@
 - Change output/input between regions if needed
 - Get Jenkins role ARN externally instead of hardcoding
 - Linting and prettier
+- Deploy webapp by CloudFormation

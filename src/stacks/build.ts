@@ -12,8 +12,10 @@ export class BuildStack extends cdk.Stack {
     scope: cdk.Construct,
     id: string,
     props: cdk.StackProps & {
-      resourcePrefix: string
+      jenkinsRoleName: string
       jenkinsSlaveRoleArn: string
+      releasesBucketName: string
+      resourcePrefix: string
     },
   ) {
     super(scope, id, props)
@@ -23,13 +25,13 @@ export class BuildStack extends cdk.Stack {
     })
 
     this.releases = new s3.Bucket(this, "ReleasesBucket", {
-      bucketName: `${props.resourcePrefix}-build-releases`,
+      bucketName: props.releasesBucketName,
       encryption: s3.BucketEncryption.S3_MANAGED,
     })
 
     this.jenkinsRole = new iam.Role(this, "JenkinsRole", {
       assumedBy: new iam.ArnPrincipal(props.jenkinsSlaveRoleArn),
-      roleName: `${props.resourcePrefix}-jenkins`,
+      roleName: props.jenkinsRoleName,
     })
 
     this.releases.grantReadWrite(this.jenkinsRole)

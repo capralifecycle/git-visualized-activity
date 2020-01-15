@@ -1,0 +1,209 @@
+{
+  "Resources": {
+    "EcrRepoBB83A592": {
+      "Type": "AWS::ECR::Repository",
+      "Properties": {
+        "RepositoryName": "liflig-incubator-gva/worker",
+        "Tags": [
+          {
+            "Key": "StackName",
+            "Value": "liflig-incubator-gva-build"
+          },
+          {
+            "Key": "project",
+            "Value": "git-visualized-activity"
+          }
+        ]
+      },
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "liflig-incubator-gva-build/EcrRepo/Resource"
+      }
+    },
+    "ReleasesBucket37D32909": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        },
+        "BucketName": "liflig-incubator-gva-build-releases",
+        "Tags": [
+          {
+            "Key": "StackName",
+            "Value": "liflig-incubator-gva-build"
+          },
+          {
+            "Key": "project",
+            "Value": "git-visualized-activity"
+          }
+        ]
+      },
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "liflig-incubator-gva-build/ReleasesBucket/Resource"
+      }
+    },
+    "JenkinsRoleACE0E219": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "arn:aws:iam::923402097046:role/buildtools-jenkins-RoleJenkinsSlave-JQGYHR5WE6C5"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "RoleName": "liflig-incubator-gva-jenkins",
+        "Tags": [
+          {
+            "Key": "StackName",
+            "Value": "liflig-incubator-gva-build"
+          },
+          {
+            "Key": "project",
+            "Value": "git-visualized-activity"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "liflig-incubator-gva-build/JenkinsRole/Resource"
+      }
+    },
+    "JenkinsRoleDefaultPolicy74B054C5": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject*",
+                "s3:Abort*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ReleasesBucket37D32909",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ReleasesBucket37D32909",
+                          "Arn"
+                        ]
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "EcrRepoBB83A592",
+                  "Arn"
+                ]
+              }
+            },
+            {
+              "Action": "ecr:GetAuthorizationToken",
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": [
+                "ecr:PutImage",
+                "ecr:InitiateLayerUpload",
+                "ecr:UploadLayerPart",
+                "ecr:CompleteLayerUpload"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "EcrRepoBB83A592",
+                  "Arn"
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:eu-west-1:001112238813:parameter/liflig-incubator-gva/deploy-fn-name"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":lambda:eu-west-1:001112238813:function:liflig-incubator-gva-web-oydeployfunction41d1692d99b01518f58e"
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "JenkinsRoleDefaultPolicy74B054C5",
+        "Roles": [
+          {
+            "Ref": "JenkinsRoleACE0E219"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "liflig-incubator-gva-build/JenkinsRole/DefaultPolicy/Resource"
+      }
+    }
+  }
+}

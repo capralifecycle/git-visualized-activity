@@ -6,11 +6,12 @@ import * as r53t from "@aws-cdk/aws-route53-targets"
 import * as s3 from "@aws-cdk/aws-s3"
 import * as ssm from "@aws-cdk/aws-ssm"
 import * as cdk from "@aws-cdk/core"
-import { WebAuth } from "./auth"
+import { WebAuth } from "../auth"
 
 export class WebStack extends cdk.Stack {
   public readonly webBucket: s3.Bucket
   public readonly distribution: cloudfront.CloudFrontWebDistribution
+  public readonly distributionIdParam: ssm.StringParameter
 
   constructor(
     scope: cdk.Construct,
@@ -20,6 +21,7 @@ export class WebStack extends cdk.Stack {
       hostedZoneId: string
       domainName: string
       acmCertificateArn: string
+      webBucketName: string
     },
   ) {
     super(scope, id, props)
@@ -33,7 +35,7 @@ export class WebStack extends cdk.Stack {
     )
 
     this.webBucket = new s3.Bucket(this, "WebBucket", {
-      bucketName: `${props.resourcePrefix}-web`,
+      bucketName: props.webBucketName,
       encryption: s3.BucketEncryption.S3_MANAGED,
     })
 
@@ -74,7 +76,7 @@ export class WebStack extends cdk.Stack {
       },
     )
 
-    const distribution = new cloudfront.CloudFrontWebDistribution(
+    this.distribution = new cloudfront.CloudFrontWebDistribution(
       this,
       "Distribution",
       {
@@ -129,11 +131,21 @@ export class WebStack extends cdk.Stack {
       },
     )
 
+    // Needed for cross-environment reference.
+    this.distributionIdParam = new ssm.StringParameter(
+      this,
+      "DistributionIdParam",
+      {
+        parameterName: `/${props.resourcePrefix}/web-distribution-id`,
+        stringValue: this.distribution.distributionId,
+      },
+    )
+
     new r53.ARecord(this, "DnsRecord", {
       zone: hostedZone,
       recordName: `${props.domainName}.`,
       target: r53.RecordTarget.fromAlias(
-        new r53t.CloudFrontTarget(distribution),
+        new r53t.CloudFrontTarget(this.distribution),
       ),
     })
   }

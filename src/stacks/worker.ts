@@ -7,7 +7,7 @@ import * as iam from "@aws-cdk/aws-iam"
 import * as logs from "@aws-cdk/aws-logs"
 import * as s3 from "@aws-cdk/aws-s3"
 import * as cdk from "@aws-cdk/core"
-import { EcrAsset } from "./asset"
+import { EcrAsset } from "../lib/asset"
 
 export class AppStack extends cdk.Stack {
   constructor(
@@ -15,7 +15,7 @@ export class AppStack extends cdk.Stack {
     id: string,
     props: cdk.StackProps & {
       resourcePrefix: string
-      vpc: ec2.IVpc
+      vpcId: string
       webBucketName: string
       workerAsset: EcrAsset
     },
@@ -25,9 +25,13 @@ export class AppStack extends cdk.Stack {
     const region = cdk.Stack.of(this).region
     const account = cdk.Stack.of(this).account
 
+    const vpc = ec2.Vpc.fromLookup(this, "Vpc", {
+      vpcId: props.vpcId,
+    })
+
     const cluster = new ecs.Cluster(this, "Cluster", {
       clusterName: props.resourcePrefix,
-      vpc: props.vpc,
+      vpc,
     })
 
     const image = ecs.ContainerImage.fromEcrRepository(
@@ -92,7 +96,7 @@ export class AppStack extends cdk.Stack {
 
     // No need for any inbound rules, but we need a security group to start task.
     const securityGroup = new ec2.SecurityGroup(this, "SecurityGroup", {
-      vpc: props.vpc,
+      vpc,
     })
 
     const scheduleRule = new events.Rule(this, "ScheduleRule", {

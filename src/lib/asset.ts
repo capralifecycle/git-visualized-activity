@@ -19,7 +19,7 @@ export interface EcrAsset {
 
 const ecrAssetSnapshot: EcrAsset = {
   dockerTag: "dummy",
-  ecrRepoArn: "dummy",
+  ecrRepoArn: "arn:aws:ecr:eu-west-1:123456789012:repository/dummy",
   ecrRepoName: "dummy",
   meta: {
     buildTimestamp: "2019-12-16T12:00:00+00:00",
