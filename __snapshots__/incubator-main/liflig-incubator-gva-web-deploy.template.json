@@ -147,7 +147,6 @@
             "CF_DISTRIBUTION_ID": "todo-not-resolved-yet"
           }
         },
-        "FunctionName": "liflig-incubator-gva-web-oydeployfunction41d1692d99b01518f58e",
         "ReservedConcurrentExecutions": 1,
         "Tags": [
           {
@@ -167,6 +166,22 @@
       ],
       "Metadata": {
         "aws:cdk:path": "liflig-incubator-gva-web-deploy/DeployFunction/Resource"
+      }
+    },
+    "DeployFunctionInvokeArnPrincipalarnawsiam923402097046rolelifligincubatorgvajenkins5609E20A": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "DeployFunction787AD8CC",
+            "Arn"
+          ]
+        },
+        "Principal": "arn:aws:iam::923402097046:role/liflig-incubator-gva-jenkins"
+      },
+      "Metadata": {
+        "aws:cdk:path": "liflig-incubator-gva-web-deploy/DeployFunction/InvokeArnPrincipal(arn:aws:iam::923402097046:role--liflig-incubator-gva-jenkins)"
       }
     },
     "FunctionName5C9C16A7": {

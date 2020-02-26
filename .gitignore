@@ -7,4 +7,4 @@ node_modules
 .cdk.staging
 cdk.out
 
-!src/auth/index.js
+!src/auth/handler/index.js

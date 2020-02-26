@@ -1,0 +1,276 @@
+{
+  "version": "1.16.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "liflig-incubator-gva-web-deploy": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://001112238813/eu-west-1",
+      "properties": {
+        "templateFile": "liflig-incubator-gva-web-deploy.template.json"
+      },
+      "metadata": {
+        "/liflig-incubator-gva-web-deploy": [
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "StackName",
+                "Value": "liflig-incubator-gva-web-deploy"
+              },
+              {
+                "Key": "project",
+                "Value": "git-visualized-activity"
+              }
+            ]
+          }
+        ],
+        "/liflig-incubator-gva-web-deploy/DeployFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeployFunctionServiceRole19D7D428"
+          }
+        ],
+        "/liflig-incubator-gva-web-deploy/DeployFunction/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeployFunctionServiceRoleDefaultPolicy9EC84FE4"
+          }
+        ],
+        "/liflig-incubator-gva-web-deploy/DeployFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeployFunction787AD8CC"
+          }
+        ],
+        "/liflig-incubator-gva-web-deploy/DeployFunction/InvokeArnPrincipal(arn:aws:iam::923402097046:role--liflig-incubator-gva-jenkins)": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeployFunctionInvokeArnPrincipalarnawsiam923402097046rolelifligincubatorgvajenkins5609E20A"
+          }
+        ],
+        "/liflig-incubator-gva-web-deploy/FunctionName/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FunctionName5C9C16A7"
+          }
+        ]
+      }
+    },
+    "liflig-incubator-gva-worker": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://001112238813/eu-west-1",
+      "properties": {
+        "templateFile": "liflig-incubator-gva-worker.template.json"
+      },
+      "metadata": {
+        "/liflig-incubator-gva-worker": [
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "StackName",
+                "Value": "liflig-incubator-gva-worker"
+              },
+              {
+                "Key": "project",
+                "Value": "git-visualized-activity"
+              }
+            ]
+          }
+        ],
+        "/liflig-incubator-gva-worker/Cluster/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterEB0386A7"
+          }
+        ],
+        "/liflig-incubator-gva-worker/LogGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LogGroupF5B46931"
+          }
+        ],
+        "/liflig-incubator-gva-worker/TaskDef/TaskRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TaskDefTaskRole1EDB4A67"
+          }
+        ],
+        "/liflig-incubator-gva-worker/TaskDef/TaskRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TaskDefTaskRoleDefaultPolicyA592CB18"
+          }
+        ],
+        "/liflig-incubator-gva-worker/TaskDef/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TaskDef54694570"
+          }
+        ],
+        "/liflig-incubator-gva-worker/TaskDef/ExecutionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TaskDefExecutionRoleB4775C97"
+          }
+        ],
+        "/liflig-incubator-gva-worker/TaskDef/ExecutionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TaskDefExecutionRoleDefaultPolicy0DBB737A"
+          }
+        ],
+        "/liflig-incubator-gva-worker/TaskDef/EventsRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TaskDefEventsRoleFB3B67B8"
+          }
+        ],
+        "/liflig-incubator-gva-worker/TaskDef/EventsRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TaskDefEventsRoleDefaultPolicyA124E85B"
+          }
+        ],
+        "/liflig-incubator-gva-worker/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SecurityGroupDD263621"
+          }
+        ],
+        "/liflig-incubator-gva-worker/ScheduleRule/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ScheduleRuleDA5BD877"
+          }
+        ]
+      }
+    },
+    "liflig-incubator-gva-web": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://001112238813/us-east-1",
+      "properties": {
+        "templateFile": "liflig-incubator-gva-web.template.json"
+      },
+      "metadata": {
+        "/liflig-incubator-gva-web": [
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "asset.c1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245",
+              "id": "c1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245",
+              "packaging": "zip",
+              "sourceHash": "c1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245",
+              "s3BucketParameter": "AssetParametersc1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245S3Bucket4CB0FCFF",
+              "s3KeyParameter": "AssetParametersc1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245S3VersionKey8DA0D19B",
+              "artifactHashParameter": "AssetParametersc1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245ArtifactHash6BD0FD8A"
+            }
+          },
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "StackName",
+                "Value": "liflig-incubator-gva-web"
+              },
+              {
+                "Key": "project",
+                "Value": "git-visualized-activity"
+              }
+            ]
+          }
+        ],
+        "/liflig-incubator-gva-web/WebAuth/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthServiceRoleBA3FDD8F"
+          }
+        ],
+        "/liflig-incubator-gva-web/WebAuth/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthServiceRoleDefaultPolicy894ADDA0"
+          }
+        ],
+        "/liflig-incubator-gva-web/WebAuth/Function/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthFunction1AC74598"
+          }
+        ],
+        "/liflig-incubator-gva-web/WebAuth/Version/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthVersion1884DB50"
+          }
+        ],
+        "/liflig-incubator-gva-web/AssetParameters/c1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParametersc1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245S3Bucket4CB0FCFF"
+          }
+        ],
+        "/liflig-incubator-gva-web/AssetParameters/c1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParametersc1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245S3VersionKey8DA0D19B"
+          }
+        ],
+        "/liflig-incubator-gva-web/AssetParameters/c1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParametersc1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245ArtifactHash6BD0FD8A"
+          }
+        ],
+        "/liflig-incubator-gva-web/WebBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebBucket12880F5B"
+          }
+        ],
+        "/liflig-incubator-gva-web/WebBucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebBucketPolicy95D08FAA"
+          }
+        ],
+        "/liflig-incubator-gva-web/AccessIdentity/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AccessIdentity369D113B"
+          }
+        ],
+        "/liflig-incubator-gva-web/WebBucketNameParam/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebBucketNameParamB96AAA9E"
+          }
+        ],
+        "/liflig-incubator-gva-web/Distribution/CFDistribution": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DistributionCFDistribution882A7313"
+          }
+        ],
+        "/liflig-incubator-gva-web/DistributionIdParam/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DistributionIdParam86E45413"
+          }
+        ],
+        "/liflig-incubator-gva-web/DnsRecord/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DnsRecord68F7FB14"
+          }
+        ]
+      }
+    }
+  },
+  "runtime": {}
+}

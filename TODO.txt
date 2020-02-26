@@ -1,5 +1,4 @@
 - Bootstrap both regions
-- Snapshots
 - Deployment procedure in README
 - Multi-account deployments
 - Update version script - use artifacts dir

@@ -1,9 +1,6 @@
 {
   "name": "git-visualized-activity-infra",
   "version": "0.0.0-development",
-  "bin": {
-    "cdk": "src/app.js"
-  },
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",

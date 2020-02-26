@@ -2,7 +2,7 @@
 set -eu
 
 help_and_exit() {
-  >&2 echo "Syntax: $0 <env> <cdk args>"
+  >&2 echo "Syntax: $0 <env> <app-name> <cdk args>"
   exit 1
 }
 
@@ -11,6 +11,9 @@ if [ $# -lt 1 ]; then
 fi
 
 env="$1"
+shift
+
+app="$1"
 shift
 
 source .config
@@ -25,4 +28,7 @@ case "$env" in
     ;;
 esac
 
-exec node_modules/.bin/cdk --context target="$target" --profile "$profile" "$@"
+exec node_modules/.bin/cdk \
+  --context target="$target" \
+  --profile "$profile" "$@" \
+  --app "node src/apps/$app.js"

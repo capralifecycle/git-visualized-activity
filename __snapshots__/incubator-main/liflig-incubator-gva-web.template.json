@@ -83,7 +83,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParametersab5d0eca1ab2c01ed1e974ca47be0d3bfcaa539624a55edc207b4e5fcb2b962dS3BucketC7297919"
+            "Ref": "AssetParametersc1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245S3Bucket4CB0FCFF"
           },
           "S3Key": {
             "Fn::Join": [
@@ -96,7 +96,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersab5d0eca1ab2c01ed1e974ca47be0d3bfcaa539624a55edc207b4e5fcb2b962dS3VersionKeyB950F80D"
+                          "Ref": "AssetParametersc1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245S3VersionKey8DA0D19B"
                         }
                       ]
                     }
@@ -109,7 +109,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersab5d0eca1ab2c01ed1e974ca47be0d3bfcaa539624a55edc207b4e5fcb2b962dS3VersionKeyB950F80D"
+                          "Ref": "AssetParametersc1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245S3VersionKey8DA0D19B"
                         }
                       ]
                     }
@@ -144,7 +144,7 @@
       ],
       "Metadata": {
         "aws:cdk:path": "liflig-incubator-gva-web/WebAuth/Function/Resource",
-        "aws:asset:path": "asset.ab5d0eca1ab2c01ed1e974ca47be0d3bfcaa539624a55edc207b4e5fcb2b962d",
+        "aws:asset:path": "asset.c1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245",
         "aws:asset:property": "Code"
       }
     },
@@ -484,17 +484,17 @@
     }
   },
   "Parameters": {
-    "AssetParametersab5d0eca1ab2c01ed1e974ca47be0d3bfcaa539624a55edc207b4e5fcb2b962dS3BucketC7297919": {
+    "AssetParametersc1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245S3Bucket4CB0FCFF": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"ab5d0eca1ab2c01ed1e974ca47be0d3bfcaa539624a55edc207b4e5fcb2b962d\""
+      "Description": "S3 bucket for asset \"c1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245\""
     },
-    "AssetParametersab5d0eca1ab2c01ed1e974ca47be0d3bfcaa539624a55edc207b4e5fcb2b962dS3VersionKeyB950F80D": {
+    "AssetParametersc1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245S3VersionKey8DA0D19B": {
       "Type": "String",
-      "Description": "S3 key for asset version \"ab5d0eca1ab2c01ed1e974ca47be0d3bfcaa539624a55edc207b4e5fcb2b962d\""
+      "Description": "S3 key for asset version \"c1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245\""
     },
-    "AssetParametersab5d0eca1ab2c01ed1e974ca47be0d3bfcaa539624a55edc207b4e5fcb2b962dArtifactHash38E8AA2C": {
+    "AssetParametersc1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245ArtifactHash6BD0FD8A": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"ab5d0eca1ab2c01ed1e974ca47be0d3bfcaa539624a55edc207b4e5fcb2b962d\""
+      "Description": "Artifact hash for asset \"c1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245\""
     }
   }
 }

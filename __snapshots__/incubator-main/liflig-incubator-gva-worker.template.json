@@ -3,7 +3,7 @@
     "ClusterEB0386A7": {
       "Type": "AWS::ECS::Cluster",
       "Properties": {
-        "ClusterName": "liflig-incubator-gva",
+        "ClusterName": "eu-west-1",
         "Tags": [
           {
             "Key": "StackName",
@@ -92,7 +92,7 @@
                 "ssm:GetParameters"
               ],
               "Effect": "Allow",
-              "Resource": "arn:aws:ssm:eu-west-1:001112238813:parameter/liflig-incubator-gva/*"
+              "Resource": "arn:aws:ssm:eu-west-1:001112238813:parameter/eu-west-1/*"
             }
           ],
           "Version": "2012-10-17"
@@ -116,7 +116,7 @@
             "Environment": [
               {
                 "Name": "PARAMS_PREFIX",
-                "Value": "/liflig-incubator-gva/"
+                "Value": "/eu-west-1/"
               }
             ],
             "Essential": true,
@@ -152,7 +152,7 @@
             "Arn"
           ]
         },
-        "Family": "liflig-incubator-gva-worker",
+        "Family": "eu-west-1-worker",
         "Memory": "2048",
         "NetworkMode": "awsvpc",
         "RequiresCompatibilities": [

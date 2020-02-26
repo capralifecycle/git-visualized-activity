@@ -3,12 +3,13 @@ set -eu -o pipefail
 
 process() {
   target=$1
-  dir=$2
+  app=$2
+  dir=$3
 
-  echo "-- Processing $target --"
+  echo "-- Processing $target ($app) --"
   rm -rf cdk.out
 
-  IS_SNAPSHOT=true ./cdk.sh $target synth >/dev/null
+  IS_SNAPSHOT=true ./cdk.sh "$target" "$app" synth >/dev/null
 
   # Transform the manifest to be more snapshot friendly.
   node ./scripts/transform-manifest.js cdk.out/manifest.json
@@ -26,4 +27,5 @@ process() {
 rm -rf __snapshots__
 mkdir __snapshots__
 
-time process incubator __snapshots__/incubator
+time process incubator build __snapshots__/incubator-buid
+time process incubator main __snapshots__/incubator-main

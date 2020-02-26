@@ -153,43 +153,6 @@
                   "Arn"
                 ]
               }
-            },
-            {
-              "Action": [
-                "ssm:DescribeParameters",
-                "ssm:GetParameters",
-                "ssm:GetParameter",
-                "ssm:GetParameterHistory"
-              ],
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":ssm:eu-west-1:001112238813:parameter/liflig-incubator-gva/deploy-fn-name"
-                  ]
-                ]
-              }
-            },
-            {
-              "Action": "lambda:InvokeFunction",
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":lambda:eu-west-1:001112238813:function:liflig-incubator-gva-web-oydeployfunction41d1692d99b01518f58e"
-                  ]
-                ]
-              }
             }
           ],
           "Version": "2012-10-17"

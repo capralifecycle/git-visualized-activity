@@ -1,0 +1,60 @@
+{
+  "version": "1.16.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "liflig-incubator-gva-build": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://923402097046/eu-central-1",
+      "properties": {
+        "templateFile": "liflig-incubator-gva-build.template.json"
+      },
+      "metadata": {
+        "/liflig-incubator-gva-build": [
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "StackName",
+                "Value": "liflig-incubator-gva-build"
+              },
+              {
+                "Key": "project",
+                "Value": "git-visualized-activity"
+              }
+            ]
+          }
+        ],
+        "/liflig-incubator-gva-build/EcrRepo/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcrRepoBB83A592"
+          }
+        ],
+        "/liflig-incubator-gva-build/ReleasesBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ReleasesBucket37D32909"
+          }
+        ],
+        "/liflig-incubator-gva-build/JenkinsRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JenkinsRoleACE0E219"
+          }
+        ],
+        "/liflig-incubator-gva-build/JenkinsRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JenkinsRoleDefaultPolicy74B054C5"
+          }
+        ]
+      }
+    }
+  },
+  "runtime": {}
+}
