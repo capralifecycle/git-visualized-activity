@@ -11,7 +11,7 @@
     "@aws-cdk/assert": "1.26.0",
     "@types/node": "13.7.6",
     "aws-cdk": "1.26.0",
-    "aws-sdk": "2.601.0",
+    "aws-sdk": "2.627.0",
     "typescript": "3.8.2"
   },
   "dependencies": {
