@@ -23,7 +23,8 @@ export const incubatorEnv = {
 export const buildEnv = {
   accountId: "923402097046",
   jenkinsRoleName: "liflig-incubator-gva-jenkins",
-  jenkinsSlaveRoleArn: "arn:aws:iam::923402097046:role/buildtools-jenkins-RoleJenkinsSlave-JQGYHR5WE6C5",
+  jenkinsSlaveRoleArn:
+    "arn:aws:iam::923402097046:role/buildtools-jenkins-RoleJenkinsSlave-JQGYHR5WE6C5",
   region: "eu-central-1",
   releasesBucketName: "liflig-incubator-gva-build-releases",
   resourcePrefix: "liflig-incubator-gva",
