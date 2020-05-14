@@ -9,6 +9,7 @@ jobs:
         with:
           node-version: '12.x'
       - run: npm ci
+      - run: npm run lint
       - name: Generate snapshots
         run: make snapshots
       - name: Check for snapshots diff
