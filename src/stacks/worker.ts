@@ -9,7 +9,7 @@ import * as s3 from "@aws-cdk/aws-s3"
 import * as cdk from "@aws-cdk/core"
 import { EcrAsset } from "../lib/asset"
 
-export class AppStack extends cdk.Stack {
+export class WorkerStack extends cdk.Stack {
   constructor(
     scope: cdk.Construct,
     id: string,

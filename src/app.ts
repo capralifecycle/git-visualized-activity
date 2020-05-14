@@ -12,7 +12,7 @@ import { getEcrAsset } from "./lib/asset"
 import { BuildStack } from "./stacks/build"
 import { WebStack } from "./stacks/web"
 import { WebDeployStack } from "./stacks/web-deploy"
-import { AppStack as WorkerStack } from "./stacks/worker"
+import { WorkerStack } from "./stacks/worker"
 
 const app = new cdk.App()
 tagResources(app, (stack) => ({
