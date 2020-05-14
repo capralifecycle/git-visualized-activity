@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import * as cdk from "@aws-cdk/core"
 import { tagResources } from "@liflig/cdk"
 import {
