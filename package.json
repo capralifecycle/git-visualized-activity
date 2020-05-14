@@ -2,8 +2,6 @@
   "name": "git-visualized-activity-infra",
   "version": "0.0.0-development",
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk"
   },
@@ -12,6 +10,7 @@
     "@types/node": "13.13.5",
     "aws-cdk": "1.38.0",
     "aws-sdk": "2.627.0",
+    "ts-node": "8.10.1",
     "typescript": "3.8.3"
   },
   "dependencies": {
@@ -38,6 +37,7 @@
     "@aws-cdk/aws-sns-subscriptions": "1.38.0",
     "@aws-cdk/aws-sqs": "1.38.0",
     "@aws-cdk/aws-ssm": "1.38.0",
-    "@aws-cdk/core": "1.38.0"
+    "@aws-cdk/core": "1.38.0",
+    "@liflig/cdk": "1.1.1"
   }
 }

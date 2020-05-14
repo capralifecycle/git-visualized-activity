@@ -1,4 +1,5 @@
 {
+  "app": "ts-node src/app.ts",
   "requireApproval": "never",
   "versionReporting": false
 }

@@ -6,15 +6,27 @@ import {
   deployCodeS3Key,
   incubatorEnv,
   projectName,
-} from "../env"
-import { getEcrAsset } from "../lib/asset"
-import { WebStack } from "../stacks/web"
-import { WebDeployStack } from "../stacks/web-deploy"
-import { AppStack as WorkerStack } from "../stacks/worker"
-import { addStackTags } from "../util"
+} from "./env"
+import { getEcrAsset } from "./lib/asset"
+import { BuildStack } from "./stacks/build"
+import { WebStack } from "./stacks/web"
+import { WebDeployStack } from "./stacks/web-deploy"
+import { AppStack as WorkerStack } from "./stacks/worker"
+import { addStackTags } from "./util"
 
 const app = new cdk.App()
 addStackTags(app, projectName)
+
+new BuildStack(app, `${buildEnv.resourcePrefix}-build`, {
+  env: {
+    account: buildEnv.accountId,
+    region: buildEnv.region,
+  },
+  jenkinsRoleName: buildEnv.jenkinsRoleName,
+  jenkinsSlaveRoleArn: buildEnv.jenkinsSlaveRoleArn,
+  releasesBucketName: buildEnv.releasesBucketName,
+  resourcePrefix: buildEnv.resourcePrefix,
+})
 
 new WebDeployStack(app, `${incubatorEnv.resourcePrefix}-web-deploy`, {
   env: {
