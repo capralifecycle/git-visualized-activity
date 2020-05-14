@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import * as cdk from "@aws-cdk/core"
+import { tagResources } from "@liflig/cdk"
 import {
   buildEnv,
   deployCodeS3Bucket,
@@ -12,10 +13,13 @@ import { BuildStack } from "./stacks/build"
 import { WebStack } from "./stacks/web"
 import { WebDeployStack } from "./stacks/web-deploy"
 import { AppStack as WorkerStack } from "./stacks/worker"
-import { addStackTags } from "./util"
 
 const app = new cdk.App()
-addStackTags(app, projectName)
+tagResources(app, stack => ({
+  StackName: stack.stackName,
+  Project: projectName,
+  SourceRepo: "github/capraconsulting/git-visualized-activity-infra",
+}))
 
 new BuildStack(app, `${buildEnv.resourcePrefix}-build`, {
   env: {

@@ -35,8 +35,12 @@
             "Value": "liflig-incubator-gva-web-deploy"
           },
           {
-            "Key": "project",
+            "Key": "Project",
             "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
           }
         ]
       },
@@ -154,8 +158,12 @@
             "Value": "liflig-incubator-gva-web-deploy"
           },
           {
-            "Key": "project",
+            "Key": "Project",
             "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
           }
         ],
         "Timeout": 120
@@ -194,7 +202,8 @@
         "Name": "/liflig-incubator-gva/deploy-fn-name",
         "Tags": {
           "StackName": "liflig-incubator-gva-web-deploy",
-          "project": "git-visualized-activity"
+          "Project": "git-visualized-activity",
+          "SourceRepo": "github/capraconsulting/git-visualized-activity-infra"
         }
       },
       "Metadata": {

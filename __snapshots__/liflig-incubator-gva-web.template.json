@@ -45,8 +45,12 @@
             "Value": "liflig-incubator-gva-web"
           },
           {
-            "Key": "project",
+            "Key": "Project",
             "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
           }
         ]
       },
@@ -133,8 +137,12 @@
             "Value": "liflig-incubator-gva-web"
           },
           {
-            "Key": "project",
+            "Key": "Project",
             "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
           }
         ]
       },
@@ -178,8 +186,12 @@
             "Value": "liflig-incubator-gva-web"
           },
           {
-            "Key": "project",
+            "Key": "Project",
             "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
           }
         ]
       },
@@ -306,7 +318,8 @@
         "Name": "/liflig-incubator-gva/web-bucket-name",
         "Tags": {
           "StackName": "liflig-incubator-gva-web",
-          "project": "git-visualized-activity"
+          "Project": "git-visualized-activity",
+          "SourceRepo": "github/capraconsulting/git-visualized-activity-infra"
         }
       },
       "Metadata": {
@@ -436,8 +449,12 @@
             "Value": "liflig-incubator-gva-web"
           },
           {
-            "Key": "project",
+            "Key": "Project",
             "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
           }
         ]
       },
@@ -455,7 +472,8 @@
         "Name": "/liflig-incubator-gva/web-distribution-id",
         "Tags": {
           "StackName": "liflig-incubator-gva-web",
-          "project": "git-visualized-activity"
+          "Project": "git-visualized-activity",
+          "SourceRepo": "github/capraconsulting/git-visualized-activity-infra"
         }
       },
       "Metadata": {

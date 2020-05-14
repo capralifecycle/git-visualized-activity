@@ -10,8 +10,12 @@
             "Value": "liflig-incubator-gva-build"
           },
           {
-            "Key": "project",
+            "Key": "Project",
             "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
           }
         ]
       },
@@ -40,8 +44,12 @@
             "Value": "liflig-incubator-gva-build"
           },
           {
-            "Key": "project",
+            "Key": "Project",
             "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
           }
         ]
       },
@@ -73,8 +81,12 @@
             "Value": "liflig-incubator-gva-build"
           },
           {
-            "Key": "project",
+            "Key": "Project",
             "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
           }
         ]
       },
