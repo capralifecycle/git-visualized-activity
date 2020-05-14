@@ -35,8 +35,7 @@ export function getEcrAsset(name: string) {
     return ecrAssetSnapshot
   }
 
-  return (fs.readFileSync(
-    `artifacts/${name}.json`,
-    "utf-8",
-  ) as unknown) as EcrAsset
+  return JSON.parse(
+    fs.readFileSync(`artifacts/${name}.json`, "utf-8"),
+  ) as EcrAsset
 }
