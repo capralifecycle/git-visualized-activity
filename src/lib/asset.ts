@@ -30,7 +30,7 @@ const ecrAssetSnapshot: EcrAsset = {
   },
 }
 
-export function getEcrAsset(name: string) {
+export function getEcrAsset(name: string): EcrAsset {
   if (isSnapshot) {
     return ecrAssetSnapshot
   }
