@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0",
+  "version": "4.0.0",
   "artifacts": {
     "Tree": {
       "type": "cdk:tree",
@@ -19,16 +19,16 @@
             "type": "aws:cdk:stack-tags",
             "data": [
               {
-                "Key": "StackName",
-                "Value": "liflig-incubator-gva-build"
-              },
-              {
                 "Key": "Project",
                 "Value": "git-visualized-activity"
               },
               {
                 "Key": "SourceRepo",
                 "Value": "github/capraconsulting/git-visualized-activity-infra"
+              },
+              {
+                "Key": "StackName",
+                "Value": "liflig-incubator-gva-build"
               }
             ]
           }
@@ -71,16 +71,16 @@
             "type": "aws:cdk:stack-tags",
             "data": [
               {
-                "Key": "StackName",
-                "Value": "liflig-incubator-gva-web-deploy"
-              },
-              {
                 "Key": "Project",
                 "Value": "git-visualized-activity"
               },
               {
                 "Key": "SourceRepo",
                 "Value": "github/capraconsulting/git-visualized-activity-infra"
+              },
+              {
+                "Key": "StackName",
+                "Value": "liflig-incubator-gva-web-deploy"
               }
             ]
           }
@@ -129,16 +129,16 @@
             "type": "aws:cdk:stack-tags",
             "data": [
               {
-                "Key": "StackName",
-                "Value": "liflig-incubator-gva-worker"
-              },
-              {
                 "Key": "Project",
                 "Value": "git-visualized-activity"
               },
               {
                 "Key": "SourceRepo",
                 "Value": "github/capraconsulting/git-visualized-activity-infra"
+              },
+              {
+                "Key": "StackName",
+                "Value": "liflig-incubator-gva-worker"
               }
             ]
           }
@@ -235,16 +235,16 @@
             "type": "aws:cdk:stack-tags",
             "data": [
               {
-                "Key": "StackName",
-                "Value": "liflig-incubator-gva-web"
-              },
-              {
                 "Key": "Project",
                 "Value": "git-visualized-activity"
               },
               {
                 "Key": "SourceRepo",
                 "Value": "github/capraconsulting/git-visualized-activity-infra"
+              },
+              {
+                "Key": "StackName",
+                "Value": "liflig-incubator-gva-web"
               }
             ]
           }

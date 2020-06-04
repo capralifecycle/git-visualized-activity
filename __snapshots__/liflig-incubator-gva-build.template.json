@@ -6,16 +6,16 @@
         "RepositoryName": "liflig-incubator-gva/worker",
         "Tags": [
           {
-            "Key": "StackName",
-            "Value": "liflig-incubator-gva-build"
-          },
-          {
             "Key": "Project",
             "Value": "git-visualized-activity"
           },
           {
             "Key": "SourceRepo",
             "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "liflig-incubator-gva-build"
           }
         ]
       },
@@ -40,16 +40,16 @@
         "BucketName": "liflig-incubator-gva-build-releases",
         "Tags": [
           {
-            "Key": "StackName",
-            "Value": "liflig-incubator-gva-build"
-          },
-          {
             "Key": "Project",
             "Value": "git-visualized-activity"
           },
           {
             "Key": "SourceRepo",
             "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "liflig-incubator-gva-build"
           }
         ]
       },
@@ -77,16 +77,16 @@
         "RoleName": "liflig-incubator-gva-jenkins",
         "Tags": [
           {
-            "Key": "StackName",
-            "Value": "liflig-incubator-gva-build"
-          },
-          {
             "Key": "Project",
             "Value": "git-visualized-activity"
           },
           {
             "Key": "SourceRepo",
             "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "liflig-incubator-gva-build"
           }
         ]
       },

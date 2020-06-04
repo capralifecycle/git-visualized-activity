@@ -41,16 +41,16 @@
         ],
         "Tags": [
           {
-            "Key": "StackName",
-            "Value": "liflig-incubator-gva-web"
-          },
-          {
             "Key": "Project",
             "Value": "git-visualized-activity"
           },
           {
             "Key": "SourceRepo",
             "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "liflig-incubator-gva-web"
           }
         ]
       },
@@ -133,16 +133,16 @@
         "Runtime": "nodejs12.x",
         "Tags": [
           {
-            "Key": "StackName",
-            "Value": "liflig-incubator-gva-web"
-          },
-          {
             "Key": "Project",
             "Value": "git-visualized-activity"
           },
           {
             "Key": "SourceRepo",
             "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "liflig-incubator-gva-web"
           }
         ]
       },
@@ -182,16 +182,16 @@
         "BucketName": "liflig-incubator-gva-web",
         "Tags": [
           {
-            "Key": "StackName",
-            "Value": "liflig-incubator-gva-web"
-          },
-          {
             "Key": "Project",
             "Value": "git-visualized-activity"
           },
           {
             "Key": "SourceRepo",
             "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "liflig-incubator-gva-web"
           }
         ]
       },
@@ -317,9 +317,9 @@
         },
         "Name": "/liflig-incubator-gva/web-bucket-name",
         "Tags": {
-          "StackName": "liflig-incubator-gva-web",
           "Project": "git-visualized-activity",
-          "SourceRepo": "github/capraconsulting/git-visualized-activity-infra"
+          "SourceRepo": "github/capraconsulting/git-visualized-activity-infra",
+          "StackName": "liflig-incubator-gva-web"
         }
       },
       "Metadata": {
@@ -445,16 +445,16 @@
         },
         "Tags": [
           {
-            "Key": "StackName",
-            "Value": "liflig-incubator-gva-web"
-          },
-          {
             "Key": "Project",
             "Value": "git-visualized-activity"
           },
           {
             "Key": "SourceRepo",
             "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "liflig-incubator-gva-web"
           }
         ]
       },
@@ -471,9 +471,9 @@
         },
         "Name": "/liflig-incubator-gva/web-distribution-id",
         "Tags": {
-          "StackName": "liflig-incubator-gva-web",
           "Project": "git-visualized-activity",
-          "SourceRepo": "github/capraconsulting/git-visualized-activity-infra"
+          "SourceRepo": "github/capraconsulting/git-visualized-activity-infra",
+          "StackName": "liflig-incubator-gva-web"
         }
       },
       "Metadata": {
