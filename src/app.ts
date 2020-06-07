@@ -1,17 +1,19 @@
 import * as cdk from "@aws-cdk/core"
 import { tagResources } from "@liflig/cdk"
 import {
-  buildEnv,
   deployCodeS3Bucket,
   deployCodeS3Key,
   incubatorEnv,
   projectName,
 } from "./env"
 import { getEcrAsset } from "./lib/asset"
-import { BuildStack } from "./stacks/build"
 import { WebStack } from "./stacks/web"
 import { WebDeployStack } from "./stacks/web-deploy"
 import { WorkerStack } from "./stacks/worker"
+
+const jenkinsRoleArn =
+  "arn:aws:iam::923402097046:role/buildtools-jenkins-RoleJenkinsSlave-JQGYHR5WE6C5"
+const buildBucketName = "incub-common-build-artifacts-001112238813-eu-west-1"
 
 const app = new cdk.App()
 tagResources(app, (stack) => ({
@@ -20,28 +22,18 @@ tagResources(app, (stack) => ({
   SourceRepo: "github/capraconsulting/git-visualized-activity-infra",
 }))
 
-new BuildStack(app, `${buildEnv.resourcePrefix}-build`, {
-  env: {
-    account: buildEnv.accountId,
-    region: buildEnv.region,
-  },
-  jenkinsRoleName: buildEnv.jenkinsRoleName,
-  jenkinsSlaveRoleArn: buildEnv.jenkinsSlaveRoleArn,
-  releasesBucketName: buildEnv.releasesBucketName,
-  resourcePrefix: buildEnv.resourcePrefix,
-})
-
 new WebDeployStack(app, `${incubatorEnv.resourcePrefix}-web-deploy`, {
   env: {
     account: incubatorEnv.accountId,
     region: incubatorEnv.region,
   },
-  assumedJenkinsRoleArn: `arn:aws:iam::${buildEnv.accountId}:role/${buildEnv.jenkinsRoleName}`,
+  callerRoleArn: jenkinsRoleArn,
+  roleName: "liflig-incubator-gva-jenkins",
   deployCodeS3Bucket,
   deployCodeS3Key,
   // TODO: Dynamically resolve.
   distributionId: incubatorEnv.distributionId,
-  releasesBucketName: buildEnv.releasesBucketName,
+  buildsBucketName: buildBucketName,
   webBucketName: incubatorEnv.cloudfront.webBucketName,
   resourcePrefix: incubatorEnv.resourcePrefix,
 })

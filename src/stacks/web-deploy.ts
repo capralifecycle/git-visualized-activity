@@ -9,10 +9,11 @@ export class WebDeployStack extends cdk.Stack {
     scope: cdk.Construct,
     id: string,
     props: cdk.StackProps & {
-      assumedJenkinsRoleArn: string
+      callerRoleArn: string
+      roleName: string
       deployCodeS3Bucket: string
       deployCodeS3Key: string
-      releasesBucketName: string
+      buildsBucketName: string
       webBucketName: string
       resourcePrefix: string
       distributionId: string
@@ -20,12 +21,15 @@ export class WebDeployStack extends cdk.Stack {
   ) {
     super(scope, id, props)
 
-    const jenkinsPrincipal = new iam.ArnPrincipal(props.assumedJenkinsRoleArn)
+    const roleToBeAssumed = new iam.Role(this, "Role", {
+      assumedBy: new iam.ArnPrincipal(props.callerRoleArn),
+      roleName: props.roleName,
+    })
 
-    const releasesBucket = s3.Bucket.fromBucketName(
+    const buildsBucket = s3.Bucket.fromBucketName(
       this,
-      "ReleasesBucket",
-      props.releasesBucketName,
+      "BuildsBucket",
+      props.buildsBucketName,
     )
     const webBucket = s3.Bucket.fromBucketName(
       this,
@@ -53,7 +57,7 @@ export class WebDeployStack extends cdk.Stack {
       initialPolicy: [
         new iam.PolicyStatement({
           actions: ["s3:HeadObject", "s3:GetObject"],
-          resources: [releasesBucket.arnForObjects("*")],
+          resources: [buildsBucket.arnForObjects("*")],
         }),
         new iam.PolicyStatement({
           actions: ["s3:PutObject", "s3:DeleteObject"],
@@ -76,7 +80,7 @@ export class WebDeployStack extends cdk.Stack {
       stringValue: deployFunction.functionName,
     })
 
-    functionName.grantRead(jenkinsPrincipal)
-    deployFunction.grantInvoke(jenkinsPrincipal)
+    functionName.grantRead(roleToBeAssumed)
+    deployFunction.grantInvoke(roleToBeAssumed)
   }
 }

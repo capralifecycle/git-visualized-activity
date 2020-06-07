@@ -1,5 +1,93 @@
 {
   "Resources": {
+    "Role1ABCC5F0": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "arn:aws:iam::923402097046:role/buildtools-jenkins-RoleJenkinsSlave-JQGYHR5WE6C5"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "RoleName": "liflig-incubator-gva-jenkins",
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "liflig-incubator-gva-web-deploy"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "liflig-incubator-gva-web-deploy/Role/Resource"
+      }
+    },
+    "RoleDefaultPolicy5FFB7DAB": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameterHistory"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:eu-west-1:001112238813:parameter",
+                    {
+                      "Ref": "FunctionName5C9C16A7"
+                    }
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "DeployFunction787AD8CC",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "RoleDefaultPolicy5FFB7DAB",
+        "Roles": [
+          {
+            "Ref": "Role1ABCC5F0"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "liflig-incubator-gva-web-deploy/Role/DefaultPolicy/Resource"
+      }
+    },
     "DeployFunctionServiceRole19D7D428": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -67,7 +155,7 @@
                     {
                       "Ref": "AWS::Partition"
                     },
-                    ":s3:::liflig-incubator-gva-build-releases/*"
+                    ":s3:::incub-common-build-artifacts-001112238813-eu-west-1/*"
                   ]
                 ]
               }
@@ -174,22 +262,6 @@
       ],
       "Metadata": {
         "aws:cdk:path": "liflig-incubator-gva-web-deploy/DeployFunction/Resource"
-      }
-    },
-    "DeployFunctionInvokeArnPrincipalarnawsiam923402097046rolelifligincubatorgvajenkins5609E20A": {
-      "Type": "AWS::Lambda::Permission",
-      "Properties": {
-        "Action": "lambda:InvokeFunction",
-        "FunctionName": {
-          "Fn::GetAtt": [
-            "DeployFunction787AD8CC",
-            "Arn"
-          ]
-        },
-        "Principal": "arn:aws:iam::923402097046:role/liflig-incubator-gva-jenkins"
-      },
-      "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-web-deploy/DeployFunction/InvokeArnPrincipal(arn:aws:iam::923402097046:role--liflig-incubator-gva-jenkins)"
       }
     },
     "FunctionName5C9C16A7": {

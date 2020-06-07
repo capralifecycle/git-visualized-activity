@@ -7,58 +7,6 @@
         "file": "tree.json"
       }
     },
-    "liflig-incubator-gva-build": {
-      "type": "aws:cloudformation:stack",
-      "environment": "aws://923402097046/eu-central-1",
-      "properties": {
-        "templateFile": "liflig-incubator-gva-build.template.json"
-      },
-      "metadata": {
-        "/liflig-incubator-gva-build": [
-          {
-            "type": "aws:cdk:stack-tags",
-            "data": [
-              {
-                "Key": "Project",
-                "Value": "git-visualized-activity"
-              },
-              {
-                "Key": "SourceRepo",
-                "Value": "github/capraconsulting/git-visualized-activity-infra"
-              },
-              {
-                "Key": "StackName",
-                "Value": "liflig-incubator-gva-build"
-              }
-            ]
-          }
-        ],
-        "/liflig-incubator-gva-build/EcrRepo/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "EcrRepoBB83A592"
-          }
-        ],
-        "/liflig-incubator-gva-build/ReleasesBucket/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "ReleasesBucket37D32909"
-          }
-        ],
-        "/liflig-incubator-gva-build/JenkinsRole/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "JenkinsRoleACE0E219"
-          }
-        ],
-        "/liflig-incubator-gva-build/JenkinsRole/DefaultPolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "JenkinsRoleDefaultPolicy74B054C5"
-          }
-        ]
-      }
-    },
     "liflig-incubator-gva-web-deploy": {
       "type": "aws:cloudformation:stack",
       "environment": "aws://001112238813/eu-west-1",
@@ -85,6 +33,18 @@
             ]
           }
         ],
+        "/liflig-incubator-gva-web-deploy/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Role1ABCC5F0"
+          }
+        ],
+        "/liflig-incubator-gva-web-deploy/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RoleDefaultPolicy5FFB7DAB"
+          }
+        ],
         "/liflig-incubator-gva-web-deploy/DeployFunction/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -101,12 +61,6 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "DeployFunction787AD8CC"
-          }
-        ],
-        "/liflig-incubator-gva-web-deploy/DeployFunction/InvokeArnPrincipal(arn:aws:iam::923402097046:role--liflig-incubator-gva-jenkins)": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "DeployFunctionInvokeArnPrincipalarnawsiam923402097046rolelifligincubatorgvajenkins5609E20A"
           }
         ],
         "/liflig-incubator-gva-web-deploy/FunctionName/Resource": [

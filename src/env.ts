@@ -20,16 +20,6 @@ export const incubatorEnv = {
   vpcId: "vpc-0f0d43198daee2247",
 }
 
-export const buildEnv = {
-  accountId: "923402097046",
-  jenkinsRoleName: "liflig-incubator-gva-jenkins",
-  jenkinsSlaveRoleArn:
-    "arn:aws:iam::923402097046:role/buildtools-jenkins-RoleJenkinsSlave-JQGYHR5WE6C5",
-  region: "eu-central-1",
-  releasesBucketName: "liflig-incubator-gva-build-releases",
-  resourcePrefix: "liflig-incubator-gva",
-}
-
 // See https://github.com/capraconsulting/webapp-deploy-lambda
 export const deployCodeS3Bucket = "capra-webapp-deploy-lambda-releases"
 export const deployCodeS3Key = "release-0.1.0.zip"
