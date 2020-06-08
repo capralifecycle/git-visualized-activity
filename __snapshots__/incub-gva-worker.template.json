@@ -110,7 +110,7 @@
                     {
                       "Ref": "AWS::Partition"
                     },
-                    ":s3:::incub-gva-web-001112238813-us-east-1/*"
+                    ":s3:::incub-gva-web-001112238813-eu-west-1/*"
                   ]
                 ]
               }
@@ -150,7 +150,7 @@
             "Environment": [
               {
                 "Name": "BUCKET_NAME",
-                "Value": "incub-gva-web-001112238813-us-east-1"
+                "Value": "incub-gva-web-001112238813-eu-west-1"
               },
               {
                 "Name": "CF_DISTRIBUTION",

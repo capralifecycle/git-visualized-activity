@@ -10,6 +10,7 @@ import { SsmParameterReader } from "./ssm-parameter-reader"
 import { WebEdgeStack } from "./web-edge-stack"
 
 export class WebStack extends cdk.Stack {
+  public readonly webBucketName: string
   public readonly webBucket: s3.Bucket
   public readonly distribution: cloudfront.CloudFrontWebDistribution
 
@@ -27,11 +28,15 @@ export class WebStack extends cdk.Stack {
         domainName: string
         acmCertificateArn: string
       }
-      webBucketName: string
       webEdgeStack: WebEdgeStack
     },
   ) {
     super(scope, id, props)
+
+    const region = cdk.Stack.of(this).region
+    const account = cdk.Stack.of(this).account
+
+    this.webBucketName = `${props.resourcePrefix}-web-${account}-${region}`
 
     const webAuthLambdaVersionArnReader = new SsmParameterReader(
       this,
@@ -55,7 +60,7 @@ export class WebStack extends cdk.Stack {
     )
 
     this.webBucket = new s3.Bucket(this, "WebBucket", {
-      bucketName: props.webBucketName,
+      bucketName: this.webBucketName,
       encryption: s3.BucketEncryption.S3_MANAGED,
     })
 

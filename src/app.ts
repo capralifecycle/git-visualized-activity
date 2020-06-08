@@ -32,7 +32,6 @@ const externalValues = {
 }
 
 const incubatorAccountId = "001112238813"
-const webBucketName = `incub-gva-web-${incubatorAccountId}-us-east-1`
 
 const app = new cdk.App()
 tagResources(app, (stack) => ({
@@ -64,7 +63,6 @@ const webStack = new WebStack(app, `incub-gva-web`, {
     acmCertificateArn: externalValues.lifligIoAcmCertifcateUsEast1Arn,
   },
   resourcePrefix: "incub-gva",
-  webBucketName: webBucketName,
   webEdgeStack,
 })
 
@@ -77,7 +75,6 @@ new WebDeployStack(app, `incub-gva-web-deploy`, {
   roleName: "incub-gva-jenkins",
   webStack,
   buildsBucketName: externalValues.buildBucketName,
-  webBucketName: webBucketName,
   resourcePrefix: "incub-gva",
 })
 
@@ -89,7 +86,6 @@ new WorkerStack(app, `incub-gva-worker`, {
   resourcePrefix: "incub-gva",
   vpcId: externalValues.vpcId,
   webStack,
-  webBucketName: webBucketName,
   ecrRepositoryArn: externalValues.buildEcrRepositoryArn,
   ecrRepositoryName: externalValues.buildEcrRepositoryName,
   artifactStatus: new EcsUpdateImageArtifactStatus({

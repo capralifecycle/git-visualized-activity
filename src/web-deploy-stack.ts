@@ -10,7 +10,6 @@ export class WebDeployStack extends cdk.Stack {
       callerRoleArn: string
       roleName: string
       buildsBucketName: string
-      webBucketName: string
       resourcePrefix: string
       webStack: WebStack
     },
@@ -21,7 +20,7 @@ export class WebDeployStack extends cdk.Stack {
       callerRoleArn: props.callerRoleArn,
       roleName: props.roleName,
       buildsBucketName: props.buildsBucketName,
-      webBucketName: props.webBucketName,
+      webBucketName: props.webStack.webBucketName,
       resourcePrefix: props.resourcePrefix,
       distributionId: props.webStack.distribution.distributionId,
     })

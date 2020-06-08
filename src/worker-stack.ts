@@ -18,7 +18,6 @@ export class WorkerStack extends cdk.Stack {
       resourcePrefix: string
       vpcId: string
       webStack: WebStack
-      webBucketName: string
       ecrRepositoryArn: string
       ecrRepositoryName: string
       artifactStatus: EcsUpdateImageArtifactStatus
@@ -54,7 +53,7 @@ export class WorkerStack extends cdk.Stack {
     const webBucket = s3.Bucket.fromBucketName(
       this,
       "WebBucket",
-      props.webBucketName,
+      props.webStack.webBucketName,
     )
 
     // The actual application being run as a task.
