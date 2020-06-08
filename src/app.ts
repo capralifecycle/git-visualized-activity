@@ -30,17 +30,8 @@ const externalValues = {
   incubatorDevHostedZoneId: "Z07028931BZD2FT5LUHHH",
 }
 
-const incubatorEnv = {
-  accountId: "001112238813",
-  // Resources in us-east-1.
-  cloudfront: {
-    webBucketName: "incub-gva-web",
-    region: "us-east-1",
-  },
-  hostedZoneId: "TODO",
-  region: "eu-west-1",
-  vpcId: externalValues.vpcId,
-}
+const incubatorAccountId = "001112238813"
+const webBucketName = "incub-gva-web"
 
 const app = new cdk.App()
 tagResources(app, (stack) => ({
@@ -51,8 +42,8 @@ tagResources(app, (stack) => ({
 
 const webStack = new WebStack(app, `incub-gva-web`, {
   env: {
-    account: incubatorEnv.accountId,
-    region: incubatorEnv.cloudfront.region,
+    account: incubatorAccountId,
+    region: "us-east-1",
   },
   localEndpoint: {
     domainName: "gva.incubator.liflig.dev",
@@ -64,31 +55,31 @@ const webStack = new WebStack(app, `incub-gva-web`, {
     acmCertificateArn: externalValues.lifligIoAcmCertifcateArn,
   },
   resourcePrefix: "incub-gva",
-  webBucketName: incubatorEnv.cloudfront.webBucketName,
+  webBucketName: webBucketName,
 })
 
 new WebDeployStack(app, `incub-gva-web-deploy`, {
   env: {
-    account: incubatorEnv.accountId,
-    region: incubatorEnv.region,
+    account: incubatorAccountId,
+    region: "eu-west-1",
   },
   callerRoleArn: externalValues.jenkinsRoleArn,
   roleName: "incub-gva-jenkins",
   webStack,
   buildsBucketName: externalValues.buildBucketName,
-  webBucketName: incubatorEnv.cloudfront.webBucketName,
+  webBucketName: webBucketName,
   resourcePrefix: "incub-gva",
 })
 
 new WorkerStack(app, `incub-gva-worker`, {
   env: {
-    account: incubatorEnv.accountId,
-    region: incubatorEnv.region,
+    account: incubatorAccountId,
+    region: "eu-west-1",
   },
   resourcePrefix: "incub-gva",
-  vpcId: incubatorEnv.vpcId,
+  vpcId: externalValues.vpcId,
   webStack,
-  webBucketName: incubatorEnv.cloudfront.webBucketName,
+  webBucketName: webBucketName,
   ecrRepositoryArn: externalValues.buildEcrRepositoryArn,
   ecrRepositoryName: externalValues.buildEcrRepositoryName,
   artifactStatus: new EcsUpdateImageArtifactStatus({
