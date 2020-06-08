@@ -5,7 +5,8 @@
     "test": "jest",
     "cdk": "cdk",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "lint:fix": "eslint --fix .",
+    "snapshots": "./scripts/create-snapshots.sh"
   },
   "devDependencies": {
     "@aws-cdk/assert": "1.44.0",
