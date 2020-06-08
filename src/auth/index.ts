@@ -67,8 +67,6 @@ export class WebAuth extends cdk.Construct {
       role,
     })
 
-    this.version = new lambda.Version(this, "Version", {
-      lambda: credentialsFunction,
-    })
+    this.version = credentialsFunction.currentVersion
   }
 }

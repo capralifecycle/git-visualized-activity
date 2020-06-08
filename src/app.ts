@@ -1,6 +1,7 @@
 import * as cdk from "@aws-cdk/core"
 import { EcsUpdateImageArtifactStatus, tagResources } from "@liflig/cdk"
 import { WebDeployStack } from "./web-deploy-stack"
+import { WebEdgeStack } from "./web-edge-stack"
 import { WebStack } from "./web-stack"
 import { WorkerStack } from "./worker-stack"
 
@@ -40,10 +41,18 @@ tagResources(app, (stack) => ({
   SourceRepo: "github/capraconsulting/git-visualized-activity-infra",
 }))
 
-const webStack = new WebStack(app, `incub-gva-web`, {
+const webEdgeStack = new WebEdgeStack(app, "incub-gva-web-edge", {
   env: {
     account: incubatorAccountId,
     region: "us-east-1",
+  },
+  resourcePrefix: "incub-gva",
+})
+
+const webStack = new WebStack(app, `incub-gva-web`, {
+  env: {
+    account: incubatorAccountId,
+    region: "eu-west-1",
   },
   localEndpoint: {
     domainName: "gva.incubator.liflig.dev",
@@ -56,6 +65,7 @@ const webStack = new WebStack(app, `incub-gva-web`, {
   },
   resourcePrefix: "incub-gva",
   webBucketName: webBucketName,
+  webEdgeStack,
 })
 
 new WebDeployStack(app, `incub-gva-web-deploy`, {

@@ -8,7 +8,6 @@ import * as logs from "@aws-cdk/aws-logs"
 import * as s3 from "@aws-cdk/aws-s3"
 import * as cdk from "@aws-cdk/core"
 import { EcsUpdateImageArtifactStatus, EcsUpdateImageTag } from "@liflig/cdk"
-import { SsmParameterReader } from "./ssm-parameter-reader"
 import { WebStack } from "./web-stack"
 
 export class WorkerStack extends cdk.Stack {
@@ -29,17 +28,6 @@ export class WorkerStack extends cdk.Stack {
 
     const region = cdk.Stack.of(this).region
     const account = cdk.Stack.of(this).account
-
-    const distributionIdReader = new SsmParameterReader(
-      this,
-      "DistributionIdReader",
-      {
-        parameterName: props.webStack.distributionIdParam.parameterName,
-        region: props.webStack.region,
-      },
-    )
-
-    const distributionId = distributionIdReader.getParameterValue()
 
     const tagContainer = new EcsUpdateImageTag(this, "EcrTagContainer", {
       secretName: `/${props.resourcePrefix}/liflig-io-service-ecr-tag`,
@@ -90,7 +78,7 @@ export class WorkerStack extends cdk.Stack {
         }),
         environment: {
           BUCKET_NAME: webBucket.bucketName,
-          CF_DISTRIBUTION: distributionId,
+          CF_DISTRIBUTION: props.webStack.distribution.distributionId,
           PARAMS_PREFIX: `/${props.resourcePrefix}/`,
         },
       })

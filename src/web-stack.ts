@@ -1,17 +1,17 @@
 import * as acm from "@aws-cdk/aws-certificatemanager"
 import * as cloudfront from "@aws-cdk/aws-cloudfront"
 import * as iam from "@aws-cdk/aws-iam"
+import * as lambda from "@aws-cdk/aws-lambda"
 import * as r53 from "@aws-cdk/aws-route53"
 import * as r53t from "@aws-cdk/aws-route53-targets"
 import * as s3 from "@aws-cdk/aws-s3"
-import * as ssm from "@aws-cdk/aws-ssm"
 import * as cdk from "@aws-cdk/core"
-import { WebAuth } from "./auth"
+import { SsmParameterReader } from "./ssm-parameter-reader"
+import { WebEdgeStack } from "./web-edge-stack"
 
 export class WebStack extends cdk.Stack {
   public readonly webBucket: s3.Bucket
   public readonly distribution: cloudfront.CloudFrontWebDistribution
-  public readonly distributionIdParam: ssm.StringParameter
 
   constructor(
     scope: cdk.Construct,
@@ -28,15 +28,25 @@ export class WebStack extends cdk.Stack {
         acmCertificateArn: string
       }
       webBucketName: string
+      webEdgeStack: WebEdgeStack
     },
   ) {
     super(scope, id, props)
 
-    const webAuth = new WebAuth(this, "WebAuth", {
-      paramsRegion: "eu-west-1",
-      usernameParamName: `/${props.resourcePrefix}-web/basicauth-username`,
-      passwordParamName: `/${props.resourcePrefix}-web/basicauth-password`,
-    })
+    const webAuthLambdaVersionArnReader = new SsmParameterReader(
+      this,
+      "WebAuthLambdaVersionReader",
+      {
+        parameterName: props.webEdgeStack.webAuthLambdaVersionArnParameterName,
+        region: props.webEdgeStack.region,
+      },
+    )
+
+    const webAuthLambdaVersion = lambda.Version.fromVersionArn(
+      this,
+      "WebAuthLambdaVersion",
+      webAuthLambdaVersionArnReader.getParameterValue(),
+    )
 
     const hostedZone = r53.HostedZone.fromHostedZoneId(
       this,
@@ -105,7 +115,7 @@ export class WebStack extends cdk.Stack {
                 lambdaFunctionAssociations: [
                   {
                     eventType: cloudfront.LambdaEdgeEventType.VIEWER_REQUEST,
-                    lambdaFunction: webAuth.version,
+                    lambdaFunction: webAuthLambdaVersion,
                   },
                 ],
               },
@@ -127,23 +137,13 @@ export class WebStack extends cdk.Stack {
                 lambdaFunctionAssociations: [
                   {
                     eventType: cloudfront.LambdaEdgeEventType.VIEWER_REQUEST,
-                    lambdaFunction: webAuth.version,
+                    lambdaFunction: webAuthLambdaVersion,
                   },
                 ],
               },
             ],
           },
         ],
-      },
-    )
-
-    // Needed for cross-environment reference.
-    this.distributionIdParam = new ssm.StringParameter(
-      this,
-      "DistributionIdParam",
-      {
-        parameterName: `/${props.resourcePrefix}/web-distribution-id`,
-        stringValue: this.distribution.distributionId,
       },
     )
 
