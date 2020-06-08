@@ -339,12 +339,6 @@
             ]
           }
         ],
-        "/incub-gva-worker/EcrTagContainer/Secret/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "EcrTagContainerSecretC67E52E5"
-          }
-        ],
         "/incub-gva-worker/Cluster/Resource": [
           {
             "type": "aws:cdk:logicalId",

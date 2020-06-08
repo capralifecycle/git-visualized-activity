@@ -1,32 +1,5 @@
 {
   "Resources": {
-    "EcrTagContainerSecretC67E52E5": {
-      "Type": "AWS::SecretsManager::Secret",
-      "Properties": {
-        "GenerateSecretString": {
-          "GenerateStringKey": "unusedField",
-          "SecretStringTemplate": "{}"
-        },
-        "Name": "/incub-gva/liflig-io-service-ecr-tag",
-        "Tags": [
-          {
-            "Key": "Project",
-            "Value": "git-visualized-activity"
-          },
-          {
-            "Key": "SourceRepo",
-            "Value": "github/capraconsulting/git-visualized-activity-infra"
-          },
-          {
-            "Key": "StackName",
-            "Value": "incub-gva-worker"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "incub-gva-worker/EcrTagContainer/Secret/Resource"
-      }
-    },
     "ClusterEB0386A7": {
       "Type": "AWS::ECS::Cluster",
       "Properties": {
@@ -168,15 +141,11 @@
               "Fn::Join": [
                 "",
                 [
-                  "001112238813.dkr.ecr.eu-west-1.",
+                  "123456789012.dkr.ecr.eu-west-1.",
                   {
                     "Ref": "AWS::URLSuffix"
                   },
-                  "/incub-common-builds:{{resolve:secretsmanager:",
-                  {
-                    "Ref": "EcrTagContainerSecretC67E52E5"
-                  },
-                  ":SecretString:tag::}}"
+                  "/dummy:dummy"
                 ]
               ]
             },
@@ -200,7 +169,7 @@
             "Arn"
           ]
         },
-        "Family": "incubgvaworkerTaskDef6CA8F8E4",
+        "Family": "incub-gva-worker",
         "Memory": "2048",
         "NetworkMode": "awsvpc",
         "RequiresCompatibilities": [
@@ -277,7 +246,7 @@
                 "ecr:BatchGetImage"
               ],
               "Effect": "Allow",
-              "Resource": "arn:aws:ecr:eu-west-1:001112238813:repository/incub-common-builds"
+              "Resource": "arn:aws:ecr:eu-west-1:123456789012:repository/dummy"
             },
             {
               "Action": "ecr:GetAuthorizationToken",

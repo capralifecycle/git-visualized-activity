@@ -1,9 +1,10 @@
 import * as cdk from "@aws-cdk/core"
-import { EcsUpdateImageArtifactStatus, tagResources } from "@liflig/cdk"
-import { WebDeployStack } from "./web-deploy-stack"
+import { tagResources } from "@liflig/cdk"
+import { getEcrAsset } from "./asset"
 import { WebEdgeStack } from "./web-edge-stack"
 import { WebStack } from "./web-stack"
 import { WorkerStack } from "./worker-stack"
+import { WebDeployStack } from "./web-deploy-stack"
 
 // Values from external sources.
 // TODO: Dynamically resolve these so we better understand
@@ -86,9 +87,7 @@ new WorkerStack(app, `incub-gva-worker`, {
   resourcePrefix: "incub-gva",
   vpcId: externalValues.vpcId,
   webStack,
-  ecrRepositoryArn: externalValues.buildEcrRepositoryArn,
-  ecrRepositoryName: externalValues.buildEcrRepositoryName,
-  artifactStatus: new EcsUpdateImageArtifactStatus({
-    artifactPushedAndTagUpdated: true,
-  }),
+  // ecrRepositoryArn: externalValues.buildEcrRepositoryArn,
+  // ecrRepositoryName: externalValues.buildEcrRepositoryName,
+  workerAsset: getEcrAsset("worker"),
 })
