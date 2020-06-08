@@ -182,7 +182,7 @@
             {
               "Action": [
                 "s3:GetObject",
-                "s3WebDeployStack:PutObject"
+                "s3:PutObject"
               ],
               "Effect": "Allow",
               "Resource": {

@@ -75,7 +75,7 @@ export class WebappDeploy extends cdk.Construct {
           resources: [webBucket.arnForObjects("web/*")],
         }),
         new iam.PolicyStatement({
-          actions: ["s3:GetObject", "s3WebDeployStack:PutObject"],
+          actions: ["s3:GetObject", "s3:PutObject"],
           resources: [webBucket.arnForObjects("deployments.log")],
         }),
         new iam.PolicyStatement({
