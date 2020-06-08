@@ -58,7 +58,7 @@ new WorkerStack(app, `${incubatorEnv.resourcePrefix}-worker`, {
     account: incubatorEnv.accountId,
     region: incubatorEnv.region,
   },
-  resourcePrefix: incubatorEnv.region,
+  resourcePrefix: incubatorEnv.resourcePrefix,
   vpcId: incubatorEnv.vpcId,
   webBucketName: incubatorEnv.cloudfront.webBucketName,
   workerAsset: getEcrAsset("worker"),

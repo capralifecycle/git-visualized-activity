@@ -99,7 +99,7 @@
                 "ssm:GetParameters"
               ],
               "Effect": "Allow",
-              "Resource": "arn:aws:ssm:eu-west-1:001112238813:parameter/eu-west-1/*"
+              "Resource": "arn:aws:ssm:eu-west-1:001112238813:parameter/liflig-incubator-gva/*"
             }
           ],
           "Version": "2012-10-17"
@@ -123,7 +123,7 @@
             "Environment": [
               {
                 "Name": "PARAMS_PREFIX",
-                "Value": "/eu-west-1/"
+                "Value": "/liflig-incubator-gva/"
               }
             ],
             "Essential": true,
@@ -159,7 +159,7 @@
             "Arn"
           ]
         },
-        "Family": "eu-west-1-worker",
+        "Family": "liflig-incubator-gva-worker",
         "Memory": "2048",
         "NetworkMode": "awsvpc",
         "RequiresCompatibilities": [
