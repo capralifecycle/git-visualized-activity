@@ -7,7 +7,7 @@ import * as iam from "@aws-cdk/aws-iam"
 import * as logs from "@aws-cdk/aws-logs"
 import * as s3 from "@aws-cdk/aws-s3"
 import * as cdk from "@aws-cdk/core"
-import { EcrAsset } from "../lib/asset"
+import { EcrAsset } from "./asset"
 
 export class WorkerStack extends cdk.Stack {
   constructor(

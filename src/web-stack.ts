@@ -6,7 +6,7 @@ import * as r53t from "@aws-cdk/aws-route53-targets"
 import * as s3 from "@aws-cdk/aws-s3"
 import * as ssm from "@aws-cdk/aws-ssm"
 import * as cdk from "@aws-cdk/core"
-import { WebAuth } from "../auth"
+import { WebAuth } from "./auth"
 
 export class WebStack extends cdk.Stack {
   public readonly webBucket: s3.Bucket
