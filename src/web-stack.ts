@@ -61,12 +61,6 @@ export class WebStack extends cdk.Stack {
       }),
     )
 
-    // TODO: What is this used for?
-    new ssm.StringParameter(this, "WebBucketNameParam", {
-      parameterName: `/${props.resourcePrefix}/web-bucket-name`,
-      stringValue: this.webBucket.bucketName,
-    })
-
     const acmCertificate = acm.Certificate.fromCertificateArn(
       this,
       "AcmCertificate",

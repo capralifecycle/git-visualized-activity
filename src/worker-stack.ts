@@ -75,6 +75,7 @@ export class WorkerStack extends cdk.Stack {
           streamPrefix: "app",
         }),
         environment: {
+          BUCKET_NAME: webBucket.bucketName,
           PARAMS_PREFIX: `/${props.resourcePrefix}/`,
         },
       })

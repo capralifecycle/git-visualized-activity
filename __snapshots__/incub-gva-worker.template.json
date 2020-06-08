@@ -149,6 +149,10 @@
           {
             "Environment": [
               {
+                "Name": "BUCKET_NAME",
+                "Value": "incub-gva-web"
+              },
+              {
                 "Name": "PARAMS_PREFIX",
                 "Value": "/incub-gva/"
               }

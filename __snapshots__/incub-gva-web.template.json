@@ -308,24 +308,6 @@
         "aws:cdk:path": "incub-gva-web/AccessIdentity/Resource"
       }
     },
-    "WebBucketNameParamB96AAA9E": {
-      "Type": "AWS::SSM::Parameter",
-      "Properties": {
-        "Type": "String",
-        "Value": {
-          "Ref": "WebBucket12880F5B"
-        },
-        "Name": "/incub-gva/web-bucket-name",
-        "Tags": {
-          "Project": "git-visualized-activity",
-          "SourceRepo": "github/capraconsulting/git-visualized-activity-infra",
-          "StackName": "incub-gva-web"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "incub-gva-web/WebBucketNameParam/Resource"
-      }
-    },
     "DistributionCFDistribution882A7313": {
       "Type": "AWS::CloudFront::Distribution",
       "Properties": {

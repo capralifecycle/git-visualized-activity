@@ -269,12 +269,6 @@
             "data": "AccessIdentity369D113B"
           }
         ],
-        "/incub-gva-web/WebBucketNameParam/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "WebBucketNameParamB96AAA9E"
-          }
-        ],
         "/incub-gva-web/Distribution/CFDistribution": [
           {
             "type": "aws:cdk:logicalId",
