@@ -37,8 +37,6 @@ const incubatorEnv = {
     webBucketName: "incub-gva-web",
     region: "us-east-1",
   },
-  // TODO: Must be resolved deploy-time due to cross-region.
-  distributionId: "todo-not-resolved-yet",
   hostedZoneId: "TODO",
   region: "eu-west-1",
   vpcId: externalValues.vpcId,
@@ -51,36 +49,7 @@ tagResources(app, (stack) => ({
   SourceRepo: "github/capraconsulting/git-visualized-activity-infra",
 }))
 
-new WebDeployStack(app, `incub-gva-web-deploy`, {
-  env: {
-    account: incubatorEnv.accountId,
-    region: incubatorEnv.region,
-  },
-  callerRoleArn: externalValues.jenkinsRoleArn,
-  roleName: "incub-gva-jenkins",
-  // TODO: Dynamically resolve.
-  distributionId: incubatorEnv.distributionId,
-  buildsBucketName: externalValues.buildBucketName,
-  webBucketName: incubatorEnv.cloudfront.webBucketName,
-  resourcePrefix: "incub-gva",
-})
-
-new WorkerStack(app, `incub-gva-worker`, {
-  env: {
-    account: incubatorEnv.accountId,
-    region: incubatorEnv.region,
-  },
-  resourcePrefix: "incub-gva",
-  vpcId: incubatorEnv.vpcId,
-  webBucketName: incubatorEnv.cloudfront.webBucketName,
-  ecrRepositoryArn: externalValues.buildEcrRepositoryArn,
-  ecrRepositoryName: externalValues.buildEcrRepositoryName,
-  artifactStatus: new EcsUpdateImageArtifactStatus({
-    artifactPushedAndTagUpdated: true,
-  }),
-})
-
-new WebStack(app, `incub-gva-web`, {
+const webStack = new WebStack(app, `incub-gva-web`, {
   env: {
     account: incubatorEnv.accountId,
     region: incubatorEnv.cloudfront.region,
@@ -96,4 +65,33 @@ new WebStack(app, `incub-gva-web`, {
   },
   resourcePrefix: "incub-gva",
   webBucketName: incubatorEnv.cloudfront.webBucketName,
+})
+
+new WebDeployStack(app, `incub-gva-web-deploy`, {
+  env: {
+    account: incubatorEnv.accountId,
+    region: incubatorEnv.region,
+  },
+  callerRoleArn: externalValues.jenkinsRoleArn,
+  roleName: "incub-gva-jenkins",
+  webStack,
+  buildsBucketName: externalValues.buildBucketName,
+  webBucketName: incubatorEnv.cloudfront.webBucketName,
+  resourcePrefix: "incub-gva",
+})
+
+new WorkerStack(app, `incub-gva-worker`, {
+  env: {
+    account: incubatorEnv.accountId,
+    region: incubatorEnv.region,
+  },
+  resourcePrefix: "incub-gva",
+  vpcId: incubatorEnv.vpcId,
+  webStack,
+  webBucketName: incubatorEnv.cloudfront.webBucketName,
+  ecrRepositoryArn: externalValues.buildEcrRepositoryArn,
+  ecrRepositoryName: externalValues.buildEcrRepositoryName,
+  artifactStatus: new EcsUpdateImageArtifactStatus({
+    artifactPushedAndTagUpdated: true,
+  }),
 })

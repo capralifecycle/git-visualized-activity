@@ -7,170 +7,6 @@
         "file": "tree.json"
       }
     },
-    "incub-gva-web-deploy": {
-      "type": "aws:cloudformation:stack",
-      "environment": "aws://001112238813/eu-west-1",
-      "properties": {
-        "templateFile": "incub-gva-web-deploy.template.json"
-      },
-      "metadata": {
-        "/incub-gva-web-deploy": [
-          {
-            "type": "aws:cdk:stack-tags",
-            "data": [
-              {
-                "Key": "Project",
-                "Value": "git-visualized-activity"
-              },
-              {
-                "Key": "SourceRepo",
-                "Value": "github/capraconsulting/git-visualized-activity-infra"
-              },
-              {
-                "Key": "StackName",
-                "Value": "incub-gva-web-deploy"
-              }
-            ]
-          }
-        ],
-        "/incub-gva-web-deploy/WebappDeploy/Role/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "WebappDeployRole6BC5D130"
-          }
-        ],
-        "/incub-gva-web-deploy/WebappDeploy/Role/DefaultPolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "WebappDeployRoleDefaultPolicy4A1D7118"
-          }
-        ],
-        "/incub-gva-web-deploy/WebappDeploy/DeployFunction/ServiceRole/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "WebappDeployDeployFunctionServiceRole1AC692A1"
-          }
-        ],
-        "/incub-gva-web-deploy/WebappDeploy/DeployFunction/ServiceRole/DefaultPolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "WebappDeployDeployFunctionServiceRoleDefaultPolicy62314F91"
-          }
-        ],
-        "/incub-gva-web-deploy/WebappDeploy/DeployFunction/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "WebappDeployDeployFunctionCB67CBAC"
-          }
-        ],
-        "/incub-gva-web-deploy/WebappDeploy/FunctionName/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "WebappDeployFunctionNameE84D8F0F"
-          }
-        ]
-      }
-    },
-    "incub-gva-worker": {
-      "type": "aws:cloudformation:stack",
-      "environment": "aws://001112238813/eu-west-1",
-      "properties": {
-        "templateFile": "incub-gva-worker.template.json"
-      },
-      "metadata": {
-        "/incub-gva-worker": [
-          {
-            "type": "aws:cdk:stack-tags",
-            "data": [
-              {
-                "Key": "Project",
-                "Value": "git-visualized-activity"
-              },
-              {
-                "Key": "SourceRepo",
-                "Value": "github/capraconsulting/git-visualized-activity-infra"
-              },
-              {
-                "Key": "StackName",
-                "Value": "incub-gva-worker"
-              }
-            ]
-          }
-        ],
-        "/incub-gva-worker/EcrTagContainer/Secret/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "EcrTagContainerSecretC67E52E5"
-          }
-        ],
-        "/incub-gva-worker/Cluster/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "ClusterEB0386A7"
-          }
-        ],
-        "/incub-gva-worker/LogGroup/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LogGroupF5B46931"
-          }
-        ],
-        "/incub-gva-worker/TaskDef/TaskRole/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "TaskDefTaskRole1EDB4A67"
-          }
-        ],
-        "/incub-gva-worker/TaskDef/TaskRole/DefaultPolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "TaskDefTaskRoleDefaultPolicyA592CB18"
-          }
-        ],
-        "/incub-gva-worker/TaskDef/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "TaskDef54694570"
-          }
-        ],
-        "/incub-gva-worker/TaskDef/ExecutionRole/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "TaskDefExecutionRoleB4775C97"
-          }
-        ],
-        "/incub-gva-worker/TaskDef/ExecutionRole/DefaultPolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "TaskDefExecutionRoleDefaultPolicy0DBB737A"
-          }
-        ],
-        "/incub-gva-worker/TaskDef/EventsRole/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "TaskDefEventsRoleFB3B67B8"
-          }
-        ],
-        "/incub-gva-worker/TaskDef/EventsRole/DefaultPolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "TaskDefEventsRoleDefaultPolicyA124E85B"
-          }
-        ],
-        "/incub-gva-worker/SecurityGroup/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "SecurityGroupDD263621"
-          }
-        ],
-        "/incub-gva-worker/ScheduleRule/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "ScheduleRuleDA5BD877"
-          }
-        ]
-      }
-    },
     "incub-gva-web": {
       "type": "aws:cloudformation:stack",
       "environment": "aws://001112238813/us-east-1",
@@ -285,6 +121,278 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "DnsRecord68F7FB14"
+          }
+        ]
+      }
+    },
+    "incub-gva-web-deploy": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://001112238813/eu-west-1",
+      "properties": {
+        "templateFile": "incub-gva-web-deploy.template.json"
+      },
+      "metadata": {
+        "/incub-gva-web-deploy": [
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "asset.f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669",
+              "id": "f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669",
+              "packaging": "zip",
+              "sourceHash": "f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669",
+              "s3BucketParameter": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3Bucket536257BA",
+              "s3KeyParameter": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3VersionKeyC1EF3D23",
+              "artifactHashParameter": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669ArtifactHash2C09C7CA"
+            }
+          },
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "Project",
+                "Value": "git-visualized-activity"
+              },
+              {
+                "Key": "SourceRepo",
+                "Value": "github/capraconsulting/git-visualized-activity-infra"
+              },
+              {
+                "Key": "StackName",
+                "Value": "incub-gva-web-deploy"
+              }
+            ]
+          }
+        ],
+        "/incub-gva-web-deploy/DistributionIdReader/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DistributionIdReader5A4D70A0"
+          }
+        ],
+        "/incub-gva-web-deploy/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+          }
+        ],
+        "/incub-gva-web-deploy/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleDefaultPolicyD28E1A5E"
+          }
+        ],
+        "/incub-gva-web-deploy/AWS679f53fac002430cb0da5b7982bd2287/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd22872D164C4C"
+          }
+        ],
+        "/incub-gva-web-deploy/AssetParameters/f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3Bucket536257BA"
+          }
+        ],
+        "/incub-gva-web-deploy/AssetParameters/f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3VersionKeyC1EF3D23"
+          }
+        ],
+        "/incub-gva-web-deploy/AssetParameters/f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669ArtifactHash2C09C7CA"
+          }
+        ],
+        "/incub-gva-web-deploy/WebappDeploy/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebappDeployRole6BC5D130"
+          }
+        ],
+        "/incub-gva-web-deploy/WebappDeploy/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebappDeployRoleDefaultPolicy4A1D7118"
+          }
+        ],
+        "/incub-gva-web-deploy/WebappDeploy/DeployFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebappDeployDeployFunctionServiceRole1AC692A1"
+          }
+        ],
+        "/incub-gva-web-deploy/WebappDeploy/DeployFunction/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebappDeployDeployFunctionServiceRoleDefaultPolicy62314F91"
+          }
+        ],
+        "/incub-gva-web-deploy/WebappDeploy/DeployFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebappDeployDeployFunctionCB67CBAC"
+          }
+        ],
+        "/incub-gva-web-deploy/WebappDeploy/FunctionName/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebappDeployFunctionNameE84D8F0F"
+          }
+        ]
+      }
+    },
+    "incub-gva-worker": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://001112238813/eu-west-1",
+      "properties": {
+        "templateFile": "incub-gva-worker.template.json"
+      },
+      "metadata": {
+        "/incub-gva-worker": [
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "asset.f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669",
+              "id": "f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669",
+              "packaging": "zip",
+              "sourceHash": "f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669",
+              "s3BucketParameter": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3Bucket536257BA",
+              "s3KeyParameter": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3VersionKeyC1EF3D23",
+              "artifactHashParameter": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669ArtifactHash2C09C7CA"
+            }
+          },
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "Project",
+                "Value": "git-visualized-activity"
+              },
+              {
+                "Key": "SourceRepo",
+                "Value": "github/capraconsulting/git-visualized-activity-infra"
+              },
+              {
+                "Key": "StackName",
+                "Value": "incub-gva-worker"
+              }
+            ]
+          }
+        ],
+        "/incub-gva-worker/DistributionIdReader/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DistributionIdReader5A4D70A0"
+          }
+        ],
+        "/incub-gva-worker/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+          }
+        ],
+        "/incub-gva-worker/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleDefaultPolicyD28E1A5E"
+          }
+        ],
+        "/incub-gva-worker/AWS679f53fac002430cb0da5b7982bd2287/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd22872D164C4C"
+          }
+        ],
+        "/incub-gva-worker/AssetParameters/f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3Bucket536257BA"
+          }
+        ],
+        "/incub-gva-worker/AssetParameters/f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3VersionKeyC1EF3D23"
+          }
+        ],
+        "/incub-gva-worker/AssetParameters/f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669ArtifactHash2C09C7CA"
+          }
+        ],
+        "/incub-gva-worker/EcrTagContainer/Secret/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcrTagContainerSecretC67E52E5"
+          }
+        ],
+        "/incub-gva-worker/Cluster/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterEB0386A7"
+          }
+        ],
+        "/incub-gva-worker/LogGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LogGroupF5B46931"
+          }
+        ],
+        "/incub-gva-worker/TaskDef/TaskRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TaskDefTaskRole1EDB4A67"
+          }
+        ],
+        "/incub-gva-worker/TaskDef/TaskRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TaskDefTaskRoleDefaultPolicyA592CB18"
+          }
+        ],
+        "/incub-gva-worker/TaskDef/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TaskDef54694570"
+          }
+        ],
+        "/incub-gva-worker/TaskDef/ExecutionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TaskDefExecutionRoleB4775C97"
+          }
+        ],
+        "/incub-gva-worker/TaskDef/ExecutionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TaskDefExecutionRoleDefaultPolicy0DBB737A"
+          }
+        ],
+        "/incub-gva-worker/TaskDef/EventsRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TaskDefEventsRoleFB3B67B8"
+          }
+        ],
+        "/incub-gva-worker/TaskDef/EventsRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TaskDefEventsRoleDefaultPolicyA124E85B"
+          }
+        ],
+        "/incub-gva-worker/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SecurityGroupDD263621"
+          }
+        ],
+        "/incub-gva-worker/ScheduleRule/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ScheduleRuleDA5BD877"
           }
         ]
       }
