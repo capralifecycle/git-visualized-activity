@@ -1,5 +1,6 @@
 import * as cdk from "@aws-cdk/core"
 import * as cr from "@aws-cdk/custom-resources"
+import { removeLeadingSlash } from "./util"
 
 const isSnapshot = process.env.IS_SNAPSHOT === "true"
 
@@ -30,7 +31,7 @@ export class SsmParameterReader extends cr.AwsCustomResource {
               service: "ssm",
               region: props.region,
               resource: "parameter",
-              resourceName: props.parameterName,
+              resourceName: removeLeadingSlash(props.parameterName),
             },
             cdk.Stack.of(scope),
           ),

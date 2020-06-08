@@ -68,7 +68,7 @@
                       {
                         "Ref": "AWS::Partition"
                       },
-                      ":ssm:eu-west-1:001112238813:parameter//incub-gva-web/basicauth-username"
+                      ":ssm:eu-west-1:001112238813:parameter/incub-gva-web/basicauth-username"
                     ]
                   ]
                 },
@@ -80,7 +80,7 @@
                       {
                         "Ref": "AWS::Partition"
                       },
-                      ":ssm:eu-west-1:001112238813:parameter//incub-gva-web/basicauth-password"
+                      ":ssm:eu-west-1:001112238813:parameter/incub-gva-web/basicauth-password"
                     ]
                   ]
                 }

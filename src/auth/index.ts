@@ -1,6 +1,7 @@
 import * as iam from "@aws-cdk/aws-iam"
 import * as lambda from "@aws-cdk/aws-lambda"
 import * as cdk from "@aws-cdk/core"
+import { removeLeadingSlash } from "../util"
 
 export class WebAuth extends cdk.Construct {
   public readonly version: lambda.Version
@@ -43,7 +44,7 @@ export class WebAuth extends cdk.Construct {
               service: "ssm",
               resource: "parameter",
               region: props.paramsRegion,
-              resourceName: props.usernameParamName,
+              resourceName: removeLeadingSlash(props.usernameParamName),
             },
             cdk.Stack.of(scope),
           ),
@@ -52,7 +53,7 @@ export class WebAuth extends cdk.Construct {
               service: "ssm",
               resource: "parameter",
               region: props.paramsRegion,
-              resourceName: props.passwordParamName,
+              resourceName: removeLeadingSlash(props.passwordParamName),
             },
             cdk.Stack.of(scope),
           ),

@@ -102,7 +102,7 @@
                     {
                       "Ref": "AWS::Partition"
                     },
-                    ":ssm:us-east-1:001112238813:parameter//incub-gva/web-auth-lambda-version-arn"
+                    ":ssm:us-east-1:001112238813:parameter/incub-gva/web-auth-lambda-version-arn"
                   ]
                 ]
               }
