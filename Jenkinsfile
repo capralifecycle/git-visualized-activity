@@ -9,8 +9,7 @@ buildConfig() {
       checkout scm
     }
 
-    def img = docker.build('builder')
-    img.inside {
+    insideToolImage("node:12-alpine") {
       stage('Install dependencies') {
         sh 'npm ci'
       }
