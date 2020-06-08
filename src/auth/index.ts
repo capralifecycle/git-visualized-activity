@@ -65,11 +65,6 @@ export class WebAuth extends cdk.Construct {
       handler: "index.handler",
       runtime: lambda.Runtime.NODEJS_12_X,
       role,
-      environment: {
-        PARAMS_REGION: props.paramsRegion,
-        USERNAME_PARAM_NAME: props.usernameParamName,
-        PASSWORD_PARAM_NAME: props.passwordParamName,
-      },
     })
 
     this.version = new lambda.Version(this, "Version", {

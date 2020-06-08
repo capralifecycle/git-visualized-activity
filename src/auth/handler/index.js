@@ -5,9 +5,10 @@ const { SSM } = require("aws-sdk")
 // Cache values from parameter store for this time.
 const cacheTime = 60 * 1000 // in ms
 
-const paramsRegion = process.env.PARAMS_REGION
-const usernameParamName = process.env.USERNAME_PARAM_NAME
-const passwordParamName = process.env.PASSWORD_PARAM_NAME
+// Cannot pass environment variables to Lambda@Edge.
+const paramsRegion = "eu-west-1"
+const usernameParamName = "incub-gva-web/basicauth-username"
+const passwordParamName = "incub-gva-web/basicauth-password"
 
 async function getParams() {
   const ssm = new SSM({ region: paramsRegion })

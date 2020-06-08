@@ -112,7 +112,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters89fcdebb092b2831c40dd682d32c5778daf8f0d21d10f51818b7af1f654c8744S3Bucket1AFC3558"
+            "Ref": "AssetParameters0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01aS3BucketFD3B41B7"
           },
           "S3Key": {
             "Fn::Join": [
@@ -125,7 +125,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters89fcdebb092b2831c40dd682d32c5778daf8f0d21d10f51818b7af1f654c8744S3VersionKey112FB2C3"
+                          "Ref": "AssetParameters0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01aS3VersionKey9400EC25"
                         }
                       ]
                     }
@@ -138,7 +138,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters89fcdebb092b2831c40dd682d32c5778daf8f0d21d10f51818b7af1f654c8744S3VersionKey112FB2C3"
+                          "Ref": "AssetParameters0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01aS3VersionKey9400EC25"
                         }
                       ]
                     }
@@ -156,13 +156,6 @@
           ]
         },
         "Runtime": "nodejs12.x",
-        "Environment": {
-          "Variables": {
-            "PARAMS_REGION": "eu-west-1",
-            "USERNAME_PARAM_NAME": "/incub-gva-web/basicauth-username",
-            "PASSWORD_PARAM_NAME": "/incub-gva-web/basicauth-password"
-          }
-        },
         "Tags": [
           {
             "Key": "Project",
@@ -184,7 +177,7 @@
       ],
       "Metadata": {
         "aws:cdk:path": "incub-gva-web/WebAuth/Function/Resource",
-        "aws:asset:path": "asset.89fcdebb092b2831c40dd682d32c5778daf8f0d21d10f51818b7af1f654c8744",
+        "aws:asset:path": "asset.0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01a",
         "aws:asset:property": "Code"
       }
     },
@@ -516,17 +509,17 @@
     }
   },
   "Parameters": {
-    "AssetParameters89fcdebb092b2831c40dd682d32c5778daf8f0d21d10f51818b7af1f654c8744S3Bucket1AFC3558": {
+    "AssetParameters0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01aS3BucketFD3B41B7": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"89fcdebb092b2831c40dd682d32c5778daf8f0d21d10f51818b7af1f654c8744\""
+      "Description": "S3 bucket for asset \"0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01a\""
     },
-    "AssetParameters89fcdebb092b2831c40dd682d32c5778daf8f0d21d10f51818b7af1f654c8744S3VersionKey112FB2C3": {
+    "AssetParameters0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01aS3VersionKey9400EC25": {
       "Type": "String",
-      "Description": "S3 key for asset version \"89fcdebb092b2831c40dd682d32c5778daf8f0d21d10f51818b7af1f654c8744\""
+      "Description": "S3 key for asset version \"0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01a\""
     },
-    "AssetParameters89fcdebb092b2831c40dd682d32c5778daf8f0d21d10f51818b7af1f654c8744ArtifactHash33EFDC0B": {
+    "AssetParameters0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01aArtifactHash7A4FE544": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"89fcdebb092b2831c40dd682d32c5778daf8f0d21d10f51818b7af1f654c8744\""
+      "Description": "Artifact hash for asset \"0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01a\""
     }
   }
 }
