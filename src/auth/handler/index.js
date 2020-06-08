@@ -5,25 +5,26 @@ const { SSM } = require("aws-sdk")
 // Cache values from parameter store for this time.
 const cacheTime = 60 * 1000 // in ms
 
+const paramsRegion = process.env.PARAMS_REGION
+const usernameParamName = process.env.USERNAME_PARAM_NAME
+const passwordParamName = process.env.PASSWORD_PARAM_NAME
+
 async function getParams() {
-  const ssm = new SSM({ region: "eu-central-1" })
+  const ssm = new SSM({ region: paramsRegion })
   const data = await ssm
     .getParameters({
-      Names: [
-        "/git-visualized-activity/prod/basicauth/username",
-        "/git-visualized-activity/prod/basicauth/password",
-      ],
+      Names: [usernameParamName, passwordParamName],
       WithDecryption: true,
     })
     .promise()
 
   function getParam(name) {
-    return data.Parameters.find(it => it.Name === name).Value
+    return data.Parameters.find((it) => it.Name === name).Value
   }
 
   return {
-    username: getParam("/git-visualized-activity/prod/basicauth/username"),
-    password: getParam("/git-visualized-activity/prod/basicauth/password"),
+    username: getParam(usernameParamName),
+    password: getParam(passwordParamName),
   }
 }
 

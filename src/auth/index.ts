@@ -5,10 +5,17 @@ import * as cdk from "@aws-cdk/core"
 export class WebAuth extends cdk.Construct {
   public readonly version: lambda.Version
 
-  constructor(scope: cdk.Construct, id: string) {
+  constructor(
+    scope: cdk.Construct,
+    id: string,
+    props: {
+      paramsRegion: string
+      usernameParamName: string
+      passwordParamName: string
+    },
+  ) {
     super(scope, id)
 
-    const account = cdk.Stack.of(this).account
     const region = cdk.Stack.of(this).region
 
     if (region !== "us-east-1") {
@@ -31,8 +38,24 @@ export class WebAuth extends cdk.Construct {
       new iam.PolicyStatement({
         actions: ["ssm:GetParameters"],
         resources: [
-          // FIXME: Build this from some props.
-          `arn:aws:ssm:${region}:${account}:parameter/git-visualized-activity/*`,
+          cdk.Arn.format(
+            {
+              service: "ssm",
+              resource: "parameter",
+              region: props.paramsRegion,
+              resourceName: props.usernameParamName,
+            },
+            cdk.Stack.of(scope),
+          ),
+          cdk.Arn.format(
+            {
+              service: "ssm",
+              resource: "parameter",
+              region: props.paramsRegion,
+              resourceName: props.passwordParamName,
+            },
+            cdk.Stack.of(scope),
+          ),
         ],
       }),
     )
@@ -42,6 +65,11 @@ export class WebAuth extends cdk.Construct {
       handler: "index.handler",
       runtime: lambda.Runtime.NODEJS_12_X,
       role,
+      environment: {
+        PARAMS_REGION: props.paramsRegion,
+        USERNAME_PARAM_NAME: props.usernameParamName,
+        PASSWORD_PARAM_NAME: props.passwordParamName,
+      },
     })
 
     this.version = new lambda.Version(this, "Version", {

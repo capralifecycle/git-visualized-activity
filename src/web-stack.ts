@@ -32,7 +32,11 @@ export class WebStack extends cdk.Stack {
   ) {
     super(scope, id, props)
 
-    const webAuth = new WebAuth(this, "WebAuth")
+    const webAuth = new WebAuth(this, "WebAuth", {
+      paramsRegion: "eu-west-1",
+      usernameParamName: `/${props.resourcePrefix}-web/basicauth-username`,
+      passwordParamName: `/${props.resourcePrefix}-web/basicauth-password`,
+    })
 
     const hostedZone = r53.HostedZone.fromHostedZoneId(
       this,

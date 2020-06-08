@@ -1,32 +1,12 @@
-# git-visualized-activity
+# git-visualized-activity-infra
 
-This is the configuration for https://gva.capra.tv/
+This is the configuration for https://gva.incubator.liflig.dev/
 
 See https://confluence.capraconsulting.no/x/HwtaBw for more details.
 
 ## Configuration
 
-Replace `<replace-me>` with the actual values to push new configuration
-or update previous.
-
-```bash
-export AWS_DEFAULT_REGION=eu-central-1
-aws ssm put-parameter \
-  --name /git-visualized-activity/prod/github-token \
-  --value '<replace-me>' \
-  --type SecureString \
-  --overwrite
-aws ssm put-parameter \
-  --name /git-visualized-activity/prod/basicauth/username \
-  --value '<replace-me>' \
-  --type String \
-  --overwrite
-aws ssm put-parameter \
-  --name /git-visualized-activity/prod/basicauth/password \
-  --value '<replace-me>' \
-  --type SecureString \
-  --overwrite
-```
+See `write-params.sh`.
 
 ## Deploying resources
 

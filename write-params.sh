@@ -2,31 +2,57 @@
 set -eu -o pipefail
 
 echo "Please be sure you are authed to the correct AWS account before continuing."
+echo "Leave empty value to skip changing value."
 
-printf "Enter GitHub token (input hidden): "
-read -r -s token
-echo
+store_value() {
+  name=$1
+  value=$2
 
-if [ -z "$token" ]; then
-  echo "Aborting"
-  exit
-fi
+  # TODO: Switch to Secrets Manager.
 
-# TODO: Switch to Secrets Manager.
-# TODO: Tags.
-aws ssm put-parameter \
-  --name /incub-gva-worker/github-token \
-  --description "Value set by write-params.sh" \
-  --type SecureString \
-  --value "$token" \
-  --overwrite
+  aws ssm put-parameter \
+    --name "$name" \
+    --description "Value set by write-params.sh" \
+    --type SecureString \
+    --value "$value" \
+    --overwrite
 
-aws ssm add-tags-to-resource \
-  --resource-type Parameter \
-  --resource-id /incub-gva-worker/github-token \
-  --tags \
-    Key=Project,Value=git-visualized-activity \
-    Key=SourceRepo,Value=github/capraconsulting/git-visualized-activity-infra \
-    Key=StackName,Value=SCRIPTED
+  echo "Stored $name"
+}
 
-echo "OK"
+set_tags() {
+  name=$1
+
+  aws ssm add-tags-to-resource \
+    --resource-type Parameter \
+    --resource-id "$name" \
+    --tags \
+      Key=Project,Value=git-visualized-activity \
+      Key=SourceRepo,Value=github/capraconsulting/git-visualized-activity-infra \
+      Key=StackName,Value=SCRIPTED
+
+  echo "Tags set on $name"
+}
+
+handle_value() {
+  name=$1
+  title=$2
+
+  printf "Enter %s (input hidden): " "$title"
+  read -r -s value
+  echo
+
+  if [ -z "$value" ]; then
+    echo "Skipping changing value"
+  else
+    store_value "$name" "$value"
+  fi
+
+  set_tags "$name"
+}
+
+handle_value /incub-gva-worker/github-token "GitHub-token"
+handle_value /incub-gva-web/basicauth-username "Basic auth username"
+handle_value /incub-gva-web/basicauth-password "Basic auth password"
+
+echo "Completed"
