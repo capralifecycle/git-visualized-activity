@@ -370,7 +370,7 @@
                     {
                       "Ref": "AWS::Partition"
                     },
-                    ":s3:::incub-gva-web/web/*"
+                    ":s3:::incub-gva-web-001112238813-us-east-1/web/*"
                   ]
                 ]
               }
@@ -389,7 +389,7 @@
                     {
                       "Ref": "AWS::Partition"
                     },
-                    ":s3:::incub-gva-web/deployments.log"
+                    ":s3:::incub-gva-web-001112238813-us-east-1/deployments.log"
                   ]
                 ]
               }
@@ -430,8 +430,8 @@
         "Runtime": "python3.7",
         "Environment": {
           "Variables": {
-            "TARGET_BUCKET_URL": "s3://incub-gva-web/web",
-            "DEPLOY_LOG_BUCKET_URL": "s3://incub-gva-web/deployments.log",
+            "TARGET_BUCKET_URL": "s3://incub-gva-web-001112238813-us-east-1/web",
+            "DEPLOY_LOG_BUCKET_URL": "s3://incub-gva-web-001112238813-us-east-1/deployments.log",
             "CF_DISTRIBUTION_ID": {
               "Fn::GetAtt": [
                 "DistributionIdReader5A4D70A0",

@@ -31,7 +31,7 @@ const externalValues = {
 }
 
 const incubatorAccountId = "001112238813"
-const webBucketName = "incub-gva-web"
+const webBucketName = `incub-gva-web-${incubatorAccountId}-us-east-1`
 
 const app = new cdk.App()
 tagResources(app, (stack) => ({

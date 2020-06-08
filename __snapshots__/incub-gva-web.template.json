@@ -179,7 +179,7 @@
             }
           ]
         },
-        "BucketName": "incub-gva-web",
+        "BucketName": "incub-gva-web-001112238813-us-east-1",
         "Tags": [
           {
             "Key": "Project",
