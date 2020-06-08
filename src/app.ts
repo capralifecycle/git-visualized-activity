@@ -27,9 +27,6 @@ const incubatorEnv = {
   vpcId: "vpc-0a67807e4aca6bb84",
 }
 
-// See https://github.com/capraconsulting/webapp-deploy-lambda
-const deployCodeS3Bucket = "capra-webapp-deploy-lambda-releases"
-const deployCodeS3Key = "release-0.1.0.zip"
 
 const jenkinsRoleArn =
   "arn:aws:iam::923402097046:role/buildtools-jenkins-RoleJenkinsSlave-JQGYHR5WE6C5"
@@ -49,8 +46,6 @@ new WebDeployStack(app, `${incubatorEnv.resourcePrefix}-web-deploy`, {
   },
   callerRoleArn: jenkinsRoleArn,
   roleName: "liflig-incubator-gva-jenkins",
-  deployCodeS3Bucket,
-  deployCodeS3Key,
   // TODO: Dynamically resolve.
   distributionId: incubatorEnv.distributionId,
   buildsBucketName: buildBucketName,

@@ -33,40 +33,40 @@
             ]
           }
         ],
-        "/liflig-incubator-gva-web-deploy/Role/Resource": [
+        "/liflig-incubator-gva-web-deploy/WebappDeploy/Role/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "Role1ABCC5F0"
+            "data": "WebappDeployRole6BC5D130"
           }
         ],
-        "/liflig-incubator-gva-web-deploy/Role/DefaultPolicy/Resource": [
+        "/liflig-incubator-gva-web-deploy/WebappDeploy/Role/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "RoleDefaultPolicy5FFB7DAB"
+            "data": "WebappDeployRoleDefaultPolicy4A1D7118"
           }
         ],
-        "/liflig-incubator-gva-web-deploy/DeployFunction/ServiceRole/Resource": [
+        "/liflig-incubator-gva-web-deploy/WebappDeploy/DeployFunction/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeployFunctionServiceRole19D7D428"
+            "data": "WebappDeployDeployFunctionServiceRole1AC692A1"
           }
         ],
-        "/liflig-incubator-gva-web-deploy/DeployFunction/ServiceRole/DefaultPolicy/Resource": [
+        "/liflig-incubator-gva-web-deploy/WebappDeploy/DeployFunction/ServiceRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeployFunctionServiceRoleDefaultPolicy9EC84FE4"
+            "data": "WebappDeployDeployFunctionServiceRoleDefaultPolicy62314F91"
           }
         ],
-        "/liflig-incubator-gva-web-deploy/DeployFunction/Resource": [
+        "/liflig-incubator-gva-web-deploy/WebappDeploy/DeployFunction/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeployFunction787AD8CC"
+            "data": "WebappDeployDeployFunctionCB67CBAC"
           }
         ],
-        "/liflig-incubator-gva-web-deploy/FunctionName/Resource": [
+        "/liflig-incubator-gva-web-deploy/WebappDeploy/FunctionName/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "FunctionName5C9C16A7"
+            "data": "WebappDeployFunctionNameE84D8F0F"
           }
         ]
       }
