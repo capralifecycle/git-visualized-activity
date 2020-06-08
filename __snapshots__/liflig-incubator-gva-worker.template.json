@@ -3,7 +3,6 @@
     "ClusterEB0386A7": {
       "Type": "AWS::ECS::Cluster",
       "Properties": {
-        "ClusterName": "eu-west-1",
         "Tags": [
           {
             "Key": "Project",

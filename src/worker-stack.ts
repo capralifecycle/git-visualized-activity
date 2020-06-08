@@ -30,7 +30,6 @@ export class WorkerStack extends cdk.Stack {
     })
 
     const cluster = new ecs.Cluster(this, "Cluster", {
-      clusterName: props.resourcePrefix,
       vpc,
     })
 
