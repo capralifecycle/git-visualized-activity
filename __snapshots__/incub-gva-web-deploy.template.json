@@ -221,8 +221,42 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "S3Bucket": "capra-webapp-deploy-lambda-releases",
-          "S3Key": "release-0.2.2.zip"
+          "S3Bucket": {
+            "Ref": "AssetParametersf43872b62e54b8e31ca1e4ed158d1aec6d593896d5052bd6e848f7e9a860c8a9S3Bucket70641DE7"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersf43872b62e54b8e31ca1e4ed158d1aec6d593896d5052bd6e848f7e9a860c8a9S3VersionKey28315129"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersf43872b62e54b8e31ca1e4ed158d1aec6d593896d5052bd6e848f7e9a860c8a9S3VersionKey28315129"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
         },
         "Handler": "webapp_deploy.main.handler",
         "Role": {
@@ -263,7 +297,9 @@
         "WebappDeployDeployFunctionServiceRole1AC692A1"
       ],
       "Metadata": {
-        "aws:cdk:path": "incub-gva-web-deploy/WebappDeploy/DeployFunction/Resource"
+        "aws:cdk:path": "incub-gva-web-deploy/WebappDeploy/DeployFunction/Resource",
+        "aws:asset:path": "asset.f43872b62e54b8e31ca1e4ed158d1aec6d593896d5052bd6e848f7e9a860c8a9",
+        "aws:asset:property": "Code"
       }
     },
     "WebappDeployFunctionNameE84D8F0F": {
@@ -283,6 +319,20 @@
       "Metadata": {
         "aws:cdk:path": "incub-gva-web-deploy/WebappDeploy/FunctionName/Resource"
       }
+    }
+  },
+  "Parameters": {
+    "AssetParametersf43872b62e54b8e31ca1e4ed158d1aec6d593896d5052bd6e848f7e9a860c8a9S3Bucket70641DE7": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"f43872b62e54b8e31ca1e4ed158d1aec6d593896d5052bd6e848f7e9a860c8a9\""
+    },
+    "AssetParametersf43872b62e54b8e31ca1e4ed158d1aec6d593896d5052bd6e848f7e9a860c8a9S3VersionKey28315129": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"f43872b62e54b8e31ca1e4ed158d1aec6d593896d5052bd6e848f7e9a860c8a9\""
+    },
+    "AssetParametersf43872b62e54b8e31ca1e4ed158d1aec6d593896d5052bd6e848f7e9a860c8a9ArtifactHash2EBE7729": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"f43872b62e54b8e31ca1e4ed158d1aec6d593896d5052bd6e848f7e9a860c8a9\""
     }
   }
 }

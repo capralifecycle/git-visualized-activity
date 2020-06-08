@@ -1,0 +1,3 @@
+[submodule "webapp-deploy-lambda"]
+	path = webapp-deploy-lambda
+	url = git@github.com:capraconsulting/webapp-deploy-lambda.git

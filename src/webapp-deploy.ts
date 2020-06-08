@@ -3,6 +3,7 @@ import * as lambda from "@aws-cdk/aws-lambda"
 import * as s3 from "@aws-cdk/aws-s3"
 import * as ssm from "@aws-cdk/aws-ssm"
 import * as cdk from "@aws-cdk/core"
+import * as path from "path"
 
 /**
  * Resources to deploy a webapp from a build artifact into an existing
@@ -20,17 +21,11 @@ export class WebappDeploy extends cdk.Construct {
       roleName: string
       buildsBucketName: string
       webBucketName: string
-      resourcePrefix: string
       distributionId: string
+      deployFnNameParameterName: string
     },
   ) {
     super(scope, id)
-
-    // See https://github.com/capraconsulting/webapp-deploy-lambda
-    // TODO: Keep this up-to-date somehow. We can probably use
-    //  Renovate regex manager with github-releases datasource.
-    const deployCodeS3Bucket = "capra-webapp-deploy-lambda-releases"
-    const deployCodeS3Key = "release-0.2.2.zip"
 
     const roleToBeAssumed = new iam.Role(this, "Role", {
       assumedBy: new iam.ArnPrincipal(props.callerRoleArn),
@@ -47,14 +42,14 @@ export class WebappDeploy extends cdk.Construct {
       "WebBucket",
       props.webBucketName,
     )
-    const codeBucket = s3.Bucket.fromBucketName(
-      this,
-      "CodeBucket",
-      deployCodeS3Bucket,
-    )
-
     const deployFunction = new lambda.Function(this, "DeployFunction", {
-      code: lambda.Code.fromBucket(codeBucket, deployCodeS3Key),
+      // TODO: This is only temporary to get started. We cannot use
+      //  the S3 bucket where the assets from https://github.com/capraconsulting/webapp-deploy-lambda
+      //  are actually released since it is not in eu-west-1 region.
+      //  Maybe we should convert it into a CDK library instead?
+      code: lambda.Code.fromAsset(
+        path.join(__dirname, "../assets/webapp-deploy-lambda"),
+      ),
       environment: {
         TARGET_BUCKET_URL: `s3://${webBucket.bucketName}/web`,
         DEPLOY_LOG_BUCKET_URL: `s3://${webBucket.bucketName}/deployments.log`,
