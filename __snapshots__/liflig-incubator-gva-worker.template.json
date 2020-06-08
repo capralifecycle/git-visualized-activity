@@ -386,7 +386,7 @@
             "Value": "liflig-incubator-gva-worker"
           }
         ],
-        "VpcId": "vpc-0f0d43198daee2247"
+        "VpcId": "vpc-0a67807e4aca6bb84"
       },
       "Metadata": {
         "aws:cdk:path": "liflig-incubator-gva-worker/SecurityGroup/Resource"
@@ -419,9 +419,9 @@
                     }
                   ],
                   "Subnets": [
-                    "subnet-0f3e8c7b51b4c8510",
-                    "subnet-0bcca354354438470",
-                    "subnet-00977bde6d327ead2"
+                    "subnet-07e2239d3d09b9759",
+                    "subnet-0b4c305426dd627d4",
+                    "subnet-0659d04ade348a053"
                   ]
                 }
               },

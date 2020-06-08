@@ -22,9 +22,9 @@ const incubatorEnv = {
   hostedZoneId: "TODO",
   region: "eu-west-1",
   resourcePrefix: "liflig-incubator-gva",
-  // TODO: Update to use incubator subnets.
-  subnetIdList: ["subnet-29616151", "subnet-95bd9ddf", "subnet-b6c425df"],
-  vpcId: "vpc-0f0d43198daee2247",
+  // From https://github.com/capralifecycle/liflig-incubator-common-infra
+  // TODO: It would be nice if we could resolve this dynamically.
+  vpcId: "vpc-0a67807e4aca6bb84",
 }
 
 // See https://github.com/capraconsulting/webapp-deploy-lambda
