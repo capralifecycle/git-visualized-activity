@@ -22,11 +22,11 @@ const externalValues = {
   // From https://github.com/capralifecycle/liflig-incubator-common-infra
   buildEcrRepositoryName: "incub-common-builds",
   // From https://github.com/capralifecycle/liflig-incubator-common-infra
-  lifligIoAcmCertifcateArn:
-    "arn:aws:acm:eu-west-1:001112238813:certificate/5a23a7e4-e207-45b3-b577-fa311ddad70e",
+  lifligIoAcmCertifcateUsEast1Arn:
+    "arn:aws:acm:us-east-1:001112238813:certificate/33ea50d8-da2b-4751-8da6-c8ff67abfba0",
   // From https://github.com/capralifecycle/liflig-incubator-common-infra
-  incubatorDevAcmCertificateArn:
-    "arn:aws:acm:eu-west-1:001112238813:certificate/c25c1127-5901-43d4-aa6c-bebd8af4d4bb",
+  incubatorDevAcmCertificateUsEast1Arn:
+    "arn:aws:acm:us-east-1:001112238813:certificate/6a82ce2d-fbe7-418a-8b8a-06e609b8d61d",
   // From https://github.com/capralifecycle/liflig-incubator-common-infra
   incubatorDevHostedZoneId: "Z07028931BZD2FT5LUHHH",
 }
@@ -56,12 +56,12 @@ const webStack = new WebStack(app, `incub-gva-web`, {
   },
   localEndpoint: {
     domainName: "gva.incubator.liflig.dev",
-    acmCertificateArn: externalValues.incubatorDevAcmCertificateArn,
+    acmCertificateArn: externalValues.incubatorDevAcmCertificateUsEast1Arn,
     hostedZoneId: externalValues.incubatorDevHostedZoneId,
   },
   externalEndpoint: {
     domainName: "gva.liflig.io",
-    acmCertificateArn: externalValues.lifligIoAcmCertifcateArn,
+    acmCertificateArn: externalValues.lifligIoAcmCertifcateUsEast1Arn,
   },
   resourcePrefix: "incub-gva",
   webBucketName: webBucketName,

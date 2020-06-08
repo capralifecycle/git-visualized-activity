@@ -455,7 +455,7 @@
           ],
           "PriceClass": "PriceClass_100",
           "ViewerCertificate": {
-            "AcmCertificateArn": "arn:aws:acm:eu-west-1:001112238813:certificate/c25c1127-5901-43d4-aa6c-bebd8af4d4bb",
+            "AcmCertificateArn": "arn:aws:acm:us-east-1:001112238813:certificate/6a82ce2d-fbe7-418a-8b8a-06e609b8d61d",
             "MinimumProtocolVersion": "TLSv1.2_2018",
             "SslSupportMethod": "sni-only"
           }
