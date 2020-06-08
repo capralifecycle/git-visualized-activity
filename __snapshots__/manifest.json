@@ -97,6 +97,12 @@
             ]
           }
         ],
+        "/liflig-incubator-gva-worker/EcrTagContainer/Secret/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcrTagContainerSecretC67E52E5"
+          }
+        ],
         "/liflig-incubator-gva-worker/Cluster/Resource": [
           {
             "type": "aws:cdk:logicalId",

@@ -1,8 +1,7 @@
 import * as cdk from "@aws-cdk/core"
-import { tagResources } from "@liflig/cdk"
-import { getEcrAsset } from "./asset"
-import { WebStack } from "./web-stack"
+import { EcsUpdateImageArtifactStatus, tagResources } from "@liflig/cdk"
 import { WebDeployStack } from "./web-deploy-stack"
+import { WebStack } from "./web-stack"
 import { WorkerStack } from "./worker-stack"
 
 const projectName = "git-visualized-activity"
@@ -26,7 +25,6 @@ const incubatorEnv = {
   // TODO: It would be nice if we could resolve this dynamically.
   vpcId: "vpc-0a67807e4aca6bb84",
 }
-
 
 const jenkinsRoleArn =
   "arn:aws:iam::923402097046:role/buildtools-jenkins-RoleJenkinsSlave-JQGYHR5WE6C5"
@@ -61,7 +59,14 @@ new WorkerStack(app, `${incubatorEnv.resourcePrefix}-worker`, {
   resourcePrefix: incubatorEnv.resourcePrefix,
   vpcId: incubatorEnv.vpcId,
   webBucketName: incubatorEnv.cloudfront.webBucketName,
-  workerAsset: getEcrAsset("worker"),
+  // TODO: Dynamically lookup.
+  ecrRepositoryArn:
+    "arn:aws:ecr:eu-west-1:001112238813:repository/incub-common-builds",
+  // TODO: Dynamically lookup.
+  ecrRepositoryName: "incub-common-builds",
+  artifactStatus: new EcsUpdateImageArtifactStatus({
+    artifactPushedAndTagUpdated: true,
+  }),
 })
 
 new WebStack(app, `${incubatorEnv.resourcePrefix}-web`, {

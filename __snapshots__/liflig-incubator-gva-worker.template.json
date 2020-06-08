@@ -1,5 +1,32 @@
 {
   "Resources": {
+    "EcrTagContainerSecretC67E52E5": {
+      "Type": "AWS::SecretsManager::Secret",
+      "Properties": {
+        "GenerateSecretString": {
+          "GenerateStringKey": "unusedField",
+          "SecretStringTemplate": "{}"
+        },
+        "Name": "/liflig-incubator-gva/liflig-io-service-ecr-tag",
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "liflig-incubator-gva-worker"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "liflig-incubator-gva-worker/EcrTagContainer/Secret/Resource"
+      }
+    },
     "ClusterEB0386A7": {
       "Type": "AWS::ECS::Cluster",
       "Properties": {
@@ -131,11 +158,15 @@
               "Fn::Join": [
                 "",
                 [
-                  "923402097046.dkr.ecr.eu-central-1.",
+                  "001112238813.dkr.ecr.eu-west-1.",
                   {
                     "Ref": "AWS::URLSuffix"
                   },
-                  "/git-visualized-activity/worker:20190723-1503-4"
+                  "/incub-common-builds:{{resolve:secretsmanager:",
+                  {
+                    "Ref": "EcrTagContainerSecretC67E52E5"
+                  },
+                  ":SecretString:tag::}}"
                 ]
               ]
             },
@@ -159,7 +190,7 @@
             "Arn"
           ]
         },
-        "Family": "liflig-incubator-gva-worker",
+        "Family": "lifligincubatorgvaworkerTaskDef5F6771C9",
         "Memory": "2048",
         "NetworkMode": "awsvpc",
         "RequiresCompatibilities": [
@@ -236,7 +267,7 @@
                 "ecr:BatchGetImage"
               ],
               "Effect": "Allow",
-              "Resource": "arn:aws:ecr:eu-central-1:923402097046:repository/git-visualized-activity/worker"
+              "Resource": "arn:aws:ecr:eu-west-1:001112238813:repository/incub-common-builds"
             },
             {
               "Action": "ecr:GetAuthorizationToken",

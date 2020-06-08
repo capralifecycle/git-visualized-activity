@@ -7,7 +7,7 @@ import * as iam from "@aws-cdk/aws-iam"
 import * as logs from "@aws-cdk/aws-logs"
 import * as s3 from "@aws-cdk/aws-s3"
 import * as cdk from "@aws-cdk/core"
-import { EcrAsset } from "./asset"
+import { EcsUpdateImageArtifactStatus, EcsUpdateImageTag } from "@liflig/cdk"
 
 export class WorkerStack extends cdk.Stack {
   constructor(
@@ -17,13 +17,20 @@ export class WorkerStack extends cdk.Stack {
       resourcePrefix: string
       vpcId: string
       webBucketName: string
-      workerAsset: EcrAsset
+      ecrRepositoryArn: string
+      ecrRepositoryName: string
+      artifactStatus: EcsUpdateImageArtifactStatus
     },
   ) {
     super(scope, id, props)
 
     const region = cdk.Stack.of(this).region
     const account = cdk.Stack.of(this).account
+
+    const tagContainer = new EcsUpdateImageTag(this, "EcrTagContainer", {
+      secretName: `/${props.resourcePrefix}/liflig-io-service-ecr-tag`,
+      artifactStatus: props.artifactStatus,
+    })
 
     const vpc = ec2.Vpc.fromLookup(this, "Vpc", {
       vpcId: props.vpcId,
@@ -33,12 +40,13 @@ export class WorkerStack extends cdk.Stack {
       vpc,
     })
 
-    const image = ecs.ContainerImage.fromEcrRepository(
-      ecr.Repository.fromRepositoryAttributes(this, "EcrRepo", {
-        repositoryArn: props.workerAsset.ecrRepoArn,
-        repositoryName: props.workerAsset.ecrRepoName,
-      }),
-      props.workerAsset.dockerTag,
+    const ecrRepository = ecr.Repository.fromRepositoryAttributes(
+      this,
+      "EcrRepo",
+      {
+        repositoryArn: props.ecrRepositoryArn,
+        repositoryName: props.ecrRepositoryName,
+      },
     )
 
     const webBucket = s3.Bucket.fromBucketName(
@@ -53,64 +61,66 @@ export class WorkerStack extends cdk.Stack {
       retention: logs.RetentionDays.ONE_MONTH,
     })
 
-    const taskDef = new ecs.FargateTaskDefinition(this, "TaskDef", {
-      family: `${props.resourcePrefix}-worker`,
-      cpu: 1024,
-      memoryLimitMiB: 2048,
-    })
+    const ecrTag = tagContainer.getEcrTag()
+    if (ecrTag != null) {
+      const taskDef = new ecs.FargateTaskDefinition(this, "TaskDef", {
+        cpu: 1024,
+        memoryLimitMiB: 2048,
+      })
 
-    taskDef.addContainer("app", {
-      image,
-      logging: ecs.LogDriver.awsLogs({
-        logGroup,
-        streamPrefix: "app",
-      }),
-      environment: {
-        PARAMS_PREFIX: `/${props.resourcePrefix}/`,
-      },
-    })
-
-    taskDef.addToTaskRolePolicy(
-      new iam.PolicyStatement({
-        actions: ["s3:PutObject"],
-        resources: [webBucket.arnForObjects("*")],
-      }),
-    )
-
-    taskDef.addToTaskRolePolicy(
-      new iam.PolicyStatement({
-        actions: ["cloudfront:CreateInvalidation"],
-        resources: ["*"], // Cannot be restricted.
-      }),
-    )
-
-    taskDef.addToTaskRolePolicy(
-      new iam.PolicyStatement({
-        actions: ["ssm:GetParameter", "ssm:GetParameters"],
-        resources: [
-          `arn:aws:ssm:${region}:${account}:parameter/${props.resourcePrefix}/*`,
-        ],
-      }),
-    )
-
-    // No need for any inbound rules, but we need a security group to start task.
-    const securityGroup = new ec2.SecurityGroup(this, "SecurityGroup", {
-      vpc,
-    })
-
-    const scheduleRule = new events.Rule(this, "ScheduleRule", {
-      schedule: events.Schedule.expression("cron(0 4 * * ? *)"),
-    })
-
-    scheduleRule.addTarget(
-      new targets.EcsTask({
-        cluster,
-        taskDefinition: taskDef,
-        securityGroup,
-        subnetSelection: {
-          subnetType: ec2.SubnetType.PUBLIC,
+      taskDef.addContainer("app", {
+        image: ecs.ContainerImage.fromEcrRepository(ecrRepository, ecrTag),
+        logging: ecs.LogDriver.awsLogs({
+          logGroup,
+          streamPrefix: "app",
+        }),
+        environment: {
+          PARAMS_PREFIX: `/${props.resourcePrefix}/`,
         },
-      }),
-    )
+      })
+
+      taskDef.addToTaskRolePolicy(
+        new iam.PolicyStatement({
+          actions: ["s3:PutObject"],
+          resources: [webBucket.arnForObjects("*")],
+        }),
+      )
+
+      taskDef.addToTaskRolePolicy(
+        new iam.PolicyStatement({
+          actions: ["cloudfront:CreateInvalidation"],
+          resources: ["*"], // Cannot be restricted.
+        }),
+      )
+
+      taskDef.addToTaskRolePolicy(
+        new iam.PolicyStatement({
+          actions: ["ssm:GetParameter", "ssm:GetParameters"],
+          resources: [
+            `arn:aws:ssm:${region}:${account}:parameter/${props.resourcePrefix}/*`,
+          ],
+        }),
+      )
+
+      // No need for any inbound rules, but we need a security group to start task.
+      const securityGroup = new ec2.SecurityGroup(this, "SecurityGroup", {
+        vpc,
+      })
+
+      const scheduleRule = new events.Rule(this, "ScheduleRule", {
+        schedule: events.Schedule.expression("cron(0 4 * * ? *)"),
+      })
+
+      scheduleRule.addTarget(
+        new targets.EcsTask({
+          cluster,
+          taskDefinition: taskDef,
+          securityGroup,
+          subnetSelection: {
+            subnetType: ec2.SubnetType.PUBLIC,
+          },
+        }),
+      )
+    }
   }
 }
