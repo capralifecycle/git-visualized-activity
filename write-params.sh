@@ -15,7 +15,7 @@ fi
 # TODO: Switch to Secrets Manager.
 # TODO: Tags.
 aws ssm put-parameter \
-  --name /git-visualized-activity-worker/prod/github-token \
+  --name /incub-gva-worker/github-token \
   --description "Value set by write-params.sh" \
   --type SecureString \
   --value "$token" \

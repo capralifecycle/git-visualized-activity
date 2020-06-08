@@ -15,7 +15,7 @@
           ],
           "Version": "2012-10-17"
         },
-        "RoleName": "liflig-incubator-gva-jenkins",
+        "RoleName": "incub-gva-jenkins",
         "Tags": [
           {
             "Key": "Project",
@@ -27,12 +27,12 @@
           },
           {
             "Key": "StackName",
-            "Value": "liflig-incubator-gva-web-deploy"
+            "Value": "incub-gva-web-deploy"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-web-deploy/WebappDeploy/Role/Resource"
+        "aws:cdk:path": "incub-gva-web-deploy/WebappDeploy/Role/Resource"
       }
     },
     "WebappDeployRoleDefaultPolicy4A1D7118": {
@@ -85,7 +85,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-web-deploy/WebappDeploy/Role/DefaultPolicy/Resource"
+        "aws:cdk:path": "incub-gva-web-deploy/WebappDeploy/Role/DefaultPolicy/Resource"
       }
     },
     "WebappDeployDeployFunctionServiceRole1AC692A1": {
@@ -128,12 +128,12 @@
           },
           {
             "Key": "StackName",
-            "Value": "liflig-incubator-gva-web-deploy"
+            "Value": "incub-gva-web-deploy"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-web-deploy/WebappDeploy/DeployFunction/ServiceRole/Resource"
+        "aws:cdk:path": "incub-gva-web-deploy/WebappDeploy/DeployFunction/ServiceRole/Resource"
       }
     },
     "WebappDeployDeployFunctionServiceRoleDefaultPolicy62314F91": {
@@ -174,7 +174,7 @@
                     {
                       "Ref": "AWS::Partition"
                     },
-                    ":s3:::liflig-incubator-gva-web/web/*"
+                    ":s3:::incub-gva-web/web/*"
                   ]
                 ]
               }
@@ -193,7 +193,7 @@
                     {
                       "Ref": "AWS::Partition"
                     },
-                    ":s3:::liflig-incubator-gva-web/deployments.log"
+                    ":s3:::incub-gva-web/deployments.log"
                   ]
                 ]
               }
@@ -214,7 +214,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-web-deploy/WebappDeploy/DeployFunction/ServiceRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "incub-gva-web-deploy/WebappDeploy/DeployFunction/ServiceRole/DefaultPolicy/Resource"
       }
     },
     "WebappDeployDeployFunctionCB67CBAC": {
@@ -234,8 +234,8 @@
         "Runtime": "python3.7",
         "Environment": {
           "Variables": {
-            "TARGET_BUCKET_URL": "s3://liflig-incubator-gva-web/web",
-            "DEPLOY_LOG_BUCKET_URL": "s3://liflig-incubator-gva-web/deployments.log",
+            "TARGET_BUCKET_URL": "s3://incub-gva-web/web",
+            "DEPLOY_LOG_BUCKET_URL": "s3://incub-gva-web/deployments.log",
             "CF_DISTRIBUTION_ID": "todo-not-resolved-yet"
           }
         },
@@ -251,7 +251,7 @@
           },
           {
             "Key": "StackName",
-            "Value": "liflig-incubator-gva-web-deploy"
+            "Value": "incub-gva-web-deploy"
           }
         ],
         "Timeout": 120
@@ -261,7 +261,7 @@
         "WebappDeployDeployFunctionServiceRole1AC692A1"
       ],
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-web-deploy/WebappDeploy/DeployFunction/Resource"
+        "aws:cdk:path": "incub-gva-web-deploy/WebappDeploy/DeployFunction/Resource"
       }
     },
     "WebappDeployFunctionNameE84D8F0F": {
@@ -271,15 +271,15 @@
         "Value": {
           "Ref": "WebappDeployDeployFunctionCB67CBAC"
         },
-        "Name": "/liflig-incubator-gva/deploy-fn-name",
+        "Name": "/incub-gva/deploy-fn-name",
         "Tags": {
           "Project": "git-visualized-activity",
           "SourceRepo": "github/capraconsulting/git-visualized-activity-infra",
-          "StackName": "liflig-incubator-gva-web-deploy"
+          "StackName": "incub-gva-web-deploy"
         }
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-web-deploy/WebappDeploy/FunctionName/Resource"
+        "aws:cdk:path": "incub-gva-web-deploy/WebappDeploy/FunctionName/Resource"
       }
     }
   }

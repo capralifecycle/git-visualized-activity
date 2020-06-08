@@ -7,7 +7,7 @@
           "GenerateStringKey": "unusedField",
           "SecretStringTemplate": "{}"
         },
-        "Name": "/liflig-incubator-gva/liflig-io-service-ecr-tag",
+        "Name": "/incub-gva/liflig-io-service-ecr-tag",
         "Tags": [
           {
             "Key": "Project",
@@ -19,12 +19,12 @@
           },
           {
             "Key": "StackName",
-            "Value": "liflig-incubator-gva-worker"
+            "Value": "incub-gva-worker"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-worker/EcrTagContainer/Secret/Resource"
+        "aws:cdk:path": "incub-gva-worker/EcrTagContainer/Secret/Resource"
       }
     },
     "ClusterEB0386A7": {
@@ -41,12 +41,12 @@
           },
           {
             "Key": "StackName",
-            "Value": "liflig-incubator-gva-worker"
+            "Value": "incub-gva-worker"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-worker/Cluster/Resource"
+        "aws:cdk:path": "incub-gva-worker/Cluster/Resource"
       }
     },
     "LogGroupF5B46931": {
@@ -57,7 +57,7 @@
       "UpdateReplacePolicy": "Retain",
       "DeletionPolicy": "Retain",
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-worker/LogGroup/Resource"
+        "aws:cdk:path": "incub-gva-worker/LogGroup/Resource"
       }
     },
     "TaskDefTaskRole1EDB4A67": {
@@ -86,12 +86,12 @@
           },
           {
             "Key": "StackName",
-            "Value": "liflig-incubator-gva-worker"
+            "Value": "incub-gva-worker"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-worker/TaskDef/TaskRole/Resource"
+        "aws:cdk:path": "incub-gva-worker/TaskDef/TaskRole/Resource"
       }
     },
     "TaskDefTaskRoleDefaultPolicyA592CB18": {
@@ -110,7 +110,7 @@
                     {
                       "Ref": "AWS::Partition"
                     },
-                    ":s3:::liflig-incubator-gva-web/*"
+                    ":s3:::incub-gva-web/*"
                   ]
                 ]
               }
@@ -126,7 +126,7 @@
                 "ssm:GetParameters"
               ],
               "Effect": "Allow",
-              "Resource": "arn:aws:ssm:eu-west-1:001112238813:parameter/liflig-incubator-gva/*"
+              "Resource": "arn:aws:ssm:eu-west-1:001112238813:parameter/incub-gva/*"
             }
           ],
           "Version": "2012-10-17"
@@ -139,7 +139,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-worker/TaskDef/TaskRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "incub-gva-worker/TaskDef/TaskRole/DefaultPolicy/Resource"
       }
     },
     "TaskDef54694570": {
@@ -150,7 +150,7 @@
             "Environment": [
               {
                 "Name": "PARAMS_PREFIX",
-                "Value": "/liflig-incubator-gva/"
+                "Value": "/incub-gva/"
               }
             ],
             "Essential": true,
@@ -190,7 +190,7 @@
             "Arn"
           ]
         },
-        "Family": "lifligincubatorgvaworkerTaskDef5F6771C9",
+        "Family": "incubgvaworkerTaskDef6CA8F8E4",
         "Memory": "2048",
         "NetworkMode": "awsvpc",
         "RequiresCompatibilities": [
@@ -207,7 +207,7 @@
           },
           {
             "Key": "StackName",
-            "Value": "liflig-incubator-gva-worker"
+            "Value": "incub-gva-worker"
           }
         ],
         "TaskRoleArn": {
@@ -218,7 +218,7 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-worker/TaskDef/Resource"
+        "aws:cdk:path": "incub-gva-worker/TaskDef/Resource"
       }
     },
     "TaskDefExecutionRoleB4775C97": {
@@ -247,12 +247,12 @@
           },
           {
             "Key": "StackName",
-            "Value": "liflig-incubator-gva-worker"
+            "Value": "incub-gva-worker"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-worker/TaskDef/ExecutionRole/Resource"
+        "aws:cdk:path": "incub-gva-worker/TaskDef/ExecutionRole/Resource"
       }
     },
     "TaskDefExecutionRoleDefaultPolicy0DBB737A": {
@@ -298,7 +298,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-worker/TaskDef/ExecutionRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "incub-gva-worker/TaskDef/ExecutionRole/DefaultPolicy/Resource"
       }
     },
     "TaskDefEventsRoleFB3B67B8": {
@@ -327,12 +327,12 @@
           },
           {
             "Key": "StackName",
-            "Value": "liflig-incubator-gva-worker"
+            "Value": "incub-gva-worker"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-worker/TaskDef/EventsRole/Resource"
+        "aws:cdk:path": "incub-gva-worker/TaskDef/EventsRole/Resource"
       }
     },
     "TaskDefEventsRoleDefaultPolicyA124E85B": {
@@ -388,13 +388,13 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-worker/TaskDef/EventsRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "incub-gva-worker/TaskDef/EventsRole/DefaultPolicy/Resource"
       }
     },
     "SecurityGroupDD263621": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
-        "GroupDescription": "liflig-incubator-gva-worker/SecurityGroup",
+        "GroupDescription": "incub-gva-worker/SecurityGroup",
         "SecurityGroupEgress": [
           {
             "CidrIp": "0.0.0.0/0",
@@ -413,13 +413,13 @@
           },
           {
             "Key": "StackName",
-            "Value": "liflig-incubator-gva-worker"
+            "Value": "incub-gva-worker"
           }
         ],
         "VpcId": "vpc-0a67807e4aca6bb84"
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-worker/SecurityGroup/Resource"
+        "aws:cdk:path": "incub-gva-worker/SecurityGroup/Resource"
       }
     },
     "ScheduleRuleDA5BD877": {
@@ -472,7 +472,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-worker/ScheduleRule/Resource"
+        "aws:cdk:path": "incub-gva-worker/ScheduleRule/Resource"
       }
     }
   }

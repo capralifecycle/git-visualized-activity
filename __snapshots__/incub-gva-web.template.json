@@ -50,12 +50,12 @@
           },
           {
             "Key": "StackName",
-            "Value": "liflig-incubator-gva-web"
+            "Value": "incub-gva-web"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-web/WebAuth/ServiceRole/Resource"
+        "aws:cdk:path": "incub-gva-web/WebAuth/ServiceRole/Resource"
       }
     },
     "WebAuthServiceRoleDefaultPolicy894ADDA0": {
@@ -79,7 +79,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-web/WebAuth/ServiceRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "incub-gva-web/WebAuth/ServiceRole/DefaultPolicy/Resource"
       }
     },
     "WebAuthFunction1AC74598": {
@@ -142,7 +142,7 @@
           },
           {
             "Key": "StackName",
-            "Value": "liflig-incubator-gva-web"
+            "Value": "incub-gva-web"
           }
         ]
       },
@@ -151,7 +151,7 @@
         "WebAuthServiceRoleBA3FDD8F"
       ],
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-web/WebAuth/Function/Resource",
+        "aws:cdk:path": "incub-gva-web/WebAuth/Function/Resource",
         "aws:asset:path": "asset.c1b83263f6205e067b773ac4cc08023f6a010792b795eeb7888882f859cea245",
         "aws:asset:property": "Code"
       }
@@ -164,7 +164,7 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-web/WebAuth/Version/Resource"
+        "aws:cdk:path": "incub-gva-web/WebAuth/Version/Resource"
       }
     },
     "WebBucket12880F5B": {
@@ -179,7 +179,7 @@
             }
           ]
         },
-        "BucketName": "liflig-incubator-gva-web",
+        "BucketName": "incub-gva-web",
         "Tags": [
           {
             "Key": "Project",
@@ -191,14 +191,14 @@
           },
           {
             "Key": "StackName",
-            "Value": "liflig-incubator-gva-web"
+            "Value": "incub-gva-web"
           }
         ]
       },
       "UpdateReplacePolicy": "Retain",
       "DeletionPolicy": "Retain",
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-web/WebBucket/Resource"
+        "aws:cdk:path": "incub-gva-web/WebBucket/Resource"
       }
     },
     "WebBucketPolicy95D08FAA": {
@@ -294,7 +294,7 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-web/WebBucket/Policy/Resource"
+        "aws:cdk:path": "incub-gva-web/WebBucket/Policy/Resource"
       }
     },
     "AccessIdentity369D113B": {
@@ -305,7 +305,7 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-web/AccessIdentity/Resource"
+        "aws:cdk:path": "incub-gva-web/AccessIdentity/Resource"
       }
     },
     "WebBucketNameParamB96AAA9E": {
@@ -315,15 +315,15 @@
         "Value": {
           "Ref": "WebBucket12880F5B"
         },
-        "Name": "/liflig-incubator-gva/web-bucket-name",
+        "Name": "/incub-gva/web-bucket-name",
         "Tags": {
           "Project": "git-visualized-activity",
           "SourceRepo": "github/capraconsulting/git-visualized-activity-infra",
-          "StackName": "liflig-incubator-gva-web"
+          "StackName": "incub-gva-web"
         }
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-web/WebBucketNameParam/Resource"
+        "aws:cdk:path": "incub-gva-web/WebBucketNameParam/Resource"
       }
     },
     "DistributionCFDistribution882A7313": {
@@ -454,12 +454,12 @@
           },
           {
             "Key": "StackName",
-            "Value": "liflig-incubator-gva-web"
+            "Value": "incub-gva-web"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-web/Distribution/CFDistribution"
+        "aws:cdk:path": "incub-gva-web/Distribution/CFDistribution"
       }
     },
     "DistributionIdParam86E45413": {
@@ -469,15 +469,15 @@
         "Value": {
           "Ref": "DistributionCFDistribution882A7313"
         },
-        "Name": "/liflig-incubator-gva/web-distribution-id",
+        "Name": "/incub-gva/web-distribution-id",
         "Tags": {
           "Project": "git-visualized-activity",
           "SourceRepo": "github/capraconsulting/git-visualized-activity-infra",
-          "StackName": "liflig-incubator-gva-web"
+          "StackName": "incub-gva-web"
         }
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-web/DistributionIdParam/Resource"
+        "aws:cdk:path": "incub-gva-web/DistributionIdParam/Resource"
       }
     },
     "DnsRecord68F7FB14": {
@@ -497,7 +497,7 @@
         "HostedZoneId": "TODO"
       },
       "Metadata": {
-        "aws:cdk:path": "liflig-incubator-gva-web/DnsRecord/Resource"
+        "aws:cdk:path": "incub-gva-web/DnsRecord/Resource"
       }
     }
   },
