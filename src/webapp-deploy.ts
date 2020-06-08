@@ -82,7 +82,7 @@ export class WebappDeploy extends cdk.Construct {
     })
 
     const functionName = new ssm.StringParameter(this, "FunctionName", {
-      parameterName: `/${props.resourcePrefix}/deploy-fn-name`,
+      parameterName: props.deployFnNameParameterName,
       stringValue: deployFunction.functionName,
     })
 

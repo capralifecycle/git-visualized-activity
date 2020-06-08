@@ -21,8 +21,8 @@ export class WebDeployStack extends cdk.Stack {
       roleName: props.roleName,
       buildsBucketName: props.buildsBucketName,
       webBucketName: props.webStack.webBucketName,
-      resourcePrefix: props.resourcePrefix,
       distributionId: props.webStack.distribution.distributionId,
+      deployFnNameParameterName: `/${props.resourcePrefix}/deploy-fn-name`,
     })
   }
 }
