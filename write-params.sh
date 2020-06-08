@@ -21,4 +21,12 @@ aws ssm put-parameter \
   --value "$token" \
   --overwrite
 
+aws ssm add-tags-to-resource \
+  --resource-type Parameter \
+  --resource-id /incub-gva-worker/github-token \
+  --tags \
+    Key=Project,Value=git-visualized-activity \
+    Key=SourceRepo,Value=github/capraconsulting/git-visualized-activity-infra \
+    Key=StackName,Value=SCRIPTED
+
 echo "OK"
