@@ -18,9 +18,15 @@ export class WebStack extends cdk.Stack {
     id: string,
     props: cdk.StackProps & {
       resourcePrefix: string
-      hostedZoneId: string
-      domainName: string
-      acmCertificateArn: string
+      localEndpoint: {
+        domainName: string
+        acmCertificateArn: string
+        hostedZoneId: string
+      }
+      externalEndpoint?: {
+        domainName: string
+        acmCertificateArn: string
+      }
       webBucketName: string
     },
   ) {
@@ -31,7 +37,7 @@ export class WebStack extends cdk.Stack {
     const hostedZone = r53.HostedZone.fromHostedZoneId(
       this,
       "HostedZone",
-      props.hostedZoneId,
+      props.localEndpoint.hostedZoneId,
     )
 
     this.webBucket = new s3.Bucket(this, "WebBucket", {
@@ -64,17 +70,19 @@ export class WebStack extends cdk.Stack {
     const acmCertificate = acm.Certificate.fromCertificateArn(
       this,
       "AcmCertificate",
-      props.acmCertificateArn,
+      props.localEndpoint.acmCertificateArn,
     )
 
     const viewerCertificate = cloudfront.ViewerCertificate.fromAcmCertificate(
       acmCertificate,
       {
-        aliases: [props.domainName],
-        securityPolicy: cloudfront.SecurityPolicyProtocol.TLS_V1_1_2016,
+        aliases: [props.localEndpoint.domainName],
+        securityPolicy: cloudfront.SecurityPolicyProtocol.TLS_V1_2_2018,
         sslMethod: cloudfront.SSLMethod.SNI,
       },
     )
+
+    // TODO: We need a separate distribution for external endpoint?
 
     this.distribution = new cloudfront.CloudFrontWebDistribution(
       this,
@@ -143,7 +151,7 @@ export class WebStack extends cdk.Stack {
 
     new r53.ARecord(this, "DnsRecord", {
       zone: hostedZone,
-      recordName: `${props.domainName}.`,
+      recordName: `${props.localEndpoint.domainName}.`,
       target: r53.RecordTarget.fromAlias(
         new r53t.CloudFrontTarget(this.distribution),
       ),

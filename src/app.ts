@@ -20,6 +20,14 @@ const externalValues = {
     "arn:aws:ecr:eu-west-1:001112238813:repository/incub-common-builds",
   // From https://github.com/capralifecycle/liflig-incubator-common-infra
   buildEcrRepositoryName: "incub-common-builds",
+  // From https://github.com/capralifecycle/liflig-incubator-common-infra
+  lifligIoAcmCertifcateArn:
+    "arn:aws:acm:eu-west-1:001112238813:certificate/5a23a7e4-e207-45b3-b577-fa311ddad70e",
+  // From https://github.com/capralifecycle/liflig-incubator-common-infra
+  incubatorDevAcmCertificateArn:
+    "arn:aws:acm:eu-west-1:001112238813:certificate/c25c1127-5901-43d4-aa6c-bebd8af4d4bb",
+  // From https://github.com/capralifecycle/liflig-incubator-common-infra
+  incubatorDevHostedZoneId: "Z07028931BZD2FT5LUHHH",
 }
 
 const incubatorEnv = {
@@ -28,13 +36,9 @@ const incubatorEnv = {
   cloudfront: {
     webBucketName: "incub-gva-web",
     region: "us-east-1",
-    // TODO: Update and mvoe to externalValues.
-    certificateArn:
-      "arn:aws:acm:us-east-1:923402097046:certificate/8c02e2fe-9399-4c51-8801-3c1af58eba1b",
   },
   // TODO: Must be resolved deploy-time due to cross-region.
   distributionId: "todo-not-resolved-yet",
-  domainName: "gva.incubator.capra.tv",
   hostedZoneId: "TODO",
   region: "eu-west-1",
   vpcId: externalValues.vpcId,
@@ -81,9 +85,15 @@ new WebStack(app, `incub-gva-web`, {
     account: incubatorEnv.accountId,
     region: incubatorEnv.cloudfront.region,
   },
-  acmCertificateArn: incubatorEnv.cloudfront.certificateArn,
-  domainName: incubatorEnv.domainName,
-  hostedZoneId: incubatorEnv.hostedZoneId,
+  localEndpoint: {
+    domainName: "gva.incubator.liflig.dev",
+    acmCertificateArn: externalValues.incubatorDevAcmCertificateArn,
+    hostedZoneId: externalValues.incubatorDevHostedZoneId,
+  },
+  externalEndpoint: {
+    domainName: "gva.liflig.io",
+    acmCertificateArn: externalValues.lifligIoAcmCertifcateArn,
+  },
   resourcePrefix: "incub-gva",
   webBucketName: incubatorEnv.cloudfront.webBucketName,
 })

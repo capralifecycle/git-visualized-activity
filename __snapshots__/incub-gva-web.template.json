@@ -331,7 +331,7 @@
       "Properties": {
         "DistributionConfig": {
           "Aliases": [
-            "gva.incubator.capra.tv"
+            "gva.incubator.liflig.dev"
           ],
           "CacheBehaviors": [
             {
@@ -438,8 +438,8 @@
           ],
           "PriceClass": "PriceClass_100",
           "ViewerCertificate": {
-            "AcmCertificateArn": "arn:aws:acm:us-east-1:923402097046:certificate/8c02e2fe-9399-4c51-8801-3c1af58eba1b",
-            "MinimumProtocolVersion": "TLSv1.1_2016",
+            "AcmCertificateArn": "arn:aws:acm:eu-west-1:001112238813:certificate/c25c1127-5901-43d4-aa6c-bebd8af4d4bb",
+            "MinimumProtocolVersion": "TLSv1.2_2018",
             "SslSupportMethod": "sni-only"
           }
         },
@@ -483,7 +483,7 @@
     "DnsRecord68F7FB14": {
       "Type": "AWS::Route53::RecordSet",
       "Properties": {
-        "Name": "gva.incubator.capra.tv.",
+        "Name": "gva.incubator.liflig.dev.",
         "Type": "A",
         "AliasTarget": {
           "DNSName": {
@@ -494,7 +494,7 @@
           },
           "HostedZoneId": "Z2FDTNDATAQYW2"
         },
-        "HostedZoneId": "TODO"
+        "HostedZoneId": "Z07028931BZD2FT5LUHHH"
       },
       "Metadata": {
         "aws:cdk:path": "incub-gva-web/DnsRecord/Resource"
