@@ -222,7 +222,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParametersf43872b62e54b8e31ca1e4ed158d1aec6d593896d5052bd6e848f7e9a860c8a9S3Bucket70641DE7"
+            "Ref": "AssetParameters8ade45065fad5ee50ef71d999efe760ad81b8af90943bb1a5d93aea73e394d4dS3Bucket3D6318FC"
           },
           "S3Key": {
             "Fn::Join": [
@@ -235,7 +235,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersf43872b62e54b8e31ca1e4ed158d1aec6d593896d5052bd6e848f7e9a860c8a9S3VersionKey28315129"
+                          "Ref": "AssetParameters8ade45065fad5ee50ef71d999efe760ad81b8af90943bb1a5d93aea73e394d4dS3VersionKeyCC3A44E9"
                         }
                       ]
                     }
@@ -248,7 +248,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersf43872b62e54b8e31ca1e4ed158d1aec6d593896d5052bd6e848f7e9a860c8a9S3VersionKey28315129"
+                          "Ref": "AssetParameters8ade45065fad5ee50ef71d999efe760ad81b8af90943bb1a5d93aea73e394d4dS3VersionKeyCC3A44E9"
                         }
                       ]
                     }
@@ -298,7 +298,7 @@
       ],
       "Metadata": {
         "aws:cdk:path": "incub-gva-web-deploy/WebappDeploy/DeployFunction/Resource",
-        "aws:asset:path": "asset.f43872b62e54b8e31ca1e4ed158d1aec6d593896d5052bd6e848f7e9a860c8a9",
+        "aws:asset:path": "asset.8ade45065fad5ee50ef71d999efe760ad81b8af90943bb1a5d93aea73e394d4d",
         "aws:asset:property": "Code"
       }
     },
@@ -322,17 +322,17 @@
     }
   },
   "Parameters": {
-    "AssetParametersf43872b62e54b8e31ca1e4ed158d1aec6d593896d5052bd6e848f7e9a860c8a9S3Bucket70641DE7": {
+    "AssetParameters8ade45065fad5ee50ef71d999efe760ad81b8af90943bb1a5d93aea73e394d4dS3Bucket3D6318FC": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"f43872b62e54b8e31ca1e4ed158d1aec6d593896d5052bd6e848f7e9a860c8a9\""
+      "Description": "S3 bucket for asset \"8ade45065fad5ee50ef71d999efe760ad81b8af90943bb1a5d93aea73e394d4d\""
     },
-    "AssetParametersf43872b62e54b8e31ca1e4ed158d1aec6d593896d5052bd6e848f7e9a860c8a9S3VersionKey28315129": {
+    "AssetParameters8ade45065fad5ee50ef71d999efe760ad81b8af90943bb1a5d93aea73e394d4dS3VersionKeyCC3A44E9": {
       "Type": "String",
-      "Description": "S3 key for asset version \"f43872b62e54b8e31ca1e4ed158d1aec6d593896d5052bd6e848f7e9a860c8a9\""
+      "Description": "S3 key for asset version \"8ade45065fad5ee50ef71d999efe760ad81b8af90943bb1a5d93aea73e394d4d\""
     },
-    "AssetParametersf43872b62e54b8e31ca1e4ed158d1aec6d593896d5052bd6e848f7e9a860c8a9ArtifactHash2EBE7729": {
+    "AssetParameters8ade45065fad5ee50ef71d999efe760ad81b8af90943bb1a5d93aea73e394d4dArtifactHash79D48169": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"f43872b62e54b8e31ca1e4ed158d1aec6d593896d5052bd6e848f7e9a860c8a9\""
+      "Description": "Artifact hash for asset \"8ade45065fad5ee50ef71d999efe760ad81b8af90943bb1a5d93aea73e394d4d\""
     }
   }
 }
