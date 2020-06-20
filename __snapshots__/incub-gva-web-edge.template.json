@@ -185,14 +185,14 @@
         "aws:cdk:path": "incub-gva-web-edge/WebAuth/Function/CurrentVersion/Resource"
       }
     },
-    "WebAuthLambdaVersionEDB14B60": {
+    "VersionParam713F6FBC": {
       "Type": "AWS::SSM::Parameter",
       "Properties": {
         "Type": "String",
         "Value": {
           "Ref": "WebAuthFunctionCurrentVersion0429D26B8379afc1a08a1cade9e6aff9f4bc6b9d"
         },
-        "Name": "/incub-gva/web-auth-lambda-version-arn",
+        "Name": "/cf/stack/incub-gva-web-edge/web-auth-lambda-version-arn",
         "Tags": {
           "Project": "git-visualized-activity",
           "SourceRepo": "github/capraconsulting/git-visualized-activity-infra",
@@ -200,7 +200,7 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "incub-gva-web-edge/WebAuthLambdaVersion/Resource"
+        "aws:cdk:path": "incub-gva-web-edge/VersionParam/Resource"
       }
     }
   },

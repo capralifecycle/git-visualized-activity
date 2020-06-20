@@ -1,6 +1,6 @@
 {
   "Resources": {
-    "WebAuthLambdaVersionReader4037E36B": {
+    "WebAuthLambdaVersionParameterEF4A0B84": {
       "Type": "Custom::AWS",
       "Properties": {
         "ServiceToken": {
@@ -13,7 +13,7 @@
           "service": "SSM",
           "action": "getParameter",
           "parameters": {
-            "Name": "/incub-gva/web-auth-lambda-version-arn"
+            "Name": "/cf/stack/incub-gva-web-edge/web-auth-lambda-version-arn"
           },
           "region": "us-east-1",
           "physicalResourceId": {
@@ -24,7 +24,7 @@
           "service": "SSM",
           "action": "getParameter",
           "parameters": {
-            "Name": "/incub-gva/web-auth-lambda-version-arn"
+            "Name": "/cf/stack/incub-gva-web-edge/web-auth-lambda-version-arn"
           },
           "region": "us-east-1",
           "physicalResourceId": {
@@ -35,7 +35,7 @@
       "UpdateReplacePolicy": "Delete",
       "DeletionPolicy": "Delete",
       "Metadata": {
-        "aws:cdk:path": "incub-gva-web/WebAuthLambdaVersionReader/Resource/Default"
+        "aws:cdk:path": "incub-gva-web/WebAuthLambdaVersionParameter/Resource/Default"
       }
     },
     "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2": {
@@ -102,7 +102,7 @@
                     {
                       "Ref": "AWS::Partition"
                     },
-                    ":ssm:us-east-1:001112238813:parameter/incub-gva/web-auth-lambda-version-arn"
+                    ":ssm:us-east-1:001112238813:parameter/cf/stack/incub-gva-web-edge/web-auth-lambda-version-arn"
                   ]
                 ]
               }
@@ -196,7 +196,7 @@
         "aws:asset:property": "Code"
       }
     },
-    "WebBucket12880F5B": {
+    "WebWebBucketAF209868": {
       "Type": "AWS::S3::Bucket",
       "Properties": {
         "BucketEncryption": {
@@ -208,7 +208,6 @@
             }
           ]
         },
-        "BucketName": "incub-gva-web-001112238813-eu-west-1",
         "Tags": [
           {
             "Key": "Project",
@@ -227,14 +226,14 @@
       "UpdateReplacePolicy": "Retain",
       "DeletionPolicy": "Retain",
       "Metadata": {
-        "aws:cdk:path": "incub-gva-web/WebBucket/Resource"
+        "aws:cdk:path": "incub-gva-web/Web/WebBucket/Resource"
       }
     },
-    "WebBucketPolicy95D08FAA": {
+    "WebWebBucketPolicy3FAD0326": {
       "Type": "AWS::S3::BucketPolicy",
       "Properties": {
         "Bucket": {
-          "Ref": "WebBucket12880F5B"
+          "Ref": "WebWebBucketAF209868"
         },
         "PolicyDocument": {
           "Statement": [
@@ -244,7 +243,7 @@
               "Principal": {
                 "CanonicalUser": {
                   "Fn::GetAtt": [
-                    "AccessIdentity369D113B",
+                    "WebAccessIdentity94AA1B1E",
                     "S3CanonicalUserId"
                   ]
                 }
@@ -256,11 +255,11 @@
                     [
                       {
                         "Fn::GetAtt": [
-                          "WebBucket12880F5B",
+                          "WebWebBucketAF209868",
                           "Arn"
                         ]
                       },
-                      "/web/*"
+                      "/data/*"
                     ]
                   ]
                 },
@@ -270,11 +269,11 @@
                     [
                       {
                         "Fn::GetAtt": [
-                          "WebBucket12880F5B",
+                          "WebWebBucketAF209868",
                           "Arn"
                         ]
                       },
-                      "/data/*"
+                      "/web/*"
                     ]
                   ]
                 }
@@ -290,7 +289,7 @@
               "Principal": {
                 "CanonicalUser": {
                   "Fn::GetAtt": [
-                    "AccessIdentity369D113B",
+                    "WebAccessIdentity94AA1B1E",
                     "S3CanonicalUserId"
                   ]
                 }
@@ -298,7 +297,7 @@
               "Resource": [
                 {
                   "Fn::GetAtt": [
-                    "WebBucket12880F5B",
+                    "WebWebBucketAF209868",
                     "Arn"
                   ]
                 },
@@ -308,7 +307,7 @@
                     [
                       {
                         "Fn::GetAtt": [
-                          "WebBucket12880F5B",
+                          "WebWebBucketAF209868",
                           "Arn"
                         ]
                       },
@@ -323,10 +322,10 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "incub-gva-web/WebBucket/Policy/Resource"
+        "aws:cdk:path": "incub-gva-web/Web/WebBucket/Policy/Resource"
       }
     },
-    "AccessIdentity369D113B": {
+    "WebAccessIdentity94AA1B1E": {
       "Type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
       "Properties": {
         "CloudFrontOriginAccessIdentityConfig": {
@@ -334,10 +333,10 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "incub-gva-web/AccessIdentity/Resource"
+        "aws:cdk:path": "incub-gva-web/Web/AccessIdentity/Resource"
       }
     },
-    "DistributionCFDistribution882A7313": {
+    "WebDistributionCFDistributionE67D88CA": {
       "Type": "AWS::CloudFront::Distribution",
       "Properties": {
         "DistributionConfig": {
@@ -363,7 +362,7 @@
                   "EventType": "viewer-request",
                   "LambdaFunctionARN": {
                     "Fn::GetAtt": [
-                      "WebAuthLambdaVersionReader4037E36B",
+                      "WebAuthLambdaVersionParameterEF4A0B84",
                       "Parameter.Value"
                     ]
                   }
@@ -392,7 +391,7 @@
                 "EventType": "viewer-request",
                 "LambdaFunctionARN": {
                   "Fn::GetAtt": [
-                    "WebAuthLambdaVersionReader4037E36B",
+                    "WebAuthLambdaVersionParameterEF4A0B84",
                     "Parameter.Value"
                   ]
                 }
@@ -409,7 +408,7 @@
             {
               "DomainName": {
                 "Fn::GetAtt": [
-                  "WebBucket12880F5B",
+                  "WebWebBucketAF209868",
                   "RegionalDomainName"
                 ]
               },
@@ -422,7 +421,7 @@
                     [
                       "origin-access-identity/cloudfront/",
                       {
-                        "Ref": "AccessIdentity369D113B"
+                        "Ref": "WebAccessIdentity94AA1B1E"
                       }
                     ]
                   ]
@@ -432,7 +431,7 @@
             {
               "DomainName": {
                 "Fn::GetAtt": [
-                  "WebBucket12880F5B",
+                  "WebWebBucketAF209868",
                   "RegionalDomainName"
                 ]
               },
@@ -445,7 +444,7 @@
                     [
                       "origin-access-identity/cloudfront/",
                       {
-                        "Ref": "AccessIdentity369D113B"
+                        "Ref": "WebAccessIdentity94AA1B1E"
                       }
                     ]
                   ]
@@ -476,10 +475,10 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "incub-gva-web/Distribution/CFDistribution"
+        "aws:cdk:path": "incub-gva-web/Web/Distribution/CFDistribution"
       }
     },
-    "DnsRecord68F7FB14": {
+    "WebDnsRecord7704C090": {
       "Type": "AWS::Route53::RecordSet",
       "Properties": {
         "Name": "gva.incubator.liflig.dev.",
@@ -487,7 +486,7 @@
         "AliasTarget": {
           "DNSName": {
             "Fn::GetAtt": [
-              "DistributionCFDistribution882A7313",
+              "WebDistributionCFDistributionE67D88CA",
               "DomainName"
             ]
           },
@@ -496,7 +495,323 @@
         "HostedZoneId": "Z07028931BZD2FT5LUHHH"
       },
       "Metadata": {
-        "aws:cdk:path": "incub-gva-web/DnsRecord/Resource"
+        "aws:cdk:path": "incub-gva-web/Web/DnsRecord/Resource"
+      }
+    },
+    "WebDeployRole3C4D63A7": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "arn:aws:iam::923402097046:role/buildtools-jenkins-RoleJenkinsSlave-JQGYHR5WE6C5"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "RoleName": "incub-gva-web-deploy",
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-web"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/Web/Deploy/Role/Resource"
+      }
+    },
+    "WebDeployRoleDefaultPolicy8D88A3B4": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "WebDeploy7DEF3E65",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "WebDeployRoleDefaultPolicy8D88A3B4",
+        "Roles": [
+          {
+            "Ref": "WebDeployRole3C4D63A7"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/Web/Deploy/Role/DefaultPolicy/Resource"
+      }
+    },
+    "WebDeployServiceRoleAD5BC231": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-web"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/Web/Deploy/Resource/Resource/ServiceRole/Resource"
+      }
+    },
+    "WebDeployServiceRoleDefaultPolicy8B0EAC57": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:HeadObject",
+                "s3:GetObject"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":s3:::incub-common-build-artifacts-001112238813-eu-west-1/*"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "s3:PutObject",
+                "s3:DeleteObject"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    {
+                      "Fn::GetAtt": [
+                        "WebWebBucketAF209868",
+                        "Arn"
+                      ]
+                    },
+                    "/web/*"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "s3:GetObject",
+                "s3:PutObject"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    {
+                      "Fn::GetAtt": [
+                        "WebWebBucketAF209868",
+                        "Arn"
+                      ]
+                    },
+                    "/deployments.log"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": "s3:List*",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "WebWebBucketAF209868",
+                  "Arn"
+                ]
+              }
+            },
+            {
+              "Action": "cloudfront:CreateInvalidation",
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "WebDeployServiceRoleDefaultPolicy8B0EAC57",
+        "Roles": [
+          {
+            "Ref": "WebDeployServiceRoleAD5BC231"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/Web/Deploy/Resource/Resource/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "WebDeploy7DEF3E65": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParameters850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362eS3Bucket724AF36A"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362eS3VersionKeyF74D9403"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362eS3VersionKeyF74D9403"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Handler": "webapp_deploy.main.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "WebDeployServiceRoleAD5BC231",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.7",
+        "Environment": {
+          "Variables": {
+            "DEPLOY_LOG_BUCKET_URL": {
+              "Fn::Join": [
+                "",
+                [
+                  "s3://",
+                  {
+                    "Ref": "WebWebBucketAF209868"
+                  },
+                  "/deployments.log"
+                ]
+              ]
+            },
+            "EXPIRE_SECONDS": "432000",
+            "TARGET_BUCKET_URL": {
+              "Fn::Join": [
+                "",
+                [
+                  "s3://",
+                  {
+                    "Ref": "WebWebBucketAF209868"
+                  },
+                  "/web"
+                ]
+              ]
+            },
+            "CF_DISTRIBUTION_ID": {
+              "Ref": "WebDistributionCFDistributionE67D88CA"
+            }
+          }
+        },
+        "FunctionName": "incub-gva-web-deploy",
+        "ReservedConcurrentExecutions": 1,
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-web"
+          }
+        ],
+        "Timeout": 120
+      },
+      "DependsOn": [
+        "WebDeployServiceRoleDefaultPolicy8B0EAC57",
+        "WebDeployServiceRoleAD5BC231"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/Web/Deploy/Resource/Resource/Resource",
+        "aws:asset:path": "asset.850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362e",
+        "aws:asset:property": "Code"
       }
     }
   },
@@ -512,15 +827,51 @@
     "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669ArtifactHash2C09C7CA": {
       "Type": "String",
       "Description": "Artifact hash for asset \"f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669\""
+    },
+    "AssetParameters850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362eS3Bucket724AF36A": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362e\""
+    },
+    "AssetParameters850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362eS3VersionKeyF74D9403": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362e\""
+    },
+    "AssetParameters850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362eArtifactHash9B384758": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362e\""
     }
   },
   "Outputs": {
-    "ExportsOutputRefDistributionCFDistribution882A731330275A1E": {
+    "WebDeployFunctionArnOutputAA8D5D84": {
       "Value": {
-        "Ref": "DistributionCFDistribution882A7313"
+        "Fn::GetAtt": [
+          "WebDeploy7DEF3E65",
+          "Arn"
+        ]
+      }
+    },
+    "WebDeployRoleArnOutput2C4C53A4": {
+      "Value": {
+        "Fn::GetAtt": [
+          "WebDeployRole3C4D63A7",
+          "Arn"
+        ]
+      }
+    },
+    "ExportsOutputRefWebWebBucketAF209868DA1CE065": {
+      "Value": {
+        "Ref": "WebWebBucketAF209868"
       },
       "Export": {
-        "Name": "incub-gva-web:ExportsOutputRefDistributionCFDistribution882A731330275A1E"
+        "Name": "incub-gva-web:ExportsOutputRefWebWebBucketAF209868DA1CE065"
+      }
+    },
+    "ExportsOutputRefWebDistributionCFDistributionE67D88CAD4DDDA0B": {
+      "Value": {
+        "Ref": "WebDistributionCFDistributionE67D88CA"
+      },
+      "Export": {
+        "Name": "incub-gva-web:ExportsOutputRefWebDistributionCFDistributionE67D88CAD4DDDA0B"
       }
     }
   }

@@ -1,12 +1,16 @@
-import * as ssm from "@aws-cdk/aws-ssm"
+import * as lambda from "@aws-cdk/aws-lambda"
 import * as cdk from "@aws-cdk/core"
+import { SsmParameterBackedResource } from "@liflig/cdk"
 import { WebAuth } from "./auth"
+import { isSnapshot } from "./utils"
 
 /**
  * Stack deployed in us-east-1 to hold "Lambda@edge" resource.
  */
 export class WebEdgeStack extends cdk.Stack {
-  public readonly webAuthLambdaVersionArnParameterName: string
+  public readonly webAuthLambdaVersion: SsmParameterBackedResource<
+    lambda.IVersion
+  >
 
   constructor(
     scope: cdk.Construct,
@@ -23,11 +27,17 @@ export class WebEdgeStack extends cdk.Stack {
       passwordParamName: `/${props.resourcePrefix}-web/basicauth-password`,
     })
 
-    this.webAuthLambdaVersionArnParameterName = `/${props.resourcePrefix}/web-auth-lambda-version-arn`
-
-    new ssm.StringParameter(this, "WebAuthLambdaVersion", {
-      stringValue: webAuth.version.functionArn,
-      parameterName: this.webAuthLambdaVersionArnParameterName,
-    })
+    this.webAuthLambdaVersion = new SsmParameterBackedResource<lambda.IVersion>(
+      this,
+      "VersionParam",
+      {
+        nonce: isSnapshot ? "snapshot-value" : new Date().toString(),
+        parameterName: `/cf/stack/${this.stackName}/web-auth-lambda-version-arn`,
+        referenceToResource: (scope, id, reference) =>
+          lambda.Version.fromVersionArn(scope, id, reference),
+        resource: webAuth.version,
+        resourceToReference: (resource) => resource.functionArn,
+      },
+    )
   }
 }

@@ -1,6 +1,5 @@
 import * as fs from "fs"
-
-const isSnapshot = process.env.IS_SNAPSHOT === "true"
+import { isSnapshot } from "./utils"
 
 export interface BuildMeta {
   buildTimestamp: string

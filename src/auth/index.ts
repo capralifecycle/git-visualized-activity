@@ -1,7 +1,7 @@
 import * as iam from "@aws-cdk/aws-iam"
 import * as lambda from "@aws-cdk/aws-lambda"
 import * as cdk from "@aws-cdk/core"
-import { removeLeadingSlash } from "../util"
+import { removeLeadingSlash } from "../utils"
 
 export class WebAuth extends cdk.Construct {
   public readonly version: lambda.Version

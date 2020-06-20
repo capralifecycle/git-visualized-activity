@@ -4,7 +4,6 @@ import { getEcrAsset } from "./asset"
 import { WebEdgeStack } from "./web-edge-stack"
 import { WebStack } from "./web-stack"
 import { WorkerStack } from "./worker-stack"
-import { WebDeployStack } from "./web-deploy-stack"
 
 // Values from external sources.
 // TODO: Dynamically resolve these so we better understand
@@ -54,29 +53,13 @@ const webStack = new WebStack(app, `incub-gva-web`, {
     account: incubatorAccountId,
     region: "eu-west-1",
   },
-  localEndpoint: {
-    domainName: "gva.incubator.liflig.dev",
-    acmCertificateArn: externalValues.incubatorDevAcmCertificateUsEast1Arn,
-    hostedZoneId: externalValues.incubatorDevHostedZoneId,
-  },
-  externalEndpoint: {
-    domainName: "gva.liflig.io",
-    acmCertificateArn: externalValues.lifligIoAcmCertifcateUsEast1Arn,
-  },
+  buildsBucketName: externalValues.buildBucketName,
+  cloudfrontCertificateArn: externalValues.incubatorDevAcmCertificateUsEast1Arn,
+  domainName: "gva.incubator.liflig.dev",
+  hostedZoneId: externalValues.incubatorDevHostedZoneId,
+  jenkinsRoleArn: externalValues.jenkinsRoleArn,
   resourcePrefix: "incub-gva",
   webEdgeStack,
-})
-
-new WebDeployStack(app, `incub-gva-web-deploy`, {
-  env: {
-    account: incubatorAccountId,
-    region: "eu-west-1",
-  },
-  callerRoleArn: externalValues.jenkinsRoleArn,
-  roleName: "incub-gva-jenkins",
-  webStack,
-  buildsBucketName: externalValues.buildBucketName,
-  resourcePrefix: "incub-gva",
 })
 
 new WorkerStack(app, `incub-gva-worker`, {
