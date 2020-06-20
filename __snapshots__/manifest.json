@@ -17,13 +17,13 @@
           {
             "type": "aws:cdk:asset",
             "data": {
-              "path": "asset.0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01a",
-              "id": "0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01a",
+              "path": "asset.32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2",
+              "id": "32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2",
               "packaging": "zip",
-              "sourceHash": "0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01a",
-              "s3BucketParameter": "AssetParameters0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01aS3BucketFD3B41B7",
-              "s3KeyParameter": "AssetParameters0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01aS3VersionKey9400EC25",
-              "artifactHashParameter": "AssetParameters0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01aArtifactHash7A4FE544"
+              "sourceHash": "32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2",
+              "s3BucketParameter": "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2S3Bucket7113E4DE",
+              "s3KeyParameter": "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2S3VersionKey3F509F94",
+              "artifactHashParameter": "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2ArtifactHashD0223E20"
             }
           },
           {
@@ -65,25 +65,25 @@
         "/incub-gva-web-edge/WebAuth/Function/CurrentVersion/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "WebAuthFunctionCurrentVersion0429D26B8379afc1a08a1cade9e6aff9f4bc6b9d"
+            "data": "WebAuthFunctionCurrentVersion0429D26B0a20d560fa7a899fcadde26eeeae808d"
           }
         ],
-        "/incub-gva-web-edge/AssetParameters/0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01a/S3Bucket": [
+        "/incub-gva-web-edge/AssetParameters/32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01aS3BucketFD3B41B7"
+            "data": "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2S3Bucket7113E4DE"
           }
         ],
-        "/incub-gva-web-edge/AssetParameters/0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01a/S3VersionKey": [
+        "/incub-gva-web-edge/AssetParameters/32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01aS3VersionKey9400EC25"
+            "data": "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2S3VersionKey3F509F94"
           }
         ],
-        "/incub-gva-web-edge/AssetParameters/0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01a/ArtifactHash": [
+        "/incub-gva-web-edge/AssetParameters/32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01aArtifactHash7A4FE544"
+            "data": "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2ArtifactHashD0223E20"
           }
         ],
         "/incub-gva-web-edge/VersionParam/Resource": [

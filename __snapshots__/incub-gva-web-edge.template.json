@@ -105,7 +105,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01aS3BucketFD3B41B7"
+            "Ref": "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2S3Bucket7113E4DE"
           },
           "S3Key": {
             "Fn::Join": [
@@ -118,7 +118,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01aS3VersionKey9400EC25"
+                          "Ref": "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2S3VersionKey3F509F94"
                         }
                       ]
                     }
@@ -131,7 +131,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01aS3VersionKey9400EC25"
+                          "Ref": "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2S3VersionKey3F509F94"
                         }
                       ]
                     }
@@ -170,11 +170,11 @@
       ],
       "Metadata": {
         "aws:cdk:path": "incub-gva-web-edge/WebAuth/Function/Resource",
-        "aws:asset:path": "asset.0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01a",
+        "aws:asset:path": "asset.32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2",
         "aws:asset:property": "Code"
       }
     },
-    "WebAuthFunctionCurrentVersion0429D26B8379afc1a08a1cade9e6aff9f4bc6b9d": {
+    "WebAuthFunctionCurrentVersion0429D26B0a20d560fa7a899fcadde26eeeae808d": {
       "Type": "AWS::Lambda::Version",
       "Properties": {
         "FunctionName": {
@@ -190,7 +190,7 @@
       "Properties": {
         "Type": "String",
         "Value": {
-          "Ref": "WebAuthFunctionCurrentVersion0429D26B8379afc1a08a1cade9e6aff9f4bc6b9d"
+          "Ref": "WebAuthFunctionCurrentVersion0429D26B0a20d560fa7a899fcadde26eeeae808d"
         },
         "Name": "/cf/stack/incub-gva-web-edge/web-auth-lambda-version-arn",
         "Tags": {
@@ -205,17 +205,17 @@
     }
   },
   "Parameters": {
-    "AssetParameters0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01aS3BucketFD3B41B7": {
+    "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2S3Bucket7113E4DE": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01a\""
+      "Description": "S3 bucket for asset \"32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2\""
     },
-    "AssetParameters0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01aS3VersionKey9400EC25": {
+    "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2S3VersionKey3F509F94": {
       "Type": "String",
-      "Description": "S3 key for asset version \"0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01a\""
+      "Description": "S3 key for asset version \"32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2\""
     },
-    "AssetParameters0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01aArtifactHash7A4FE544": {
+    "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2ArtifactHashD0223E20": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"0ab80c574ea4fb5e35d4db97e15803b9246b9cfe07106183207879f58451e01a\""
+      "Description": "Artifact hash for asset \"32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2\""
     }
   }
 }

@@ -7,8 +7,8 @@ const cacheTime = 60 * 1000 // in ms
 
 // Cannot pass environment variables to Lambda@Edge.
 const paramsRegion = "eu-west-1"
-const usernameParamName = "incub-gva-web/basicauth-username"
-const passwordParamName = "incub-gva-web/basicauth-password"
+const usernameParamName = "/incub-gva-web/basicauth-username"
+const passwordParamName = "/incub-gva-web/basicauth-password"
 
 async function getParams() {
   const ssm = new SSM({ region: paramsRegion })
