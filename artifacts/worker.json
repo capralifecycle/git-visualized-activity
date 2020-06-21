@@ -1,7 +1,7 @@
 {
   "dockerTag": "gva-worker-20200607-231829z-master-8-46eeb0b",
   "ecrRepoArn": "arn:aws:ecr:eu-west-1:001112238813:repository/incub-common-builds",
-  "ecrRepoName": "git-visualized-activity/worker",
+  "ecrRepoName": "incub-common-builds",
   "meta": {
     "buildTimestamp": "2020-06-07T23:18:29+00:00",
     "buildGitCommit": "46eeb0b6f6b771591bbc71f4605fde4feda629df",
