@@ -1,15 +1,7 @@
-# git-visualized-activity-worker
+# worker
 
-[![Build Status](https://jenkins.capra.tv/buildStatus/icon?job=cals-internal/git-visualized-activity-worker/master)](https://jenkins.capra.tv/job/cals-internal/job/git-visualized-activity-worker/job/master/)
-
-This project builds a Docker image that we schedule to run as a
-Fargate task. The container will clone all repos, generate `commits.csv`
-and upload this to the distribution used for
-https://github.com/capraconsulting/git-visualized-activity/
-that is deployed at https://gva.capra.tv.
-
-The internal CloudFormation setup is stored at
-https://github.com/capralifecycle/aws-infrastructure/tree/master/cloudformation/git-visualized-activity
+This directory builds a Docker image that we schedule to run as a
+Fargate task. The container will clone all repos and generate `commits.csv`.
 
 ## Testing locally using Docker and aws-vault
 

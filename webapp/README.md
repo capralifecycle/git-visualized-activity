@@ -1,6 +1,4 @@
-# git-visualized-activity
-
-[![Build Status](https://jenkins.capra.tv/buildStatus/icon?job=cals-internal/git-visualized-activity/master)](https://jenkins.capra.tv/job/cals-internal/job/git-visualized-activity/job/master/)
+# webapp
 
 ## Development
 
@@ -15,9 +13,6 @@ npm run start
 ```
 
 ## Generating `commits.csv`
-
-> See also https://github.com/capraconsulting/git-visualized-activity-worker
-that generates the `commits.csv` file nightly from a Fargate container.
 
 A CSV-file describing the repositories must first be created.
 The columns should be:
