@@ -31,10 +31,11 @@ export class WebEdgeStack extends cdk.Stack {
       this,
       "VersionParam",
       {
-        nonce: isSnapshot ? "snapshot-value" : new Date().toString(),
-        parameterName: `/cf/stack/${this.stackName}/web-auth-lambda-version-arn`,
+        nonce: isSnapshot ? "snapshot" : undefined,
+        parameterName: `/cf/region/${this.region}/stack/${this.stackName}/web-auth-lambda-version-arn`,
         referenceToResource: (scope, id, reference) =>
           lambda.Version.fromVersionArn(scope, id, reference),
+        regions: ["eu-west-1"],
         resource: webAuth.version,
         resourceToReference: (resource) => resource.functionArn,
       },

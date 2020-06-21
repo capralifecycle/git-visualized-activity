@@ -185,22 +185,237 @@
         "aws:cdk:path": "incub-gva-web-edge/WebAuth/Function/CurrentVersion/Resource"
       }
     },
-    "VersionParam713F6FBC": {
-      "Type": "AWS::SSM::Parameter",
+    "VersionParamParameuwest1Resoure7DBFCD25": {
+      "Type": "Custom::AWS",
       "Properties": {
-        "Type": "String",
-        "Value": {
-          "Ref": "WebAuthFunctionCurrentVersion0429D26B0a20d560fa7a899fcadde26eeeae808d"
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "AWS679f53fac002430cb0da5b7982bd22872D164C4C",
+            "Arn"
+          ]
         },
-        "Name": "/cf/stack/incub-gva-web-edge/web-auth-lambda-version-arn",
-        "Tags": {
-          "Project": "git-visualized-activity",
-          "SourceRepo": "github/capraconsulting/git-visualized-activity-infra",
-          "StackName": "incub-gva-web-edge"
+        "Create": {
+          "service": "SSM",
+          "action": "putParameter",
+          "parameters": {
+            "Name": "/cf/region/us-east-1/stack/incub-gva-web-edge/web-auth-lambda-version-arn",
+            "Value": {
+              "Ref": "WebAuthFunctionCurrentVersion0429D26B0a20d560fa7a899fcadde26eeeae808d"
+            },
+            "Type": "String",
+            "Overwrite": "TRUE:BOOLEAN"
+          },
+          "region": "eu-west-1",
+          "physicalResourceId": {
+            "id": "/cf/region/us-east-1/stack/incub-gva-web-edge/web-auth-lambda-version-arn"
+          }
+        },
+        "Update": {
+          "service": "SSM",
+          "action": "putParameter",
+          "parameters": {
+            "Name": "/cf/region/us-east-1/stack/incub-gva-web-edge/web-auth-lambda-version-arn",
+            "Value": {
+              "Ref": "WebAuthFunctionCurrentVersion0429D26B0a20d560fa7a899fcadde26eeeae808d"
+            },
+            "Type": "String",
+            "Overwrite": "TRUE:BOOLEAN"
+          },
+          "region": "eu-west-1",
+          "physicalResourceId": {
+            "id": "/cf/region/us-east-1/stack/incub-gva-web-edge/web-auth-lambda-version-arn"
+          }
+        },
+        "Delete": {
+          "service": "SSM",
+          "action": "deleteParameter",
+          "parameters": {
+            "Name": "/cf/region/us-east-1/stack/incub-gva-web-edge/web-auth-lambda-version-arn"
+          },
+          "region": "eu-west-1",
+          "physicalResourceId": {
+            "id": "/cf/region/us-east-1/stack/incub-gva-web-edge/web-auth-lambda-version-arn"
+          }
         }
       },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
       "Metadata": {
-        "aws:cdk:path": "incub-gva-web-edge/VersionParam/Resource"
+        "aws:cdk:path": "incub-gva-web-edge/VersionParam/Parameu-west-1/Resoure/Resource/Default"
+      }
+    },
+    "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-web-edge"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web-edge/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/Resource"
+      }
+    },
+    "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleDefaultPolicyD28E1A5E": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "ssm:PutParameter",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:eu-west-1:001112238813:parameter/cf/region/us-east-1/stack/incub-gva-web-edge/web-auth-lambda-version-arn"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": "ssm:DeleteParameter",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ssm:eu-west-1:001112238813:parameter/cf/region/us-east-1/stack/incub-gva-web-edge/web-auth-lambda-version-arn"
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleDefaultPolicyD28E1A5E",
+        "Roles": [
+          {
+            "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web-edge/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "AWS679f53fac002430cb0da5b7982bd22872D164C4C": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3Bucket536257BA"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3VersionKeyC1EF3D23"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3VersionKeyC1EF3D23"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-web-edge"
+          }
+        ],
+        "Timeout": 120
+      },
+      "DependsOn": [
+        "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleDefaultPolicyD28E1A5E",
+        "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web-edge/AWS679f53fac002430cb0da5b7982bd2287/Resource",
+        "aws:asset:path": "asset.f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669",
+        "aws:asset:property": "Code"
       }
     }
   },
@@ -216,6 +431,18 @@
     "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2ArtifactHashD0223E20": {
       "Type": "String",
       "Description": "Artifact hash for asset \"32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2\""
+    },
+    "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3Bucket536257BA": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669\""
+    },
+    "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3VersionKeyC1EF3D23": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669\""
+    },
+    "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669ArtifactHash2C09C7CA": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669\""
     }
   }
 }
