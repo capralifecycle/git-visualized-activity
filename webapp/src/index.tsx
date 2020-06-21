@@ -161,7 +161,7 @@ const TopList = ({
       <XAxis
         type='number'
         tickLine
-        domain={[0, calculateMax(data, it => it.commitCount)]}
+        domain={[0, calculateMax(data, (it) => it.commitCount)]}
       />
       <Tooltip />
       <Bar dataKey='commitCount' fill={getChartColor(0)} />
@@ -200,7 +200,7 @@ const Punchcard = ({ data }: { data: Row[] }) => {
     0,
   )
 
-  const plotData = flattened.map(item => ({
+  const plotData = flattened.map((item) => ({
     x: item.hour,
     y: item.weekday,
     z: item.count,
@@ -218,7 +218,7 @@ const Punchcard = ({ data }: { data: Row[] }) => {
           domain={[0, 10]}
           ticks={new Array(25).fill(null).map((_, idx) => -0.5 + idx)}
           padding={{ left: 20, right: 20 }}
-          tickFormatter={val => val + 0.5}
+          tickFormatter={(val) => val + 0.5}
         />
         <YAxis
           allowDecimals={false}
@@ -488,7 +488,7 @@ function filterByPeaks(data: MonthPartition, top = 15) {
     }))
     .sort((a, b) => b.max - a.max)
     .slice(0, top)
-    .map(it => it.partition)
+    .map((it) => it.partition)
 
   return Object.entries(data).reduce<MonthPartition>(
     (acc, [partition, cur]) => {
@@ -502,7 +502,7 @@ function filterByPeaks(data: MonthPartition, top = 15) {
 }
 
 const AllContributors = ({ data }: { data: Row[] }) => {
-  const list = groupBy(data, row => row.authorName).sort((a, b) =>
+  const list = groupBy(data, (row) => row.authorName).sort((a, b) =>
     a.name.localeCompare(b.name),
   )
 
@@ -548,7 +548,7 @@ class LazyCommitList extends React.Component<{ data: Row[] }> {
         <Button
           variant='contained'
           color='primary'
-          onClick={e => this.setState({ show: !this.state.show })}
+          onClick={(e) => this.setState({ show: !this.state.show })}
         >
           {this.state.show ? 'Hide' : 'Show'}
         </Button>
@@ -599,13 +599,11 @@ const CommitList = ({ data }: { data: Row[] }) => {
           <ul>
             {owners.map(({ owner, repos }) =>
               repos.map(({ repo, commits }) =>
-                commits.map(row => (
+                commits.map((row) => (
                   <li key={row.commit}>
                     {owner} / {repo}:{' '}
                     <a
-                      href={`https://github.com/${owner}/${repo}/commit/${
-                        row.commit
-                      }`}
+                      href={`https://github.com/${owner}/${repo}/commit/${row.commit}`}
                     >
                       {row.subject}
                     </a>{' '}
@@ -626,7 +624,7 @@ const CommitList = ({ data }: { data: Row[] }) => {
 function buildFilter<T>(filterValue: T | null, getter: (row: Row) => T) {
   return (data: Row[]) => {
     if (filterValue === null) return data
-    return data.filter(it => getter(it) === filterValue)
+    return data.filter((it) => getter(it) === filterValue)
   }
 }
 
@@ -711,7 +709,7 @@ const Filter = ({
         displayEmpty
       >
         <MenuItem value=''>{allValue}</MenuItem>
-        {options.map(option => {
+        {options.map((option) => {
           const value = typeof option === 'string' ? option : option.value
           const label = typeof option === 'string' ? option : option.label
           return (
@@ -757,12 +755,12 @@ class App extends React.Component<
 
   getFilteredData() {
     const filters = [
-      buildFilter(this.state.filterAuthorName, it => it.authorName),
-      buildFilter(this.state.filterProject, it => it.project),
-      buildFilter(this.state.filterOwner, it => it.owner),
+      buildFilter(this.state.filterAuthorName, (it) => it.authorName),
+      buildFilter(this.state.filterProject, (it) => it.project),
+      buildFilter(this.state.filterOwner, (it) => it.owner),
       buildFilter(this.state.filterRepo, fullRepoId),
-      buildFilter(this.state.filterMerges, it => (it.isMerge ? 'y' : 'n')),
-      buildFilter(this.state.filterBots, it => (isBot(it) ? 'y' : 'n')),
+      buildFilter(this.state.filterMerges, (it) => (it.isMerge ? 'y' : 'n')),
+      buildFilter(this.state.filterBots, (it) => (isBot(it) ? 'y' : 'n')),
     ]
 
     return filters.reduce((acc, filter) => filter(acc), this.props.data)
@@ -776,21 +774,21 @@ class App extends React.Component<
           handleChange={this.handleChange}
           name='filterAuthorName'
           value={this.state.filterAuthorName}
-          options={getUnique(this.props.data, it => it.authorName)}
+          options={getUnique(this.props.data, (it) => it.authorName)}
         />
         <Filter
           allValue='Project?'
           handleChange={this.handleChange}
           name='filterProject'
           value={this.state.filterProject}
-          options={getUnique(this.props.data, it => it.project)}
+          options={getUnique(this.props.data, (it) => it.project)}
         />
         <Filter
           allValue='GitHub org?'
           handleChange={this.handleChange}
           name='filterOwner'
           value={this.state.filterOwner}
-          options={getUnique(this.props.data, it => it.owner)}
+          options={getUnique(this.props.data, (it) => it.owner)}
         />
         <Filter
           allValue='Repo?'
@@ -847,13 +845,13 @@ class App extends React.Component<
           <dt>Total commits</dt>
           <dd>
             {filteredData.length} (
-            {filteredData.filter(row => !isBot(row) && !row.isMerge).length}{' '}
+            {filteredData.filter((row) => !isBot(row) && !row.isMerge).length}{' '}
             normal +{' '}
-            {filteredData.filter(row => !isBot(row) && row.isMerge).length}{' '}
+            {filteredData.filter((row) => !isBot(row) && row.isMerge).length}{' '}
             merges + {filteredData.filter(isBot).length} by bots)
           </dd>
           <dt>Number of contributors</dt>
-          <dd>{getUnique(filteredData, it => it.authorName).length}</dd>
+          <dd>{getUnique(filteredData, (it) => it.authorName).length}</dd>
           <dt>Repositories contributed to</dt>
           <dd>{getUnique(filteredData, fullRepoId).length}</dd>
         </dl>
@@ -862,20 +860,20 @@ class App extends React.Component<
             <Typography component='h2' variant='h4'>
               Top projects
             </Typography>
-            <TopList data={groupByTop(filteredData, row => row.project)} />
+            <TopList data={groupByTop(filteredData, (row) => row.project)} />
           </Grid>
           <Grid item xs={12} md={4}>
             <Typography component='h2' variant='h4'>
               Top contributors
             </Typography>
-            <TopList data={groupByTop(filteredData, row => row.authorName)} />
+            <TopList data={groupByTop(filteredData, (row) => row.authorName)} />
           </Grid>
           <Grid item xs={12} md={4}>
             <Typography component='h2' variant='h4'>
               Most active repos
             </Typography>
             <TopList
-              data={groupByTop(filteredData, row => shortNameLabel(row))}
+              data={groupByTop(filteredData, (row) => shortNameLabel(row))}
               yWidth={250}
             />
           </Grid>
@@ -1006,7 +1004,7 @@ domready(async () => {
       complete({ data }: { data: RawRow[] }) {
         resolve(
           data
-            .map<Row>(it => ({
+            .map<Row>((it) => ({
               owner: it.owner,
               repo: it.repo,
               project: it.project,
