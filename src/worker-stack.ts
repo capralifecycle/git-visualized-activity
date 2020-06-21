@@ -73,7 +73,7 @@ export class WorkerStack extends cdk.Stack {
       environment: {
         BUCKET_NAME: webBucket.bucketName,
         CF_DISTRIBUTION: props.webStack.distribution.distributionId,
-        PARAMS_PREFIX: `/${props.resourcePrefix}/`,
+        PARAMS_PREFIX: `/${props.resourcePrefix}-worker`,
       },
     })
 
