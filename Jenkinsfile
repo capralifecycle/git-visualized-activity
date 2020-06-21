@@ -39,6 +39,7 @@ buildConfig([
           sh """
             npm ci
             ./generate-commits.sh clean
+            npm run lint
             npm test
             npm run build
           """

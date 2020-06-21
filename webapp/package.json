@@ -6,7 +6,9 @@
     "start": "parcel serve src/index.html",
     "build": "parcel build --public-url . src/index.html",
     "watch": "parcel watch src/index.html",
-    "test": "jest --coverage src"
+    "test": "jest --coverage src",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "devDependencies": {
     "@babel/core": "7.10.2",
@@ -18,7 +20,14 @@
     "@types/react": "16.9.38",
     "@types/react-dom": "16.9.8",
     "@types/recharts": "1.8.12",
+    "@typescript-eslint/eslint-plugin": "3.3.0",
+    "@typescript-eslint/parser": "3.3.0",
     "domready": "1.0.8",
+    "eslint": "7.3.0",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-deprecation": "1.1.0",
+    "eslint-plugin-prettier": "3.1.4",
+    "eslint-plugin-react": "7.20.0",
     "jest": "26.0.1",
     "jest-sonar-reporter": "2.0.0",
     "papaparse": "5.2.0",

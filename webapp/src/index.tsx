@@ -195,11 +195,6 @@ const Punchcard = ({ data }: { data: Row[] }) => {
     return acc
   }, [])
 
-  const max = flattened.reduce(
-    (max, { count }) => (max > count ? max : count),
-    0,
-  )
-
   const plotData = flattened.map((item) => ({
     x: item.hour,
     y: item.weekday,
@@ -218,7 +213,7 @@ const Punchcard = ({ data }: { data: Row[] }) => {
           domain={[0, 10]}
           ticks={new Array(25).fill(null).map((_, idx) => -0.5 + idx)}
           padding={{ left: 20, right: 20 }}
-          tickFormatter={(val) => val + 0.5}
+          tickFormatter={(val: number) => val + 0.5}
         />
         <YAxis
           allowDecimals={false}
@@ -252,6 +247,7 @@ const Punchcard = ({ data }: { data: Row[] }) => {
         />
         <Tooltip
           cursor={{ strokeDasharray: "3 3" }}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           content={(props: any) => {
             if (props.payload.length === 0) return null
             const {
@@ -548,7 +544,7 @@ class LazyCommitList extends React.Component<{ data: Row[] }> {
         <Button
           variant="contained"
           color="primary"
-          onClick={(e) => this.setState({ show: !this.state.show })}
+          onClick={() => this.setState({ show: !this.state.show })}
         >
           {this.state.show ? "Hide" : "Show"}
         </Button>
@@ -566,7 +562,7 @@ const CommitList = ({ data }: { data: Row[] }) => {
       }
     }
   }>((acc, row) => {
-    const { owner, repo, authorName, commit, subject } = row
+    const { owner, repo, authorName } = row
     acc[authorName] = acc[authorName] || {}
     acc[authorName][owner] = acc[authorName][owner] || {}
     acc[authorName][owner][repo] = acc[authorName][owner][repo] || []
@@ -702,6 +698,7 @@ const Filter = ({
       </InputLabel> */}
       <Select
         value={formatValue(value)}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onChange={handleChange(name) as any} // TODO: Find out what is wrong with typings
         input={
           <Input name={name} id={`filter-${name}`} className={styles.input} />
@@ -882,7 +879,7 @@ class App extends React.Component<
           Punchcard
         </Typography>
         <Typography variant="body1" gutterBottom>
-          <i>Commit timestamps are shown in your browser's timezone.</i>
+          <i>Commit timestamps are shown in your browser&apos;s timezone.</i>
         </Typography>
         <Punchcard data={filteredData} />
         <Typography component="h2" variant="h4">
@@ -989,6 +986,7 @@ const theme = createMuiTheme({
   },
 })
 
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
 domready(async () => {
   const data = await new Promise<Row[]>((resolve, reject) => {
     Papa.parse(dataPath, {
