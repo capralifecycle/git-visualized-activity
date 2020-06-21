@@ -3,10 +3,10 @@
  */
 
 // TODO: Some actual tests
-import './index'
+import "./index"
 
-describe('Test stub', () => {
-  it('Need more tests', () => {
+describe("Test stub", () => {
+  it("Need more tests", () => {
     expect(1).toBe(1)
   })
 })

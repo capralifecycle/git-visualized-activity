@@ -11,16 +11,16 @@ import {
   Typography,
   withStyles,
   WithStyles,
-} from '@material-ui/core'
-import AppBar from '@material-ui/core/AppBar'
-import { green, red } from '@material-ui/core/colors'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/styles'
-import domready from 'domready'
-import Papa from 'papaparse'
-import React, { ChangeEvent } from 'react'
-import ReactDOM from 'react-dom'
+} from "@material-ui/core"
+import AppBar from "@material-ui/core/AppBar"
+import { green, red } from "@material-ui/core/colors"
+import CssBaseline from "@material-ui/core/CssBaseline"
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/styles"
+import domready from "domready"
+import Papa from "papaparse"
+import React, { ChangeEvent } from "react"
+import ReactDOM from "react-dom"
 import {
   Area,
   AreaChart,
@@ -38,33 +38,33 @@ import {
   XAxis,
   YAxis,
   ZAxis,
-} from 'recharts'
+} from "recharts"
 
-const dataPath = 'data/commits.csv'
+const dataPath = "data/commits.csv"
 
 const chartColors = [
-  '#e6194b',
-  '#3cb44b',
+  "#e6194b",
+  "#3cb44b",
   // "#ffe119",
-  '#4363d8',
-  '#f58231',
-  '#911eb4',
-  '#46f0f0',
-  '#f032e6',
-  '#bcf60c',
-  '#fabebe',
-  '#008080',
-  '#e6beff',
-  '#9a6324',
-  '#fffac8',
-  '#800000',
-  '#aaffc3',
-  '#808000',
-  '#ffd8b1',
-  '#000075',
-  '#808080',
-  '#ffffff',
-  '#000000',
+  "#4363d8",
+  "#f58231",
+  "#911eb4",
+  "#46f0f0",
+  "#f032e6",
+  "#bcf60c",
+  "#fabebe",
+  "#008080",
+  "#e6beff",
+  "#9a6324",
+  "#fffac8",
+  "#800000",
+  "#aaffc3",
+  "#808000",
+  "#ffd8b1",
+  "#000075",
+  "#808080",
+  "#ffffff",
+  "#000000",
 ]
 
 function getChartColor(i: number) {
@@ -79,28 +79,28 @@ const monthBasis = new Array(12)
   }, {})
 
 const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ]
 
 const days = [
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-  'Sunday',
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
 ]
 
 function calculateMax<T>(data: T[], getter: (arg: T) => number) {
@@ -117,7 +117,7 @@ const LongTick = ({
   y: number
   payload: { value: string }
 }) => (
-  <Text x={x} y={y} width={500} textAnchor='end' verticalAnchor='middle'>
+  <Text x={x} y={y} width={500} textAnchor="end" verticalAnchor="middle">
     {payload.value}
   </Text>
 )
@@ -148,23 +148,23 @@ const TopList = ({
   data: { name: string; commitCount: number }[]
   yWidth?: number
 }) => (
-  <ResponsiveContainer width='100%' height={300}>
-    <BarChart layout='vertical' data={data}>
-      <CartesianGrid strokeDasharray='3 3' />
+  <ResponsiveContainer width="100%" height={300}>
+    <BarChart layout="vertical" data={data}>
+      <CartesianGrid strokeDasharray="3 3" />
       <YAxis
-        dataKey='name'
-        type='category'
+        dataKey="name"
+        type="category"
         interval={0}
         width={yWidth}
         tick={LongTick}
       />
       <XAxis
-        type='number'
+        type="number"
         tickLine
         domain={[0, calculateMax(data, (it) => it.commitCount)]}
       />
       <Tooltip />
-      <Bar dataKey='commitCount' fill={getChartColor(0)} />
+      <Bar dataKey="commitCount" fill={getChartColor(0)} />
     </BarChart>
   </ResponsiveContainer>
 )
@@ -207,13 +207,13 @@ const Punchcard = ({ data }: { data: Row[] }) => {
   }))
 
   return (
-    <ResponsiveContainer width='100%' height={300}>
+    <ResponsiveContainer width="100%" height={300}>
       <ScatterChart>
-        <CartesianGrid strokeDasharray='3 3' />
+        <CartesianGrid strokeDasharray="3 3" />
         <XAxis
-          type='number'
-          dataKey='x'
-          name='hour'
+          type="number"
+          dataKey="x"
+          name="hour"
           interval={0}
           domain={[0, 10]}
           ticks={new Array(25).fill(null).map((_, idx) => -0.5 + idx)}
@@ -228,15 +228,15 @@ const Punchcard = ({ data }: { data: Row[] }) => {
             bottom: 20,
           }}
           tickCount={7}
-          dataKey='y'
-          name='weekday'
+          dataKey="y"
+          name="weekday"
           tick={({ x, y, payload }) => (
             <Text
               x={x}
               y={y}
               width={300}
-              textAnchor='end'
-              verticalAnchor='middle'
+              textAnchor="end"
+              verticalAnchor="middle"
             >
               {days[payload.value - 1]}
             </Text>
@@ -244,14 +244,14 @@ const Punchcard = ({ data }: { data: Row[] }) => {
           width={80}
         />
         <ZAxis
-          dataKey='z'
-          type='number'
+          dataKey="z"
+          type="number"
           range={[0, 700]}
-          scale='linear'
-          name='commitCount'
+          scale="linear"
+          name="commitCount"
         />
         <Tooltip
-          cursor={{ strokeDasharray: '3 3' }}
+          cursor={{ strokeDasharray: "3 3" }}
           content={(props: any) => {
             if (props.payload.length === 0) return null
             const {
@@ -262,7 +262,7 @@ const Punchcard = ({ data }: { data: Row[] }) => {
             return (
               <div
                 style={{
-                  background: 'white',
+                  background: "white",
                 }}
               >
                 {days[y - 1]}s at {x}-{x + 1}: Total {z} commits
@@ -270,7 +270,7 @@ const Punchcard = ({ data }: { data: Row[] }) => {
             )
           }}
         />
-        <Scatter name='Commit count' data={plotData} fill={getChartColor(0)} />
+        <Scatter name="Commit count" data={plotData} fill={getChartColor(0)} />
       </ScatterChart>
     </ResponsiveContainer>
   )
@@ -282,16 +282,16 @@ interface MonthPartition {
 
 function groupByMonth(
   data: Row[],
-  fieldOrGetter: 'authorName' | 'owner' | 'project' | ((row: Row) => string),
+  fieldOrGetter: "authorName" | "owner" | "project" | ((row: Row) => string),
 ) {
   const getter =
-    typeof fieldOrGetter === 'string'
+    typeof fieldOrGetter === "string"
       ? (row: Row) => row[fieldOrGetter]
       : fieldOrGetter
 
   return data.reduce<MonthPartition>((acc, row) => {
     const partition = getter(row)
-    const month = new Date(row['timestamp']).getMonth()
+    const month = new Date(row["timestamp"]).getMonth()
 
     if (!acc[partition]) acc[partition] = { ...monthBasis }
     acc[partition][month] = (acc[partition][month] || 0) + 1
@@ -363,22 +363,22 @@ const OverallMonthly = ({ data }: { data: Row[] }) => {
     }))
 
   return (
-    <ResponsiveContainer width='100%' height={300}>
+    <ResponsiveContainer width="100%" height={300}>
       <LineChart data={normalized}>
-        <CartesianGrid strokeDasharray='3 3' />
+        <CartesianGrid strokeDasharray="3 3" />
         <XAxis
-          dataKey='month'
-          type='category'
+          dataKey="month"
+          type="category"
           interval={0}
           tickLine
           padding={{ left: 20, right: 20 }}
         />
         <Tooltip />
         <Legend />
-        {['commits', 'contributors', 'repos', 'projects'].map((val, idx) => (
+        {["commits", "contributors", "repos", "projects"].map((val, idx) => (
           <Line
             key={val}
-            type='monotone'
+            type="monotone"
             yAxisId={val}
             dataKey={val}
             dot={{
@@ -395,13 +395,13 @@ const OverallMonthly = ({ data }: { data: Row[] }) => {
 }
 
 const CustomLineMonthChart = ({ data }: { data: MonthPartition }) => (
-  <ResponsiveContainer width='100%' height={300}>
+  <ResponsiveContainer width="100%" height={300}>
     <LineChart data={mapToMonthTop(data)}>
-      <CartesianGrid strokeDasharray='3 3' />
+      <CartesianGrid strokeDasharray="3 3" />
       <YAxis />
       <XAxis
-        dataKey='month'
-        type='category'
+        dataKey="month"
+        type="category"
         interval={0}
         tickLine
         padding={{ left: 20, right: 20 }}
@@ -411,7 +411,7 @@ const CustomLineMonthChart = ({ data }: { data: MonthPartition }) => (
       {Object.keys(data).map((it, idx) => (
         <Line
           key={it}
-          type='monotone'
+          type="monotone"
           dataKey={it}
           dot={{
             stroke: getChartColor(idx),
@@ -428,9 +428,9 @@ const CustomLineMonthChart = ({ data }: { data: MonthPartition }) => (
 const AdditionsDeletions = ({ data }: { data: Row[] }) => {
   const grouped = data.reduce(
     (acc, row) => {
-      const month = new Date(row['timestamp']).getMonth()
-      acc['additions'][month] += row.linesInserted
-      acc['deletions'][month] -= row.linesDeleted
+      const month = new Date(row["timestamp"]).getMonth()
+      acc["additions"][month] += row.linesInserted
+      acc["deletions"][month] -= row.linesDeleted
       return acc
     },
     {
@@ -440,13 +440,13 @@ const AdditionsDeletions = ({ data }: { data: Row[] }) => {
   )
 
   return (
-    <ResponsiveContainer width='100%' height={300}>
+    <ResponsiveContainer width="100%" height={300}>
       <AreaChart data={mapToMonthTop(grouped)}>
-        <CartesianGrid strokeDasharray='3 3' />
+        <CartesianGrid strokeDasharray="3 3" />
         <YAxis />
         <XAxis
-          dataKey='month'
-          type='category'
+          dataKey="month"
+          type="category"
           interval={0}
           tickLine
           padding={{ left: 20, right: 20 }}
@@ -454,8 +454,8 @@ const AdditionsDeletions = ({ data }: { data: Row[] }) => {
         <Tooltip />
         <Legend />
         <Area
-          type='linear'
-          dataKey='additions'
+          type="linear"
+          dataKey="additions"
           dot={{
             stroke: green[500],
             fill: green[500],
@@ -465,8 +465,8 @@ const AdditionsDeletions = ({ data }: { data: Row[] }) => {
           fill={green[500]}
         />
         <Area
-          type='linear'
-          dataKey='deletions'
+          type="linear"
+          dataKey="deletions"
           dot={{
             stroke: red[500],
             fill: red[500],
@@ -510,8 +510,8 @@ const AllContributors = ({ data }: { data: Row[] }) => {
     <ul>
       {list.map((item, idx) => (
         <li key={idx}>
-          <Typography variant='body2'>
-            {item.name} <span title='Commit count'>({item.commitCount})</span>
+          <Typography variant="body2">
+            {item.name} <span title="Commit count">({item.commitCount})</span>
           </Typography>
         </li>
       ))}
@@ -528,9 +528,9 @@ const AllRepositories = ({ data }: { data: Row[] }) => {
     <ul>
       {list.map((item, idx) => (
         <li key={idx}>
-          <Typography variant='body2'>
-            <a href={`https://github.com/${item.name}`}>{item.name}</a>{' '}
-            <span title='Commit count'>({item.commitCount})</span>
+          <Typography variant="body2">
+            <a href={`https://github.com/${item.name}`}>{item.name}</a>{" "}
+            <span title="Commit count">({item.commitCount})</span>
           </Typography>
         </li>
       ))}
@@ -546,11 +546,11 @@ class LazyCommitList extends React.Component<{ data: Row[] }> {
     return (
       <>
         <Button
-          variant='contained'
-          color='primary'
+          variant="contained"
+          color="primary"
           onClick={(e) => this.setState({ show: !this.state.show })}
         >
-          {this.state.show ? 'Hide' : 'Show'}
+          {this.state.show ? "Hide" : "Show"}
         </Button>
         {this.state.show && <CommitList data={this.props.data} />}
       </>
@@ -601,15 +601,15 @@ const CommitList = ({ data }: { data: Row[] }) => {
               repos.map(({ repo, commits }) =>
                 commits.map((row) => (
                   <li key={row.commit}>
-                    {owner} / {repo}:{' '}
+                    {owner} / {repo}:{" "}
                     <a
                       href={`https://github.com/${owner}/${repo}/commit/${row.commit}`}
                     >
                       {row.subject}
-                    </a>{' '}
-                    <span title='Lines added'>+{row.linesInserted}</span>{' '}
-                    <span title='Lines deleted'>-{row.linesDeleted}</span>{' '}
-                    <span title='Files changed'>({row.filesChanged})</span>
+                    </a>{" "}
+                    <span title="Lines added">+{row.linesInserted}</span>{" "}
+                    <span title="Lines deleted">-{row.linesDeleted}</span>{" "}
+                    <span title="Files changed">({row.filesChanged})</span>
                   </li>
                 )),
               ),
@@ -645,23 +645,23 @@ function isBot(row: Row) {
   if (row.authorName === undefined) {
     debugger
   }
-  return row.authorName.substring(0, 4) === 'bot:'
+  return row.authorName.substring(0, 4) === "bot:"
 }
 
 const shortOwner = (row: Row) =>
-  row.owner === 'capralifecycle'
-    ? 'cals'
-    : row.owner === 'cantara'
-    ? 'cantara'
-    : row.owner === 'capraconsulting'
-    ? 'capra'
+  row.owner === "capralifecycle"
+    ? "cals"
+    : row.owner === "cantara"
+    ? "cantara"
+    : row.owner === "capraconsulting"
+    ? "capra"
     : row.owner
 
 const shortNameLabel = (row: Row) =>
-  row.owner === 'capralifecycle' ? row.repo : `${shortOwner(row)} / ${row.repo}`
+  row.owner === "capralifecycle" ? row.repo : `${shortOwner(row)} / ${row.repo}`
 
-const formatValue = (value: string | null) => (value === null ? '' : value)
-const parseValue = (value: string) => (value === '' ? null : value)
+const formatValue = (value: string | null) => (value === null ? "" : value)
+const parseValue = (value: string) => (value === "" ? null : value)
 
 const useFilterStyles = makeStyles({
   formControl: {
@@ -669,7 +669,7 @@ const useFilterStyles = makeStyles({
     minWidth: 150,
   },
   input: {
-    color: 'inherit',
+    color: "inherit",
   },
 })
 
@@ -708,10 +708,10 @@ const Filter = ({
         }
         displayEmpty
       >
-        <MenuItem value=''>{allValue}</MenuItem>
+        <MenuItem value="">{allValue}</MenuItem>
         {options.map((option) => {
-          const value = typeof option === 'string' ? option : option.value
-          const label = typeof option === 'string' ? option : option.label
+          const value = typeof option === "string" ? option : option.value
+          const label = typeof option === "string" ? option : option.label
           return (
             <MenuItem key={value} value={value}>
               {label}
@@ -728,8 +728,8 @@ interface AppState {
   filterProject: string | null
   filterOwner: string | null
   filterRepo: string | null
-  filterMerges: 'y' | 'n' | null
-  filterBots: 'y' | 'n' | null
+  filterMerges: "y" | "n" | null
+  filterBots: "y" | "n" | null
 }
 
 class App extends React.Component<
@@ -759,8 +759,8 @@ class App extends React.Component<
       buildFilter(this.state.filterProject, (it) => it.project),
       buildFilter(this.state.filterOwner, (it) => it.owner),
       buildFilter(this.state.filterRepo, fullRepoId),
-      buildFilter(this.state.filterMerges, (it) => (it.isMerge ? 'y' : 'n')),
-      buildFilter(this.state.filterBots, (it) => (isBot(it) ? 'y' : 'n')),
+      buildFilter(this.state.filterMerges, (it) => (it.isMerge ? "y" : "n")),
+      buildFilter(this.state.filterBots, (it) => (isBot(it) ? "y" : "n")),
     ]
 
     return filters.reduce((acc, filter) => filter(acc), this.props.data)
@@ -770,51 +770,51 @@ class App extends React.Component<
     return (
       <>
         <Filter
-          allValue='Who?'
+          allValue="Who?"
           handleChange={this.handleChange}
-          name='filterAuthorName'
+          name="filterAuthorName"
           value={this.state.filterAuthorName}
           options={getUnique(this.props.data, (it) => it.authorName)}
         />
         <Filter
-          allValue='Project?'
+          allValue="Project?"
           handleChange={this.handleChange}
-          name='filterProject'
+          name="filterProject"
           value={this.state.filterProject}
           options={getUnique(this.props.data, (it) => it.project)}
         />
         <Filter
-          allValue='GitHub org?'
+          allValue="GitHub org?"
           handleChange={this.handleChange}
-          name='filterOwner'
+          name="filterOwner"
           value={this.state.filterOwner}
           options={getUnique(this.props.data, (it) => it.owner)}
         />
         <Filter
-          allValue='Repo?'
+          allValue="Repo?"
           handleChange={this.handleChange}
-          name='filterRepo'
+          name="filterRepo"
           value={this.state.filterRepo}
           options={getUnique(this.props.data, fullRepoId)}
         />
         <Filter
-          allValue='Include merges'
+          allValue="Include merges"
           handleChange={this.handleChange}
-          name='filterMerges'
+          name="filterMerges"
           value={this.state.filterMerges}
           options={[
-            { value: 'y', label: 'Show only merges' },
-            { value: 'n', label: 'Exclude merges' },
+            { value: "y", label: "Show only merges" },
+            { value: "n", label: "Exclude merges" },
           ]}
         />
         <Filter
-          allValue='Include bots'
+          allValue="Include bots"
           handleChange={this.handleChange}
-          name='filterBots'
+          name="filterBots"
           value={this.state.filterBots}
           options={[
-            { value: 'y', label: 'Show only bots' },
-            { value: 'n', label: 'Exclude bots' },
+            { value: "y", label: "Show only bots" },
+            { value: "n", label: "Exclude bots" },
           ]}
         />
       </>
@@ -835,19 +835,19 @@ class App extends React.Component<
         </AppBar>
         <div
           style={{
-            marginTop: '80px',
+            marginTop: "80px",
           }}
         />
-        <Typography component='h1' variant='h3'>
+        <Typography component="h1" variant="h3">
           Git commit activity
         </Typography>
         <dl>
           <dt>Total commits</dt>
           <dd>
             {filteredData.length} (
-            {filteredData.filter((row) => !isBot(row) && !row.isMerge).length}{' '}
-            normal +{' '}
-            {filteredData.filter((row) => !isBot(row) && row.isMerge).length}{' '}
+            {filteredData.filter((row) => !isBot(row) && !row.isMerge).length}{" "}
+            normal +{" "}
+            {filteredData.filter((row) => !isBot(row) && row.isMerge).length}{" "}
             merges + {filteredData.filter(isBot).length} by bots)
           </dd>
           <dt>Number of contributors</dt>
@@ -857,19 +857,19 @@ class App extends React.Component<
         </dl>
         <Grid container>
           <Grid item xs={12} md={4}>
-            <Typography component='h2' variant='h4'>
+            <Typography component="h2" variant="h4">
               Top projects
             </Typography>
             <TopList data={groupByTop(filteredData, (row) => row.project)} />
           </Grid>
           <Grid item xs={12} md={4}>
-            <Typography component='h2' variant='h4'>
+            <Typography component="h2" variant="h4">
               Top contributors
             </Typography>
             <TopList data={groupByTop(filteredData, (row) => row.authorName)} />
           </Grid>
           <Grid item xs={12} md={4}>
-            <Typography component='h2' variant='h4'>
+            <Typography component="h2" variant="h4">
               Most active repos
             </Typography>
             <TopList
@@ -878,58 +878,58 @@ class App extends React.Component<
             />
           </Grid>
         </Grid>
-        <Typography component='h2' variant='h4'>
+        <Typography component="h2" variant="h4">
           Punchcard
         </Typography>
-        <Typography variant='body1' gutterBottom>
+        <Typography variant="body1" gutterBottom>
           <i>Commit timestamps are shown in your browser's timezone.</i>
         </Typography>
         <Punchcard data={filteredData} />
-        <Typography component='h2' variant='h4'>
+        <Typography component="h2" variant="h4">
           Monthly activity
         </Typography>
         <OverallMonthly data={filteredData} />
-        <Typography component='h2' variant='h4'>
+        <Typography component="h2" variant="h4">
           Monthly number of commits per GitHub org
         </Typography>
-        <CustomLineMonthChart data={groupByMonth(filteredData, 'owner')} />
-        <Typography component='h2' variant='h4'>
+        <CustomLineMonthChart data={groupByMonth(filteredData, "owner")} />
+        <Typography component="h2" variant="h4">
           Monthly number of commits per project
         </Typography>
         <CustomLineMonthChart
-          data={filterByPeaks(groupByMonth(filteredData, 'project'))}
+          data={filterByPeaks(groupByMonth(filteredData, "project"))}
         />
-        <Typography component='h2' variant='h4'>
+        <Typography component="h2" variant="h4">
           Monthly number of commits per author (top 15)
         </Typography>
         <CustomLineMonthChart
-          data={filterByPeaks(groupByMonth(filteredData, 'authorName'))}
+          data={filterByPeaks(groupByMonth(filteredData, "authorName"))}
         />
-        <Typography component='h2' variant='h4'>
+        <Typography component="h2" variant="h4">
           Monthly number of commits per repo (top 15)
         </Typography>
         <CustomLineMonthChart
           data={filterByPeaks(groupByMonth(filteredData, fullRepoId))}
         />
-        <Typography component='h2' variant='h4'>
+        <Typography component="h2" variant="h4">
           Additions and deletions
         </Typography>
         <AdditionsDeletions data={filteredData} />
         <Grid container>
           <Grid item xs={12} md={6}>
-            <Typography component='h2' variant='h4'>
+            <Typography component="h2" variant="h4">
               Full contributors list
             </Typography>
             <AllContributors data={filteredData} />
           </Grid>
           <Grid item xs={12} md={6}>
-            <Typography component='h2' variant='h4'>
+            <Typography component="h2" variant="h4">
               Full repository list
             </Typography>
             <AllRepositories data={filteredData} />
           </Grid>
         </Grid>
-        <Typography component='h2' variant='h4' gutterBottom>
+        <Typography component="h2" variant="h4" gutterBottom>
           All commits
         </Typography>
         <LazyCommitList data={filteredData} />
@@ -941,13 +941,13 @@ class App extends React.Component<
 const styles = (theme: Theme) =>
   createStyles({
     layout: {
-      width: 'auto',
+      width: "auto",
       marginLeft: theme.spacing(3),
       marginRight: theme.spacing(3),
       [theme.breakpoints.up(1100 + theme.spacing(3) * 2)]: {
         width: 1100,
-        marginLeft: 'auto',
-        marginRight: 'auto',
+        marginLeft: "auto",
+        marginRight: "auto",
       },
     },
   })
@@ -962,7 +962,7 @@ interface RawRow {
   lines_inserted: string
   lines_deleted: string
   commit: string
-  is_merge: 'y' | 'n'
+  is_merge: "y" | "n"
   timestamp: string
   author_name: string
   subject: string
@@ -983,9 +983,9 @@ interface Row {
 }
 
 const theme = createMuiTheme({
-  direction: 'ltr',
+  direction: "ltr",
   palette: {
-    type: 'light',
+    type: "light",
   },
 })
 
@@ -1012,7 +1012,7 @@ domready(async () => {
               linesInserted: Number(it.lines_inserted),
               linesDeleted: Number(it.lines_deleted),
               commit: it.commit,
-              isMerge: it.is_merge === 'y',
+              isMerge: it.is_merge === "y",
               timestamp: new Date(it.timestamp),
               authorName: it.author_name,
               subject: it.subject,
@@ -1021,7 +1021,7 @@ domready(async () => {
         )
       },
       error(err) {
-        alert('Data loading failed')
+        alert("Data loading failed")
         reject(err)
       },
     })
@@ -1032,6 +1032,6 @@ domready(async () => {
       <CssBaseline />
       <StyledApp data={data} />
     </MuiThemeProvider>,
-    document.getElementById('container'),
+    document.getElementById("container"),
   )
 })
