@@ -139,7 +139,7 @@
               },
               {
                 "Name": "PARAMS_PREFIX",
-                "Value": "/incub-gva-worker/"
+                "Value": "/incub-gva-worker"
               }
             ],
             "Essential": true,
