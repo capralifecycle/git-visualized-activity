@@ -9,5 +9,9 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
+[*.md]
+# Markdown uses double trailing whitespaces as special chars to force newlines
+trim_trailing_whitespace = false
+
 [*.py]
 indent_size = 4
