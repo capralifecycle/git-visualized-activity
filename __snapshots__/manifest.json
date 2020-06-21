@@ -370,22 +370,46 @@
             "data": "TaskDefExecutionRoleDefaultPolicy0DBB737A"
           }
         ],
-        "/incub-gva-worker/TaskDef/EventsRole/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "TaskDefEventsRoleFB3B67B8"
-          }
-        ],
-        "/incub-gva-worker/TaskDef/EventsRole/DefaultPolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "TaskDefEventsRoleDefaultPolicyA124E85B"
-          }
-        ],
         "/incub-gva-worker/SecurityGroup/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "SecurityGroupDD263621"
+          }
+        ],
+        "/incub-gva-worker/Launcher/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LauncherServiceRoleBD2C652A"
+          }
+        ],
+        "/incub-gva-worker/Launcher/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LauncherServiceRoleDefaultPolicy66697DD3"
+          }
+        ],
+        "/incub-gva-worker/Launcher/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LauncherDC0405AA"
+          }
+        ],
+        "/incub-gva-worker/Launcher/AllowEventRuleincubgvaworkerScheduleRuleDD9C9CBA": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LauncherAllowEventRuleincubgvaworkerScheduleRuleDD9C9CBA6BA31D14"
+          }
+        ],
+        "/incub-gva-worker/LauncherParam/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LauncherParamACA93A7A"
+          }
+        ],
+        "/incub-gva-worker/LauncherArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LauncherArn"
           }
         ],
         "/incub-gva-worker/ScheduleRule/Resource": [
