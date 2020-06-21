@@ -1,0 +1,4 @@
+__snapshots__
+*.d.ts
+src/**/*.js
+cdk.out
