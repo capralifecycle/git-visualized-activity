@@ -89,7 +89,7 @@ buildConfig([
     if (allowDeploy) {
       stage("Deploy webapp") {
         webapp.deploy {
-          artifactS3Url = s3Url
+          artifactS3Url = webappS3Url
           roleArn = "arn:aws:iam::001112238813:role/incub-gva-web-deploy"
           functionArn = "arn:aws:lambda:eu-west-1:001112238813:function:incub-gva-web-deploy"
         }
