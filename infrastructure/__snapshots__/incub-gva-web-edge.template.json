@@ -105,7 +105,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2S3Bucket7113E4DE"
+            "Ref": "snapshot-value"
           },
           "S3Key": {
             "Fn::Join": [
@@ -118,7 +118,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2S3VersionKey3F509F94"
+                          "Ref": "snapshot-value"
                         }
                       ]
                     }
@@ -131,7 +131,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2S3VersionKey3F509F94"
+                          "Ref": "snapshot-value"
                         }
                       ]
                     }
@@ -170,7 +170,7 @@
       ],
       "Metadata": {
         "aws:cdk:path": "incub-gva-web-edge/WebAuth/Function/Resource",
-        "aws:asset:path": "asset.32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2",
+        "aws:asset:path": "asset.snapshot-value",
         "aws:asset:property": "Code"
       }
     },
@@ -300,34 +300,12 @@
             {
               "Action": "ssm:PutParameter",
               "Effect": "Allow",
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":ssm:eu-west-1:001112238813:parameter/cf/region/us-east-1/stack/incub-gva-web-edge/web-auth-lambda-version-arn"
-                  ]
-                ]
-              }
+              "Resource": "*"
             },
             {
               "Action": "ssm:DeleteParameter",
               "Effect": "Allow",
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":ssm:eu-west-1:001112238813:parameter/cf/region/us-east-1/stack/incub-gva-web-edge/web-auth-lambda-version-arn"
-                  ]
-                ]
-              }
+              "Resource": "*"
             }
           ],
           "Version": "2012-10-17"
@@ -348,7 +326,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3Bucket536257BA"
+            "Ref": "snapshot-value"
           },
           "S3Key": {
             "Fn::Join": [
@@ -361,7 +339,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3VersionKeyC1EF3D23"
+                          "Ref": "snapshot-value"
                         }
                       ]
                     }
@@ -374,7 +352,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3VersionKeyC1EF3D23"
+                          "Ref": "snapshot-value"
                         }
                       ]
                     }
@@ -414,35 +392,10 @@
       ],
       "Metadata": {
         "aws:cdk:path": "incub-gva-web-edge/AWS679f53fac002430cb0da5b7982bd2287/Resource",
-        "aws:asset:path": "asset.f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669",
+        "aws:asset:path": "asset.snapshot-value",
         "aws:asset:property": "Code"
       }
     }
   },
-  "Parameters": {
-    "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2S3Bucket7113E4DE": {
-      "Type": "String",
-      "Description": "S3 bucket for asset \"32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2\""
-    },
-    "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2S3VersionKey3F509F94": {
-      "Type": "String",
-      "Description": "S3 key for asset version \"32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2\""
-    },
-    "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2ArtifactHashD0223E20": {
-      "Type": "String",
-      "Description": "Artifact hash for asset \"32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2\""
-    },
-    "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3Bucket536257BA": {
-      "Type": "String",
-      "Description": "S3 bucket for asset \"f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669\""
-    },
-    "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3VersionKeyC1EF3D23": {
-      "Type": "String",
-      "Description": "S3 key for asset version \"f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669\""
-    },
-    "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669ArtifactHash2C09C7CA": {
-      "Type": "String",
-      "Description": "Artifact hash for asset \"f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669\""
-    }
-  }
+  "Parameters": {}
 }

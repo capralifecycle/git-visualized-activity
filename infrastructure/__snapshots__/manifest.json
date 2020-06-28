@@ -16,27 +16,11 @@
         "/incub-gva-web-edge": [
           {
             "type": "aws:cdk:asset",
-            "data": {
-              "path": "asset.32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2",
-              "id": "32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2",
-              "packaging": "zip",
-              "sourceHash": "32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2",
-              "s3BucketParameter": "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2S3Bucket7113E4DE",
-              "s3KeyParameter": "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2S3VersionKey3F509F94",
-              "artifactHashParameter": "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2ArtifactHashD0223E20"
-            }
+            "data": "snapshot-value"
           },
           {
             "type": "aws:cdk:asset",
-            "data": {
-              "path": "asset.f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669",
-              "id": "f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669",
-              "packaging": "zip",
-              "sourceHash": "f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669",
-              "s3BucketParameter": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3Bucket536257BA",
-              "s3KeyParameter": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3VersionKeyC1EF3D23",
-              "artifactHashParameter": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669ArtifactHash2C09C7CA"
-            }
+            "data": "snapshot-value"
           },
           {
             "type": "aws:cdk:stack-tags",
@@ -80,42 +64,6 @@
             "data": "WebAuthFunctionCurrentVersion0429D26B0a20d560fa7a899fcadde26eeeae808d"
           }
         ],
-        "/incub-gva-web-edge/AssetParameters/32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2/S3Bucket": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2S3Bucket7113E4DE"
-          }
-        ],
-        "/incub-gva-web-edge/AssetParameters/32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2/S3VersionKey": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2S3VersionKey3F509F94"
-          }
-        ],
-        "/incub-gva-web-edge/AssetParameters/32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2/ArtifactHash": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "AssetParameters32860dcece620c505debcf312a1fa2734e768a4be251467ffd06d2a308483de2ArtifactHashD0223E20"
-          }
-        ],
-        "/incub-gva-web-edge/AssetParameters/f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669/S3Bucket": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3Bucket536257BA"
-          }
-        ],
-        "/incub-gva-web-edge/AssetParameters/f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669/S3VersionKey": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669S3VersionKeyC1EF3D23"
-          }
-        ],
-        "/incub-gva-web-edge/AssetParameters/f35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669/ArtifactHash": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "AssetParametersf35d0a3ea655835ce2bf399c19e80a38397cebc9cff491b04a9312c92d338669ArtifactHash2C09C7CA"
-          }
-        ],
         "/incub-gva-web-edge/VersionParam/Parameu-west-1/Resoure/Resource/Default": [
           {
             "type": "aws:cdk:logicalId",
@@ -155,15 +103,7 @@
         "/incub-gva-web": [
           {
             "type": "aws:cdk:asset",
-            "data": {
-              "path": "asset.850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362e",
-              "id": "850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362e",
-              "packaging": "zip",
-              "sourceHash": "850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362e",
-              "s3BucketParameter": "AssetParameters850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362eS3Bucket724AF36A",
-              "s3KeyParameter": "AssetParameters850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362eS3VersionKeyF74D9403",
-              "artifactHashParameter": "AssetParameters850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362eArtifactHash9B384758"
-            }
+            "data": "snapshot-value"
           },
           {
             "type": "aws:cdk:stack-tags",
@@ -265,24 +205,6 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "WebDeployRoleArnOutput2C4C53A4"
-          }
-        ],
-        "/incub-gva-web/AssetParameters/850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362e/S3Bucket": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "AssetParameters850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362eS3Bucket724AF36A"
-          }
-        ],
-        "/incub-gva-web/AssetParameters/850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362e/S3VersionKey": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "AssetParameters850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362eS3VersionKeyF74D9403"
-          }
-        ],
-        "/incub-gva-web/AssetParameters/850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362e/ArtifactHash": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "AssetParameters850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362eArtifactHash9B384758"
           }
         ],
         "/incub-gva-web/Exports/Output{\"Ref\":\"WebWebBucketAF209868\"}": [

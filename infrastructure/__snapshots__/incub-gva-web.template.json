@@ -7,18 +7,6 @@
     "SsmParameterValuecfregionuseast1stackincubgvawebedgewebauthlambdaversionarnC96584B6F00A464EAD1953AFF4B05118Parameter": {
       "Type": "AWS::SSM::Parameter::Value<String>",
       "Default": "/cf/region/us-east-1/stack/incub-gva-web-edge/web-auth-lambda-version-arn"
-    },
-    "AssetParameters850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362eS3Bucket724AF36A": {
-      "Type": "String",
-      "Description": "S3 bucket for asset \"850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362e\""
-    },
-    "AssetParameters850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362eS3VersionKeyF74D9403": {
-      "Type": "String",
-      "Description": "S3 key for asset version \"850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362e\""
-    },
-    "AssetParameters850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362eArtifactHash9B384758": {
-      "Type": "String",
-      "Description": "Artifact hash for asset \"850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362e\""
     }
   },
   "Resources": {
@@ -530,7 +518,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362eS3Bucket724AF36A"
+            "Ref": "snapshot-value"
           },
           "S3Key": {
             "Fn::Join": [
@@ -543,7 +531,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362eS3VersionKeyF74D9403"
+                          "Ref": "snapshot-value"
                         }
                       ]
                     }
@@ -556,7 +544,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362eS3VersionKeyF74D9403"
+                          "Ref": "snapshot-value"
                         }
                       ]
                     }
@@ -630,7 +618,7 @@
       ],
       "Metadata": {
         "aws:cdk:path": "incub-gva-web/Web/Deploy/Resource/Resource/Resource",
-        "aws:asset:path": "asset.850d412ad738773dc4401934bb570784188666ebfdf1773233ffe958526b362e",
+        "aws:asset:path": "asset.snapshot-value",
         "aws:asset:property": "Code"
       }
     }
