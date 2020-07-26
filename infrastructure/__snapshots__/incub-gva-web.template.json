@@ -214,6 +214,8 @@
           "IPV6Enabled": true,
           "Origins": [
             {
+              "ConnectionAttempts": 3,
+              "ConnectionTimeout": 10,
               "DomainName": {
                 "Fn::GetAtt": [
                   "WebWebBucketAF209868",
@@ -237,6 +239,8 @@
               }
             },
             {
+              "ConnectionAttempts": 3,
+              "ConnectionTimeout": 10,
               "DomainName": {
                 "Fn::GetAtt": [
                   "WebWebBucketAF209868",
