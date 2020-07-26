@@ -61,7 +61,7 @@
         "/incub-gva-web-edge/WebAuth/Function/CurrentVersion/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "WebAuthFunctionCurrentVersion0429D26B0a20d560fa7a899fcadde26eeeae808d"
+            "data": "WebAuthFunctionCurrentVersion0429D26Bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
           }
         ],
         "/incub-gva-web-edge/VersionParam/Parameu-west-1/Resoure/Resource/Default": [
