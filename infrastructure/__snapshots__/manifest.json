@@ -207,6 +207,12 @@
             "data": "WebDeployRoleArnOutput2C4C53A4"
           }
         ],
+        "/incub-gva-web/AWSCloudFrontPartitionHostedZoneIdMap": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWSCloudFrontPartitionHostedZoneIdMap"
+          }
+        ],
         "/incub-gva-web/Exports/Output{\"Ref\":\"WebWebBucketAF209868\"}": [
           {
             "type": "aws:cdk:logicalId",

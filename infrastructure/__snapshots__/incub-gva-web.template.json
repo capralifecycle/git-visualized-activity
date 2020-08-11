@@ -302,7 +302,15 @@
               "DomainName"
             ]
           },
-          "HostedZoneId": "Z2FDTNDATAQYW2"
+          "HostedZoneId": {
+            "Fn::FindInMap": [
+              "AWSCloudFrontPartitionHostedZoneIdMap",
+              {
+                "Ref": "AWS::Partition"
+              },
+              "zoneId"
+            ]
+          }
         },
         "HostedZoneId": "Z07028931BZD2FT5LUHHH"
       },
@@ -658,6 +666,16 @@
       },
       "Export": {
         "Name": "incub-gva-web:ExportsOutputRefWebDistributionCFDistributionE67D88CAD4DDDA0B"
+      }
+    }
+  },
+  "Mappings": {
+    "AWSCloudFrontPartitionHostedZoneIdMap": {
+      "aws": {
+        "zoneId": "Z2FDTNDATAQYW2"
+      },
+      "aws-cn": {
+        "zoneId": "Z3RFFRIM2A3IF5"
       }
     }
   }
