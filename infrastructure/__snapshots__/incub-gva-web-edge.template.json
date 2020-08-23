@@ -236,7 +236,8 @@
           "physicalResourceId": {
             "id": "/cf/region/us-east-1/stack/incub-gva-web-edge/web-auth-lambda-version-arn"
           }
-        }
+        },
+        "InstallLatestAwsSdk": true
       },
       "UpdateReplacePolicy": "Delete",
       "DeletionPolicy": "Delete",
