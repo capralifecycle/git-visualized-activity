@@ -49,6 +49,6 @@
     "@aws-cdk/aws-sqs": "1.62.0",
     "@aws-cdk/aws-ssm": "1.62.0",
     "@aws-cdk/core": "1.62.0",
-    "@liflig/cdk": "1.16.1"
+    "@liflig/cdk": "1.16.2"
   }
 }
