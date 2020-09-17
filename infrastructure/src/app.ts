@@ -1,6 +1,5 @@
 import * as cdk from "@aws-cdk/core"
 import { tagResources } from "@liflig/cdk"
-import { getEcrAsset } from "./asset"
 import { WebEdgeStack } from "./web-edge-stack"
 import { WebStack } from "./web-stack"
 import { WorkerStack } from "./worker-stack"
@@ -70,7 +69,4 @@ new WorkerStack(app, `incub-gva-worker`, {
   resourcePrefix: "incub-gva",
   vpcId: externalValues.vpcId,
   webStack,
-  // ecrRepositoryArn: externalValues.buildEcrRepositoryArn,
-  // ecrRepositoryName: externalValues.buildEcrRepositoryName,
-  workerAsset: getEcrAsset("worker"),
 })

@@ -1,5 +1,5 @@
 import * as ec2 from "@aws-cdk/aws-ec2"
-import * as ecr from "@aws-cdk/aws-ecr"
+import { DockerImageAsset } from "@aws-cdk/aws-ecr-assets"
 import * as ecs from "@aws-cdk/aws-ecs"
 import * as events from "@aws-cdk/aws-events"
 import * as targets from "@aws-cdk/aws-events-targets"
@@ -11,7 +11,6 @@ import * as ssm from "@aws-cdk/aws-ssm"
 import * as cdk from "@aws-cdk/core"
 import type { Handler } from "aws-lambda"
 import type * as _AWS from "aws-sdk"
-import { EcrAsset } from "./asset"
 import { WebStack } from "./web-stack"
 
 export class WorkerStack extends cdk.Stack {
@@ -22,7 +21,6 @@ export class WorkerStack extends cdk.Stack {
       resourcePrefix: string
       vpcId: string
       webStack: WebStack
-      workerAsset: EcrAsset
     },
   ) {
     super(scope, id, props)
@@ -38,12 +36,16 @@ export class WorkerStack extends cdk.Stack {
       vpc,
     })
 
-    const image = ecs.ContainerImage.fromEcrRepository(
-      ecr.Repository.fromRepositoryAttributes(this, "EcrRepo", {
-        repositoryArn: props.workerAsset.ecrRepoArn,
-        repositoryName: props.workerAsset.ecrRepoName,
+    const image = ecs.ContainerImage.fromDockerImageAsset(
+      new DockerImageAsset(this, "WorkerImage", {
+        directory: "../worker",
+        exclude: [
+          "cals-tools",
+          "commits.csv",
+          "repos",
+          "resources-definition-*",
+        ],
       }),
-      props.workerAsset.dockerTag,
     )
 
     const webBucket = s3.Bucket.fromBucketName(

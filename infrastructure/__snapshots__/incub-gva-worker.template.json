@@ -176,16 +176,7 @@
             ],
             "Essential": true,
             "Image": {
-              "Fn::Join": [
-                "",
-                [
-                  "123456789012.dkr.ecr.eu-west-1.",
-                  {
-                    "Ref": "AWS::URLSuffix"
-                  },
-                  "/dummy:dummy"
-                ]
-              ]
+              "Fn::Sub": "001112238813.dkr.ecr.eu-west-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-001112238813-eu-west-1:91136429be913db82b7d18c4e5995d5b5072d7d190adf49e08d37c0be6aaed1d"
             },
             "LogConfiguration": {
               "LogDriver": "awslogs",
@@ -284,7 +275,18 @@
                 "ecr:BatchGetImage"
               ],
               "Effect": "Allow",
-              "Resource": "arn:aws:ecr:eu-west-1:123456789012:repository/dummy"
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ecr:eu-west-1:001112238813:repository/cdk-hnb659fds-container-assets-001112238813-eu-west-1"
+                  ]
+                ]
+              }
             },
             {
               "Action": "ecr:GetAuthorizationToken",

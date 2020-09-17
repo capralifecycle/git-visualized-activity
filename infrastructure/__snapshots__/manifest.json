@@ -279,7 +279,7 @@
         "templateFile": "incub-gva-worker.template.json",
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/bb3ca8527fcdab80406c0da93c70626e4850bbc924ce7483499163eb60028e34",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/4b65a30452c0280b5839d0388d2c99a00f13ff651e6e61661f4ca65ba48d6464",
         "requiresBootstrapStackVersion": 4
       },
       "dependencies": [
