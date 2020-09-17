@@ -34,8 +34,8 @@ gathering history in the next step:
 Generate the `commits.csv` file by using:
 
 ```bash
-./generate-commits.sh clean
-./generate-commits.sh add-group /tmp/repositories.csv capraconsulting /home/henrste/projects/capraconsulting
+../worker/generate-commits.sh clean
+../worker/generate-commits.sh add-group /tmp/repositories.csv capraconsulting /home/henrste/projects/capraconsulting
 ```
 
 Add more `add-group` steps to concatenate multiple root directories. The script

@@ -38,7 +38,7 @@ buildConfig([
         insideToolImage("node:12-alpine") {
           sh """
             npm ci
-            ./generate-commits.sh clean
+            ../worker/generate-commits.sh clean
             npm run lint
             npm test
             npm run build
