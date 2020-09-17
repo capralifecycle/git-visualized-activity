@@ -95,7 +95,7 @@ export class WorkerStack extends cdk.Stack {
       new iam.PolicyStatement({
         actions: ["ssm:GetParameter", "ssm:GetParameters"],
         resources: [
-          `arn:aws:ssm:${region}:${account}:parameter/${props.resourcePrefix}/*`,
+          `arn:aws:ssm:${region}:${account}:parameter/${props.resourcePrefix}-worker/*`,
         ],
       }),
     )

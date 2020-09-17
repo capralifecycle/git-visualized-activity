@@ -103,7 +103,7 @@
                 "ssm:GetParameters"
               ],
               "Effect": "Allow",
-              "Resource": "arn:aws:ssm:eu-west-1:001112238813:parameter/incub-gva/*"
+              "Resource": "arn:aws:ssm:eu-west-1:001112238813:parameter/incub-gva-worker/*"
             }
           ],
           "Version": "2012-10-17"
