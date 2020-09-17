@@ -33,8 +33,6 @@ if [ -e /.dockerenv ]; then
   echo -e "protocol=https\nhost=github.com\nusername=git\npassword=$CALS_GITHUB_TOKEN\n" | git credential approve
 fi
 
-fetch_gva
-
 fetch_cals_tools
 fetch_resources_definition_capra
 fetch_resources_definition_liflig

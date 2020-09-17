@@ -10,11 +10,6 @@ get_param() {
     --output text
 }
 
-fetch_gva() {
-  rm "$root/git-visualized-activity" -rf || :
-  git clone --depth 1 https://github.com/capraconsulting/git-visualized-activity.git "$root/git-visualized-activity"
-}
-
 fetch_cals_tools() {
   rm "$root/cals-tools" -rf || :
   git clone --depth 1 https://github.com/capralifecycle/cals-tools.git "$root/cals-tools"
@@ -120,7 +115,7 @@ get_repo_list() {
 process_repos() {
   (
     cd "$root"
-    "$root/git-visualized-activity/generate-commits.sh" clean
+    "$root/generate-commits.sh" clean
   )
 
   # TODO: Re-add some repos from Cantara
@@ -134,7 +129,7 @@ process_repos() {
     if [ "$repo_def" != "" ]; then
       (
         cd "$root"
-        SKIP_REFRESH_STALE=y "$root/git-visualized-activity/generate-commits.sh" add-group <(echo "$repo_def") $org "$root/repos/$org"
+        SKIP_REFRESH_STALE=y "$root/generate-commits.sh" add-group <(echo "$repo_def") $org "$root/repos/$org"
       )
     fi
   done
