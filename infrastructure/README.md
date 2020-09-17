@@ -12,8 +12,10 @@ This is a record of manual steps done during initial setup so
 that it can be reproduced if needed.
 
 ```bash
-npm run cdk -- bootstrap aws://001112238813/us-east-1
-npm run cdk -- bootstrap aws://001112238813/eu-west-1
+npm run cdk -- bootstrap aws://001112238813/us-east-1 \
+  --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess
+npm run cdk -- bootstrap aws://001112238813/eu-west-1 \
+  --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess
 ```
 
 Parameters provisioned using `write-params.sh`.

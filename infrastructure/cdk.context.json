@@ -1,5 +1,6 @@
 {
   "@aws-cdk/core:enableStackNameDuplicates": "true",
+  "@aws-cdk/core:newStyleStackSynthesis": "true",
   "aws-cdk:enableDiffNoFail": "true",
   "vpc-provider:account=001112238813:filter.vpc-id=vpc-0f0d43198daee2247:region=eu-west-1:returnAsymmetricSubnets=true": {
     "vpcId": "vpc-0f0d43198daee2247",
