@@ -1,5 +1,5 @@
 {
-  "dockerTag": "gva-worker-20200915-231906z-master-405-43737bf",
+  "dockerTag": "gva-worker-20200917-005223z-master-407-c71c8d5",
   "ecrRepoArn": "arn:aws:ecr:eu-west-1:001112238813:repository/incub-common-builds",
   "ecrRepoName": "incub-common-builds"
 }
