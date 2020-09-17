@@ -66,6 +66,9 @@ export class WebAuth extends cdk.Construct {
       handler: "index.handler",
       runtime: lambda.Runtime.NODEJS_12_X,
       role,
+      // Dummy value to cause change to lambda to fix temporary
+      // error with version creation.
+      description: "x",
     })
 
     this.version = credentialsFunction.currentVersion

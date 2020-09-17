@@ -149,6 +149,7 @@
           ]
         },
         "Runtime": "nodejs12.x",
+        "Description": "x",
         "Tags": [
           {
             "Key": "Project",
