@@ -16,6 +16,7 @@ def workerPublishConfig = ecrPublish.config {
 }
 
 buildConfig([
+  slack: [channel: "#cals-dev-info"],
   jobProperties: [
     parameters([
       booleanParam(
