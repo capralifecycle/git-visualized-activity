@@ -1,7 +1,7 @@
 {
   "version": "5.0.0",
   "files": {
-    "4b65a30452c0280b5839d0388d2c99a00f13ff651e6e61661f4ca65ba48d6464": {
+    "caf8347d59968eb958706ea237a29d1afdf6b1eb6dcd7dc738e04717677d35ca": {
       "source": {
         "path": "incub-gva-worker.template.json",
         "packaging": "file"
@@ -9,7 +9,7 @@
       "destinations": {
         "001112238813-eu-west-1": {
           "bucketName": "cdk-hnb659fds-assets-001112238813-eu-west-1",
-          "objectKey": "4b65a30452c0280b5839d0388d2c99a00f13ff651e6e61661f4ca65ba48d6464",
+          "objectKey": "caf8347d59968eb958706ea237a29d1afdf6b1eb6dcd7dc738e04717677d35ca",
           "region": "eu-west-1",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-file-publishing-role-001112238813-eu-west-1"
         }
@@ -17,14 +17,14 @@
     }
   },
   "dockerImages": {
-    "91136429be913db82b7d18c4e5995d5b5072d7d190adf49e08d37c0be6aaed1d": {
+    "e65a16057fee128d43263dcab9f4527bfc578729206ae2167fd392f4d0811e18": {
       "source": {
-        "directory": "asset.91136429be913db82b7d18c4e5995d5b5072d7d190adf49e08d37c0be6aaed1d"
+        "directory": "asset.e65a16057fee128d43263dcab9f4527bfc578729206ae2167fd392f4d0811e18"
       },
       "destinations": {
         "001112238813-eu-west-1": {
           "repositoryName": "cdk-hnb659fds-container-assets-001112238813-eu-west-1",
-          "imageTag": "91136429be913db82b7d18c4e5995d5b5072d7d190adf49e08d37c0be6aaed1d",
+          "imageTag": "e65a16057fee128d43263dcab9f4527bfc578729206ae2167fd392f4d0811e18",
           "region": "eu-west-1",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-image-publishing-role-001112238813-eu-west-1"
         }

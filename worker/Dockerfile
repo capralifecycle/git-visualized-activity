@@ -18,14 +18,15 @@ RUN set -eux; \
     git config --global credential.helper cache; \
     mkdir /app
 
-ENV DATA_DIR /data
-COPY * /app/
-
-WORKDIR /app
-
 # renovate: datasource=npm depName=@capraconsulting/cals-cli
 ENV CALS_CLI_VERSION=2.13.4
 
 RUN npm install -g @capraconsulting/cals-cli@${CALS_CLI_VERSION}
+
+ENV DATA_DIR /data
+
+COPY * /app/
+
+WORKDIR /app
 
 CMD ["/app/main.sh"]
