@@ -113,9 +113,10 @@ get_repo_list() {
 }
 
 process_repos() {
+  appdir=$PWD
   (
     cd "$root"
-    "$root/generate-commits.sh" clean
+    "$appdir/generate-commits.sh" clean
   )
 
   # TODO: Re-add some repos from Cantara
@@ -129,7 +130,7 @@ process_repos() {
     if [ "$repo_def" != "" ]; then
       (
         cd "$root"
-        SKIP_REFRESH_STALE=y "$root/generate-commits.sh" add-group <(echo "$repo_def") $org "$root/repos/$org"
+        SKIP_REFRESH_STALE=y "$appdir/generate-commits.sh" add-group <(echo "$repo_def") $org "$root/repos/$org"
       )
     fi
   done

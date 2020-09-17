@@ -2,3 +2,4 @@
 !/lib.sh
 !/main.sh
 !/extract-projects.py
+!/generate-commits.sh
