@@ -20,7 +20,7 @@
         "templateFile": "incub-gva-web-edge.template.json",
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-us-east-1/0c186627d244d42061f08327c81d603f48111231b0d3dd2f2d627e1d3c5a847c",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-us-east-1/631cc8e56aae2809f0c31a0fd98a412412f9c926afcc4b0fd3d549f92c1e4bd2",
         "requiresBootstrapStackVersion": 4,
         "additionalDependencies": [
           "incub-gva-web-edge.assets"
@@ -47,54 +47,6 @@
                 "Value": "incub-gva-web-edge"
               }
             ]
-          }
-        ],
-        "/incub-gva-web-edge/WebAuth/ServiceRole/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "WebAuthServiceRoleBA3FDD8F"
-          }
-        ],
-        "/incub-gva-web-edge/WebAuth/ServiceRole/DefaultPolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "WebAuthServiceRoleDefaultPolicy894ADDA0"
-          }
-        ],
-        "/incub-gva-web-edge/WebAuth/Function/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "WebAuthFunction1AC74598"
-          }
-        ],
-        "/incub-gva-web-edge/WebAuth/Function/CurrentVersion/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "WebAuthFunctionCurrentVersion0429D26Bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-          }
-        ],
-        "/incub-gva-web-edge/VersionParam/Parameu-west-1/Resoure/CustomResourcePolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "VersionParamParameuwest1ResoureCustomResourcePolicy9C178A18"
-          }
-        ],
-        "/incub-gva-web-edge/VersionParam/Parameu-west-1/Resoure/Resource/Default": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "VersionParamParameuwest1Resoure7DBFCD25"
-          }
-        ],
-        "/incub-gva-web-edge/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
-          }
-        ],
-        "/incub-gva-web-edge/AWS679f53fac002430cb0da5b7982bd2287/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "AWS679f53fac002430cb0da5b7982bd22872D164C4C"
           }
         ],
         "/incub-gva-web-edge/AuthLambdas/ServiceRole/Resource": [
@@ -221,6 +173,18 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "AuthLambdasSignOutFunctionVersionParamParameuwest1Resoure18583D2D"
+          }
+        ],
+        "/incub-gva-web-edge/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+          }
+        ],
+        "/incub-gva-web-edge/AWS679f53fac002430cb0da5b7982bd2287/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd22872D164C4C"
           }
         ],
         "/incub-gva-web-edge/BootstrapVersion": [

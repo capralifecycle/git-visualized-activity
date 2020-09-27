@@ -52,7 +52,5 @@ handle_value() {
 }
 
 handle_value /incub-gva-worker/github-token "GitHub-token"
-handle_value /incub-gva-web/basicauth-username "Basic auth username"
-handle_value /incub-gva-web/basicauth-password "Basic auth password"
 
 echo "Completed"
