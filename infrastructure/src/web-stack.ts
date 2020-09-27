@@ -1,5 +1,6 @@
 import * as acm from "@aws-cdk/aws-certificatemanager"
 import * as cloudfront from "@aws-cdk/aws-cloudfront"
+import { UserPool, UserPoolIdentityProvider } from "@aws-cdk/aws-cognito"
 import * as r53 from "@aws-cdk/aws-route53"
 import * as s3 from "@aws-cdk/aws-s3"
 import * as cdk from "@aws-cdk/core"
@@ -14,6 +15,8 @@ interface Props extends cdk.StackProps {
   cloudfrontCertificateArn: string
   hostedZoneId?: string
   webEdgeStack: WebEdgeStack
+  userPoolId: string
+  authDomain: string
 }
 
 export class WebStack extends cdk.Stack {
@@ -22,11 +25,6 @@ export class WebStack extends cdk.Stack {
 
   constructor(scope: cdk.Construct, id: string, props: Props) {
     super(scope, id, props)
-
-    const webAuthLambdaVersion = props.webEdgeStack.webAuthLambdaVersion.get(
-      this,
-      "WebAuthLambdaVersion",
-    )
 
     const hostedZone = props.hostedZoneId
       ? r53.HostedZone.fromHostedZoneId(this, "HostedZone", props.hostedZoneId)
@@ -44,6 +42,15 @@ export class WebStack extends cdk.Stack {
       props.cloudfrontCertificateArn,
     )
 
+    const userPool = UserPool.fromUserPoolId(this, "UserPool", props.userPoolId)
+    userPool.registerIdentityProvider(
+      UserPoolIdentityProvider.fromProviderName(
+        this,
+        "GoogleProvider",
+        "Google",
+      ),
+    )
+
     const web = new Web(this, "Web", {
       buildsBucket,
       cloudfrontCertificate,
@@ -52,7 +59,9 @@ export class WebStack extends cdk.Stack {
       domainName: props.domainName,
       jenkinsRoleArn: props.jenkinsRoleArn,
       hostedZone,
-      webAuthLambdaVersion,
+      authLambdas: props.webEdgeStack.authLambdas,
+      userPool,
+      authDomain: props.authDomain,
     })
 
     this.webBucketName = web.webBucket.bucketName

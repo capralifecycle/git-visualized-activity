@@ -1,20 +1,39 @@
 {
-  "Parameters": {
-    "WebAuthLambdaVersionNonce": {
-      "Type": "String",
-      "Default": "snapshot"
-    },
-    "SsmParameterValuecfregionuseast1stackincubgvawebedgewebauthlambdaversionarnC96584B6F00A464EAD1953AFF4B05118Parameter": {
-      "Type": "AWS::SSM::Parameter::Value<String>",
-      "Default": "/cf/region/us-east-1/stack/incub-gva-web-edge/web-auth-lambda-version-arn"
-    },
-    "BootstrapVersion": {
-      "Type": "AWS::SSM::Parameter::Value<String>",
-      "Default": "/cdk-bootstrap/hnb659fds/version",
-      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store."
-    }
-  },
   "Resources": {
+    "UserPoolUserPoolClient40176907": {
+      "Type": "AWS::Cognito::UserPoolClient",
+      "Properties": {
+        "UserPoolId": "eu-west-1_oGQHzXmbo",
+        "AllowedOAuthFlows": [
+          "code"
+        ],
+        "AllowedOAuthFlowsUserPoolClient": true,
+        "AllowedOAuthScopes": [
+          "profile",
+          "phone",
+          "email",
+          "openid",
+          "aws.cognito.signin.user.admin"
+        ],
+        "CallbackURLs": [
+          "https://example.com"
+        ],
+        "ExplicitAuthFlows": [
+          "ALLOW_USER_PASSWORD_AUTH",
+          "ALLOW_USER_SRP_AUTH",
+          "ALLOW_REFRESH_TOKEN_AUTH"
+        ],
+        "GenerateSecret": true,
+        "PreventUserExistenceErrors": "ENABLED",
+        "SupportedIdentityProviders": [
+          "Google",
+          "COGNITO"
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/UserPool/UserPoolClient/Resource"
+      }
+    },
     "WebWebBucketAF209868": {
       "Type": "AWS::S3::Bucket",
       "Properties": {
@@ -144,6 +163,612 @@
         "aws:cdk:path": "incub-gva-web/Web/WebBucket/Policy/Resource"
       }
     },
+    "WebAuthNonceSigningSecretE26C05D1": {
+      "Type": "AWS::CloudFormation::CustomResource",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "henristcloudfrontauthgeneratesecretproviderProviderframeworkonEventD98C7326",
+            "Arn"
+          ]
+        },
+        "Nonce": ""
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/Web/Auth/NonceSigningSecret/Resource/Default"
+      }
+    },
+    "WebAuthClientSecretCustomResourcePolicy78CA0B49": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "cognito-idp:DescribeUserPoolClient",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":cognito-idp:eu-west-1:001112238813:userpool/eu-west-1_oGQHzXmbo"
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "WebAuthClientSecretCustomResourcePolicy78CA0B49",
+        "Roles": [
+          {
+            "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/Web/Auth/ClientSecret/Resource/CustomResourcePolicy/Resource"
+      }
+    },
+    "WebAuthClientSecret8C3CE634": {
+      "Type": "Custom::AWS",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "AWS679f53fac002430cb0da5b7982bd22872D164C4C",
+            "Arn"
+          ]
+        },
+        "Create": {
+          "service": "CognitoIdentityServiceProvider",
+          "action": "describeUserPoolClient",
+          "parameters": {
+            "UserPoolId": "eu-west-1_oGQHzXmbo",
+            "ClientId": {
+              "Ref": "UserPoolUserPoolClient40176907"
+            }
+          },
+          "physicalResourceId": {
+            "id": {
+              "Fn::Join": [
+                "",
+                [
+                  "eu-west-1_oGQHzXmbo-",
+                  {
+                    "Ref": "UserPoolUserPoolClient40176907"
+                  }
+                ]
+              ]
+            }
+          }
+        },
+        "Update": {
+          "service": "CognitoIdentityServiceProvider",
+          "action": "describeUserPoolClient",
+          "parameters": {
+            "UserPoolId": "eu-west-1_oGQHzXmbo",
+            "ClientId": {
+              "Ref": "UserPoolUserPoolClient40176907"
+            }
+          },
+          "physicalResourceId": {
+            "id": {
+              "Fn::Join": [
+                "",
+                [
+                  "eu-west-1_oGQHzXmbo-",
+                  {
+                    "Ref": "UserPoolUserPoolClient40176907"
+                  }
+                ]
+              ]
+            }
+          }
+        },
+        "InstallLatestAwsSdk": true
+      },
+      "DependsOn": [
+        "WebAuthClientSecretCustomResourcePolicy78CA0B49"
+      ],
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/Web/Auth/ClientSecret/Resource/Resource/Default"
+      }
+    },
+    "WebAuthCheckAuthFn098F7B34": {
+      "Type": "AWS::CloudFormation::CustomResource",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "henristlambdaconfigproviderProviderframeworkonEventB2FC78D4",
+            "Arn"
+          ]
+        },
+        "FunctionArn": {
+          "Ref": "SsmParameterValuecfregionuseast1stackincubgvawebedgeincubgvawebedgeAuthLambdas26858BD2CheckAuthFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
+        },
+        "Config": {
+          "httpHeaders": {
+            "Content-Security-Policy": "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; connect-src 'self'",
+            "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+            "Referrer-Policy": "same-origin",
+            "X-XSS-Protection": "1; mode=block",
+            "X-Frame-Options": "DENY",
+            "X-Content-Type-Options": "nosniff",
+            "Cache-Control": "no-cache"
+          },
+          "logLevel": "warn",
+          "userPoolId": "eu-west-1_oGQHzXmbo",
+          "clientId": {
+            "Ref": "UserPoolUserPoolClient40176907"
+          },
+          "clientSecret": {
+            "Fn::GetAtt": [
+              "WebAuthClientSecret8C3CE634",
+              "UserPoolClient.ClientSecret"
+            ]
+          },
+          "oauthScopes": [
+            "phone",
+            "email",
+            "profile",
+            "openid",
+            "aws.cognito.signin.user.admin"
+          ],
+          "cognitoAuthDomain": "cognito.incubator.liflig.dev",
+          "callbackPath": "/auth/callback",
+          "signOutRedirectTo": "/",
+          "signOutPath": "/auth/sign-out",
+          "refreshAuthPath": "/auth/refresh",
+          "requireGroupAnyOf": [
+            "liflig-active"
+          ],
+          "cookieSettings": {
+            "idToken": "Path=/; Secure; HttpOnly; SameSite=Lax",
+            "accessToken": "Path=/; Secure; HttpOnly; SameSite=Lax",
+            "refreshToken": "Path=/; Secure; HttpOnly; SameSite=Lax",
+            "nonce": "Path=/; Secure; HttpOnly; SameSite=Lax"
+          },
+          "nonceSigningSecret": {
+            "Fn::GetAtt": [
+              "WebAuthNonceSigningSecretE26C05D1",
+              "Value"
+            ]
+          }
+        },
+        "Nonce": ""
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/Web/Auth/CheckAuthFn/Resource/Default"
+      }
+    },
+    "WebAuthHttpHeadersFn62AA82BB": {
+      "Type": "AWS::CloudFormation::CustomResource",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "henristlambdaconfigproviderProviderframeworkonEventB2FC78D4",
+            "Arn"
+          ]
+        },
+        "FunctionArn": {
+          "Ref": "SsmParameterValuecfregionuseast1stackincubgvawebedgeincubgvawebedgeAuthLambdas26858BD2HttpHeadersFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
+        },
+        "Config": {
+          "httpHeaders": {
+            "Content-Security-Policy": "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; connect-src 'self'",
+            "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+            "Referrer-Policy": "same-origin",
+            "X-XSS-Protection": "1; mode=block",
+            "X-Frame-Options": "DENY",
+            "X-Content-Type-Options": "nosniff",
+            "Cache-Control": "no-cache"
+          },
+          "logLevel": "warn",
+          "userPoolId": "eu-west-1_oGQHzXmbo",
+          "clientId": {
+            "Ref": "UserPoolUserPoolClient40176907"
+          },
+          "clientSecret": {
+            "Fn::GetAtt": [
+              "WebAuthClientSecret8C3CE634",
+              "UserPoolClient.ClientSecret"
+            ]
+          },
+          "oauthScopes": [
+            "phone",
+            "email",
+            "profile",
+            "openid",
+            "aws.cognito.signin.user.admin"
+          ],
+          "cognitoAuthDomain": "cognito.incubator.liflig.dev",
+          "callbackPath": "/auth/callback",
+          "signOutRedirectTo": "/",
+          "signOutPath": "/auth/sign-out",
+          "refreshAuthPath": "/auth/refresh",
+          "requireGroupAnyOf": [
+            "liflig-active"
+          ],
+          "cookieSettings": {
+            "idToken": "Path=/; Secure; HttpOnly; SameSite=Lax",
+            "accessToken": "Path=/; Secure; HttpOnly; SameSite=Lax",
+            "refreshToken": "Path=/; Secure; HttpOnly; SameSite=Lax",
+            "nonce": "Path=/; Secure; HttpOnly; SameSite=Lax"
+          },
+          "nonceSigningSecret": {
+            "Fn::GetAtt": [
+              "WebAuthNonceSigningSecretE26C05D1",
+              "Value"
+            ]
+          }
+        },
+        "Nonce": ""
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/Web/Auth/HttpHeadersFn/Resource/Default"
+      }
+    },
+    "WebAuthParseAuthFnE3A3E046": {
+      "Type": "AWS::CloudFormation::CustomResource",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "henristlambdaconfigproviderProviderframeworkonEventB2FC78D4",
+            "Arn"
+          ]
+        },
+        "FunctionArn": {
+          "Ref": "SsmParameterValuecfregionuseast1stackincubgvawebedgeincubgvawebedgeAuthLambdas26858BD2ParseAuthFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
+        },
+        "Config": {
+          "httpHeaders": {
+            "Content-Security-Policy": "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; connect-src 'self'",
+            "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+            "Referrer-Policy": "same-origin",
+            "X-XSS-Protection": "1; mode=block",
+            "X-Frame-Options": "DENY",
+            "X-Content-Type-Options": "nosniff",
+            "Cache-Control": "no-cache"
+          },
+          "logLevel": "warn",
+          "userPoolId": "eu-west-1_oGQHzXmbo",
+          "clientId": {
+            "Ref": "UserPoolUserPoolClient40176907"
+          },
+          "clientSecret": {
+            "Fn::GetAtt": [
+              "WebAuthClientSecret8C3CE634",
+              "UserPoolClient.ClientSecret"
+            ]
+          },
+          "oauthScopes": [
+            "phone",
+            "email",
+            "profile",
+            "openid",
+            "aws.cognito.signin.user.admin"
+          ],
+          "cognitoAuthDomain": "cognito.incubator.liflig.dev",
+          "callbackPath": "/auth/callback",
+          "signOutRedirectTo": "/",
+          "signOutPath": "/auth/sign-out",
+          "refreshAuthPath": "/auth/refresh",
+          "requireGroupAnyOf": [
+            "liflig-active"
+          ],
+          "cookieSettings": {
+            "idToken": "Path=/; Secure; HttpOnly; SameSite=Lax",
+            "accessToken": "Path=/; Secure; HttpOnly; SameSite=Lax",
+            "refreshToken": "Path=/; Secure; HttpOnly; SameSite=Lax",
+            "nonce": "Path=/; Secure; HttpOnly; SameSite=Lax"
+          },
+          "nonceSigningSecret": {
+            "Fn::GetAtt": [
+              "WebAuthNonceSigningSecretE26C05D1",
+              "Value"
+            ]
+          }
+        },
+        "Nonce": ""
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/Web/Auth/ParseAuthFn/Resource/Default"
+      }
+    },
+    "WebAuthRefreshAuthFn86734A18": {
+      "Type": "AWS::CloudFormation::CustomResource",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "henristlambdaconfigproviderProviderframeworkonEventB2FC78D4",
+            "Arn"
+          ]
+        },
+        "FunctionArn": {
+          "Ref": "SsmParameterValuecfregionuseast1stackincubgvawebedgeincubgvawebedgeAuthLambdas26858BD2RefreshAuthFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
+        },
+        "Config": {
+          "httpHeaders": {
+            "Content-Security-Policy": "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; connect-src 'self'",
+            "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+            "Referrer-Policy": "same-origin",
+            "X-XSS-Protection": "1; mode=block",
+            "X-Frame-Options": "DENY",
+            "X-Content-Type-Options": "nosniff",
+            "Cache-Control": "no-cache"
+          },
+          "logLevel": "warn",
+          "userPoolId": "eu-west-1_oGQHzXmbo",
+          "clientId": {
+            "Ref": "UserPoolUserPoolClient40176907"
+          },
+          "clientSecret": {
+            "Fn::GetAtt": [
+              "WebAuthClientSecret8C3CE634",
+              "UserPoolClient.ClientSecret"
+            ]
+          },
+          "oauthScopes": [
+            "phone",
+            "email",
+            "profile",
+            "openid",
+            "aws.cognito.signin.user.admin"
+          ],
+          "cognitoAuthDomain": "cognito.incubator.liflig.dev",
+          "callbackPath": "/auth/callback",
+          "signOutRedirectTo": "/",
+          "signOutPath": "/auth/sign-out",
+          "refreshAuthPath": "/auth/refresh",
+          "requireGroupAnyOf": [
+            "liflig-active"
+          ],
+          "cookieSettings": {
+            "idToken": "Path=/; Secure; HttpOnly; SameSite=Lax",
+            "accessToken": "Path=/; Secure; HttpOnly; SameSite=Lax",
+            "refreshToken": "Path=/; Secure; HttpOnly; SameSite=Lax",
+            "nonce": "Path=/; Secure; HttpOnly; SameSite=Lax"
+          },
+          "nonceSigningSecret": {
+            "Fn::GetAtt": [
+              "WebAuthNonceSigningSecretE26C05D1",
+              "Value"
+            ]
+          }
+        },
+        "Nonce": ""
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/Web/Auth/RefreshAuthFn/Resource/Default"
+      }
+    },
+    "WebAuthSignOutFn31AE8481": {
+      "Type": "AWS::CloudFormation::CustomResource",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "henristlambdaconfigproviderProviderframeworkonEventB2FC78D4",
+            "Arn"
+          ]
+        },
+        "FunctionArn": {
+          "Ref": "SsmParameterValuecfregionuseast1stackincubgvawebedgeincubgvawebedgeAuthLambdas26858BD2SignOutFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
+        },
+        "Config": {
+          "httpHeaders": {
+            "Content-Security-Policy": "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; connect-src 'self'",
+            "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+            "Referrer-Policy": "same-origin",
+            "X-XSS-Protection": "1; mode=block",
+            "X-Frame-Options": "DENY",
+            "X-Content-Type-Options": "nosniff",
+            "Cache-Control": "no-cache"
+          },
+          "logLevel": "warn",
+          "userPoolId": "eu-west-1_oGQHzXmbo",
+          "clientId": {
+            "Ref": "UserPoolUserPoolClient40176907"
+          },
+          "clientSecret": {
+            "Fn::GetAtt": [
+              "WebAuthClientSecret8C3CE634",
+              "UserPoolClient.ClientSecret"
+            ]
+          },
+          "oauthScopes": [
+            "phone",
+            "email",
+            "profile",
+            "openid",
+            "aws.cognito.signin.user.admin"
+          ],
+          "cognitoAuthDomain": "cognito.incubator.liflig.dev",
+          "callbackPath": "/auth/callback",
+          "signOutRedirectTo": "/",
+          "signOutPath": "/auth/sign-out",
+          "refreshAuthPath": "/auth/refresh",
+          "requireGroupAnyOf": [
+            "liflig-active"
+          ],
+          "cookieSettings": {
+            "idToken": "Path=/; Secure; HttpOnly; SameSite=Lax",
+            "accessToken": "Path=/; Secure; HttpOnly; SameSite=Lax",
+            "refreshToken": "Path=/; Secure; HttpOnly; SameSite=Lax",
+            "nonce": "Path=/; Secure; HttpOnly; SameSite=Lax"
+          },
+          "nonceSigningSecret": {
+            "Fn::GetAtt": [
+              "WebAuthNonceSigningSecretE26C05D1",
+              "Value"
+            ]
+          }
+        },
+        "Nonce": ""
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/Web/Auth/SignOutFn/Resource/Default"
+      }
+    },
+    "WebAuthClientUpdateCustomResourcePolicyD285008F": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "cognito-idp:UpdateUserPoolClient",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":cognito-idp:eu-west-1:001112238813:userpool/eu-west-1_oGQHzXmbo"
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "WebAuthClientUpdateCustomResourcePolicyD285008F",
+        "Roles": [
+          {
+            "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/Web/Auth/ClientUpdate/Resource/CustomResourcePolicy/Resource"
+      }
+    },
+    "WebAuthClientUpdate97DF5190": {
+      "Type": "Custom::AWS",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "AWS679f53fac002430cb0da5b7982bd22872D164C4C",
+            "Arn"
+          ]
+        },
+        "Create": {
+          "service": "CognitoIdentityServiceProvider",
+          "action": "updateUserPoolClient",
+          "parameters": {
+            "AllowedOAuthFlows": [
+              "code"
+            ],
+            "AllowedOAuthFlowsUserPoolClient": "TRUE:BOOLEAN",
+            "SupportedIdentityProviders": [
+              "COGNITO",
+              "Google"
+            ],
+            "AllowedOAuthScopes": [
+              "phone",
+              "email",
+              "profile",
+              "openid",
+              "aws.cognito.signin.user.admin"
+            ],
+            "ClientId": {
+              "Ref": "UserPoolUserPoolClient40176907"
+            },
+            "CallbackURLs": [
+              "https://gva.incubator.liflig.dev/auth/callback"
+            ],
+            "LogoutURLs": [
+              "https://gva.incubator.liflig.dev/"
+            ],
+            "UserPoolId": "eu-west-1_oGQHzXmbo"
+          },
+          "physicalResourceId": {
+            "id": {
+              "Fn::Join": [
+                "",
+                [
+                  "eu-west-1_oGQHzXmbo-",
+                  {
+                    "Ref": "UserPoolUserPoolClient40176907"
+                  }
+                ]
+              ]
+            }
+          }
+        },
+        "Update": {
+          "service": "CognitoIdentityServiceProvider",
+          "action": "updateUserPoolClient",
+          "parameters": {
+            "AllowedOAuthFlows": [
+              "code"
+            ],
+            "AllowedOAuthFlowsUserPoolClient": "TRUE:BOOLEAN",
+            "SupportedIdentityProviders": [
+              "COGNITO",
+              "Google"
+            ],
+            "AllowedOAuthScopes": [
+              "phone",
+              "email",
+              "profile",
+              "openid",
+              "aws.cognito.signin.user.admin"
+            ],
+            "ClientId": {
+              "Ref": "UserPoolUserPoolClient40176907"
+            },
+            "CallbackURLs": [
+              "https://gva.incubator.liflig.dev/auth/callback"
+            ],
+            "LogoutURLs": [
+              "https://gva.incubator.liflig.dev/"
+            ],
+            "UserPoolId": "eu-west-1_oGQHzXmbo"
+          },
+          "physicalResourceId": {
+            "id": {
+              "Fn::Join": [
+                "",
+                [
+                  "eu-west-1_oGQHzXmbo-",
+                  {
+                    "Ref": "UserPoolUserPoolClient40176907"
+                  }
+                ]
+              ]
+            }
+          }
+        },
+        "InstallLatestAwsSdk": true
+      },
+      "DependsOn": [
+        "WebAuthClientUpdateCustomResourcePolicyD285008F"
+      ],
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/Web/Auth/ClientUpdate/Resource/Resource/Default"
+      }
+    },
     "WebAccessIdentity94AA1B1E": {
       "Type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
       "Properties": {
@@ -174,13 +799,109 @@
               ],
               "Compress": true,
               "ForwardedValues": {
+                "QueryString": true
+              },
+              "LambdaFunctionAssociations": [
+                {
+                  "EventType": "viewer-request",
+                  "LambdaFunctionARN": {
+                    "Fn::GetAtt": [
+                      "WebAuthParseAuthFnE3A3E046",
+                      "FunctionArn"
+                    ]
+                  }
+                }
+              ],
+              "PathPattern": "/auth/callback",
+              "TargetOriginId": "origin1",
+              "ViewerProtocolPolicy": "redirect-to-https"
+            },
+            {
+              "AllowedMethods": [
+                "GET",
+                "HEAD"
+              ],
+              "CachedMethods": [
+                "GET",
+                "HEAD"
+              ],
+              "Compress": true,
+              "ForwardedValues": {
+                "QueryString": true
+              },
+              "LambdaFunctionAssociations": [
+                {
+                  "EventType": "viewer-request",
+                  "LambdaFunctionARN": {
+                    "Fn::GetAtt": [
+                      "WebAuthRefreshAuthFn86734A18",
+                      "FunctionArn"
+                    ]
+                  }
+                }
+              ],
+              "PathPattern": "/auth/refresh",
+              "TargetOriginId": "origin1",
+              "ViewerProtocolPolicy": "redirect-to-https"
+            },
+            {
+              "AllowedMethods": [
+                "GET",
+                "HEAD"
+              ],
+              "CachedMethods": [
+                "GET",
+                "HEAD"
+              ],
+              "Compress": true,
+              "ForwardedValues": {
+                "QueryString": true
+              },
+              "LambdaFunctionAssociations": [
+                {
+                  "EventType": "viewer-request",
+                  "LambdaFunctionARN": {
+                    "Fn::GetAtt": [
+                      "WebAuthSignOutFn31AE8481",
+                      "FunctionArn"
+                    ]
+                  }
+                }
+              ],
+              "PathPattern": "/auth/sign-out",
+              "TargetOriginId": "origin1",
+              "ViewerProtocolPolicy": "redirect-to-https"
+            },
+            {
+              "AllowedMethods": [
+                "GET",
+                "HEAD"
+              ],
+              "CachedMethods": [
+                "GET",
+                "HEAD"
+              ],
+              "Compress": true,
+              "ForwardedValues": {
                 "QueryString": false
               },
               "LambdaFunctionAssociations": [
                 {
                   "EventType": "viewer-request",
                   "LambdaFunctionARN": {
-                    "Ref": "SsmParameterValuecfregionuseast1stackincubgvawebedgewebauthlambdaversionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
+                    "Fn::GetAtt": [
+                      "WebAuthCheckAuthFn098F7B34",
+                      "FunctionArn"
+                    ]
+                  }
+                },
+                {
+                  "EventType": "origin-response",
+                  "LambdaFunctionARN": {
+                    "Fn::GetAtt": [
+                      "WebAuthHttpHeadersFn62AA82BB",
+                      "FunctionArn"
+                    ]
                   }
                 }
               ],
@@ -206,7 +927,19 @@
               {
                 "EventType": "viewer-request",
                 "LambdaFunctionARN": {
-                  "Ref": "SsmParameterValuecfregionuseast1stackincubgvawebedgewebauthlambdaversionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
+                  "Fn::GetAtt": [
+                    "WebAuthCheckAuthFn098F7B34",
+                    "FunctionArn"
+                  ]
+                }
+              },
+              {
+                "EventType": "origin-response",
+                "LambdaFunctionARN": {
+                  "Fn::GetAtt": [
+                    "WebAuthHttpHeadersFn62AA82BB",
+                    "FunctionArn"
+                  ]
                 }
               }
             ],
@@ -604,6 +1337,602 @@
         "aws:asset:path": "asset.snapshot-value",
         "aws:asset:property": "Code"
       }
+    },
+    "henristcloudfrontauthgeneratesecretproviderFunctionServiceRole4523A59B": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-web"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/henrist.cloudfront-auth.generate-secret.provider/Function/ServiceRole/Resource"
+      }
+    },
+    "henristcloudfrontauthgeneratesecretproviderFunction3D1AFA99": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-001112238813-eu-west-1",
+          "S3Key": "7bc2a2bcdbdc475b968897f99ba7e3c6c3236958ec81c9b5e42807ce9cc9181a.zip"
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "henristcloudfrontauthgeneratesecretproviderFunctionServiceRole4523A59B",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-web"
+          }
+        ]
+      },
+      "DependsOn": [
+        "henristcloudfrontauthgeneratesecretproviderFunctionServiceRole4523A59B"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/henrist.cloudfront-auth.generate-secret.provider/Function/Resource",
+        "aws:asset:path": "asset.snapshot-value",
+        "aws:asset:property": "Code"
+      }
+    },
+    "henristcloudfrontauthgeneratesecretproviderProviderframeworkonEventServiceRoleEE714F1C": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-web"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/henrist.cloudfront-auth.generate-secret.provider/Provider/framework-onEvent/ServiceRole/Resource"
+      }
+    },
+    "henristcloudfrontauthgeneratesecretproviderProviderframeworkonEventServiceRoleDefaultPolicyC126E528": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "henristcloudfrontauthgeneratesecretproviderFunction3D1AFA99",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "henristcloudfrontauthgeneratesecretproviderProviderframeworkonEventServiceRoleDefaultPolicyC126E528",
+        "Roles": [
+          {
+            "Ref": "henristcloudfrontauthgeneratesecretproviderProviderframeworkonEventServiceRoleEE714F1C"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/henrist.cloudfront-auth.generate-secret.provider/Provider/framework-onEvent/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "henristcloudfrontauthgeneratesecretproviderProviderframeworkonEventD98C7326": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-001112238813-eu-west-1",
+          "S3Key": "1ed82f549c7384dfae04a04440b3d1bf30653fde425e280dbb3ea03dbb3c96fc.zip"
+        },
+        "Handler": "framework.onEvent",
+        "Role": {
+          "Fn::GetAtt": [
+            "henristcloudfrontauthgeneratesecretproviderProviderframeworkonEventServiceRoleEE714F1C",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs10.x",
+        "Description": "AWS CDK resource provider framework - onEvent (incub-gva-web/henrist.cloudfront-auth.generate-secret.provider/Provider)",
+        "Environment": {
+          "Variables": {
+            "USER_ON_EVENT_FUNCTION_ARN": {
+              "Fn::GetAtt": [
+                "henristcloudfrontauthgeneratesecretproviderFunction3D1AFA99",
+                "Arn"
+              ]
+            }
+          }
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-web"
+          }
+        ],
+        "Timeout": 900
+      },
+      "DependsOn": [
+        "henristcloudfrontauthgeneratesecretproviderProviderframeworkonEventServiceRoleDefaultPolicyC126E528",
+        "henristcloudfrontauthgeneratesecretproviderProviderframeworkonEventServiceRoleEE714F1C"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/henrist.cloudfront-auth.generate-secret.provider/Provider/framework-onEvent/Resource",
+        "aws:asset:path": "asset.snapshot-value",
+        "aws:asset:property": "Code"
+      }
+    },
+    "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-web"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/Resource"
+      }
+    },
+    "AWS679f53fac002430cb0da5b7982bd22872D164C4C": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-001112238813-eu-west-1",
+          "S3Key": "4a3609ad912843e581892f37ae9d6fb0fa1648b547693aaa562b0119452b8956.zip"
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-web"
+          }
+        ],
+        "Timeout": 120
+      },
+      "DependsOn": [
+        "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/AWS679f53fac002430cb0da5b7982bd2287/Resource",
+        "aws:asset:path": "asset.snapshot-value",
+        "aws:asset:property": "Code"
+      }
+    },
+    "henristlambdaconfigproviderUpdateCodeFnServiceRole2FF24712": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-web"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/henrist.lambda-config.provider/UpdateCodeFn/ServiceRole/Resource"
+      }
+    },
+    "henristlambdaconfigproviderUpdateCodeFnServiceRoleDefaultPolicyE51A664A": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "lambda:GetFunction",
+                "lambda:UpdateFunctionCode"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "henristlambdaconfigproviderUpdateCodeFnServiceRoleDefaultPolicyE51A664A",
+        "Roles": [
+          {
+            "Ref": "henristlambdaconfigproviderUpdateCodeFnServiceRole2FF24712"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/henrist.lambda-config.provider/UpdateCodeFn/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "henristlambdaconfigproviderUpdateCodeFnBF8DF66B": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-001112238813-eu-west-1",
+          "S3Key": "c84ca829140995fbde780b0f0a0a132ea78b00b07c955ff03eb3fdd108530dcf.zip"
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "henristlambdaconfigproviderUpdateCodeFnServiceRole2FF24712",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-web"
+          }
+        ],
+        "Timeout": 10
+      },
+      "DependsOn": [
+        "henristlambdaconfigproviderUpdateCodeFnServiceRoleDefaultPolicyE51A664A",
+        "henristlambdaconfigproviderUpdateCodeFnServiceRole2FF24712"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/henrist.lambda-config.provider/UpdateCodeFn/Resource",
+        "aws:asset:path": "asset.snapshot-value",
+        "aws:asset:property": "Code"
+      }
+    },
+    "henristlambdaconfigproviderProviderframeworkonEventServiceRole9AA104AD": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-web"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/henrist.lambda-config.provider/Provider/framework-onEvent/ServiceRole/Resource"
+      }
+    },
+    "henristlambdaconfigproviderProviderframeworkonEventServiceRoleDefaultPolicy3D96FE9E": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "henristlambdaconfigproviderUpdateCodeFnBF8DF66B",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "henristlambdaconfigproviderProviderframeworkonEventServiceRoleDefaultPolicy3D96FE9E",
+        "Roles": [
+          {
+            "Ref": "henristlambdaconfigproviderProviderframeworkonEventServiceRole9AA104AD"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/henrist.lambda-config.provider/Provider/framework-onEvent/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "henristlambdaconfigproviderProviderframeworkonEventB2FC78D4": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-001112238813-eu-west-1",
+          "S3Key": "1ed82f549c7384dfae04a04440b3d1bf30653fde425e280dbb3ea03dbb3c96fc.zip"
+        },
+        "Handler": "framework.onEvent",
+        "Role": {
+          "Fn::GetAtt": [
+            "henristlambdaconfigproviderProviderframeworkonEventServiceRole9AA104AD",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs10.x",
+        "Description": "AWS CDK resource provider framework - onEvent (incub-gva-web/henrist.lambda-config.provider/Provider)",
+        "Environment": {
+          "Variables": {
+            "USER_ON_EVENT_FUNCTION_ARN": {
+              "Fn::GetAtt": [
+                "henristlambdaconfigproviderUpdateCodeFnBF8DF66B",
+                "Arn"
+              ]
+            }
+          }
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity-infra"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-web"
+          }
+        ],
+        "Timeout": 900
+      },
+      "DependsOn": [
+        "henristlambdaconfigproviderProviderframeworkonEventServiceRoleDefaultPolicy3D96FE9E",
+        "henristlambdaconfigproviderProviderframeworkonEventServiceRole9AA104AD"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/henrist.lambda-config.provider/Provider/framework-onEvent/Resource",
+        "aws:asset:path": "asset.snapshot-value",
+        "aws:asset:property": "Code"
+      }
+    }
+  },
+  "Parameters": {
+    "WebAuthCheckAuthFnImportNonce7C1C7E0A": {
+      "Type": "String",
+      "Default": "snapshot"
+    },
+    "WebAuthHttpHeadersFnImportNonceF11CB9B9": {
+      "Type": "String",
+      "Default": "snapshot"
+    },
+    "WebAuthParseAuthFnImportNonce696F7780": {
+      "Type": "String",
+      "Default": "snapshot"
+    },
+    "WebAuthRefreshAuthFnImportNonceCCA8C1CE": {
+      "Type": "String",
+      "Default": "snapshot"
+    },
+    "WebAuthSignOutFnImportNonce7E1414FD": {
+      "Type": "String",
+      "Default": "snapshot"
+    },
+    "SsmParameterValuecfregionuseast1stackincubgvawebedgeincubgvawebedgeAuthLambdas26858BD2CheckAuthFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/cf/region/us-east-1/stack/incub-gva-web-edge/incubgvawebedgeAuthLambdas26858BD2-CheckAuthFunction-function-arn"
+    },
+    "SsmParameterValuecfregionuseast1stackincubgvawebedgeincubgvawebedgeAuthLambdas26858BD2HttpHeadersFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/cf/region/us-east-1/stack/incub-gva-web-edge/incubgvawebedgeAuthLambdas26858BD2-HttpHeadersFunction-function-arn"
+    },
+    "SsmParameterValuecfregionuseast1stackincubgvawebedgeincubgvawebedgeAuthLambdas26858BD2ParseAuthFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/cf/region/us-east-1/stack/incub-gva-web-edge/incubgvawebedgeAuthLambdas26858BD2-ParseAuthFunction-function-arn"
+    },
+    "SsmParameterValuecfregionuseast1stackincubgvawebedgeincubgvawebedgeAuthLambdas26858BD2RefreshAuthFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/cf/region/us-east-1/stack/incub-gva-web-edge/incubgvawebedgeAuthLambdas26858BD2-RefreshAuthFunction-function-arn"
+    },
+    "SsmParameterValuecfregionuseast1stackincubgvawebedgeincubgvawebedgeAuthLambdas26858BD2SignOutFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/cf/region/us-east-1/stack/incub-gva-web-edge/incubgvawebedgeAuthLambdas26858BD2-SignOutFunction-function-arn"
+    },
+    "BootstrapVersion": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store."
     }
   },
   "Outputs": {

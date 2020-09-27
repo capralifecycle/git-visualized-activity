@@ -1,5 +1,6 @@
 import * as lambda from "@aws-cdk/aws-lambda"
 import * as cdk from "@aws-cdk/core"
+import { AuthLambdas } from "@henrist/cdk-cloudfront-auth"
 import { SsmParameterBackedResource } from "@liflig/cdk"
 import { WebAuth } from "./auth"
 import { isSnapshot } from "./utils"
@@ -12,6 +13,8 @@ export class WebEdgeStack extends cdk.Stack {
     lambda.IVersion
   >
 
+  public readonly authLambdas: AuthLambdas
+
   constructor(
     scope: cdk.Construct,
     id: string,
@@ -20,6 +23,8 @@ export class WebEdgeStack extends cdk.Stack {
     },
   ) {
     super(scope, id, props)
+
+    // TODO: Remove old auth setup after migrated to Cognito setup.
 
     const webAuth = new WebAuth(this, "WebAuth", {
       paramsRegion: "eu-west-1",
@@ -40,5 +45,9 @@ export class WebEdgeStack extends cdk.Stack {
         resourceToReference: (resource) => resource.functionArn,
       },
     )
+
+    this.authLambdas = new AuthLambdas(this, "AuthLambdas", {
+      regions: ["eu-west-1"],
+    })
   }
 }

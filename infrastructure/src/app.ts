@@ -28,6 +28,10 @@ const externalValues = {
     "arn:aws:acm:us-east-1:001112238813:certificate/6a82ce2d-fbe7-418a-8b8a-06e609b8d61d",
   // From https://github.com/capralifecycle/liflig-incubator-common-infra
   incubatorDevHostedZoneId: "Z07028931BZD2FT5LUHHH",
+  // From https://github.com/capralifecycle/liflig-incubator-common-infra
+  userPoolId: "eu-west-1_oGQHzXmbo",
+  // From https://github.com/capralifecycle/liflig-incubator-common-infra
+  authDomain: "cognito.incubator.liflig.dev",
 }
 
 const incubatorAccountId = "001112238813"
@@ -59,6 +63,8 @@ const webStack = new WebStack(app, `incub-gva-web`, {
   jenkinsRoleArn: externalValues.jenkinsRoleArn,
   resourcePrefix: "incub-gva",
   webEdgeStack,
+  userPoolId: externalValues.userPoolId,
+  authDomain: externalValues.authDomain,
 })
 
 new WorkerStack(app, `incub-gva-worker`, {
