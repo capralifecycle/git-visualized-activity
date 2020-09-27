@@ -3,11 +3,8 @@
 // See https://github.com/capralifecycle/jenkins-pipeline-library
 @Library("cals") _
 
-import no.capraconsulting.buildtools.cdk.EcrPublish
-import no.capraconsulting.buildtools.cdk.Webapp
-
-def ecrPublish = new EcrPublish()
-def webapp = new Webapp()
+def ecrPublish = new no.capraconsulting.buildtools.cdk.EcrPublish()
+def webapp = new no.capraconsulting.buildtools.cdk.Webapp()
 
 def workerPublishConfig = ecrPublish.config {
   repositoryUri = "001112238813.dkr.ecr.eu-west-1.amazonaws.com/incub-common-builds"
