@@ -20,8 +20,11 @@
         "templateFile": "incub-gva-web-edge.template.json",
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-us-east-1/ff1b38c00f50d841d449f797ed967624b40a04e80ef0fa894b5b3ee82e79cca9",
-        "requiresBootstrapStackVersion": 4
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-us-east-1/1ff591b8c0a710454c55df33a32d291ddc3cc0d236b63c6769788ac214413901",
+        "requiresBootstrapStackVersion": 4,
+        "additionalDependencies": [
+          "incub-gva-web-edge.assets"
+        ]
       },
       "dependencies": [
         "incub-gva-web-edge.assets"
@@ -44,18 +47,6 @@
                 "Value": "incub-gva-web-edge"
               }
             ]
-          }
-        ],
-        "/incub-gva-web-edge/BootstrapVersion": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "BootstrapVersion"
-          }
-        ],
-        "/incub-gva-web-edge/CheckBootstrapVersion": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CheckBootstrapVersion"
           }
         ],
         "/incub-gva-web-edge/WebAuth/ServiceRole/Resource": [
@@ -82,6 +73,12 @@
             "data": "WebAuthFunctionCurrentVersion0429D26Bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
           }
         ],
+        "/incub-gva-web-edge/VersionParam/Parameu-west-1/Resoure/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VersionParamParameuwest1ResoureCustomResourcePolicy9C178A18"
+          }
+        ],
         "/incub-gva-web-edge/VersionParam/Parameu-west-1/Resoure/Resource/Default": [
           {
             "type": "aws:cdk:logicalId",
@@ -94,16 +91,22 @@
             "data": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
           }
         ],
-        "/incub-gva-web-edge/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/DefaultPolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleDefaultPolicyD28E1A5E"
-          }
-        ],
         "/incub-gva-web-edge/AWS679f53fac002430cb0da5b7982bd2287/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AWS679f53fac002430cb0da5b7982bd22872D164C4C"
+          }
+        ],
+        "/incub-gva-web-edge/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/incub-gva-web-edge/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
           }
         ]
       }
@@ -122,8 +125,11 @@
         "templateFile": "incub-gva-web.template.json",
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/1e63b5e243bb6b847425c4c7afa6a1f426ad1bbceb7094280f95fd6be5f47c38",
-        "requiresBootstrapStackVersion": 4
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/264b876feed2e6835868d47102b3934f27a65c2d9060ddddf34ac70e070e8429",
+        "requiresBootstrapStackVersion": 4,
+        "additionalDependencies": [
+          "incub-gva-web.assets"
+        ]
       },
       "dependencies": [
         "incub-gva-web-edge",
@@ -147,18 +153,6 @@
                 "Value": "incub-gva-web"
               }
             ]
-          }
-        ],
-        "/incub-gva-web/BootstrapVersion": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "BootstrapVersion"
-          }
-        ],
-        "/incub-gva-web/CheckBootstrapVersion": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CheckBootstrapVersion"
           }
         ],
         "/incub-gva-web/WebAuthLambdaVersionNonce": [
@@ -262,6 +256,18 @@
             "type": "aws:cdk:logicalId",
             "data": "ExportsOutputRefWebDistributionCFDistributionE67D88CAD4DDDA0B"
           }
+        ],
+        "/incub-gva-web/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/incub-gva-web/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
         ]
       }
     },
@@ -279,8 +285,11 @@
         "templateFile": "incub-gva-worker.template.json",
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/e9f169608afaf8d2e27e336fe90ea14ed908915357a6242acc598449c7e05f7c",
-        "requiresBootstrapStackVersion": 4
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/f4fe2082a3ac7a7fc6753a90f968b81cdeae69f646f02c1534bbbe6b55c82eab",
+        "requiresBootstrapStackVersion": 4,
+        "additionalDependencies": [
+          "incub-gva-worker.assets"
+        ]
       },
       "dependencies": [
         "incub-gva-web",
@@ -304,18 +313,6 @@
                 "Value": "incub-gva-worker"
               }
             ]
-          }
-        ],
-        "/incub-gva-worker/BootstrapVersion": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "BootstrapVersion"
-          }
-        ],
-        "/incub-gva-worker/CheckBootstrapVersion": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CheckBootstrapVersion"
           }
         ],
         "/incub-gva-worker/Cluster/Resource": [
@@ -406,6 +403,18 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "ScheduleRuleDA5BD877"
+          }
+        ],
+        "/incub-gva-worker/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/incub-gva-worker/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
           }
         ]
       }

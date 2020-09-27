@@ -1,7 +1,7 @@
 {
   "version": "5.0.0",
   "files": {
-    "e9f169608afaf8d2e27e336fe90ea14ed908915357a6242acc598449c7e05f7c": {
+    "f4fe2082a3ac7a7fc6753a90f968b81cdeae69f646f02c1534bbbe6b55c82eab": {
       "source": {
         "path": "incub-gva-worker.template.json",
         "packaging": "file"
@@ -9,7 +9,7 @@
       "destinations": {
         "001112238813-eu-west-1": {
           "bucketName": "cdk-hnb659fds-assets-001112238813-eu-west-1",
-          "objectKey": "e9f169608afaf8d2e27e336fe90ea14ed908915357a6242acc598449c7e05f7c",
+          "objectKey": "f4fe2082a3ac7a7fc6753a90f968b81cdeae69f646f02c1534bbbe6b55c82eab",
           "region": "eu-west-1",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-file-publishing-role-001112238813-eu-west-1"
         }
