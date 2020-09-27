@@ -949,7 +949,6 @@
                 ]
               },
               "Id": "incubgvawebWebDistributionOrigin2B6A5CEB3",
-              "OriginPath": "/data",
               "S3OriginConfig": {
                 "OriginAccessIdentity": {
                   "Fn::Join": [

@@ -71,7 +71,7 @@
         }
       }
     },
-    "7ed7ef20493b3846b91cf818112f6e9ad58e2118abbe0d259ea41d014ea1324e": {
+    "d08fca0dc52ce0254df3e6af326625579202e8cdeab4179356b11da1a08176a2": {
       "source": {
         "path": "incub-gva-web.template.json",
         "packaging": "file"
@@ -79,7 +79,7 @@
       "destinations": {
         "001112238813-eu-west-1": {
           "bucketName": "cdk-hnb659fds-assets-001112238813-eu-west-1",
-          "objectKey": "7ed7ef20493b3846b91cf818112f6e9ad58e2118abbe0d259ea41d014ea1324e",
+          "objectKey": "d08fca0dc52ce0254df3e6af326625579202e8cdeab4179356b11da1a08176a2",
           "region": "eu-west-1",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-file-publishing-role-001112238813-eu-west-1"
         }
