@@ -21,7 +21,7 @@ interface Props extends cdk.StackProps {
 
 export class WebStack extends cdk.Stack {
   public readonly webBucketName: string
-  public readonly distribution: cloudfront.CloudFrontWebDistribution
+  public readonly distribution: cloudfront.Distribution
 
   constructor(scope: cdk.Construct, id: string, props: Props) {
     super(scope, id, props)

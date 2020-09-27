@@ -215,7 +215,7 @@
         "templateFile": "incub-gva-web.template.json",
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/a71feede7dd6c6d34cc9a54607256da4c2ef7aef6e16e69f6b5b68a29599df06",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/7ed7ef20493b3846b91cf818112f6e9ad58e2118abbe0d259ea41d014ea1324e",
         "requiresBootstrapStackVersion": 4,
         "additionalDependencies": [
           "incub-gva-web.assets"
@@ -353,13 +353,19 @@
             "data": "WebAuthClientUpdate97DF5190"
           }
         ],
-        "/incub-gva-web/Web/AccessIdentity/Resource": [
+        "/incub-gva-web/Web/Distribution/Origin1/S3Origin/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "WebAccessIdentity94AA1B1E"
+            "data": "WebDistributionOrigin1S3Origin084DE486"
           }
         ],
-        "/incub-gva-web/Web/Distribution/CFDistribution": [
+        "/incub-gva-web/Web/Distribution/Origin2/S3Origin/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebDistributionOrigin2S3Origin02304B30"
+          }
+        ],
+        "/incub-gva-web/Web/Distribution/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "WebDistributionCFDistributionE67D88CA"

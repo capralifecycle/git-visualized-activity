@@ -76,29 +76,25 @@
         "PolicyDocument": {
           "Statement": [
             {
-              "Action": "s3:GetObject",
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*"
+              ],
               "Effect": "Allow",
               "Principal": {
                 "CanonicalUser": {
                   "Fn::GetAtt": [
-                    "WebAccessIdentity94AA1B1E",
+                    "WebDistributionOrigin1S3Origin084DE486",
                     "S3CanonicalUserId"
                   ]
                 }
               },
               "Resource": [
                 {
-                  "Fn::Join": [
-                    "",
-                    [
-                      {
-                        "Fn::GetAtt": [
-                          "WebWebBucketAF209868",
-                          "Arn"
-                        ]
-                      },
-                      "/data/*"
-                    ]
+                  "Fn::GetAtt": [
+                    "WebWebBucketAF209868",
+                    "Arn"
                   ]
                 },
                 {
@@ -111,7 +107,7 @@
                           "Arn"
                         ]
                       },
-                      "/web/*"
+                      "/*"
                     ]
                   ]
                 }
@@ -127,7 +123,7 @@
               "Principal": {
                 "CanonicalUser": {
                   "Fn::GetAtt": [
-                    "WebAccessIdentity94AA1B1E",
+                    "WebDistributionOrigin2S3Origin02304B30",
                     "S3CanonicalUserId"
                   ]
                 }
@@ -769,15 +765,26 @@
         "aws:cdk:path": "incub-gva-web/Web/Auth/ClientUpdate/Resource/Resource/Default"
       }
     },
-    "WebAccessIdentity94AA1B1E": {
+    "WebDistributionOrigin1S3Origin084DE486": {
       "Type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
       "Properties": {
         "CloudFrontOriginAccessIdentityConfig": {
-          "Comment": "Allows CloudFront to reach the bucket"
+          "Comment": "Identity for incubgvawebWebDistributionOrigin1A6E66C71"
         }
       },
       "Metadata": {
-        "aws:cdk:path": "incub-gva-web/Web/AccessIdentity/Resource"
+        "aws:cdk:path": "incub-gva-web/Web/Distribution/Origin1/S3Origin/Resource"
+      }
+    },
+    "WebDistributionOrigin2S3Origin02304B30": {
+      "Type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
+      "Properties": {
+        "CloudFrontOriginAccessIdentityConfig": {
+          "Comment": "Identity for incubgvawebWebDistributionOrigin2B6A5CEB3"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-web/Web/Distribution/Origin2/S3Origin/Resource"
       }
     },
     "WebDistributionCFDistributionE67D88CA": {
@@ -789,14 +796,6 @@
           ],
           "CacheBehaviors": [
             {
-              "AllowedMethods": [
-                "GET",
-                "HEAD"
-              ],
-              "CachedMethods": [
-                "GET",
-                "HEAD"
-              ],
               "Compress": true,
               "ForwardedValues": {
                 "QueryString": true
@@ -813,18 +812,10 @@
                 }
               ],
               "PathPattern": "/auth/callback",
-              "TargetOriginId": "origin1",
+              "TargetOriginId": "incubgvawebWebDistributionOrigin1A6E66C71",
               "ViewerProtocolPolicy": "redirect-to-https"
             },
             {
-              "AllowedMethods": [
-                "GET",
-                "HEAD"
-              ],
-              "CachedMethods": [
-                "GET",
-                "HEAD"
-              ],
               "Compress": true,
               "ForwardedValues": {
                 "QueryString": true
@@ -841,18 +832,10 @@
                 }
               ],
               "PathPattern": "/auth/refresh",
-              "TargetOriginId": "origin1",
+              "TargetOriginId": "incubgvawebWebDistributionOrigin1A6E66C71",
               "ViewerProtocolPolicy": "redirect-to-https"
             },
             {
-              "AllowedMethods": [
-                "GET",
-                "HEAD"
-              ],
-              "CachedMethods": [
-                "GET",
-                "HEAD"
-              ],
               "Compress": true,
               "ForwardedValues": {
                 "QueryString": true
@@ -869,21 +852,13 @@
                 }
               ],
               "PathPattern": "/auth/sign-out",
-              "TargetOriginId": "origin1",
+              "TargetOriginId": "incubgvawebWebDistributionOrigin1A6E66C71",
               "ViewerProtocolPolicy": "redirect-to-https"
             },
             {
-              "AllowedMethods": [
-                "GET",
-                "HEAD"
-              ],
-              "CachedMethods": [
-                "GET",
-                "HEAD"
-              ],
               "Compress": true,
               "ForwardedValues": {
-                "QueryString": false
+                "QueryString": true
               },
               "LambdaFunctionAssociations": [
                 {
@@ -906,22 +881,14 @@
                 }
               ],
               "PathPattern": "/data/*",
-              "TargetOriginId": "origin2",
+              "TargetOriginId": "incubgvawebWebDistributionOrigin2B6A5CEB3",
               "ViewerProtocolPolicy": "redirect-to-https"
             }
           ],
           "DefaultCacheBehavior": {
-            "AllowedMethods": [
-              "GET",
-              "HEAD"
-            ],
-            "CachedMethods": [
-              "GET",
-              "HEAD"
-            ],
             "Compress": true,
             "ForwardedValues": {
-              "QueryString": false
+              "QueryString": true
             },
             "LambdaFunctionAssociations": [
               {
@@ -943,7 +910,7 @@
                 }
               }
             ],
-            "TargetOriginId": "origin1",
+            "TargetOriginId": "incubgvawebWebDistributionOrigin1A6E66C71",
             "ViewerProtocolPolicy": "redirect-to-https"
           },
           "DefaultRootObject": "index.html",
@@ -952,15 +919,13 @@
           "IPV6Enabled": true,
           "Origins": [
             {
-              "ConnectionAttempts": 3,
-              "ConnectionTimeout": 10,
               "DomainName": {
                 "Fn::GetAtt": [
                   "WebWebBucketAF209868",
                   "RegionalDomainName"
                 ]
               },
-              "Id": "origin1",
+              "Id": "incubgvawebWebDistributionOrigin1A6E66C71",
               "OriginPath": "/web",
               "S3OriginConfig": {
                 "OriginAccessIdentity": {
@@ -969,7 +934,7 @@
                     [
                       "origin-access-identity/cloudfront/",
                       {
-                        "Ref": "WebAccessIdentity94AA1B1E"
+                        "Ref": "WebDistributionOrigin1S3Origin084DE486"
                       }
                     ]
                   ]
@@ -977,16 +942,14 @@
               }
             },
             {
-              "ConnectionAttempts": 3,
-              "ConnectionTimeout": 10,
               "DomainName": {
                 "Fn::GetAtt": [
                   "WebWebBucketAF209868",
                   "RegionalDomainName"
                 ]
               },
-              "Id": "origin2",
-              "OriginPath": "",
+              "Id": "incubgvawebWebDistributionOrigin2B6A5CEB3",
+              "OriginPath": "/data",
               "S3OriginConfig": {
                 "OriginAccessIdentity": {
                   "Fn::Join": [
@@ -994,7 +957,7 @@
                     [
                       "origin-access-identity/cloudfront/",
                       {
-                        "Ref": "WebAccessIdentity94AA1B1E"
+                        "Ref": "WebDistributionOrigin2S3Origin02304B30"
                       }
                     ]
                   ]
@@ -1005,7 +968,7 @@
           "PriceClass": "PriceClass_100",
           "ViewerCertificate": {
             "AcmCertificateArn": "arn:aws:acm:us-east-1:001112238813:certificate/6a82ce2d-fbe7-418a-8b8a-06e609b8d61d",
-            "MinimumProtocolVersion": "TLSv1.2_2018",
+            "MinimumProtocolVersion": "TLSv1.2_2019",
             "SslSupportMethod": "sni-only"
           }
         },
@@ -1025,7 +988,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "incub-gva-web/Web/Distribution/CFDistribution"
+        "aws:cdk:path": "incub-gva-web/Web/Distribution/Resource"
       }
     },
     "WebDnsRecord7704C090": {

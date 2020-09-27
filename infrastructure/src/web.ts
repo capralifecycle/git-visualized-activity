@@ -1,7 +1,7 @@
 import * as certificatemanager from "@aws-cdk/aws-certificatemanager"
 import * as cloudfront from "@aws-cdk/aws-cloudfront"
+import * as origins from "@aws-cdk/aws-cloudfront-origins"
 import { IUserPool } from "@aws-cdk/aws-cognito"
-import * as iam from "@aws-cdk/aws-iam"
 import * as r53 from "@aws-cdk/aws-route53"
 import * as r53t from "@aws-cdk/aws-route53-targets"
 import * as s3 from "@aws-cdk/aws-s3"
@@ -24,7 +24,7 @@ interface Props {
 
 export class Web extends cdk.Construct {
   public readonly webBucket: s3.Bucket
-  public readonly distribution: cloudfront.CloudFrontWebDistribution
+  public readonly distribution: cloudfront.Distribution
 
   constructor(scope: cdk.Construct, id: string, props: Props) {
     super(scope, id)
@@ -40,75 +40,27 @@ export class Web extends cdk.Construct {
       requireGroupAnyOf: ["liflig-active"],
     })
 
-    const accessIdentity = new cloudfront.OriginAccessIdentity(
-      this,
-      "AccessIdentity",
-    )
+    const webOrigin = new origins.S3Origin(this.webBucket, {
+      originPath: "/web",
+    })
+    const dataOrigin = new origins.S3Origin(this.webBucket)
 
-    this.webBucket.addToResourcePolicy(
-      new iam.PolicyStatement({
-        actions: ["s3:GetObject"],
-        principals: [accessIdentity.grantPrincipal],
-        resources: [
-          this.webBucket.arnForObjects("data/*"),
-          this.webBucket.arnForObjects("web/*"),
-        ],
-      }),
-    )
-
-    const viewerCertificate = cloudfront.ViewerCertificate.fromAcmCertificate(
-      props.cloudfrontCertificate,
-      {
-        aliases: [props.domainName],
-        securityPolicy: cloudfront.SecurityPolicyProtocol.TLS_V1_2_2018,
-        sslMethod: cloudfront.SSLMethod.SNI,
+    this.distribution = new cloudfront.Distribution(this, "Distribution", {
+      defaultBehavior: auth.createProtectedBehavior(webOrigin),
+      defaultRootObject: "index.html",
+      certificate: props.cloudfrontCertificate,
+      domainNames: [props.domainName],
+      additionalBehaviors: {
+        ...auth.createAuthPagesBehaviors(webOrigin),
+        "/data/*": auth.createProtectedBehavior(dataOrigin),
       },
-    )
+      priceClass: cloudfront.PriceClass.PRICE_CLASS_100,
+    })
 
-    this.distribution = new cloudfront.CloudFrontWebDistribution(
-      this,
-      "Distribution",
-      {
-        defaultRootObject: "index.html",
-        viewerCertificate,
-        originConfigs: [
-          {
-            s3OriginSource: {
-              s3BucketSource: this.webBucket,
-              originAccessIdentity: accessIdentity,
-            },
-            originPath: "/web",
-            behaviors: [
-              ...auth.authPages,
-              {
-                isDefaultBehavior: true,
-                compress: true,
-                forwardedValues: {
-                  queryString: false,
-                },
-                lambdaFunctionAssociations: auth.authFilters,
-              },
-            ],
-          },
-          {
-            s3OriginSource: {
-              s3BucketSource: this.webBucket,
-              originAccessIdentity: accessIdentity,
-            },
-            originPath: "",
-            behaviors: [
-              {
-                pathPattern: "/data/*",
-                compress: true,
-                forwardedValues: {
-                  queryString: false,
-                },
-                lambdaFunctionAssociations: auth.authFilters,
-              },
-            ],
-          },
-        ],
-      },
+    // Workaround to keep old logical ID.
+    ;(this.distribution.node
+      .defaultChild as cloudfront.CfnDistribution).overrideLogicalId(
+      "WebDistributionCFDistributionE67D88CA",
     )
 
     auth.updateClient("ClientUpdate", {

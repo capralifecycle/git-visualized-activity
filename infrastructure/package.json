@@ -28,6 +28,7 @@
     "@aws-cdk/aws-certificatemanager": "1.64.1",
     "@aws-cdk/aws-cloudformation": "1.64.1",
     "@aws-cdk/aws-cloudfront": "1.64.1",
+    "@aws-cdk/aws-cloudfront-origins": "1.64.1",
     "@aws-cdk/aws-cloudwatch": "1.64.1",
     "@aws-cdk/aws-cloudwatch-actions": "1.64.1",
     "@aws-cdk/aws-cognito": "1.64.1",
@@ -51,7 +52,7 @@
     "@aws-cdk/aws-sqs": "1.64.1",
     "@aws-cdk/aws-ssm": "1.64.1",
     "@aws-cdk/core": "1.64.1",
-    "@henrist/cdk-cloudfront-auth": "1.0.2",
+    "@henrist/cdk-cloudfront-auth": "1.1.0",
     "@liflig/cdk": "1.17.1"
   }
 }
