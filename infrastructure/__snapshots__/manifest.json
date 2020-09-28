@@ -27,7 +27,7 @@
         "templateFile": "incub-gva-pipeline.template.json",
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/a6d45d60d42e4d32e0120d028b0c169954871b027481e0e2cfae6033247f7cb8",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/e87a4a1d4298d684fc1ba3971349222eb53c3138b2565e80683a43919ee2f52c",
         "requiresBootstrapStackVersion": 4,
         "additionalDependencies": [
           "incub-gva-pipeline.assets"
@@ -48,7 +48,7 @@
               },
               {
                 "Key": "SourceRepo",
-                "Value": "github/capraconsulting/git-visualized-activity-infra"
+                "Value": "github/capraconsulting/git-visualized-activity"
               },
               {
                 "Key": "StackName",

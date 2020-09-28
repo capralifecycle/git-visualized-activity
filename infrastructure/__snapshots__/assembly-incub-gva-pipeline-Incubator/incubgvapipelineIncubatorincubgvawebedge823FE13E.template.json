@@ -39,7 +39,7 @@
           },
           {
             "Key": "SourceRepo",
-            "Value": "github/capraconsulting/git-visualized-activity-infra"
+            "Value": "github/capraconsulting/git-visualized-activity"
           },
           {
             "Key": "StackName",
@@ -66,7 +66,7 @@
           ]
         },
         "Runtime": "nodejs12.x",
-        "Description": "Fn",
+        "Description": "Fn2",
         "Tags": [
           {
             "Key": "Project",
@@ -74,7 +74,7 @@
           },
           {
             "Key": "SourceRepo",
-            "Value": "github/capraconsulting/git-visualized-activity-infra"
+            "Value": "github/capraconsulting/git-visualized-activity"
           },
           {
             "Key": "StackName",
@@ -210,7 +210,7 @@
           ]
         },
         "Runtime": "nodejs12.x",
-        "Description": "Fn",
+        "Description": "Fn2",
         "Tags": [
           {
             "Key": "Project",
@@ -218,7 +218,7 @@
           },
           {
             "Key": "SourceRepo",
-            "Value": "github/capraconsulting/git-visualized-activity-infra"
+            "Value": "github/capraconsulting/git-visualized-activity"
           },
           {
             "Key": "StackName",
@@ -354,7 +354,7 @@
           ]
         },
         "Runtime": "nodejs12.x",
-        "Description": "Fn",
+        "Description": "Fn2",
         "Tags": [
           {
             "Key": "Project",
@@ -362,7 +362,7 @@
           },
           {
             "Key": "SourceRepo",
-            "Value": "github/capraconsulting/git-visualized-activity-infra"
+            "Value": "github/capraconsulting/git-visualized-activity"
           },
           {
             "Key": "StackName",
@@ -498,7 +498,7 @@
           ]
         },
         "Runtime": "nodejs12.x",
-        "Description": "Fn",
+        "Description": "Fn2",
         "Tags": [
           {
             "Key": "Project",
@@ -506,7 +506,7 @@
           },
           {
             "Key": "SourceRepo",
-            "Value": "github/capraconsulting/git-visualized-activity-infra"
+            "Value": "github/capraconsulting/git-visualized-activity"
           },
           {
             "Key": "StackName",
@@ -642,7 +642,7 @@
           ]
         },
         "Runtime": "nodejs12.x",
-        "Description": "Fn",
+        "Description": "Fn2",
         "Tags": [
           {
             "Key": "Project",
@@ -650,7 +650,7 @@
           },
           {
             "Key": "SourceRepo",
-            "Value": "github/capraconsulting/git-visualized-activity-infra"
+            "Value": "github/capraconsulting/git-visualized-activity"
           },
           {
             "Key": "StackName",
@@ -807,7 +807,7 @@
           },
           {
             "Key": "SourceRepo",
-            "Value": "github/capraconsulting/git-visualized-activity-infra"
+            "Value": "github/capraconsulting/git-visualized-activity"
           },
           {
             "Key": "StackName",
@@ -841,7 +841,7 @@
           },
           {
             "Key": "SourceRepo",
-            "Value": "github/capraconsulting/git-visualized-activity-infra"
+            "Value": "github/capraconsulting/git-visualized-activity"
           },
           {
             "Key": "StackName",

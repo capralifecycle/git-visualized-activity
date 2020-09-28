@@ -28,7 +28,7 @@ set_tags() {
     --resource-id "$name" \
     --tags \
       Key=Project,Value=git-visualized-activity \
-      Key=SourceRepo,Value=github/capraconsulting/git-visualized-activity-infra \
+      Key=SourceRepo,Value=github/capraconsulting/git-visualized-activity \
       Key=StackName,Value=SCRIPTED
 
   echo "Tags set on $name"

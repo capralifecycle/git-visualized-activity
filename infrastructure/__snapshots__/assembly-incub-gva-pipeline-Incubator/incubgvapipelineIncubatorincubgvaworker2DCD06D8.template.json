@@ -10,7 +10,7 @@
           },
           {
             "Key": "SourceRepo",
-            "Value": "github/capraconsulting/git-visualized-activity-infra"
+            "Value": "github/capraconsulting/git-visualized-activity"
           },
           {
             "Key": "StackName",
@@ -55,7 +55,7 @@
           },
           {
             "Key": "SourceRepo",
-            "Value": "github/capraconsulting/git-visualized-activity-infra"
+            "Value": "github/capraconsulting/git-visualized-activity"
           },
           {
             "Key": "StackName",
@@ -179,7 +179,7 @@
           },
           {
             "Key": "SourceRepo",
-            "Value": "github/capraconsulting/git-visualized-activity-infra"
+            "Value": "github/capraconsulting/git-visualized-activity"
           },
           {
             "Key": "StackName",
@@ -219,7 +219,7 @@
           },
           {
             "Key": "SourceRepo",
-            "Value": "github/capraconsulting/git-visualized-activity-infra"
+            "Value": "github/capraconsulting/git-visualized-activity"
           },
           {
             "Key": "StackName",
@@ -306,7 +306,7 @@
           },
           {
             "Key": "SourceRepo",
-            "Value": "github/capraconsulting/git-visualized-activity-infra"
+            "Value": "github/capraconsulting/git-visualized-activity"
           },
           {
             "Key": "StackName",
@@ -355,7 +355,7 @@
           },
           {
             "Key": "SourceRepo",
-            "Value": "github/capraconsulting/git-visualized-activity-infra"
+            "Value": "github/capraconsulting/git-visualized-activity"
           },
           {
             "Key": "StackName",
@@ -456,7 +456,7 @@
           },
           {
             "Key": "SourceRepo",
-            "Value": "github/capraconsulting/git-visualized-activity-infra"
+            "Value": "github/capraconsulting/git-visualized-activity"
           },
           {
             "Key": "StackName",
@@ -508,7 +508,7 @@
         "Name": "/cf/stack/incub-gva-worker/launcher-fn-arn",
         "Tags": {
           "Project": "git-visualized-activity",
-          "SourceRepo": "github/capraconsulting/git-visualized-activity-infra",
+          "SourceRepo": "github/capraconsulting/git-visualized-activity",
           "StackName": "incub-gva-worker"
         }
       },

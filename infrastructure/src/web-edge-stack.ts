@@ -34,7 +34,7 @@ export class WebEdgeStack extends cdk.Stack {
     ]) {
       const f = this.authLambdas.node.findChild(n).node
         .defaultChild as CfnFunction
-      f.description = "Fn"
+      f.description = "Fn2"
     }
   }
 }

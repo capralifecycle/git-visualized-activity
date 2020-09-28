@@ -47,7 +47,7 @@ function applyTags(scope: Construct) {
   tagResources(scope, (stack) => ({
     StackName: stack.stackName,
     Project: "git-visualized-activity",
-    SourceRepo: "github/capraconsulting/git-visualized-activity-infra",
+    SourceRepo: "github/capraconsulting/git-visualized-activity",
   }))
 }
 
