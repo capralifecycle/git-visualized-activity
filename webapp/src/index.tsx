@@ -706,7 +706,7 @@ const parseValue = (value: string) => (value === "" ? null : value)
 const useFilterStyles = makeStyles({
   formControl: {
     margin: 10, // theme.spacing,
-    minWidth: 150,
+    minWidth: 80,
   },
   input: {
     color: "inherit",
@@ -765,6 +765,8 @@ const Filter = ({
 }
 
 interface AppState {
+  filterYear: string | null
+  filterYearMonth: string | null
   filterAuthorName: string | null
   filterProject: string | null
   filterOwner: string | null
@@ -778,6 +780,8 @@ class App extends React.Component<
   AppState
 > {
   state: AppState = {
+    filterYear: null,
+    filterYearMonth: null,
     filterAuthorName: null,
     filterProject: null,
     filterOwner: null,
@@ -796,6 +800,12 @@ class App extends React.Component<
 
   getFilteredData() {
     const filters = [
+      buildFilter(this.state.filterYear, (it) =>
+        it.timestamp.getFullYear().toString(),
+      ),
+      buildFilter(this.state.filterYearMonth, (it) =>
+        getYearMonth(it.timestamp),
+      ),
       buildFilter(this.state.filterAuthorName, (it) => it.authorName),
       buildFilter(this.state.filterProject, (it) => it.project),
       buildFilter(this.state.filterOwner, (it) => it.owner),
@@ -810,6 +820,24 @@ class App extends React.Component<
   renderFilters() {
     return (
       <>
+        <Filter
+          allValue="Year?"
+          handleChange={this.handleChange}
+          name="filterYear"
+          value={this.state.filterYear}
+          options={getUnique(this.props.data, (it) =>
+            it.timestamp.getFullYear().toString(),
+          )}
+        />
+        <Filter
+          allValue="Year/month?"
+          handleChange={this.handleChange}
+          name="filterYearMonth"
+          value={this.state.filterYearMonth}
+          options={getUnique(this.props.data, (it) =>
+            getYearMonth(it.timestamp),
+          )}
+        />
         <Filter
           allValue="Who?"
           handleChange={this.handleChange}
