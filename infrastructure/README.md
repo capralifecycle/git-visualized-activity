@@ -6,6 +6,9 @@ This is the configuration for https://gva.incubator.liflig.dev/
 
 [CDK](https://github.com/aws/aws-cdk) is used to perform deployments.
 
+See `trigger-deploy.sh`. This will later be replaced by extending the
+Jenkins job.
+
 ## Initial setup
 
 This is a record of manual steps done during initial setup so

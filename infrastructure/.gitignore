@@ -8,3 +8,4 @@ node_modules
 cdk.out
 
 !src/auth/handler/index.js
+cloud-assembly.zip

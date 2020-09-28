@@ -19,7 +19,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "incub-gva-worker/Cluster/Resource"
+        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/Cluster/Resource"
       }
     },
     "LogGroupF5B46931": {
@@ -30,7 +30,7 @@
       "UpdateReplacePolicy": "Retain",
       "DeletionPolicy": "Retain",
       "Metadata": {
-        "aws:cdk:path": "incub-gva-worker/LogGroup/Resource"
+        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/LogGroup/Resource"
       }
     },
     "TaskDefTaskRole1EDB4A67": {
@@ -64,7 +64,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "incub-gva-worker/TaskDef/TaskRole/Resource"
+        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/TaskDef/TaskRole/Resource"
       }
     },
     "TaskDefTaskRoleDefaultPolicyA592CB18": {
@@ -85,7 +85,7 @@
                     },
                     ":s3:::",
                     {
-                      "Fn::ImportValue": "incub-gva-web:ExportsOutputRefWebWebBucketAF209868DA1CE065"
+                      "Fn::ImportValue": "incub-gva-web:IncubatorincubgvawebExportsOutputRefWebWebBucketAF209868D3D0D698"
                     },
                     "/*"
                   ]
@@ -116,7 +116,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "incub-gva-worker/TaskDef/TaskRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/TaskDef/TaskRole/DefaultPolicy/Resource"
       }
     },
     "TaskDef54694570": {
@@ -128,13 +128,13 @@
               {
                 "Name": "BUCKET_NAME",
                 "Value": {
-                  "Fn::ImportValue": "incub-gva-web:ExportsOutputRefWebWebBucketAF209868DA1CE065"
+                  "Fn::ImportValue": "incub-gva-web:IncubatorincubgvawebExportsOutputRefWebWebBucketAF209868D3D0D698"
                 }
               },
               {
                 "Name": "CF_DISTRIBUTION",
                 "Value": {
-                  "Fn::ImportValue": "incub-gva-web:ExportsOutputRefWebDistributionCFDistributionE67D88CAD4DDDA0B"
+                  "Fn::ImportValue": "incub-gva-web:IncubatorincubgvawebExportsOutputRefWebDistributionCFDistributionE67D88CA899576A5"
                 }
               },
               {
@@ -194,7 +194,7 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "incub-gva-worker/TaskDef/Resource"
+        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/TaskDef/Resource"
       }
     },
     "TaskDefExecutionRoleB4775C97": {
@@ -228,7 +228,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "incub-gva-worker/TaskDef/ExecutionRole/Resource"
+        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/TaskDef/ExecutionRole/Resource"
       }
     },
     "TaskDefExecutionRoleDefaultPolicy0DBB737A": {
@@ -285,13 +285,13 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "incub-gva-worker/TaskDef/ExecutionRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/TaskDef/ExecutionRole/DefaultPolicy/Resource"
       }
     },
     "SecurityGroupDD263621": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
-        "GroupDescription": "incub-gva-worker/SecurityGroup",
+        "GroupDescription": "incub-gva-pipeline/Incubator/incub-gva-worker/SecurityGroup",
         "SecurityGroupEgress": [
           {
             "CidrIp": "0.0.0.0/0",
@@ -316,7 +316,7 @@
         "VpcId": "vpc-0a67807e4aca6bb84"
       },
       "Metadata": {
-        "aws:cdk:path": "incub-gva-worker/SecurityGroup/Resource"
+        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/SecurityGroup/Resource"
       }
     },
     "LauncherServiceRoleBD2C652A": {
@@ -364,7 +364,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "incub-gva-worker/Launcher/ServiceRole/Resource"
+        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/Launcher/ServiceRole/Resource"
       }
     },
     "LauncherServiceRoleDefaultPolicy66697DD3": {
@@ -418,7 +418,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "incub-gva-worker/Launcher/ServiceRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/Launcher/ServiceRole/DefaultPolicy/Resource"
       }
     },
     "LauncherDC0405AA": {
@@ -470,10 +470,10 @@
         "LauncherServiceRoleBD2C652A"
       ],
       "Metadata": {
-        "aws:cdk:path": "incub-gva-worker/Launcher/Resource"
+        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/Launcher/Resource"
       }
     },
-    "LauncherAllowEventRuleincubgvaworkerScheduleRuleDD9C9CBA6BA31D14": {
+    "LauncherAllowEventRuleincubgvapipelineIncubatorincubgvaworkerScheduleRule53EFA2608B5FFACC": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "Action": "lambda:InvokeFunction",
@@ -492,7 +492,7 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "incub-gva-worker/Launcher/AllowEventRuleincubgvaworkerScheduleRuleDD9C9CBA"
+        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/Launcher/AllowEventRuleincubgvapipelineIncubatorincubgvaworkerScheduleRule53EFA260"
       }
     },
     "LauncherParamACA93A7A": {
@@ -513,7 +513,7 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "incub-gva-worker/LauncherParam/Resource"
+        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/LauncherParam/Resource"
       }
     },
     "ScheduleRuleDA5BD877": {
@@ -534,7 +534,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "incub-gva-worker/ScheduleRule/Resource"
+        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/ScheduleRule/Resource"
       }
     }
   },

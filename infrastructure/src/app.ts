@@ -1,4 +1,9 @@
+import * as codepipeline from "@aws-cdk/aws-codepipeline"
+import * as codepipelineActions from "@aws-cdk/aws-codepipeline-actions"
+import { BlockPublicAccess, Bucket, BucketEncryption } from "@aws-cdk/aws-s3"
 import * as cdk from "@aws-cdk/core"
+import { Construct, Stack, StackProps, Stage, StageProps } from "@aws-cdk/core"
+import { CdkPipeline } from "@aws-cdk/pipelines"
 import { tagResources } from "@liflig/cdk"
 import { WebEdgeStack } from "./web-edge-stack"
 import { WebStack } from "./web-stack"
@@ -37,42 +42,120 @@ const externalValues = {
 const incubatorAccountId = "001112238813"
 
 const app = new cdk.App()
-tagResources(app, (stack) => ({
-  StackName: stack.stackName,
-  Project: "git-visualized-activity",
-  SourceRepo: "github/capraconsulting/git-visualized-activity-infra",
-}))
 
-const webEdgeStack = new WebEdgeStack(app, "incub-gva-web-edge", {
-  env: {
-    account: incubatorAccountId,
-    region: "us-east-1",
-  },
-  resourcePrefix: "incub-gva",
-})
+function applyTags(scope: Construct) {
+  tagResources(scope, (stack) => ({
+    StackName: stack.stackName,
+    Project: "git-visualized-activity",
+    SourceRepo: "github/capraconsulting/git-visualized-activity-infra",
+  }))
+}
 
-const webStack = new WebStack(app, `incub-gva-web`, {
+applyTags(app)
+
+class GvaApp extends Stage {
+  constructor(scope: Construct, id: string, props: StageProps) {
+    super(scope, id, props)
+
+    applyTags(this)
+
+    const webEdgeStack = new WebEdgeStack(this, "incub-gva-web-edge", {
+      env: {
+        account: incubatorAccountId,
+        region: "us-east-1",
+      },
+      stackName: "incub-gva-web-edge",
+      resourcePrefix: "incub-gva",
+    })
+
+    const webStack = new WebStack(this, `incub-gva-web`, {
+      env: {
+        account: incubatorAccountId,
+        region: "eu-west-1",
+      },
+      stackName: "incub-gva-web",
+      buildsBucketName: externalValues.buildBucketName,
+      cloudfrontCertificateArn:
+        externalValues.incubatorDevAcmCertificateUsEast1Arn,
+      domainName: "gva.incubator.liflig.dev",
+      hostedZoneId: externalValues.incubatorDevHostedZoneId,
+      jenkinsRoleArn: externalValues.jenkinsRoleArn,
+      resourcePrefix: "incub-gva",
+      webEdgeStack,
+      userPoolId: externalValues.userPoolId,
+      authDomain: externalValues.authDomain,
+    })
+
+    new WorkerStack(this, `incub-gva-worker`, {
+      env: {
+        account: incubatorAccountId,
+        region: "eu-west-1",
+      },
+      stackName: "incub-gva-worker",
+      resourcePrefix: "incub-gva",
+      vpcId: externalValues.vpcId,
+      webStack,
+    })
+  }
+}
+
+class GvaPipelineStack extends Stack {
+  constructor(scope: Construct, id: string, props: StackProps) {
+    super(scope, id, props)
+
+    const cloudAssemblyArtifact = new codepipeline.Artifact()
+
+    const buildBucket = new Bucket(this, "BuildBucket", {
+      versioned: true,
+      blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
+      encryption: BucketEncryption.S3_MANAGED,
+      lifecycleRules: [
+        {
+          noncurrentVersionExpiration: cdk.Duration.days(10),
+        },
+      ],
+    })
+
+    new cdk.CfnOutput(this, "BuildBucketName", {
+      value: buildBucket.bucketName,
+    })
+
+    const codePipeline = new codepipeline.Pipeline(this, "CodePipeline", {
+      stages: [
+        {
+          stageName: "Source",
+          actions: [
+            new codepipelineActions.S3SourceAction({
+              actionName: "source",
+              output: cloudAssemblyArtifact,
+              bucket: buildBucket,
+              bucketKey: "cloud-assembly-incubator.zip",
+            }),
+          ],
+        },
+      ],
+      restartExecutionOnUpdate: true,
+    })
+
+    const cdkPipeline = new CdkPipeline(this, "CdkPipeline", {
+      cloudAssemblyArtifact,
+      codePipeline,
+    })
+
+    cdkPipeline.addApplicationStage(
+      new GvaApp(this, "Incubator", {
+        env: {
+          account: incubatorAccountId,
+          region: "eu-west-1",
+        },
+      }),
+    )
+  }
+}
+
+new GvaPipelineStack(app, "incub-gva-pipeline", {
   env: {
     account: incubatorAccountId,
     region: "eu-west-1",
   },
-  buildsBucketName: externalValues.buildBucketName,
-  cloudfrontCertificateArn: externalValues.incubatorDevAcmCertificateUsEast1Arn,
-  domainName: "gva.incubator.liflig.dev",
-  hostedZoneId: externalValues.incubatorDevHostedZoneId,
-  jenkinsRoleArn: externalValues.jenkinsRoleArn,
-  resourcePrefix: "incub-gva",
-  webEdgeStack,
-  userPoolId: externalValues.userPoolId,
-  authDomain: externalValues.authDomain,
-})
-
-new WorkerStack(app, `incub-gva-worker`, {
-  env: {
-    account: incubatorAccountId,
-    region: "eu-west-1",
-  },
-  resourcePrefix: "incub-gva",
-  vpcId: externalValues.vpcId,
-  webStack,
 })

@@ -1,0 +1,20 @@
+{
+  "version": "5.0.0",
+  "files": {
+    "a6d45d60d42e4d32e0120d028b0c169954871b027481e0e2cfae6033247f7cb8": {
+      "source": {
+        "path": "incub-gva-pipeline.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "001112238813-eu-west-1": {
+          "bucketName": "cdk-hnb659fds-assets-001112238813-eu-west-1",
+          "objectKey": "a6d45d60d42e4d32e0120d028b0c169954871b027481e0e2cfae6033247f7cb8",
+          "region": "eu-west-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-file-publishing-role-001112238813-eu-west-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

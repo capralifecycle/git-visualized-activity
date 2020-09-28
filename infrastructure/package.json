@@ -31,6 +31,8 @@
     "@aws-cdk/aws-cloudfront-origins": "1.64.1",
     "@aws-cdk/aws-cloudwatch": "1.64.1",
     "@aws-cdk/aws-cloudwatch-actions": "1.64.1",
+    "@aws-cdk/aws-codepipeline": "1.64.1",
+    "@aws-cdk/aws-codepipeline-actions": "1.64.1",
     "@aws-cdk/aws-cognito": "1.64.1",
     "@aws-cdk/aws-ecr": "1.64.1",
     "@aws-cdk/aws-ecr-assets": "1.64.1",
@@ -52,6 +54,7 @@
     "@aws-cdk/aws-sqs": "1.64.1",
     "@aws-cdk/aws-ssm": "1.64.1",
     "@aws-cdk/core": "1.64.1",
+    "@aws-cdk/pipelines": "1.64.1",
     "@henrist/cdk-cloudfront-auth": "1.1.0",
     "@liflig/cdk": "1.19.0"
   }

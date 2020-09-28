@@ -1,0 +1,709 @@
+{
+  "artifacts": {
+    "incubgvapipelineIncubatorincubgvawebedge823FE13E.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json",
+        "requiresBootstrapStackVersion": 4
+      }
+    },
+    "incubgvapipelineIncubatorincubgvawebedge823FE13E": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://001112238813/us-east-1",
+      "properties": {
+        "templateFile": "incubgvapipelineIncubatorincubgvawebedge823FE13E.template.json",
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-us-east-1/8b529cdd082bc553f6edd37d8b0808638301b40df6affba10b2293baf0dce50e",
+        "requiresBootstrapStackVersion": 4,
+        "additionalDependencies": [
+          "incubgvapipelineIncubatorincubgvawebedge823FE13E.assets"
+        ],
+        "stackName": "incub-gva-web-edge"
+      },
+      "dependencies": [
+        "incubgvapipelineIncubatorincubgvawebedge823FE13E.assets"
+      ],
+      "metadata": {
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge": [
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "Project",
+                "Value": "git-visualized-activity"
+              },
+              {
+                "Key": "SourceRepo",
+                "Value": "github/capraconsulting/git-visualized-activity-infra"
+              },
+              {
+                "Key": "StackName",
+                "Value": "incub-gva-web-edge"
+              }
+            ]
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasServiceRoleF10A0667"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/CheckAuthFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasCheckAuthFunction6B3C9473"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/CheckAuthFunction/CurrentVersion/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasCheckAuthFunctionCurrentVersionF10C4D62xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/CheckAuthFunctionVersionParam/Parameu-west-1/Resoure/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasCheckAuthFunctionVersionParamParameuwest1ResoureCustomResourcePolicy088F1114"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/CheckAuthFunctionVersionParam/Parameu-west-1/Resoure/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasCheckAuthFunctionVersionParamParameuwest1Resoure8ACD3434"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/HttpHeadersFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasHttpHeadersFunctionC7A2BAB9"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/HttpHeadersFunction/CurrentVersion/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasHttpHeadersFunctionCurrentVersion8B8CDE2Exxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/HttpHeadersFunctionVersionParam/Parameu-west-1/Resoure/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasHttpHeadersFunctionVersionParamParameuwest1ResoureCustomResourcePolicyC99B8AA6"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/HttpHeadersFunctionVersionParam/Parameu-west-1/Resoure/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasHttpHeadersFunctionVersionParamParameuwest1Resoure0C3C81F2"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/ParseAuthFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasParseAuthFunctionC04A121B"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/ParseAuthFunction/CurrentVersion/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasParseAuthFunctionCurrentVersionA32A5991xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/ParseAuthFunctionVersionParam/Parameu-west-1/Resoure/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasParseAuthFunctionVersionParamParameuwest1ResoureCustomResourcePolicyCEAE27DB"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/ParseAuthFunctionVersionParam/Parameu-west-1/Resoure/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasParseAuthFunctionVersionParamParameuwest1Resoure934661C6"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/RefreshAuthFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasRefreshAuthFunction4B0B3BD6"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/RefreshAuthFunction/CurrentVersion/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasRefreshAuthFunctionCurrentVersion632285F6xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/RefreshAuthFunctionVersionParam/Parameu-west-1/Resoure/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasRefreshAuthFunctionVersionParamParameuwest1ResoureCustomResourcePolicy095CEC70"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/RefreshAuthFunctionVersionParam/Parameu-west-1/Resoure/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasRefreshAuthFunctionVersionParamParameuwest1Resoure0C0D8913"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/SignOutFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasSignOutFunction251863E4"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/SignOutFunction/CurrentVersion/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasSignOutFunctionCurrentVersion0576BBB1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/SignOutFunctionVersionParam/Parameu-west-1/Resoure/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasSignOutFunctionVersionParamParameuwest1ResoureCustomResourcePolicy16B30BE4"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/SignOutFunctionVersionParam/Parameu-west-1/Resoure/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasSignOutFunctionVersionParamParameuwest1Resoure18583D2D"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AWS679f53fac002430cb0da5b7982bd2287/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd22872D164C4C"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      }
+    },
+    "incubgvapipelineIncubatorincubgvaweb8951F403.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "incubgvapipelineIncubatorincubgvaweb8951F403.assets.json",
+        "requiresBootstrapStackVersion": 4
+      }
+    },
+    "incubgvapipelineIncubatorincubgvaweb8951F403": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://001112238813/eu-west-1",
+      "properties": {
+        "templateFile": "incubgvapipelineIncubatorincubgvaweb8951F403.template.json",
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/da75dd970901c292d03ef5da55242b5efe08b5ef639c06946b133848c8a909f4",
+        "requiresBootstrapStackVersion": 4,
+        "additionalDependencies": [
+          "incubgvapipelineIncubatorincubgvaweb8951F403.assets"
+        ],
+        "stackName": "incub-gva-web"
+      },
+      "dependencies": [
+        "incubgvapipelineIncubatorincubgvawebedge823FE13E",
+        "incubgvapipelineIncubatorincubgvaweb8951F403.assets"
+      ],
+      "metadata": {
+        "/incub-gva-pipeline/Incubator/incub-gva-web": [
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "Project",
+                "Value": "git-visualized-activity"
+              },
+              {
+                "Key": "SourceRepo",
+                "Value": "github/capraconsulting/git-visualized-activity-infra"
+              },
+              {
+                "Key": "StackName",
+                "Value": "incub-gva-web"
+              }
+            ]
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/UserPool/UserPoolClient/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserPoolUserPoolClient40176907"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/WebBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebWebBucketAF209868"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/WebBucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebWebBucketPolicy3FAD0326"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/NonceSigningSecret/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthNonceSigningSecretE26C05D1"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ClientSecret/Resource/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthClientSecretCustomResourcePolicy78CA0B49"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ClientSecret/Resource/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthClientSecret8C3CE634"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/CheckAuthFnImportNonce": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthCheckAuthFnImportNonce7C1C7E0A"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/CheckAuthFn/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthCheckAuthFn098F7B34"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/HttpHeadersFnImportNonce": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthHttpHeadersFnImportNonceF11CB9B9"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/HttpHeadersFn/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthHttpHeadersFn62AA82BB"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ParseAuthFnImportNonce": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthParseAuthFnImportNonce696F7780"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ParseAuthFn/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthParseAuthFnE3A3E046"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/RefreshAuthFnImportNonce": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthRefreshAuthFnImportNonceCCA8C1CE"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/RefreshAuthFn/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthRefreshAuthFn86734A18"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/SignOutFnImportNonce": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthSignOutFnImportNonce7E1414FD"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/SignOutFn/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthSignOutFn31AE8481"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ClientUpdate/Resource/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthClientUpdateCustomResourcePolicyD285008F"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ClientUpdate/Resource/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthClientUpdate97DF5190"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Distribution/Origin1/S3Origin/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebDistributionOrigin1S3Origin084DE486"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Distribution/Origin2/S3Origin/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebDistributionOrigin2S3Origin02304B30"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Distribution/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebDistributionCFDistributionE67D88CA"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/DnsRecord/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebDnsRecord7704C090"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebDeployRole3C4D63A7"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebDeployRoleDefaultPolicy8D88A3B4"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/Resource/Resource/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebDeployServiceRoleAD5BC231"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/Resource/Resource/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebDeployServiceRoleDefaultPolicy8B0EAC57"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/Resource/Resource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebDeploy7DEF3E65"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/FunctionArnOutput": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebDeployFunctionArnOutputAA8D5D84"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/RoleArnOutput": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebDeployRoleArnOutput2C4C53A4"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/henrist.cloudfront-auth.generate-secret.provider/Function/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "henristcloudfrontauthgeneratesecretproviderFunctionServiceRole4523A59B"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/henrist.cloudfront-auth.generate-secret.provider/Function/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "henristcloudfrontauthgeneratesecretproviderFunction3D1AFA99"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/henrist.cloudfront-auth.generate-secret.provider/Provider/framework-onEvent/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "henristcloudfrontauthgeneratesecretproviderProviderframeworkonEventServiceRoleEE714F1C"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/henrist.cloudfront-auth.generate-secret.provider/Provider/framework-onEvent/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "henristcloudfrontauthgeneratesecretproviderProviderframeworkonEventServiceRoleDefaultPolicyC126E528"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/henrist.cloudfront-auth.generate-secret.provider/Provider/framework-onEvent/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "henristcloudfrontauthgeneratesecretproviderProviderframeworkonEventD98C7326"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/AWS679f53fac002430cb0da5b7982bd2287/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd22872D164C4C"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/SsmParameterValue:--cf--region--us-east-1--stack--incub-gva-web-edge--incubgvapipelineIncubatorincubgvawebedgeAuthLambdas89B96781-CheckAuthFunction-function-arn:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SsmParameterValuecfregionuseast1stackincubgvawebedgeincubgvapipelineIncubatorincubgvawebedgeAuthLambdas89B96781CheckAuthFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/henrist.lambda-config.provider/UpdateCodeFn/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "henristlambdaconfigproviderUpdateCodeFnServiceRole2FF24712"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/henrist.lambda-config.provider/UpdateCodeFn/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "henristlambdaconfigproviderUpdateCodeFnServiceRoleDefaultPolicyE51A664A"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/henrist.lambda-config.provider/UpdateCodeFn/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "henristlambdaconfigproviderUpdateCodeFnBF8DF66B"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/henrist.lambda-config.provider/Provider/framework-onEvent/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "henristlambdaconfigproviderProviderframeworkonEventServiceRole9AA104AD"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/henrist.lambda-config.provider/Provider/framework-onEvent/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "henristlambdaconfigproviderProviderframeworkonEventServiceRoleDefaultPolicy3D96FE9E"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/henrist.lambda-config.provider/Provider/framework-onEvent/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "henristlambdaconfigproviderProviderframeworkonEventB2FC78D4"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/SsmParameterValue:--cf--region--us-east-1--stack--incub-gva-web-edge--incubgvapipelineIncubatorincubgvawebedgeAuthLambdas89B96781-HttpHeadersFunction-function-arn:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SsmParameterValuecfregionuseast1stackincubgvawebedgeincubgvapipelineIncubatorincubgvawebedgeAuthLambdas89B96781HttpHeadersFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/SsmParameterValue:--cf--region--us-east-1--stack--incub-gva-web-edge--incubgvapipelineIncubatorincubgvawebedgeAuthLambdas89B96781-ParseAuthFunction-function-arn:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SsmParameterValuecfregionuseast1stackincubgvawebedgeincubgvapipelineIncubatorincubgvawebedgeAuthLambdas89B96781ParseAuthFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/SsmParameterValue:--cf--region--us-east-1--stack--incub-gva-web-edge--incubgvapipelineIncubatorincubgvawebedgeAuthLambdas89B96781-RefreshAuthFunction-function-arn:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SsmParameterValuecfregionuseast1stackincubgvawebedgeincubgvapipelineIncubatorincubgvawebedgeAuthLambdas89B96781RefreshAuthFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/SsmParameterValue:--cf--region--us-east-1--stack--incub-gva-web-edge--incubgvapipelineIncubatorincubgvawebedgeAuthLambdas89B96781-SignOutFunction-function-arn:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SsmParameterValuecfregionuseast1stackincubgvawebedgeincubgvapipelineIncubatorincubgvawebedgeAuthLambdas89B96781SignOutFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/AWSCloudFrontPartitionHostedZoneIdMap": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWSCloudFrontPartitionHostedZoneIdMap"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Exports/Output{\"Ref\":\"WebWebBucketAF209868\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefWebWebBucketAF209868DA1CE065"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Exports/Output{\"Ref\":\"WebDistributionCFDistributionE67D88CA\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefWebDistributionCFDistributionE67D88CAD4DDDA0B"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      }
+    },
+    "incubgvapipelineIncubatorincubgvaworker2DCD06D8.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "incubgvapipelineIncubatorincubgvaworker2DCD06D8.assets.json",
+        "requiresBootstrapStackVersion": 4
+      }
+    },
+    "incubgvapipelineIncubatorincubgvaworker2DCD06D8": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://001112238813/eu-west-1",
+      "properties": {
+        "templateFile": "incubgvapipelineIncubatorincubgvaworker2DCD06D8.template.json",
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/c94f0f77645d73668bfe71c10723ca163ef04ad121da2d1e53ae603e17b7da00",
+        "requiresBootstrapStackVersion": 4,
+        "additionalDependencies": [
+          "incubgvapipelineIncubatorincubgvaworker2DCD06D8.assets"
+        ],
+        "stackName": "incub-gva-worker"
+      },
+      "dependencies": [
+        "incubgvapipelineIncubatorincubgvaweb8951F403",
+        "incubgvapipelineIncubatorincubgvaworker2DCD06D8.assets"
+      ],
+      "metadata": {
+        "/incub-gva-pipeline/Incubator/incub-gva-worker": [
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "Project",
+                "Value": "git-visualized-activity"
+              },
+              {
+                "Key": "SourceRepo",
+                "Value": "github/capraconsulting/git-visualized-activity-infra"
+              },
+              {
+                "Key": "StackName",
+                "Value": "incub-gva-worker"
+              }
+            ]
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-worker/Cluster/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterEB0386A7"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-worker/LogGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LogGroupF5B46931"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-worker/TaskDef/TaskRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TaskDefTaskRole1EDB4A67"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-worker/TaskDef/TaskRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TaskDefTaskRoleDefaultPolicyA592CB18"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-worker/TaskDef/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TaskDef54694570"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-worker/TaskDef/ExecutionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TaskDefExecutionRoleB4775C97"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-worker/TaskDef/ExecutionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TaskDefExecutionRoleDefaultPolicy0DBB737A"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-worker/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SecurityGroupDD263621"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-worker/Launcher/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LauncherServiceRoleBD2C652A"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-worker/Launcher/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LauncherServiceRoleDefaultPolicy66697DD3"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-worker/Launcher/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LauncherDC0405AA"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-worker/Launcher/AllowEventRuleincubgvapipelineIncubatorincubgvaworkerScheduleRule53EFA260": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LauncherAllowEventRuleincubgvapipelineIncubatorincubgvaworkerScheduleRule53EFA2608B5FFACC"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-worker/LauncherParam/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LauncherParamACA93A7A"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-worker/LauncherArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LauncherArn"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-worker/ScheduleRule/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ScheduleRuleDA5BD877"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-worker/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-worker/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      }
+    }
+  },
+  "runtime": {}
+}
