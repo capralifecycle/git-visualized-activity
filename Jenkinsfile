@@ -57,14 +57,12 @@ buildConfig([
       }
     }
 
-    def workerTagName
     stage("Build worker") {
       dir("worker") {
         ecrPublish.withEcrLogin(workerPublishConfig) {
-          def (img, isSameImageAsLast) = ecrPublish.buildImage(workerPublishConfig)
-
-          workerTagName = ecrPublish.generateLongTag(workerPublishConfig)
-          img.push(workerTagName)
+          // We only store cache image since CDK builds the final image,
+          // which means this is only doing testing.
+          ecrPublish.buildImage(workerPublishConfig)
         }
       }
     }
