@@ -40,6 +40,11 @@ import {
   ZAxis,
 } from "recharts"
 
+interface Dataset {
+  rows: Row[]
+  yearMonths: string[]
+}
+
 const dataPath = "data/commits.csv"
 
 const chartColors = [
@@ -71,12 +76,14 @@ function getChartColor(i: number) {
   return chartColors[i % chartColors.length]
 }
 
-const monthBasis = new Array(12)
-  .fill(null)
-  .reduce<{ [month: number]: number }>((acc, _, idx) => {
-    acc[idx] = 0
+function yearMonthZeroBasis(
+  yearMonths: string[],
+): { [yearMonth: string]: number } {
+  return yearMonths.reduce<{ [yearMonth: string]: number }>((acc, cur) => {
+    acc[cur] = 0
     return acc
   }, {})
+}
 
 const months = [
   "January",
@@ -272,12 +279,12 @@ const Punchcard = ({ data }: { data: Row[] }) => {
   )
 }
 
-interface MonthPartition {
-  [partition: string]: { [month: number]: number }
+interface YearMonthPartition {
+  [partition: string]: { [yearMonth: string]: number }
 }
 
-function groupByMonth(
-  data: Row[],
+function groupByYearMonth(
+  dataset: Dataset,
   fieldOrGetter: "authorName" | "owner" | "project" | ((row: Row) => string),
 ) {
   const getter =
@@ -285,22 +292,22 @@ function groupByMonth(
       ? (row: Row) => row[fieldOrGetter]
       : fieldOrGetter
 
-  return data.reduce<MonthPartition>((acc, row) => {
+  return dataset.rows.reduce<YearMonthPartition>((acc, row) => {
     const partition = getter(row)
-    const month = new Date(row["timestamp"]).getMonth()
+    const yearMonth = getYearMonth(row.timestamp)
 
-    if (!acc[partition]) acc[partition] = { ...monthBasis }
-    acc[partition][month] = (acc[partition][month] || 0) + 1
+    if (!acc[partition]) acc[partition] = yearMonthZeroBasis(dataset.yearMonths)
+    acc[partition][yearMonth] = (acc[partition][yearMonth] || 0) + 1
     return acc
   }, {})
 }
 
-function mapToMonthTop(data: MonthPartition) {
-  return months.map((month, idx) => ({
-    month,
+function mapToYearMonthTop(data: YearMonthPartition, yearMonths: string[]) {
+  return yearMonths.map((yearMonth) => ({
+    yearMonth,
     ...Object.entries(data).reduce<{ [partition: string]: number }>(
       (acc, [partition, cur]) => {
-        acc[partition] = cur[idx]
+        acc[partition] = cur[yearMonth]
         return acc
       },
       {},
@@ -308,9 +315,44 @@ function mapToMonthTop(data: MonthPartition) {
   }))
 }
 
-const OverallMonthly = ({ data }: { data: Row[] }) => {
+function getYearMonth(date: Date): string {
+  const month = (date.getMonth() + 1).toString().padStart(2, "0")
+  const year = date.getFullYear()
+
+  return `${year}-${month}`
+}
+
+function getAllYearMonthBetween(data: Row[]): string[] {
+  let first: Date | null = null
+  let last: Date | null = null
+
+  for (const row of data) {
+    if (first == null || row.timestamp < first) {
+      first = row.timestamp
+    }
+    if (last == null || row.timestamp > last) {
+      last = row.timestamp
+    }
+  }
+
+  if (first == null || last == null) return []
+
+  let cur = first
+  const result: string[] = []
+
+  while (true) {
+    result.push(getYearMonth(cur))
+
+    cur = new Date(cur.getFullYear(), cur.getMonth() + 1, 1)
+    if (getYearMonth(cur) > getYearMonth(last)) break
+  }
+
+  return result
+}
+
+const OverallMonthly = ({ dataset }: { dataset: Dataset }) => {
   interface MonthStats {
-    [month: number]: {
+    [yearMonth: string]: {
       contributors: string[]
       commits: number
       repos: string[]
@@ -318,8 +360,8 @@ const OverallMonthly = ({ data }: { data: Row[] }) => {
     }
   }
 
-  const initial = months.reduce<MonthStats>((acc, _, idx) => {
-    acc[idx] = {
+  const initial = dataset.yearMonths.reduce<MonthStats>((acc, cur) => {
+    acc[cur] = {
       contributors: [],
       repos: [],
       commits: 0,
@@ -328,30 +370,30 @@ const OverallMonthly = ({ data }: { data: Row[] }) => {
     return acc
   }, {})
 
-  const grouped = data.reduce<MonthStats>((acc, row) => {
-    const month = row.timestamp.getMonth()
+  const grouped = dataset.rows.reduce<MonthStats>((acc, row) => {
+    const yearMonth = getYearMonth(row.timestamp)
 
-    if (!acc[month].contributors.includes(row.authorName)) {
-      acc[month].contributors.push(row.authorName)
+    if (!acc[yearMonth].contributors.includes(row.authorName)) {
+      acc[yearMonth].contributors.push(row.authorName)
     }
 
     const repo = fullRepoId(row)
-    if (!acc[month].repos.includes(repo)) {
-      acc[month].repos.push(repo)
+    if (!acc[yearMonth].repos.includes(repo)) {
+      acc[yearMonth].repos.push(repo)
     }
 
-    if (!acc[month].projects.includes(row.project)) {
-      acc[month].projects.push(row.project)
+    if (!acc[yearMonth].projects.includes(row.project)) {
+      acc[yearMonth].projects.push(row.project)
     }
 
-    acc[month].commits++
+    acc[yearMonth].commits++
     return acc
   }, initial)
 
   const normalized = Object.entries(grouped)
-    .sort((a, b) => Number(a[0]) - Number(b[0]))
-    .map(([month, cur]) => ({
-      month: months[Number(month)],
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([yearMonth, cur]) => ({
+      yearMonth: yearMonth,
       contributors: cur.contributors.length,
       commits: cur.commits,
       repos: cur.repos.length,
@@ -363,7 +405,7 @@ const OverallMonthly = ({ data }: { data: Row[] }) => {
       <LineChart data={normalized}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis
-          dataKey="month"
+          dataKey="yearMonth"
           type="category"
           interval={0}
           tickLine
@@ -390,13 +432,19 @@ const OverallMonthly = ({ data }: { data: Row[] }) => {
   )
 }
 
-const CustomLineMonthChart = ({ data }: { data: MonthPartition }) => (
+const CustomLineYearMonthChart = ({
+  data,
+  yearMonths,
+}: {
+  data: YearMonthPartition
+  yearMonths: string[]
+}) => (
   <ResponsiveContainer width="100%" height={300}>
-    <LineChart data={mapToMonthTop(data)}>
+    <LineChart data={mapToYearMonthTop(data, yearMonths)}>
       <CartesianGrid strokeDasharray="3 3" />
       <YAxis />
       <XAxis
-        dataKey="month"
+        dataKey="yearMonth"
         type="category"
         interval={0}
         tickLine
@@ -421,27 +469,27 @@ const CustomLineMonthChart = ({ data }: { data: MonthPartition }) => (
   </ResponsiveContainer>
 )
 
-const AdditionsDeletions = ({ data }: { data: Row[] }) => {
-  const grouped = data.reduce(
+const AdditionsDeletions = ({ dataset }: { dataset: Dataset }) => {
+  const grouped = dataset.rows.reduce(
     (acc, row) => {
-      const month = new Date(row["timestamp"]).getMonth()
-      acc["additions"][month] += row.linesInserted
-      acc["deletions"][month] -= row.linesDeleted
+      const monthMonth = getYearMonth(row.timestamp)
+      acc["additions"][monthMonth] += row.linesInserted
+      acc["deletions"][monthMonth] -= row.linesDeleted
       return acc
     },
     {
-      additions: { ...monthBasis },
-      deletions: { ...monthBasis },
+      additions: yearMonthZeroBasis(dataset.yearMonths),
+      deletions: yearMonthZeroBasis(dataset.yearMonths),
     },
   )
 
   return (
     <ResponsiveContainer width="100%" height={300}>
-      <AreaChart data={mapToMonthTop(grouped)}>
+      <AreaChart data={mapToYearMonthTop(grouped, dataset.yearMonths)}>
         <CartesianGrid strokeDasharray="3 3" />
         <YAxis />
         <XAxis
-          dataKey="month"
+          dataKey="yearMonth"
           type="category"
           interval={0}
           tickLine
@@ -476,7 +524,7 @@ const AdditionsDeletions = ({ data }: { data: Row[] }) => {
   )
 }
 
-function filterByPeaks(data: MonthPartition, top = 15) {
+function filterByPeaks(data: YearMonthPartition, top = 15) {
   const onlyShowPartitions = Object.entries(data)
     .map(([partition, cur]) => ({
       partition,
@@ -486,7 +534,7 @@ function filterByPeaks(data: MonthPartition, top = 15) {
     .slice(0, top)
     .map((it) => it.partition)
 
-  return Object.entries(data).reduce<MonthPartition>(
+  return Object.entries(data).reduce<YearMonthPartition>(
     (acc, [partition, cur]) => {
       if (onlyShowPartitions.includes(partition)) {
         acc[partition] = cur
@@ -820,6 +868,11 @@ class App extends React.Component<
 
   render() {
     const filteredData = this.getFilteredData()
+    const yearMonths = getAllYearMonthBetween(filteredData)
+    const filteredDataset: Dataset = {
+      rows: filteredData,
+      yearMonths,
+    }
 
     return (
       <div className={this.props.classes.layout}>
@@ -885,33 +938,39 @@ class App extends React.Component<
         <Typography component="h2" variant="h4">
           Monthly activity
         </Typography>
-        <OverallMonthly data={filteredData} />
+        <OverallMonthly dataset={filteredDataset} />
         <Typography component="h2" variant="h4">
           Monthly number of commits per GitHub org
         </Typography>
-        <CustomLineMonthChart data={groupByMonth(filteredData, "owner")} />
+        <CustomLineYearMonthChart
+          data={groupByYearMonth(filteredDataset, "owner")}
+          yearMonths={yearMonths}
+        />
         <Typography component="h2" variant="h4">
           Monthly number of commits per project
         </Typography>
-        <CustomLineMonthChart
-          data={filterByPeaks(groupByMonth(filteredData, "project"))}
+        <CustomLineYearMonthChart
+          data={filterByPeaks(groupByYearMonth(filteredDataset, "project"))}
+          yearMonths={yearMonths}
         />
         <Typography component="h2" variant="h4">
           Monthly number of commits per author (top 15)
         </Typography>
-        <CustomLineMonthChart
-          data={filterByPeaks(groupByMonth(filteredData, "authorName"))}
+        <CustomLineYearMonthChart
+          data={filterByPeaks(groupByYearMonth(filteredDataset, "authorName"))}
+          yearMonths={yearMonths}
         />
         <Typography component="h2" variant="h4">
           Monthly number of commits per repo (top 15)
         </Typography>
-        <CustomLineMonthChart
-          data={filterByPeaks(groupByMonth(filteredData, fullRepoId))}
+        <CustomLineYearMonthChart
+          data={filterByPeaks(groupByYearMonth(filteredDataset, fullRepoId))}
+          yearMonths={yearMonths}
         />
         <Typography component="h2" variant="h4">
           Additions and deletions
         </Typography>
-        <AdditionsDeletions data={filteredData} />
+        <AdditionsDeletions dataset={filteredDataset} />
         <Grid container>
           <Grid item xs={12} md={6}>
             <Typography component="h2" variant="h4">
