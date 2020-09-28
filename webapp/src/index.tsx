@@ -354,7 +354,6 @@ const OverallMonthly = ({ dataset }: { dataset: Dataset }) => {
   interface MonthStats {
     [yearMonth: string]: {
       contributors: string[]
-      commits: number
       repos: string[]
       projects: string[]
     }
@@ -364,7 +363,6 @@ const OverallMonthly = ({ dataset }: { dataset: Dataset }) => {
     acc[cur] = {
       contributors: [],
       repos: [],
-      commits: 0,
       projects: [],
     }
     return acc
@@ -386,7 +384,6 @@ const OverallMonthly = ({ dataset }: { dataset: Dataset }) => {
       acc[yearMonth].projects.push(row.project)
     }
 
-    acc[yearMonth].commits++
     return acc
   }, initial)
 
@@ -395,7 +392,6 @@ const OverallMonthly = ({ dataset }: { dataset: Dataset }) => {
     .map(([yearMonth, cur]) => ({
       yearMonth: yearMonth,
       contributors: cur.contributors.length,
-      commits: cur.commits,
       repos: cur.repos.length,
       projects: cur.projects.length,
     }))
@@ -404,6 +400,7 @@ const OverallMonthly = ({ dataset }: { dataset: Dataset }) => {
     <ResponsiveContainer width="100%" height={300}>
       <LineChart data={normalized}>
         <CartesianGrid strokeDasharray="3 3" />
+        <YAxis />
         <XAxis
           dataKey="yearMonth"
           type="category"
@@ -413,11 +410,10 @@ const OverallMonthly = ({ dataset }: { dataset: Dataset }) => {
         />
         <Tooltip />
         <Legend />
-        {["commits", "contributors", "repos", "projects"].map((val, idx) => (
+        {["contributors", "repos", "projects"].map((val, idx) => (
           <Line
             key={val}
             type="monotone"
-            yAxisId={val}
             dataKey={val}
             dot={{
               stroke: getChartColor(idx),
@@ -939,6 +935,13 @@ class App extends React.Component<
           Monthly activity
         </Typography>
         <OverallMonthly dataset={filteredDataset} />
+        <Typography component="h2" variant="h4">
+          Monthly number of commits
+        </Typography>
+        <CustomLineYearMonthChart
+          data={groupByYearMonth(filteredDataset, () => "No group")}
+          yearMonths={yearMonths}
+        />
         <Typography component="h2" variant="h4">
           Monthly number of commits per GitHub org
         </Typography>
