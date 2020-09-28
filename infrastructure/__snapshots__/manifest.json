@@ -27,7 +27,7 @@
         "templateFile": "incub-gva-pipeline.template.json",
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/e87a4a1d4298d684fc1ba3971349222eb53c3138b2565e80683a43919ee2f52c",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/c1cb3d29edabe1ee4c989707e5e06a825ac83b1285ecc60711034d2ddc71753c",
         "requiresBootstrapStackVersion": 4,
         "additionalDependencies": [
           "incub-gva-pipeline.assets"
@@ -57,184 +57,208 @@
             ]
           }
         ],
-        "/incub-gva-pipeline/BuildBucket/Resource": [
+        "/incub-gva-pipeline/Pipeline/CloudAssemblyBucket/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "BuildBucket51D063EF"
+            "data": "PipelineCloudAssemblyBucket5CFE4ACE"
           }
         ],
-        "/incub-gva-pipeline/BuildBucketName": [
+        "/incub-gva-pipeline/Pipeline/CloudAssemblyUploadJenkinsRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "BuildBucketName"
+            "data": "PipelineCloudAssemblyUploadJenkinsRoleE66F0E92"
           }
         ],
-        "/incub-gva-pipeline/CodePipeline/ArtifactsBucketEncryptionKey/Resource": [
+        "/incub-gva-pipeline/Pipeline/CloudAssemblyUploadJenkinsRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CodePipelineArtifactsBucketEncryptionKey85407CB4"
+            "data": "PipelineCloudAssemblyUploadJenkinsRoleDefaultPolicy30F8D0A7"
           }
         ],
-        "/incub-gva-pipeline/CodePipeline/ArtifactsBucket/Resource": [
+        "/incub-gva-pipeline/Pipeline/CodePipeline/ArtifactsBucketEncryptionKey/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CodePipelineArtifactsBucketF1E925CF"
+            "data": "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE"
           }
         ],
-        "/incub-gva-pipeline/CodePipeline/ArtifactsBucketEncryptionKeyAlias/Resource": [
+        "/incub-gva-pipeline/Pipeline/CodePipeline/ArtifactsBucket/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CodePipelineArtifactsBucketEncryptionKeyAliasA0605EC5"
+            "data": "PipelineCodePipelineArtifactsBucket9E5E7047"
           }
         ],
-        "/incub-gva-pipeline/CodePipeline/Role/Resource": [
+        "/incub-gva-pipeline/Pipeline/CodePipeline/ArtifactsBucketEncryptionKeyAlias/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CodePipelineRoleB3A660B4"
+            "data": "PipelineCodePipelineArtifactsBucketEncryptionKeyAlias3EF3F23B"
           }
         ],
-        "/incub-gva-pipeline/CodePipeline/Role/DefaultPolicy/Resource": [
+        "/incub-gva-pipeline/Pipeline/CodePipeline/Role/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CodePipelineRoleDefaultPolicy8D520A8D"
+            "data": "PipelineCodePipelineRoleEE058E60"
           }
         ],
-        "/incub-gva-pipeline/CodePipeline/Resource": [
+        "/incub-gva-pipeline/Pipeline/CodePipeline/Role/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CodePipelineB74E5936"
+            "data": "PipelineCodePipelineRoleDefaultPolicy37C67326"
           }
         ],
-        "/incub-gva-pipeline/CodePipeline/Source/source/CodePipelineActionRole/Resource": [
+        "/incub-gva-pipeline/Pipeline/CodePipeline/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CodePipelineSourcesourceCodePipelineActionRole10DD5EBF"
+            "data": "PipelineCodePipeline4FC0E9B7"
           }
         ],
-        "/incub-gva-pipeline/CodePipeline/Source/source/CodePipelineActionRole/DefaultPolicy/Resource": [
+        "/incub-gva-pipeline/Pipeline/CodePipeline/Source/source/CodePipelineActionRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CodePipelineSourcesourceCodePipelineActionRoleDefaultPolicy86213970"
+            "data": "PipelineCodePipelineSourcesourceCodePipelineActionRoleAB26C0AE"
           }
         ],
-        "/incub-gva-pipeline/CodePipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/Resource": [
+        "/incub-gva-pipeline/Pipeline/CodePipeline/Source/source/CodePipelineActionRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CodePipelineUpdatePipelineSelfMutateCodePipelineActionRoleBB0002F2"
+            "data": "PipelineCodePipelineSourcesourceCodePipelineActionRoleDefaultPolicy7825EAF4"
           }
         ],
-        "/incub-gva-pipeline/CodePipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/DefaultPolicy/Resource": [
+        "/incub-gva-pipeline/Pipeline/CodePipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CodePipelineUpdatePipelineSelfMutateCodePipelineActionRoleDefaultPolicyF3250567"
+            "data": "PipelineCodePipelineUpdatePipelineSelfMutateCodePipelineActionRole16D29A61"
           }
         ],
-        "/incub-gva-pipeline/CdkPipeline/UpdatePipeline/SelfMutation/Role/Resource": [
+        "/incub-gva-pipeline/Pipeline/CodePipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkPipelineUpdatePipelineSelfMutationRole9B65198C"
+            "data": "PipelineCodePipelineUpdatePipelineSelfMutateCodePipelineActionRoleDefaultPolicyAA04AE0A"
           }
         ],
-        "/incub-gva-pipeline/CdkPipeline/UpdatePipeline/SelfMutation/Role/DefaultPolicy/Resource": [
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/UpdatePipeline/SelfMutation/Role/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkPipelineUpdatePipelineSelfMutationRoleDefaultPolicyAA8CCA2A"
+            "data": "PipelineCdkPipelineUpdatePipelineSelfMutationRole91D6CBA8"
           }
         ],
-        "/incub-gva-pipeline/CdkPipeline/UpdatePipeline/SelfMutation/Resource": [
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/UpdatePipeline/SelfMutation/Role/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkPipelineUpdatePipelineSelfMutation81360810"
+            "data": "PipelineCdkPipelineUpdatePipelineSelfMutationRoleDefaultPolicy128B1173"
           }
         ],
-        "/incub-gva-pipeline/CdkPipeline/Assets/FileRole/Resource": [
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/UpdatePipeline/SelfMutation/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkPipelineAssetsFileRoleDBBCC980"
+            "data": "PipelineCdkPipelineUpdatePipelineSelfMutation3D8B717E"
           }
         ],
-        "/incub-gva-pipeline/CdkPipeline/Assets/FileRole/DefaultPolicy/Resource": [
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/FileRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkPipelineAssetsFileRoleDefaultPolicy43508724"
+            "data": "PipelineCdkPipelineAssetsFileRole0474FB57"
           }
         ],
-        "/incub-gva-pipeline/CdkPipeline/Assets/FileAsset1/Default/Resource": [
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/FileRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkPipelineAssetsFileAsset1416E4A07"
+            "data": "PipelineCdkPipelineAssetsFileRoleDefaultPolicy2EB63D68"
           }
         ],
-        "/incub-gva-pipeline/CdkPipeline/Assets/FileAsset2/Default/Resource": [
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/FileAsset1/Default/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkPipelineAssetsFileAsset2FD984081"
+            "data": "PipelineCdkPipelineAssetsFileAsset151D3981E"
           }
         ],
-        "/incub-gva-pipeline/CdkPipeline/Assets/FileAsset3/Default/Resource": [
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/FileAsset2/Default/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkPipelineAssetsFileAsset3F5F50E93"
+            "data": "PipelineCdkPipelineAssetsFileAsset2207E4C42"
           }
         ],
-        "/incub-gva-pipeline/CdkPipeline/Assets/FileAsset4/Default/Resource": [
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/FileAsset3/Default/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkPipelineAssetsFileAsset4ACA86EDA"
+            "data": "PipelineCdkPipelineAssetsFileAsset31CF4901A"
           }
         ],
-        "/incub-gva-pipeline/CdkPipeline/Assets/FileAsset5/Default/Resource": [
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/FileAsset4/Default/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkPipelineAssetsFileAsset58C96EFED"
+            "data": "PipelineCdkPipelineAssetsFileAsset4908CCAA5"
           }
         ],
-        "/incub-gva-pipeline/CdkPipeline/Assets/FileAsset6/Default/Resource": [
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/FileAsset5/Default/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkPipelineAssetsFileAsset63E6B1FA0"
+            "data": "PipelineCdkPipelineAssetsFileAsset5AAB63076"
           }
         ],
-        "/incub-gva-pipeline/CdkPipeline/Assets/FileAsset7/Default/Resource": [
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/FileAsset6/Default/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkPipelineAssetsFileAsset7EB90C8B0"
+            "data": "PipelineCdkPipelineAssetsFileAsset6BD52B215"
           }
         ],
-        "/incub-gva-pipeline/CdkPipeline/Assets/FileAsset8/Default/Resource": [
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/FileAsset7/Default/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkPipelineAssetsFileAsset814971E6A"
+            "data": "PipelineCdkPipelineAssetsFileAsset712CD7925"
           }
         ],
-        "/incub-gva-pipeline/CdkPipeline/Assets/FileAsset9/Default/Resource": [
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/FileAsset8/Default/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkPipelineAssetsFileAsset98309330B"
+            "data": "PipelineCdkPipelineAssetsFileAsset8AA34989C"
           }
         ],
-        "/incub-gva-pipeline/CdkPipeline/Assets/FileAsset10/Default/Resource": [
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/FileAsset9/Default/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkPipelineAssetsFileAsset10E64A4959"
+            "data": "PipelineCdkPipelineAssetsFileAsset9E9701DDD"
           }
         ],
-        "/incub-gva-pipeline/CdkPipeline/Assets/DockerRole/Resource": [
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/FileAsset10/Default/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkPipelineAssetsDockerRoleF6E18FF3"
+            "data": "PipelineCdkPipelineAssetsFileAsset106A5B75BE"
           }
         ],
-        "/incub-gva-pipeline/CdkPipeline/Assets/DockerRole/DefaultPolicy/Resource": [
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/DockerRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkPipelineAssetsDockerRoleDefaultPolicy237886CB"
+            "data": "PipelineCdkPipelineAssetsDockerRole064148FF"
           }
         ],
-        "/incub-gva-pipeline/CdkPipeline/Assets/DockerAsset1/Default/Resource": [
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/DockerRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkPipelineAssetsDockerAsset1ABECB7E0"
+            "data": "PipelineCdkPipelineAssetsDockerRoleDefaultPolicy19BE8BF8"
+          }
+        ],
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/DockerAsset1/Default/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineCdkPipelineAssetsDockerAsset1EC210797"
+          }
+        ],
+        "/incub-gva-pipeline/Pipeline/CloudAssemblyRoleArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineCloudAssemblyRoleArnB6965D26"
+          }
+        ],
+        "/incub-gva-pipeline/Pipeline/CloudAssemblyBucketName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineCloudAssemblyBucketName0E9757F5"
+          }
+        ],
+        "/incub-gva-pipeline/Pipeline/CloudAssemblyBucketKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineCloudAssemblyBucketKey512D9C78"
           }
         ],
         "/incub-gva-pipeline/Incubator": [

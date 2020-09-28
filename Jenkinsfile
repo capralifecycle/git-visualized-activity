@@ -18,8 +18,8 @@ buildConfig([
     parameters([
       booleanParam(
         defaultValue: false,
-        description: "Skip branch check - force deploy",
-        name: "overrideBranchCheck"
+        description: "Skip branch check for webapp - force deploy",
+        name: "webappOverrideBranchCheck"
       ),
       ecrPublish.dockerSkipCacheParam(),
     ]),
@@ -77,12 +77,27 @@ buildConfig([
             git status .
             git diff --exit-code .
           """
+
+          createCloudAssemblyZip()
         }
       }
     }
 
-    def allowDeploy = env.BRANCH_NAME == "master" || params.overrideBranchCheck
-    if (allowDeploy) {
+    def cdkAllowDeploy = env.BRANCH_NAME == "master"
+    if (cdkAllowDeploy) {
+      stage("Triggering CDK deployment") {
+        dir("infrastructure") {
+          uploadCloudAssemblyZip(
+            roleArn: "arn:aws:iam::001112238813:role/incub-gva-cdk-upload-liflig-jenkins",
+            bucketName: "incub-gva-cdk-001112238813-eu-west-1",
+            bucketKey: "cloud-assembly-incubator.zip",
+          )
+        }
+      }
+    }
+
+    def webappAllowDeploy = env.BRANCH_NAME == "master" || params.webappOverrideBranchCheck
+    if (webappAllowDeploy) {
       stage("Deploy webapp") {
         webapp.deploy {
           artifactS3Url = webappS3Url
@@ -91,5 +106,49 @@ buildConfig([
         }
       }
     }
+  }
+}
+
+// TODO: Move to pipeline lib.
+/**
+ * Run cdk synth to produce a Cloud Assembly and package this
+ * as a zip-file ready to be uploaded.
+ *
+ * The built assembly will be present at cloud-assembly.zip.
+ */
+def createCloudAssemblyZip() {
+  sh """
+    rm -rf cdk.out
+    npm run cdk -- synth >/dev/null
+    cd cdk.out
+    zip -r ../cloud-assembly.zip .
+  """
+}
+
+/**
+ * Upload a built Cloud Assembly zip-file.
+ *
+ * The zip-file must be present as cloud-assembly.zip.
+ *
+ * Params:
+ *   - roleArn
+ *   - bucketName
+ *   - bucketKey
+ */
+def uploadCloudAssemblyZip(Map args) {
+  if (!args.containsKey("roleArn")) {
+    throw new Exception("Missing roleArn")
+  }
+  if (!args.containsKey("bucketName")) {
+    throw new Exception("Missing bucketName")
+  }
+  if (!args.containsKey("bucketKey")) {
+    throw new Exception("Missing bucketKey")
+  }
+
+  def s3Url = "s3://${args.bucketName}/${args.bucketKey}"
+
+  withAwsRole(args.roleArn) {
+    sh "aws s3 cp cloud-assembly.zip $s3Url"
   }
 }
