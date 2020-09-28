@@ -2564,7 +2564,7 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaworker2DCD06D8.assets.json\\\" --verbose publish \\\"d2fe62d038a2fd22e679c219b75bfe2e7a7042a9ae67ca05e654096bf6ae2f6d:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaworker2DCD06D8.assets.json\\\" --verbose publish \\\"c838b1e1deca7ecb89c54861941d9e7a59d13727a481a4e6e180e794020f3ad6:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
         "EncryptionKey": {

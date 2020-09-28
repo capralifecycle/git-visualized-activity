@@ -569,7 +569,7 @@
         "templateFile": "incubgvapipelineIncubatorincubgvaworker2DCD06D8.template.json",
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/0461da2ac5b8a2241d7ab3b99b501cd139a2faebb73d5598a144674e5d5400bd",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/20cfca77b7272aff53c6674553ea3e68f96fac7b0b6b4e64a6c47ac09595d194",
         "requiresBootstrapStackVersion": 4,
         "additionalDependencies": [
           "incubgvapipelineIncubatorincubgvaworker2DCD06D8.assets"

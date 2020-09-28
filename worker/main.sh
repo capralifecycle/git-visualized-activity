@@ -13,13 +13,16 @@ fi
 # Fetch parameters if PARAMS_PREFIX is set.
 if [ -n "${PARAMS_PREFIX:-}" ]; then
   if [ -z "${CALS_GITHUB_TOKEN:-}" ]; then
-    export CALS_GITHUB_TOKEN=$(get_param github-token)
+    CALS_GITHUB_TOKEN=$(get_param github-token)
+    export CALS_GITHUB_TOKEN
   fi
   if [ -z "${BUCKET_NAME:-}" ]; then
-    export BUCKET_NAME=$(get_param web-bucket-name)
+    BUCKET_NAME=$(get_param web-bucket-name)
+    export BUCKET_NAME
   fi
   if [ -z "${CF_DISTRIBUTION:-}" ]; then
-    export CF_DISTRIBUTION=$(get_param cf-distribution-id)
+    CF_DISTRIBUTION=$(get_param cf-distribution-id)
+    export CF_DISTRIBUTION
   fi
 fi
 

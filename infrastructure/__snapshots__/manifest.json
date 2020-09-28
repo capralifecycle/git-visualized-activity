@@ -27,7 +27,7 @@
         "templateFile": "incub-gva-pipeline.template.json",
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/c1cb3d29edabe1ee4c989707e5e06a825ac83b1285ecc60711034d2ddc71753c",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/d05920507eadbae745e2c0e1440c658181c296969c7869f3a290e7620d36555f",
         "requiresBootstrapStackVersion": 4,
         "additionalDependencies": [
           "incub-gva-pipeline.assets"
