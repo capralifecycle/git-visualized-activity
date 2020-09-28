@@ -3,9 +3,11 @@ set -eu -o pipefail
 
 cd "$1"
 
-for dir in */.git; do
+find . -maxdepth 2 -type d -name .git -print0 \
+| while IFS= read -r -d '' line; do
   (
-    cd "$dir/.."
+    cd "$line/.."
     echo "$(basename "$PWD"),$(git rev-parse --abbrev-ref HEAD),unknown"
   )
+
 done
