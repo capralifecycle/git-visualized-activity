@@ -12,6 +12,11 @@
       "environment": "aws://001112238813/us-east-1",
       "properties": {
         "templateFile": "incubgvapipelineIncubatorincubgvawebedge823FE13E.template.json",
+        "tags": {
+          "Project": "git-visualized-activity",
+          "SourceRepo": "github/capraconsulting/git-visualized-activity",
+          "StackName": "incub-gva-web-edge"
+        },
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-us-east-1",
         "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-us-east-1/b42b521a05c95acb3a668cc480e314e8a265e3176d5105b9350f5a4a5a098351",
@@ -208,9 +213,14 @@
       "environment": "aws://001112238813/eu-west-1",
       "properties": {
         "templateFile": "incubgvapipelineIncubatorincubgvaweb8951F403.template.json",
+        "tags": {
+          "Project": "git-visualized-activity",
+          "SourceRepo": "github/capraconsulting/git-visualized-activity",
+          "StackName": "incub-gva-web"
+        },
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/0f5930b1c9c0c3a64825fb2fa876a7a7717bd2421bea5c9b275e6c6d8c12f10f",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/e102277115e4e7af78b536b834dce3a2087aad3aeaebc7ca6776b9603f8a655b",
         "requiresBootstrapStackVersion": 4,
         "additionalDependencies": [
           "incubgvapipelineIncubatorincubgvaweb8951F403.assets"
@@ -567,6 +577,11 @@
       "environment": "aws://001112238813/eu-west-1",
       "properties": {
         "templateFile": "incubgvapipelineIncubatorincubgvaworker2DCD06D8.template.json",
+        "tags": {
+          "Project": "git-visualized-activity",
+          "SourceRepo": "github/capraconsulting/git-visualized-activity",
+          "StackName": "incub-gva-worker"
+        },
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1",
         "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/20cfca77b7272aff53c6674553ea3e68f96fac7b0b6b4e64a6c47ac09595d194",
