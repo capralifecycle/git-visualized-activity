@@ -25,9 +25,14 @@
       "environment": "aws://001112238813/eu-west-1",
       "properties": {
         "templateFile": "incub-gva-pipeline.template.json",
+        "tags": {
+          "Project": "git-visualized-activity",
+          "SourceRepo": "github/capraconsulting/git-visualized-activity",
+          "StackName": "incub-gva-pipeline"
+        },
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/d05920507eadbae745e2c0e1440c658181c296969c7869f3a290e7620d36555f",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/37221276668102746a4b584e19034bc8aee9ba0e2f5398d72f93dc6b34efe186",
         "requiresBootstrapStackVersion": 4,
         "additionalDependencies": [
           "incub-gva-pipeline.assets"
@@ -81,16 +86,16 @@
             "data": "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE"
           }
         ],
-        "/incub-gva-pipeline/Pipeline/CodePipeline/ArtifactsBucket/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PipelineCodePipelineArtifactsBucket9E5E7047"
-          }
-        ],
         "/incub-gva-pipeline/Pipeline/CodePipeline/ArtifactsBucketEncryptionKeyAlias/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "PipelineCodePipelineArtifactsBucketEncryptionKeyAlias3EF3F23B"
+          }
+        ],
+        "/incub-gva-pipeline/Pipeline/CodePipeline/ArtifactsBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineCodePipelineArtifactsBucket9E5E7047"
           }
         ],
         "/incub-gva-pipeline/Pipeline/CodePipeline/Role/Resource": [

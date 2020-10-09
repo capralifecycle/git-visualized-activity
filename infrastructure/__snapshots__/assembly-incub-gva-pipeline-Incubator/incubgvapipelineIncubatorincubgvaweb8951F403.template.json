@@ -1469,7 +1469,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-001112238813-eu-west-1",
-          "S3Key": "1ed82f549c7384dfae04a04440b3d1bf30653fde425e280dbb3ea03dbb3c96fc.zip"
+          "S3Key": "c691172cdeefa2c91b5a2907f9d81118e47597634943344795f1a844192dd49c.zip"
         },
         "Handler": "framework.onEvent",
         "Role": {
@@ -1802,7 +1802,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-001112238813-eu-west-1",
-          "S3Key": "1ed82f549c7384dfae04a04440b3d1bf30653fde425e280dbb3ea03dbb3c96fc.zip"
+          "S3Key": "c691172cdeefa2c91b5a2907f9d81118e47597634943344795f1a844192dd49c.zip"
         },
         "Handler": "framework.onEvent",
         "Role": {
