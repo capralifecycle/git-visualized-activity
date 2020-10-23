@@ -796,10 +796,8 @@
           ],
           "CacheBehaviors": [
             {
+              "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
               "Compress": true,
-              "ForwardedValues": {
-                "QueryString": true
-              },
               "LambdaFunctionAssociations": [
                 {
                   "EventType": "viewer-request",
@@ -816,10 +814,8 @@
               "ViewerProtocolPolicy": "redirect-to-https"
             },
             {
+              "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
               "Compress": true,
-              "ForwardedValues": {
-                "QueryString": true
-              },
               "LambdaFunctionAssociations": [
                 {
                   "EventType": "viewer-request",
@@ -836,10 +832,8 @@
               "ViewerProtocolPolicy": "redirect-to-https"
             },
             {
+              "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
               "Compress": true,
-              "ForwardedValues": {
-                "QueryString": true
-              },
               "LambdaFunctionAssociations": [
                 {
                   "EventType": "viewer-request",
@@ -856,10 +850,8 @@
               "ViewerProtocolPolicy": "redirect-to-https"
             },
             {
+              "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
               "Compress": true,
-              "ForwardedValues": {
-                "QueryString": true
-              },
               "LambdaFunctionAssociations": [
                 {
                   "EventType": "viewer-request",
@@ -886,10 +878,8 @@
             }
           ],
           "DefaultCacheBehavior": {
+            "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
             "Compress": true,
-            "ForwardedValues": {
-              "QueryString": true
-            },
             "LambdaFunctionAssociations": [
               {
                 "EventType": "viewer-request",
