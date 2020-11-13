@@ -56,6 +56,6 @@
     "@aws-cdk/core": "1.70.0",
     "@aws-cdk/pipelines": "1.70.0",
     "@henrist/cdk-cloudfront-auth": "1.1.2",
-    "@liflig/cdk": "1.19.1"
+    "@liflig/cdk": "1.20.0"
   }
 }
