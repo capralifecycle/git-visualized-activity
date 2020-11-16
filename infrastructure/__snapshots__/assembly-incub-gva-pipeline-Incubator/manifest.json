@@ -681,12 +681,6 @@
             "data": "LauncherDC0405AA"
           }
         ],
-        "/incub-gva-pipeline/Incubator/incub-gva-worker/Launcher/AllowEventRuleincubgvapipelineIncubatorincubgvaworkerScheduleRule53EFA260": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LauncherAllowEventRuleincubgvapipelineIncubatorincubgvaworkerScheduleRule53EFA2608B5FFACC"
-          }
-        ],
         "/incub-gva-pipeline/Incubator/incub-gva-worker/LauncherParam/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -703,6 +697,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "ScheduleRuleDA5BD877"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-worker/ScheduleRule/AllowEventRuleincubgvapipelineIncubatorincubgvaworkerScheduleRule53EFA260": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ScheduleRuleAllowEventRuleincubgvapipelineIncubatorincubgvaworkerScheduleRule53EFA260F241132E"
           }
         ],
         "/incub-gva-pipeline/Incubator/incub-gva-worker/BootstrapVersion": [

@@ -473,28 +473,6 @@
         "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/Launcher/Resource"
       }
     },
-    "LauncherAllowEventRuleincubgvapipelineIncubatorincubgvaworkerScheduleRule53EFA2608B5FFACC": {
-      "Type": "AWS::Lambda::Permission",
-      "Properties": {
-        "Action": "lambda:InvokeFunction",
-        "FunctionName": {
-          "Fn::GetAtt": [
-            "LauncherDC0405AA",
-            "Arn"
-          ]
-        },
-        "Principal": "events.amazonaws.com",
-        "SourceArn": {
-          "Fn::GetAtt": [
-            "ScheduleRuleDA5BD877",
-            "Arn"
-          ]
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/Launcher/AllowEventRuleincubgvapipelineIncubatorincubgvaworkerScheduleRule53EFA260"
-      }
-    },
     "LauncherParamACA93A7A": {
       "Type": "AWS::SSM::Parameter",
       "Properties": {
@@ -535,6 +513,28 @@
       },
       "Metadata": {
         "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/ScheduleRule/Resource"
+      }
+    },
+    "ScheduleRuleAllowEventRuleincubgvapipelineIncubatorincubgvaworkerScheduleRule53EFA260F241132E": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "LauncherDC0405AA",
+            "Arn"
+          ]
+        },
+        "Principal": "events.amazonaws.com",
+        "SourceArn": {
+          "Fn::GetAtt": [
+            "ScheduleRuleDA5BD877",
+            "Arn"
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/ScheduleRule/AllowEventRuleincubgvapipelineIncubatorincubgvaworkerScheduleRule53EFA260"
       }
     }
   },
