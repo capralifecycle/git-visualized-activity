@@ -1220,7 +1220,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-001112238813-eu-west-1",
-          "S3Key": "a031e508958938f8422daeeac500bb201eeaadb51e930882c6f34a3f5ec44c87.zip"
+          "S3Key": "snapshot-value.zip"
         },
         "Handler": "webapp_deploy.main.handler",
         "Role": {
@@ -1343,7 +1343,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-001112238813-eu-west-1",
-          "S3Key": "7bc2a2bcdbdc475b968897f99ba7e3c6c3236958ec81c9b5e42807ce9cc9181a.zip"
+          "S3Key": "snapshot-value.zip"
         },
         "Handler": "index.handler",
         "Role": {
@@ -1459,7 +1459,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-001112238813-eu-west-1",
-          "S3Key": "c691172cdeefa2c91b5a2907f9d81118e47597634943344795f1a844192dd49c.zip"
+          "S3Key": "snapshot-value.zip"
         },
         "Handler": "framework.onEvent",
         "Role": {
@@ -1559,7 +1559,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-001112238813-eu-west-1",
-          "S3Key": "4a3609ad912843e581892f37ae9d6fb0fa1648b547693aaa562b0119452b8956.zip"
+          "S3Key": "snapshot-value.zip"
         },
         "Handler": "index.handler",
         "Role": {
@@ -1674,7 +1674,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-001112238813-eu-west-1",
-          "S3Key": "c84ca829140995fbde780b0f0a0a132ea78b00b07c955ff03eb3fdd108530dcf.zip"
+          "S3Key": "snapshot-value.zip"
         },
         "Handler": "index.handler",
         "Role": {
@@ -1792,7 +1792,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-001112238813-eu-west-1",
-          "S3Key": "c691172cdeefa2c91b5a2907f9d81118e47597634943344795f1a844192dd49c.zip"
+          "S3Key": "snapshot-value.zip"
         },
         "Handler": "framework.onEvent",
         "Role": {

@@ -32,7 +32,7 @@
         },
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/c60cb2481ef34497afab9a723d63120d5cf092a0b73ce522e5391f025ed8d948",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/snapshot-value",
         "requiresBootstrapStackVersion": 4,
         "additionalDependencies": [
           "incub-gva-pipeline.assets"

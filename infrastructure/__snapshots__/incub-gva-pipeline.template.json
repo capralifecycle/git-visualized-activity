@@ -1938,7 +1938,7 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"7f48f14a58aa5240ae051c3e1369905aba8b054e02aecb8e52c28a3202648d49:001112238813-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
         "EncryptionKey": {
@@ -1985,7 +1985,7 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"4a3609ad912843e581892f37ae9d6fb0fa1648b547693aaa562b0119452b8956:001112238813-us-east-1\\\"\",\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"4a3609ad912843e581892f37ae9d6fb0fa1648b547693aaa562b0119452b8956:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-us-east-1\\\"\",\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
         "EncryptionKey": {
@@ -2032,7 +2032,7 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"6d74c6fc03fe7ad29cab4dfc06edfc0515a725d48f8be83e9cdad65a30490b5d:001112238813-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
         "EncryptionKey": {
@@ -2079,7 +2079,7 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"40e826704907385951fad576ee477e4bcd0138e6895813d428a31df833a2e196:001112238813-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
         "EncryptionKey": {
@@ -2126,7 +2126,7 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"b73e828ac895285dd9a73ac40dc8b266d65f21753591e8c14301868d71b60ace:001112238813-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
         "EncryptionKey": {
@@ -2173,7 +2173,7 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"288225f50c4e2715d74d2d3161d9b35cf8a18371e2bf2ee269eecadface2ee02:001112238813-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
         "EncryptionKey": {
@@ -2220,7 +2220,7 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"7bc2a2bcdbdc475b968897f99ba7e3c6c3236958ec81c9b5e42807ce9cc9181a:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
         "EncryptionKey": {
@@ -2267,7 +2267,7 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"c691172cdeefa2c91b5a2907f9d81118e47597634943344795f1a844192dd49c:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
         "EncryptionKey": {
@@ -2314,7 +2314,7 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"c84ca829140995fbde780b0f0a0a132ea78b00b07c955ff03eb3fdd108530dcf:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
         "EncryptionKey": {
@@ -2361,7 +2361,7 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"a031e508958938f8422daeeac500bb201eeaadb51e930882c6f34a3f5ec44c87:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
         "EncryptionKey": {
@@ -2572,7 +2572,7 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaworker2DCD06D8.assets.json\\\" --verbose publish \\\"c838b1e1deca7ecb89c54861941d9e7a59d13727a481a4e6e180e794020f3ad6:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaworker2DCD06D8.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
         "EncryptionKey": {

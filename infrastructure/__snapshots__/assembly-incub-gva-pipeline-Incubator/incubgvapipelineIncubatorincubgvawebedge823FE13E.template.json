@@ -56,7 +56,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-001112238813-us-east-1",
-          "S3Key": "7f48f14a58aa5240ae051c3e1369905aba8b054e02aecb8e52c28a3202648d49.zip"
+          "S3Key": "snapshot-value.zip"
         },
         "Handler": "index.handler",
         "Role": {
@@ -200,7 +200,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-001112238813-us-east-1",
-          "S3Key": "6d74c6fc03fe7ad29cab4dfc06edfc0515a725d48f8be83e9cdad65a30490b5d.zip"
+          "S3Key": "snapshot-value.zip"
         },
         "Handler": "index.handler",
         "Role": {
@@ -344,7 +344,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-001112238813-us-east-1",
-          "S3Key": "40e826704907385951fad576ee477e4bcd0138e6895813d428a31df833a2e196.zip"
+          "S3Key": "snapshot-value.zip"
         },
         "Handler": "index.handler",
         "Role": {
@@ -488,7 +488,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-001112238813-us-east-1",
-          "S3Key": "b73e828ac895285dd9a73ac40dc8b266d65f21753591e8c14301868d71b60ace.zip"
+          "S3Key": "snapshot-value.zip"
         },
         "Handler": "index.handler",
         "Role": {
@@ -632,7 +632,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-001112238813-us-east-1",
-          "S3Key": "288225f50c4e2715d74d2d3161d9b35cf8a18371e2bf2ee269eecadface2ee02.zip"
+          "S3Key": "snapshot-value.zip"
         },
         "Handler": "index.handler",
         "Role": {
@@ -824,7 +824,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-001112238813-us-east-1",
-          "S3Key": "4a3609ad912843e581892f37ae9d6fb0fa1648b547693aaa562b0119452b8956.zip"
+          "S3Key": "snapshot-value.zip"
         },
         "Handler": "index.handler",
         "Role": {

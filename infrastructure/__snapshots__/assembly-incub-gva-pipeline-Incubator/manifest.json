@@ -19,7 +19,7 @@
         },
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-us-east-1/b42b521a05c95acb3a668cc480e314e8a265e3176d5105b9350f5a4a5a098351",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-us-east-1/snapshot-value",
         "requiresBootstrapStackVersion": 4,
         "additionalDependencies": [
           "incubgvapipelineIncubatorincubgvawebedge823FE13E.assets"
@@ -220,7 +220,7 @@
         },
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/b5a63c59bc1f895184ee128bba923d47e16017ffaa923cfbd5b10d358063dd58",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/snapshot-value",
         "requiresBootstrapStackVersion": 4,
         "additionalDependencies": [
           "incubgvapipelineIncubatorincubgvaweb8951F403.assets"
@@ -584,7 +584,7 @@
         },
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/20cfca77b7272aff53c6674553ea3e68f96fac7b0b6b4e64a6c47ac09595d194",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/snapshot-value",
         "requiresBootstrapStackVersion": 4,
         "additionalDependencies": [
           "incubgvapipelineIncubatorincubgvaworker2DCD06D8.assets"
