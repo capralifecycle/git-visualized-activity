@@ -25,7 +25,7 @@ RUN npm install -g @capraconsulting/cals-cli@${CALS_CLI_VERSION}
 
 ENV DATA_DIR /data
 
-COPY * /app/
+COPY . /app/
 
 WORKDIR /app
 

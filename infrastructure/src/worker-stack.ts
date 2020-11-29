@@ -39,12 +39,6 @@ export class WorkerStack extends cdk.Stack {
     const image = ecs.ContainerImage.fromDockerImageAsset(
       new DockerImageAsset(this, "WorkerImage", {
         directory: "../worker",
-        exclude: [
-          "cals-tools",
-          "commits.csv",
-          "repos",
-          "resources-definition-*",
-        ],
       }),
     )
 
