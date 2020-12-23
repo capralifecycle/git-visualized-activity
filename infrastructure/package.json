@@ -55,7 +55,7 @@
     "@aws-cdk/aws-ssm": "1.79.0",
     "@aws-cdk/core": "1.79.0",
     "@aws-cdk/pipelines": "1.79.0",
-    "@henrist/cdk-cloudfront-auth": "1.1.2",
+    "@henrist/cdk-cloudfront-auth": "1.1.14",
     "@liflig/cdk": "1.25.1"
   }
 }
