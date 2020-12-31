@@ -57,7 +57,7 @@
     "@aws-cdk/aws-stepfunctions-tasks": "1.80.0",
     "@aws-cdk/core": "1.80.0",
     "@aws-cdk/pipelines": "1.80.0",
-    "@henrist/cdk-cloudfront-auth": "1.1.14",
+    "@henrist/cdk-cloudfront-auth": "1.2.0",
     "@liflig/cdk": "1.26.0"
   }
 }
