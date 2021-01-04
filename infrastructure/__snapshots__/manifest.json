@@ -62,22 +62,22 @@
             ]
           }
         ],
-        "/incub-gva-pipeline/Pipeline/CloudAssemblyBucket/Resource": [
+        "/incub-gva-pipeline/Pipeline/CloudAssemblyLookupFn/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "PipelineCloudAssemblyBucket5CFE4ACE"
+            "data": "PipelineCloudAssemblyLookupFnServiceRole2FDEF095"
           }
         ],
-        "/incub-gva-pipeline/Pipeline/CloudAssemblyUploadJenkinsRole/Resource": [
+        "/incub-gva-pipeline/Pipeline/CloudAssemblyLookupFn/ServiceRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "PipelineCloudAssemblyUploadJenkinsRoleE66F0E92"
+            "data": "PipelineCloudAssemblyLookupFnServiceRoleDefaultPolicy2F7C48B6"
           }
         ],
-        "/incub-gva-pipeline/Pipeline/CloudAssemblyUploadJenkinsRole/DefaultPolicy/Resource": [
+        "/incub-gva-pipeline/Pipeline/CloudAssemblyLookupFn/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "PipelineCloudAssemblyUploadJenkinsRoleDefaultPolicy30F8D0A7"
+            "data": "PipelineCloudAssemblyLookupFn679FAA51"
           }
         ],
         "/incub-gva-pipeline/Pipeline/CodePipeline/ArtifactsBucketEncryptionKey/Resource": [
@@ -126,6 +126,18 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "PipelineCodePipelineSourcesourceCodePipelineActionRoleDefaultPolicy7825EAF4"
+          }
+        ],
+        "/incub-gva-pipeline/Pipeline/CodePipeline/PrepareCloudAssembly/cloud-assembly-lookup/CodePipelineActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineCodePipelinePrepareCloudAssemblycloudassemblylookupCodePipelineActionRole52243095"
+          }
+        ],
+        "/incub-gva-pipeline/Pipeline/CodePipeline/PrepareCloudAssembly/cloud-assembly-lookup/CodePipelineActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineCodePipelinePrepareCloudAssemblycloudassemblylookupCodePipelineActionRoleDefaultPolicy901A0F32"
           }
         ],
         "/incub-gva-pipeline/Pipeline/CodePipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/Resource": [
@@ -246,30 +258,6 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "PipelineCdkPipelineAssetsDockerAsset1EC210797"
-          }
-        ],
-        "/incub-gva-pipeline/Pipeline/CloudAssemblyRoleArn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PipelineCloudAssemblyRoleArnB6965D26"
-          }
-        ],
-        "/incub-gva-pipeline/Pipeline/CloudAssemblyBucketName": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PipelineCloudAssemblyBucketName0E9757F5"
-          }
-        ],
-        "/incub-gva-pipeline/Pipeline/CloudAssemblyBucketKey": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PipelineCloudAssemblyBucketKey512D9C78"
-          }
-        ],
-        "/incub-gva-pipeline/Incubator": [
-          {
-            "type": "aws:cdk:warning",
-            "data": "The API @aws-cdk/core.ConstructNode.applyAspect is deprecated: Use \"Aspects.of(construct).add(aspect)\" instead. This API will be removed in the next major release"
           }
         ],
         "/incub-gva-pipeline/BootstrapVersion": [

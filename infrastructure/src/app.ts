@@ -1,11 +1,7 @@
-import * as codepipeline from "@aws-cdk/aws-codepipeline"
-import * as codepipelineActions from "@aws-cdk/aws-codepipeline-actions"
-import { ArnPrincipal, Role } from "@aws-cdk/aws-iam"
-import { BlockPublicAccess, Bucket, BucketEncryption } from "@aws-cdk/aws-s3"
+import * as s3 from "@aws-cdk/aws-s3"
 import * as cdk from "@aws-cdk/core"
 import { Construct, Stack, StackProps, Stage, StageProps } from "@aws-cdk/core"
-import { CdkPipeline } from "@aws-cdk/pipelines"
-import { tagResources } from "@liflig/cdk"
+import { cdkPipelines, tagResources } from "@liflig/cdk"
 import { WebEdgeStack } from "./web-edge-stack"
 import { WebStack } from "./web-stack"
 import { WorkerStack } from "./worker-stack"
@@ -62,16 +58,14 @@ class GvaApp extends Stage {
 
     const webEdgeStack = new WebEdgeStack(this, "incub-gva-web-edge", {
       env: {
-        account: incubatorAccountId,
         region: "us-east-1",
       },
       stackName: "incub-gva-web-edge",
       resourcePrefix: "incub-gva",
     })
 
-    const webStack = new WebStack(this, `incub-gva-web`, {
+    const webStack = new WebStack(this, "incub-gva-web", {
       env: {
-        account: incubatorAccountId,
         region: "eu-west-1",
       },
       stackName: "incub-gva-web",
@@ -87,9 +81,8 @@ class GvaApp extends Stage {
       authDomain: externalValues.authDomain,
     })
 
-    new WorkerStack(this, `incub-gva-worker`, {
+    new WorkerStack(this, "incub-gva-worker", {
       env: {
-        account: incubatorAccountId,
         region: "eu-west-1",
       },
       stackName: "incub-gva-worker",
@@ -100,95 +93,23 @@ class GvaApp extends Stage {
   }
 }
 
-// TODO: Move to liflig-cdk?
-class JenkinsCdkPipeline extends Construct {
-  public readonly cdkPipeline: CdkPipeline
-
-  constructor(
-    scope: Construct,
-    id: string,
-    props: {
-      jenkinsRoleArn: string
-      namespacePrefix: string
-      bucketKey: string
-    },
-  ) {
-    super(scope, id)
-
-    const account = cdk.Stack.of(this).account
-    const region = cdk.Stack.of(this).region
-
-    const cloudAssemblyArtifact = new codepipeline.Artifact()
-
-    const cloudAssemblyBucket = new Bucket(this, "CloudAssemblyBucket", {
-      bucketName: `${props.namespacePrefix}-cdk-${account}-${region}`,
-      versioned: true,
-      blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
-      encryption: BucketEncryption.S3_MANAGED,
-      lifecycleRules: [
-        {
-          noncurrentVersionExpiration: cdk.Duration.days(10),
-        },
-      ],
-    })
-
-    const jenkinsRole = new Role(this, "CloudAssemblyUploadJenkinsRole", {
-      // The role name follows the convention in https://confluence.capraconsulting.no/x/UrMBC
-      roleName: `${props.namespacePrefix}-cdk-upload-liflig-jenkins`,
-      assumedBy: new ArnPrincipal(props.jenkinsRoleArn),
-    })
-
-    cloudAssemblyBucket.grantPut(jenkinsRole)
-
-    const codePipeline = new codepipeline.Pipeline(this, "CodePipeline", {
-      stages: [
-        {
-          stageName: "Source",
-          actions: [
-            new codepipelineActions.S3SourceAction({
-              actionName: "source",
-              output: cloudAssemblyArtifact,
-              bucket: cloudAssemblyBucket,
-              bucketKey: props.bucketKey,
-            }),
-          ],
-        },
-      ],
-      restartExecutionOnUpdate: true,
-    })
-
-    this.cdkPipeline = new CdkPipeline(this, "CdkPipeline", {
-      cloudAssemblyArtifact: cloudAssemblyArtifact,
-      codePipeline,
-    })
-
-    new cdk.CfnOutput(this, "CloudAssemblyRoleArn", {
-      value: jenkinsRole.roleArn,
-    })
-
-    new cdk.CfnOutput(this, "CloudAssemblyBucketName", {
-      value: cloudAssemblyBucket.bucketName,
-    })
-
-    new cdk.CfnOutput(this, "CloudAssemblyBucketKey", {
-      value: props.bucketKey,
-    })
-  }
-}
-
 class GvaPipelineStack extends Stack {
   constructor(scope: Construct, id: string, props: StackProps) {
     super(scope, id, props)
 
-    const jenkinsCdkPipeline = new JenkinsCdkPipeline(this, "Pipeline", {
-      jenkinsRoleArn: externalValues.jenkinsRoleArn,
-      namespacePrefix: "incub-gva",
-      bucketKey: "cloud-assembly-incubator.zip",
+    const artifactsBucket = s3.Bucket.fromBucketName(
+      this,
+      "ArtifactsBucket",
+      externalValues.buildBucketName,
+    )
+
+    const pipeline = new cdkPipelines.LifligCdkPipeline(this, "Pipeline", {
+      pipelineName: "incub-gva",
+      sourceType: "cloud-assembly",
+      artifactsBucket,
     })
 
-    const cdkPipeline = jenkinsCdkPipeline.cdkPipeline
-
-    cdkPipeline.addApplicationStage(
+    pipeline.cdkPipeline.addApplicationStage(
       new GvaApp(this, "Incubator", {
         env: {
           account: incubatorAccountId,

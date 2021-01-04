@@ -3,13 +3,18 @@
 // See https://github.com/capralifecycle/jenkins-pipeline-library
 @Library("cals") _
 
+def pipelines = new no.capraconsulting.buildtools.lifligcdkpipelines.LifligCdkPipelines()
+
+def artifactsBucketName = "incub-common-build-artifacts-001112238813-eu-west-1"
+def artifactsRoleArn = "arn:aws:iam::001112238813:role/incub-common-build-artifacts-liflig-jenkins"
+
 def ecrPublish = new no.capraconsulting.buildtools.cdk.EcrPublish()
 def webapp = new no.capraconsulting.buildtools.cdk.Webapp()
 
 def workerPublishConfig = ecrPublish.config {
   repositoryUri = "001112238813.dkr.ecr.eu-west-1.amazonaws.com/incub-common-builds"
   applicationName = "gva-worker"
-  roleArn = "arn:aws:iam::001112238813:role/incub-common-build-artifacts-ci"
+  roleArn = artifactsRoleArn
 }
 
 buildConfig([
@@ -33,7 +38,7 @@ buildConfig([
     def webappS3Url
     stage("Build webapp") {
       dir("webapp") {
-        insideToolImage("node:12-alpine") {
+        insideToolImage("node:14") {
           sh """
             npm ci
             ../worker/generate-commits.sh clean
@@ -51,8 +56,8 @@ buildConfig([
         webappS3Url = webapp.publish {
           name = "gva"
           buildDir = "dist"
-          roleArn = "arn:aws:iam::001112238813:role/incub-common-build-artifacts-ci"
-          bucketName = "incub-common-build-artifacts-001112238813-eu-west-1"
+          roleArn = artifactsRoleArn
+          bucketName = artifactsBucketName
         }
       }
     }
@@ -67,9 +72,9 @@ buildConfig([
       }
     }
 
-    stage("Build cdk") {
-      dir("infrastructure") {
-        insideToolImage("node:12-alpine") {
+    dir("infrastructure") {
+      insideToolImage("node:14") {
+        stage("Build cdk") {
           sh """
             npm ci
             npm run lint
@@ -77,21 +82,27 @@ buildConfig([
             git status .
             git diff --exit-code .
           """
-
-          createCloudAssemblyZip()
         }
-      }
-    }
 
-    def cdkAllowDeploy = env.BRANCH_NAME == "master"
-    if (cdkAllowDeploy) {
-      stage("Triggering CDK deployment") {
-        dir("infrastructure") {
-          uploadCloudAssemblyZip(
-            roleArn: "arn:aws:iam::001112238813:role/incub-gva-cdk-upload-liflig-jenkins",
-            bucketName: "incub-gva-cdk-001112238813-eu-west-1",
-            bucketKey: "cloud-assembly-incubator.zip",
+        def bucketKey
+
+        stage("Package and upload Cloud Assembly") {
+          bucketKey = pipelines.createAndUploadCloudAssembly(
+            bucketName: artifactsBucketName,
+            roleArn: artifactsRoleArn,
           )
+        }
+
+        def cdkAllowDeploy = env.BRANCH_NAME == "master"
+        if (cdkAllowDeploy) {
+          stage("Trigger pipeline") {
+            pipelines.configureAndTriggerPipelinesV2(
+              cloudAssemblyBucketKey: bucketKey,
+              artifactsBucketName: artifactsBucketName,
+              artifactsRoleArn: artifactsRoleArn,
+              pipelines: ["incub-gva"],
+            )
+          }
         }
       }
     }
@@ -106,49 +117,5 @@ buildConfig([
         }
       }
     }
-  }
-}
-
-// TODO: Move to pipeline lib.
-/**
- * Run cdk synth to produce a Cloud Assembly and package this
- * as a zip-file ready to be uploaded.
- *
- * The built assembly will be present at cloud-assembly.zip.
- */
-def createCloudAssemblyZip() {
-  sh """
-    rm -rf cdk.out
-    npm run cdk -- synth >/dev/null
-    cd cdk.out
-    zip -r ../cloud-assembly.zip .
-  """
-}
-
-/**
- * Upload a built Cloud Assembly zip-file.
- *
- * The zip-file must be present as cloud-assembly.zip.
- *
- * Params:
- *   - roleArn
- *   - bucketName
- *   - bucketKey
- */
-def uploadCloudAssemblyZip(Map args) {
-  if (!args.containsKey("roleArn")) {
-    throw new Exception("Missing roleArn")
-  }
-  if (!args.containsKey("bucketName")) {
-    throw new Exception("Missing bucketName")
-  }
-  if (!args.containsKey("bucketKey")) {
-    throw new Exception("Missing bucketKey")
-  }
-
-  def s3Url = "s3://${args.bucketName}/${args.bucketKey}"
-
-  withAwsRole(args.roleArn) {
-    sh "aws s3 cp cloud-assembly.zip $s3Url"
   }
 }

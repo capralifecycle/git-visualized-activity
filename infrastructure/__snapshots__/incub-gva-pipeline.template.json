@@ -1,32 +1,132 @@
 {
   "Resources": {
-    "PipelineCloudAssemblyBucket5CFE4ACE": {
-      "Type": "AWS::S3::Bucket",
+    "PipelineCloudAssemblyLookupFnServiceRole2FDEF095": {
+      "Type": "AWS::IAM::Role",
       "Properties": {
-        "BucketEncryption": {
-          "ServerSideEncryptionConfiguration": [
+        "AssumeRolePolicyDocument": {
+          "Statement": [
             {
-              "ServerSideEncryptionByDefault": {
-                "SSEAlgorithm": "AES256"
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
               }
             }
-          ]
+          ],
+          "Version": "2012-10-17"
         },
-        "BucketName": "incub-gva-cdk-001112238813-eu-west-1",
-        "LifecycleConfiguration": {
-          "Rules": [
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-pipeline"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-pipeline/Pipeline/CloudAssemblyLookupFn/ServiceRole/Resource"
+      }
+    },
+    "PipelineCloudAssemblyLookupFnServiceRoleDefaultPolicy2F7C48B6": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
             {
-              "NoncurrentVersionExpirationInDays": 10,
-              "Status": "Enabled"
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject*",
+                "s3:Abort*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::incub-common-build-artifacts-001112238813-eu-west-1"
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::incub-common-build-artifacts-001112238813-eu-west-1/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "codepipeline:PutJobSuccessResult",
+                "codepipeline:PutJobFailureResult"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
             }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "PipelineCloudAssemblyLookupFnServiceRoleDefaultPolicy2F7C48B6",
+        "Roles": [
+          {
+            "Ref": "PipelineCloudAssemblyLookupFnServiceRole2FDEF095"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-pipeline/Pipeline/CloudAssemblyLookupFn/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "PipelineCloudAssemblyLookupFn679FAA51": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "ZipFile": "exports.handler = async (event, context) => {\n    const AWS = require(\"aws-sdk\");\n    const s3 = new AWS.S3();\n    const codepipeline = new AWS.CodePipeline();\n    const jobId = event[\"CodePipeline.job\"].id;\n    try {\n        const userParametersRaw = event[\"CodePipeline.job\"].data.actionConfiguration.configuration\n            .UserParameters;\n        console.log(\"User parameters\", userParametersRaw);\n        const userParameters = JSON.parse(userParametersRaw);\n        const referenceData = await s3\n            .getObject({\n            Bucket: userParameters.bucketName,\n            Key: userParameters.objectKey,\n        })\n            .promise()\n            .then((it) => it.Body.toString());\n        const cloudAssemblyReference = JSON.parse(referenceData);\n        const outputArtifact = event[\"CodePipeline.job\"].data.outputArtifacts[0];\n        const s3Loc = outputArtifact.location.s3Location;\n        const cloudAssemblyZipData = await s3\n            .getObject({\n            Bucket: cloudAssemblyReference.cloudAssemblyBucketName,\n            Key: cloudAssemblyReference.cloudAssemblyBucketKey,\n        })\n            .promise();\n        console.log(\"Size of Cloud Assembly\", cloudAssemblyZipData.ContentLength);\n        await new AWS.S3({\n            credentials: event[\"CodePipeline.job\"].data.artifactCredentials,\n        })\n            .putObject({\n            Bucket: s3Loc.bucketName,\n            Key: s3Loc.objectKey,\n            Body: cloudAssemblyZipData.Body,\n        })\n            .promise();\n        await codepipeline\n            .putJobSuccessResult({\n            jobId,\n        })\n            .promise();\n        console.log(\"Success\");\n    }\n    catch (e) {\n        await codepipeline\n            .putJobFailureResult({\n            failureDetails: {\n                message: JSON.stringify(e),\n                type: \"JobFailed\",\n                externalExecutionId: context.awsRequestId,\n            },\n            jobId,\n        })\n            .promise();\n        console.error(\"Failed\", e);\n    }\n};"
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "PipelineCloudAssemblyLookupFnServiceRole2FDEF095",
+            "Arn"
           ]
         },
-        "PublicAccessBlockConfiguration": {
-          "BlockPublicAcls": true,
-          "BlockPublicPolicy": true,
-          "IgnorePublicAcls": true,
-          "RestrictPublicBuckets": true
-        },
+        "Runtime": "nodejs12.x",
+        "MemorySize": 512,
         "Tags": [
           {
             "Key": "Project",
@@ -41,89 +141,14 @@
             "Value": "incub-gva-pipeline"
           }
         ],
-        "VersioningConfiguration": {
-          "Status": "Enabled"
-        }
+        "Timeout": 60
       },
-      "UpdateReplacePolicy": "Retain",
-      "DeletionPolicy": "Retain",
+      "DependsOn": [
+        "PipelineCloudAssemblyLookupFnServiceRoleDefaultPolicy2F7C48B6",
+        "PipelineCloudAssemblyLookupFnServiceRole2FDEF095"
+      ],
       "Metadata": {
-        "aws:cdk:path": "incub-gva-pipeline/Pipeline/CloudAssemblyBucket/Resource"
-      }
-    },
-    "PipelineCloudAssemblyUploadJenkinsRoleE66F0E92": {
-      "Type": "AWS::IAM::Role",
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": {
-                "AWS": "arn:aws:iam::923402097046:role/buildtools-jenkins-RoleJenkinsSlave-JQGYHR5WE6C5"
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "RoleName": "incub-gva-cdk-upload-liflig-jenkins",
-        "Tags": [
-          {
-            "Key": "Project",
-            "Value": "git-visualized-activity"
-          },
-          {
-            "Key": "SourceRepo",
-            "Value": "github/capraconsulting/git-visualized-activity"
-          },
-          {
-            "Key": "StackName",
-            "Value": "incub-gva-pipeline"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "incub-gva-pipeline/Pipeline/CloudAssemblyUploadJenkinsRole/Resource"
-      }
-    },
-    "PipelineCloudAssemblyUploadJenkinsRoleDefaultPolicy30F8D0A7": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": [
-                "s3:PutObject*",
-                "s3:Abort*"
-              ],
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    {
-                      "Fn::GetAtt": [
-                        "PipelineCloudAssemblyBucket5CFE4ACE",
-                        "Arn"
-                      ]
-                    },
-                    "/*"
-                  ]
-                ]
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "PolicyName": "PipelineCloudAssemblyUploadJenkinsRoleDefaultPolicy30F8D0A7",
-        "Roles": [
-          {
-            "Ref": "PipelineCloudAssemblyUploadJenkinsRoleE66F0E92"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "incub-gva-pipeline/Pipeline/CloudAssemblyUploadJenkinsRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "incub-gva-pipeline/Pipeline/CloudAssemblyLookupFn/Resource"
       }
     },
     "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE": {
@@ -197,6 +222,24 @@
                 "AWS": {
                   "Fn::GetAtt": [
                     "PipelineCodePipelineSourcesourceCodePipelineActionRoleAB26C0AE",
+                    "Arn"
+                  ]
+                }
+              },
+              "Resource": "*"
+            },
+            {
+              "Action": [
+                "kms:Encrypt",
+                "kms:ReEncrypt*",
+                "kms:GenerateDataKey*",
+                "kms:Decrypt"
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::GetAtt": [
+                    "PipelineCodePipelinePrepareCloudAssemblycloudassemblylookupCodePipelineActionRole52243095",
                     "Arn"
                   ]
                 }
@@ -516,6 +559,16 @@
               "Effect": "Allow",
               "Resource": {
                 "Fn::GetAtt": [
+                  "PipelineCodePipelinePrepareCloudAssemblycloudassemblylookupCodePipelineActionRole52243095",
+                  "Arn"
+                ]
+              }
+            },
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
                   "PipelineCodePipelineUpdatePipelineSelfMutateCodePipelineActionRole16D29A61",
                   "Arn"
                 ]
@@ -655,10 +708,8 @@
                   "Version": "1"
                 },
                 "Configuration": {
-                  "S3Bucket": {
-                    "Ref": "PipelineCloudAssemblyBucket5CFE4ACE"
-                  },
-                  "S3ObjectKey": "cloud-assembly-incubator.zip"
+                  "S3Bucket": "incub-common-build-artifacts-001112238813-eu-west-1",
+                  "S3ObjectKey": "pipelines/incub-gva/trigger"
                 },
                 "Name": "source",
                 "OutputArtifacts": [
@@ -681,6 +732,38 @@
             "Actions": [
               {
                 "ActionTypeId": {
+                  "Category": "Invoke",
+                  "Owner": "AWS",
+                  "Provider": "Lambda",
+                  "Version": "1"
+                },
+                "Configuration": {
+                  "FunctionName": {
+                    "Ref": "PipelineCloudAssemblyLookupFn679FAA51"
+                  },
+                  "UserParameters": "{\"bucketName\":\"incub-common-build-artifacts-001112238813-eu-west-1\",\"objectKey\":\"pipelines/incub-gva/cloud-assembly.json\"}"
+                },
+                "Name": "cloud-assembly-lookup",
+                "OutputArtifacts": [
+                  {
+                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
+                  }
+                ],
+                "RoleArn": {
+                  "Fn::GetAtt": [
+                    "PipelineCodePipelinePrepareCloudAssemblycloudassemblylookupCodePipelineActionRole52243095",
+                    "Arn"
+                  ]
+                },
+                "RunOrder": 1
+              }
+            ],
+            "Name": "PrepareCloudAssembly"
+          },
+          {
+            "Actions": [
+              {
+                "ActionTypeId": {
                   "Category": "Build",
                   "Owner": "AWS",
                   "Provider": "CodeBuild",
@@ -693,7 +776,7 @@
                 },
                 "InputArtifacts": [
                   {
-                    "Name": "Artifact_Source_source"
+                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
                   }
                 ],
                 "Name": "SelfMutate",
@@ -724,7 +807,7 @@
                 },
                 "InputArtifacts": [
                   {
-                    "Name": "Artifact_Source_source"
+                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
                   }
                 ],
                 "Name": "FileAsset1",
@@ -750,7 +833,7 @@
                 },
                 "InputArtifacts": [
                   {
-                    "Name": "Artifact_Source_source"
+                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
                   }
                 ],
                 "Name": "FileAsset2",
@@ -776,7 +859,7 @@
                 },
                 "InputArtifacts": [
                   {
-                    "Name": "Artifact_Source_source"
+                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
                   }
                 ],
                 "Name": "FileAsset3",
@@ -802,7 +885,7 @@
                 },
                 "InputArtifacts": [
                   {
-                    "Name": "Artifact_Source_source"
+                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
                   }
                 ],
                 "Name": "FileAsset4",
@@ -828,7 +911,7 @@
                 },
                 "InputArtifacts": [
                   {
-                    "Name": "Artifact_Source_source"
+                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
                   }
                 ],
                 "Name": "FileAsset5",
@@ -854,7 +937,7 @@
                 },
                 "InputArtifacts": [
                   {
-                    "Name": "Artifact_Source_source"
+                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
                   }
                 ],
                 "Name": "FileAsset6",
@@ -880,7 +963,7 @@
                 },
                 "InputArtifacts": [
                   {
-                    "Name": "Artifact_Source_source"
+                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
                   }
                 ],
                 "Name": "FileAsset7",
@@ -906,7 +989,7 @@
                 },
                 "InputArtifacts": [
                   {
-                    "Name": "Artifact_Source_source"
+                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
                   }
                 ],
                 "Name": "FileAsset8",
@@ -932,7 +1015,7 @@
                 },
                 "InputArtifacts": [
                   {
-                    "Name": "Artifact_Source_source"
+                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
                   }
                 ],
                 "Name": "FileAsset9",
@@ -958,7 +1041,7 @@
                 },
                 "InputArtifacts": [
                   {
-                    "Name": "Artifact_Source_source"
+                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
                   }
                 ],
                 "Name": "FileAsset10",
@@ -984,7 +1067,7 @@
                 },
                 "InputArtifacts": [
                   {
-                    "Name": "Artifact_Source_source"
+                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
                   }
                 ],
                 "Name": "DockerAsset1",
@@ -1023,14 +1106,14 @@
                       ]
                     ]
                   },
-                  "TemplateConfiguration": "Artifact_Source_source::assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.template.json.config.json",
+                  "TemplateConfiguration": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup::assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.template.json.config.json",
                   "ActionMode": "CHANGE_SET_REPLACE",
                   "ChangeSetName": "PipelineChange",
-                  "TemplatePath": "Artifact_Source_source::assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.template.json"
+                  "TemplatePath": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup::assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.template.json"
                 },
                 "InputArtifacts": [
                   {
-                    "Name": "Artifact_Source_source"
+                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
                   }
                 ],
                 "Name": "incub-gva-web-edge.Prepare",
@@ -1099,14 +1182,14 @@
                       ]
                     ]
                   },
-                  "TemplateConfiguration": "Artifact_Source_source::assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.template.json.config.json",
+                  "TemplateConfiguration": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup::assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.template.json.config.json",
                   "ActionMode": "CHANGE_SET_REPLACE",
                   "ChangeSetName": "PipelineChange",
-                  "TemplatePath": "Artifact_Source_source::assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.template.json"
+                  "TemplatePath": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup::assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.template.json"
                 },
                 "InputArtifacts": [
                   {
-                    "Name": "Artifact_Source_source"
+                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
                   }
                 ],
                 "Name": "incub-gva-web.Prepare",
@@ -1173,14 +1256,14 @@
                       ]
                     ]
                   },
-                  "TemplateConfiguration": "Artifact_Source_source::assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaworker2DCD06D8.template.json.config.json",
+                  "TemplateConfiguration": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup::assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaworker2DCD06D8.template.json.config.json",
                   "ActionMode": "CHANGE_SET_REPLACE",
                   "ChangeSetName": "PipelineChange",
-                  "TemplatePath": "Artifact_Source_source::assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaworker2DCD06D8.template.json"
+                  "TemplatePath": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup::assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaworker2DCD06D8.template.json"
                 },
                 "InputArtifacts": [
                   {
-                    "Name": "Artifact_Source_source"
+                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
                   }
                 ],
                 "Name": "incub-gva-worker.Prepare",
@@ -1271,6 +1354,7 @@
             "Region": "eu-west-1"
           }
         ],
+        "Name": "incub-gva",
         "RestartExecutionOnUpdate": true,
         "Tags": [
           {
@@ -1354,22 +1438,26 @@
               "Effect": "Allow",
               "Resource": [
                 {
-                  "Fn::GetAtt": [
-                    "PipelineCloudAssemblyBucket5CFE4ACE",
-                    "Arn"
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::incub-common-build-artifacts-001112238813-eu-west-1"
+                    ]
                   ]
                 },
                 {
                   "Fn::Join": [
                     "",
                     [
+                      "arn:",
                       {
-                        "Fn::GetAtt": [
-                          "PipelineCloudAssemblyBucket5CFE4ACE",
-                          "Arn"
-                        ]
+                        "Ref": "AWS::Partition"
                       },
-                      "/*"
+                      ":s3:::incub-common-build-artifacts-001112238813-eu-west-1/*"
                     ]
                   ]
                 }
@@ -1432,6 +1520,130 @@
       },
       "Metadata": {
         "aws:cdk:path": "incub-gva-pipeline/Pipeline/CodePipeline/Source/source/CodePipelineActionRole/DefaultPolicy/Resource"
+      }
+    },
+    "PipelineCodePipelinePrepareCloudAssemblycloudassemblylookupCodePipelineActionRole52243095": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::001112238813:root"
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-pipeline"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-pipeline/Pipeline/CodePipeline/PrepareCloudAssembly/cloud-assembly-lookup/CodePipelineActionRole/Resource"
+      }
+    },
+    "PipelineCodePipelinePrepareCloudAssemblycloudassemblylookupCodePipelineActionRoleDefaultPolicy901A0F32": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "lambda:ListFunctions",
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "PipelineCloudAssemblyLookupFn679FAA51",
+                  "Arn"
+                ]
+              }
+            },
+            {
+              "Action": [
+                "s3:DeleteObject*",
+                "s3:PutObject*",
+                "s3:Abort*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "PipelineCodePipelineArtifactsBucket9E5E7047",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "PipelineCodePipelineArtifactsBucket9E5E7047",
+                          "Arn"
+                        ]
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "kms:Encrypt",
+                "kms:ReEncrypt*",
+                "kms:GenerateDataKey*",
+                "kms:Decrypt"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "PipelineCodePipelinePrepareCloudAssemblycloudassemblylookupCodePipelineActionRoleDefaultPolicy901A0F32",
+        "Roles": [
+          {
+            "Ref": "PipelineCodePipelinePrepareCloudAssemblycloudassemblylookupCodePipelineActionRole52243095"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-pipeline/Pipeline/CodePipeline/PrepareCloudAssembly/cloud-assembly-lookup/CodePipelineActionRole/DefaultPolicy/Resource"
       }
     },
     "PipelineCodePipelineUpdatePipelineSelfMutateCodePipelineActionRole16D29A61": {
@@ -2611,24 +2823,6 @@
       "Metadata": {
         "aws:cdk:path": "incub-gva-pipeline/Pipeline/CdkPipeline/Assets/DockerAsset1/Default/Resource"
       }
-    }
-  },
-  "Outputs": {
-    "PipelineCloudAssemblyRoleArnB6965D26": {
-      "Value": {
-        "Fn::GetAtt": [
-          "PipelineCloudAssemblyUploadJenkinsRoleE66F0E92",
-          "Arn"
-        ]
-      }
-    },
-    "PipelineCloudAssemblyBucketName0E9757F5": {
-      "Value": {
-        "Ref": "PipelineCloudAssemblyBucket5CFE4ACE"
-      }
-    },
-    "PipelineCloudAssemblyBucketKey512D9C78": {
-      "Value": "cloud-assembly-incubator.zip"
     }
   },
   "Parameters": {
