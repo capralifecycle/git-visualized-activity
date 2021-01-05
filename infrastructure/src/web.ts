@@ -6,14 +6,11 @@ import * as r53 from "@aws-cdk/aws-route53"
 import * as r53t from "@aws-cdk/aws-route53-targets"
 import * as s3 from "@aws-cdk/aws-s3"
 import * as cdk from "@aws-cdk/core"
+import * as webappDeploy from "@capraconsulting/webapp-deploy-lambda"
 import { AuthLambdas, CloudFrontAuth } from "@henrist/cdk-cloudfront-auth"
-import { WebappDeployViaRole } from "@liflig/cdk"
+import * as path from "path"
 
 interface Props {
-  buildsBucket: s3.IBucket
-  jenkinsRoleArn: string
-  deployRoleName: string
-  deployFunctionName: string
   domainName: string
   cloudfrontCertificate: certificatemanager.ICertificate
   hostedZone?: r53.IHostedZone
@@ -78,15 +75,12 @@ export class Web extends cdk.Construct {
       })
     }
 
-    new WebappDeployViaRole(this, "Deploy", {
-      webappDeploy: {
-        buildsBucket: props.buildsBucket,
-        functionName: props.deployFunctionName,
-        distributionId: this.distribution.distributionId,
-        webBucket: this.webBucket,
-      },
-      roleName: props.deployRoleName,
-      externalRoleArn: props.jenkinsRoleArn,
+    new webappDeploy.WebappDeploy(this, "Deploy", {
+      distribution: this.distribution,
+      webBucket: this.webBucket,
+      source: webappDeploy.Source.asset(
+        path.join(__dirname, "../../webapp/dist"),
+      ),
     })
   }
 }

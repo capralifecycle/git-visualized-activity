@@ -1062,6 +1062,32 @@
                 },
                 "Configuration": {
                   "ProjectName": {
+                    "Ref": "PipelineCdkPipelineAssetsFileAsset1160F0FA56"
+                  }
+                },
+                "InputArtifacts": [
+                  {
+                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
+                  }
+                ],
+                "Name": "FileAsset11",
+                "RoleArn": {
+                  "Fn::GetAtt": [
+                    "PipelineCdkPipelineAssetsFileRole0474FB57",
+                    "Arn"
+                  ]
+                },
+                "RunOrder": 1
+              },
+              {
+                "ActionTypeId": {
+                  "Category": "Build",
+                  "Owner": "AWS",
+                  "Provider": "CodeBuild",
+                  "Version": "1"
+                },
+                "Configuration": {
+                  "ProjectName": {
                     "Ref": "PipelineCdkPipelineAssetsDockerAsset1EC210797"
                   }
                 },
@@ -2610,6 +2636,54 @@
       },
       "Metadata": {
         "aws:cdk:path": "incub-gva-pipeline/Pipeline/CdkPipeline/Assets/FileAsset10/Default/Resource"
+      }
+    },
+    "PipelineCdkPipelineAssetsFileAsset1160F0FA56": {
+      "Type": "AWS::CodeBuild::Project",
+      "Properties": {
+        "Artifacts": {
+          "Type": "CODEPIPELINE"
+        },
+        "Environment": {
+          "ComputeType": "BUILD_GENERAL1_SMALL",
+          "Image": "aws/codebuild/standard:4.0",
+          "ImagePullCredentialsType": "CODEBUILD",
+          "PrivilegedMode": false,
+          "Type": "LINUX_CONTAINER"
+        },
+        "ServiceRole": {
+          "Fn::GetAtt": [
+            "PipelineCdkPipelineAssetsFileRole0474FB57",
+            "Arn"
+          ]
+        },
+        "Source": {
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
+          "Type": "CODEPIPELINE"
+        },
+        "EncryptionKey": {
+          "Fn::GetAtt": [
+            "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE",
+            "Arn"
+          ]
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-pipeline"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-pipeline/Pipeline/CdkPipeline/Assets/FileAsset11/Default/Resource"
       }
     },
     "PipelineCdkPipelineAssetsDockerRole064148FF": {

@@ -12,9 +12,6 @@ import { WorkerStack } from "./worker-stack"
 const externalValues = {
   // From https://github.com/capralifecycle/liflig-incubator-common-infra
   vpcId: "vpc-0a67807e4aca6bb84",
-  // From buildtools setup.
-  jenkinsRoleArn:
-    "arn:aws:iam::923402097046:role/buildtools-jenkins-RoleJenkinsSlave-JQGYHR5WE6C5",
   // From https://github.com/capralifecycle/liflig-incubator-common-infra
   buildBucketName: "incub-common-build-artifacts-001112238813-eu-west-1",
   // From https://github.com/capralifecycle/liflig-incubator-common-infra
@@ -69,13 +66,10 @@ class GvaApp extends Stage {
         region: "eu-west-1",
       },
       stackName: "incub-gva-web",
-      buildsBucketName: externalValues.buildBucketName,
       cloudfrontCertificateArn:
         externalValues.incubatorDevAcmCertificateUsEast1Arn,
       domainName: "gva.incubator.liflig.dev",
       hostedZoneId: externalValues.incubatorDevHostedZoneId,
-      jenkinsRoleArn: externalValues.jenkinsRoleArn,
-      resourcePrefix: "incub-gva",
       webEdgeStack,
       userPoolId: externalValues.userPoolId,
       authDomain: externalValues.authDomain,

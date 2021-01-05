@@ -242,6 +242,12 @@
             "data": "PipelineCdkPipelineAssetsFileAsset106A5B75BE"
           }
         ],
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/FileAsset11/Default/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineCdkPipelineAssetsFileAsset1160F0FA56"
+          }
+        ],
         "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/DockerRole/Resource": [
           {
             "type": "aws:cdk:logicalId",

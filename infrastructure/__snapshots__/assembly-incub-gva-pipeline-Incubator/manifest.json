@@ -383,46 +383,34 @@
             "data": "WebDnsRecord7704C090"
           }
         ],
-        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/Role/Resource": [
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/Resource/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "WebDeployRole3C4D63A7"
+            "data": "WebDeployServiceRoleAB8D842C"
           }
         ],
-        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/Role/DefaultPolicy/Resource": [
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/Resource/ServiceRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "WebDeployRoleDefaultPolicy8D88A3B4"
+            "data": "WebDeployServiceRoleDefaultPolicy7D88C2BC"
           }
         ],
-        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/Resource/Resource/ServiceRole/Resource": [
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/Resource/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "WebDeployServiceRoleAD5BC231"
+            "data": "WebDeploy056D6F67"
           }
         ],
-        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/Resource/Resource/ServiceRole/DefaultPolicy/Resource": [
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/CustomResource/CustomResourcePolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "WebDeployServiceRoleDefaultPolicy8B0EAC57"
+            "data": "WebDeployCustomResourceCustomResourcePolicy52AAFDAF"
           }
         ],
-        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/Resource/Resource/Resource": [
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/CustomResource/Resource/Default": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "WebDeploy7DEF3E65"
-          }
-        ],
-        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/FunctionArnOutput": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "WebDeployFunctionArnOutputAA8D5D84"
-          }
-        ],
-        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/RoleArnOutput": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "WebDeployRoleArnOutput2C4C53A4"
+            "data": "WebDeployCustomResourceD1B17E5C"
           }
         ],
         "/incub-gva-pipeline/Incubator/incub-gva-web/henrist.cloudfront-auth.generate-secret.provider/Function/ServiceRole/Resource": [
