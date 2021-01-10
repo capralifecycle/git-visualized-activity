@@ -427,14 +427,12 @@
         "Code": {
           "ZipFile": "exports.handler = async () => {\n    // eslint-disable-next-line @typescript-eslint/no-var-requires\n    const AWS = require(\"aws-sdk\");\n    const ecs = new AWS.ECS();\n    await ecs\n        .runTask({\n        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion\n        cluster: process.env[\"CLUSTER_NAME\"],\n        launchType: \"FARGATE\",\n        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion\n        taskDefinition: process.env[\"TASK_DEFINITION\"],\n        count: 1,\n        platformVersion: \"LATEST\",\n        networkConfiguration: {\n            awsvpcConfiguration: {\n                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion\n                subnets: process.env[\"SUBNETS\"].split(\",\"),\n                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion\n                securityGroups: process.env[\"SECURITY_GROUPS\"].split(\",\"),\n                assignPublicIp: \"ENABLED\",\n            },\n        },\n    })\n        .promise();\n};"
         },
-        "Handler": "index.handler",
         "Role": {
           "Fn::GetAtt": [
             "LauncherServiceRoleBD2C652A",
             "Arn"
           ]
         },
-        "Runtime": "nodejs12.x",
         "Environment": {
           "Variables": {
             "CLUSTER_NAME": {
@@ -449,6 +447,8 @@
             }
           }
         },
+        "Handler": "index.handler",
+        "Runtime": "nodejs12.x",
         "Tags": [
           {
             "Key": "Project",
