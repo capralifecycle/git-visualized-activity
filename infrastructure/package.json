@@ -3,7 +3,6 @@
   "version": "0.0.0-development",
   "license": "MIT",
   "scripts": {
-    "test": "jest",
     "cdk": "cdk",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
