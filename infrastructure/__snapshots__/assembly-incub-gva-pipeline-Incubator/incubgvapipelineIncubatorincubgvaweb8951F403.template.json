@@ -197,50 +197,36 @@
           ]
         },
         "Create": {
-          "service": "CognitoIdentityServiceProvider",
-          "action": "describeUserPoolClient",
-          "parameters": {
-            "UserPoolId": "eu-west-1_oGQHzXmbo",
-            "ClientId": {
-              "Ref": "UserPoolUserPoolClient40176907"
-            }
-          },
-          "physicalResourceId": {
-            "id": {
-              "Fn::Join": [
-                "",
-                [
-                  "eu-west-1_oGQHzXmbo-",
-                  {
-                    "Ref": "UserPoolUserPoolClient40176907"
-                  }
-                ]
-              ]
-            }
-          }
+          "Fn::Join": [
+            "",
+            [
+              "{\"service\":\"CognitoIdentityServiceProvider\",\"action\":\"describeUserPoolClient\",\"parameters\":{\"UserPoolId\":\"eu-west-1_oGQHzXmbo\",\"ClientId\":\"",
+              {
+                "Ref": "UserPoolUserPoolClient40176907"
+              },
+              "\"},\"physicalResourceId\":{\"id\":\"eu-west-1_oGQHzXmbo-",
+              {
+                "Ref": "UserPoolUserPoolClient40176907"
+              },
+              "\"}}"
+            ]
+          ]
         },
         "Update": {
-          "service": "CognitoIdentityServiceProvider",
-          "action": "describeUserPoolClient",
-          "parameters": {
-            "UserPoolId": "eu-west-1_oGQHzXmbo",
-            "ClientId": {
-              "Ref": "UserPoolUserPoolClient40176907"
-            }
-          },
-          "physicalResourceId": {
-            "id": {
-              "Fn::Join": [
-                "",
-                [
-                  "eu-west-1_oGQHzXmbo-",
-                  {
-                    "Ref": "UserPoolUserPoolClient40176907"
-                  }
-                ]
-              ]
-            }
-          }
+          "Fn::Join": [
+            "",
+            [
+              "{\"service\":\"CognitoIdentityServiceProvider\",\"action\":\"describeUserPoolClient\",\"parameters\":{\"UserPoolId\":\"eu-west-1_oGQHzXmbo\",\"ClientId\":\"",
+              {
+                "Ref": "UserPoolUserPoolClient40176907"
+              },
+              "\"},\"physicalResourceId\":{\"id\":\"eu-west-1_oGQHzXmbo-",
+              {
+                "Ref": "UserPoolUserPoolClient40176907"
+              },
+              "\"}}"
+            ]
+          ]
         },
         "InstallLatestAwsSdk": true
       },
@@ -643,92 +629,36 @@
           ]
         },
         "Create": {
-          "service": "CognitoIdentityServiceProvider",
-          "action": "updateUserPoolClient",
-          "parameters": {
-            "AllowedOAuthFlows": [
-              "code"
-            ],
-            "AllowedOAuthFlowsUserPoolClient": "TRUE:BOOLEAN",
-            "SupportedIdentityProviders": [
-              "COGNITO",
-              "Google"
-            ],
-            "AllowedOAuthScopes": [
-              "phone",
-              "email",
-              "profile",
-              "openid",
-              "aws.cognito.signin.user.admin"
-            ],
-            "ClientId": {
-              "Ref": "UserPoolUserPoolClient40176907"
-            },
-            "CallbackURLs": [
-              "https://gva.incubator.liflig.dev/auth/callback"
-            ],
-            "LogoutURLs": [
-              "https://gva.incubator.liflig.dev/"
-            ],
-            "UserPoolId": "eu-west-1_oGQHzXmbo"
-          },
-          "physicalResourceId": {
-            "id": {
-              "Fn::Join": [
-                "",
-                [
-                  "eu-west-1_oGQHzXmbo-",
-                  {
-                    "Ref": "UserPoolUserPoolClient40176907"
-                  }
-                ]
-              ]
-            }
-          }
+          "Fn::Join": [
+            "",
+            [
+              "{\"service\":\"CognitoIdentityServiceProvider\",\"action\":\"updateUserPoolClient\",\"parameters\":{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthFlowsUserPoolClient\":true,\"SupportedIdentityProviders\":[\"COGNITO\",\"Google\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"profile\",\"openid\",\"aws.cognito.signin.user.admin\"],\"ClientId\":\"",
+              {
+                "Ref": "UserPoolUserPoolClient40176907"
+              },
+              "\",\"CallbackURLs\":[\"https://gva.incubator.liflig.dev/auth/callback\"],\"LogoutURLs\":[\"https://gva.incubator.liflig.dev/\"],\"UserPoolId\":\"eu-west-1_oGQHzXmbo\"},\"physicalResourceId\":{\"id\":\"eu-west-1_oGQHzXmbo-",
+              {
+                "Ref": "UserPoolUserPoolClient40176907"
+              },
+              "\"}}"
+            ]
+          ]
         },
         "Update": {
-          "service": "CognitoIdentityServiceProvider",
-          "action": "updateUserPoolClient",
-          "parameters": {
-            "AllowedOAuthFlows": [
-              "code"
-            ],
-            "AllowedOAuthFlowsUserPoolClient": "TRUE:BOOLEAN",
-            "SupportedIdentityProviders": [
-              "COGNITO",
-              "Google"
-            ],
-            "AllowedOAuthScopes": [
-              "phone",
-              "email",
-              "profile",
-              "openid",
-              "aws.cognito.signin.user.admin"
-            ],
-            "ClientId": {
-              "Ref": "UserPoolUserPoolClient40176907"
-            },
-            "CallbackURLs": [
-              "https://gva.incubator.liflig.dev/auth/callback"
-            ],
-            "LogoutURLs": [
-              "https://gva.incubator.liflig.dev/"
-            ],
-            "UserPoolId": "eu-west-1_oGQHzXmbo"
-          },
-          "physicalResourceId": {
-            "id": {
-              "Fn::Join": [
-                "",
-                [
-                  "eu-west-1_oGQHzXmbo-",
-                  {
-                    "Ref": "UserPoolUserPoolClient40176907"
-                  }
-                ]
-              ]
-            }
-          }
+          "Fn::Join": [
+            "",
+            [
+              "{\"service\":\"CognitoIdentityServiceProvider\",\"action\":\"updateUserPoolClient\",\"parameters\":{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthFlowsUserPoolClient\":true,\"SupportedIdentityProviders\":[\"COGNITO\",\"Google\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"profile\",\"openid\",\"aws.cognito.signin.user.admin\"],\"ClientId\":\"",
+              {
+                "Ref": "UserPoolUserPoolClient40176907"
+              },
+              "\",\"CallbackURLs\":[\"https://gva.incubator.liflig.dev/auth/callback\"],\"LogoutURLs\":[\"https://gva.incubator.liflig.dev/\"],\"UserPoolId\":\"eu-west-1_oGQHzXmbo\"},\"physicalResourceId\":{\"id\":\"eu-west-1_oGQHzXmbo-",
+              {
+                "Ref": "UserPoolUserPoolClient40176907"
+              },
+              "\"}}"
+            ]
+          ]
         },
         "InstallLatestAwsSdk": true
       },
@@ -1236,30 +1166,28 @@
           ]
         },
         "Create": {
-          "service": "Lambda",
-          "action": "invoke",
-          "physicalResourceId": {
-            "id": "webapp-deploy"
-          },
-          "parameters": {
-            "FunctionName": {
-              "Ref": "WebDeploy056D6F67"
-            },
-            "Payload": "{\"artifactS3Url\":\"s3://cdk-hnb659fds-assets-001112238813-eu-west-1/snapshot-value.zip\"}"
-          }
+          "Fn::Join": [
+            "",
+            [
+              "{\"service\":\"Lambda\",\"action\":\"invoke\",\"physicalResourceId\":{\"id\":\"webapp-deploy\"},\"parameters\":{\"FunctionName\":\"",
+              {
+                "Ref": "WebDeploy056D6F67"
+              },
+              "\",\"Payload\":\"{\\\"artifactS3Url\\\":\\\"s3://cdk-hnb659fds-assets-001112238813-eu-west-1/snapshot-value.zip\\\"}\"}}"
+            ]
+          ]
         },
         "Update": {
-          "service": "Lambda",
-          "action": "invoke",
-          "physicalResourceId": {
-            "id": "webapp-deploy"
-          },
-          "parameters": {
-            "FunctionName": {
-              "Ref": "WebDeploy056D6F67"
-            },
-            "Payload": "{\"artifactS3Url\":\"s3://cdk-hnb659fds-assets-001112238813-eu-west-1/snapshot-value.zip\"}"
-          }
+          "Fn::Join": [
+            "",
+            [
+              "{\"service\":\"Lambda\",\"action\":\"invoke\",\"physicalResourceId\":{\"id\":\"webapp-deploy\"},\"parameters\":{\"FunctionName\":\"",
+              {
+                "Ref": "WebDeploy056D6F67"
+              },
+              "\",\"Payload\":\"{\\\"artifactS3Url\\\":\\\"s3://cdk-hnb659fds-assets-001112238813-eu-west-1/snapshot-value.zip\\\"}\"}}"
+            ]
+          ]
         },
         "InstallLatestAwsSdk": true
       },
