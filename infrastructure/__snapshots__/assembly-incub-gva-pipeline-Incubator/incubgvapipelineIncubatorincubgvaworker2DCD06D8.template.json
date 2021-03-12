@@ -515,7 +515,7 @@
         "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/ScheduleRule/Resource"
       }
     },
-    "ScheduleRuleAllowEventRuleincubgvapipelineIncubatorincubgvaworkerScheduleRule53EFA260F241132E": {
+    "ScheduleRuleAllowEventRuleincubgvapipelineIncubatorincubgvaworkerLauncher04B2AFA356194A92": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "Action": "lambda:InvokeFunction",
@@ -534,7 +534,7 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/ScheduleRule/AllowEventRuleincubgvapipelineIncubatorincubgvaworkerScheduleRule53EFA260"
+        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-worker/ScheduleRule/AllowEventRuleincubgvapipelineIncubatorincubgvaworkerLauncher04B2AFA3"
       }
     }
   },
