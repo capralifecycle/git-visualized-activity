@@ -26,8 +26,8 @@ if [ -n "${PARAMS_PREFIX:-}" ]; then
   fi
 fi
 
-# When running in Docker, we need some extra parameters and setup.
-if [ -e /.dockerenv ]; then
+# When running in a container, we need some extra parameters and setup.
+if [ -e /app/main.sh ]; then
   if [ -z "${CALS_GITHUB_TOKEN:-}" ]; then
     echo "Missing CALS_GITHUB_TOKEN environment varible"
     echo "It should be a GitHub Personal Access Token with scope=repo"
