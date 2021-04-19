@@ -80,77 +80,6 @@ export const App: React.FC<Props> = ({ classes }) => {
     return filters.reduce((acc, filter) => filter(acc), data)
   }
 
-  function renderFilters() {
-    return (
-      <>
-        <Filter
-          allValue="Year?"
-          handleChange={handleChange}
-          name="filterYear"
-          value={state.filterYear}
-          options={getUnique(data, (it) =>
-            it.timestamp.getFullYear().toString(),
-          )}
-        />
-        <Filter
-          allValue="Year/month?"
-          handleChange={handleChange}
-          name="filterYearMonth"
-          value={state.filterYearMonth}
-          options={getUnique(data, (it) => getYearMonth(it.timestamp))}
-        />
-        <Filter
-          allValue="Who?"
-          handleChange={handleChange}
-          name="filterAuthorName"
-          value={state.filterAuthorName}
-          options={getUnique(data, (it) => it.authorName)}
-        />
-        <Filter
-          allValue="Project?"
-          handleChange={handleChange}
-          name="filterProject"
-          value={state.filterProject}
-          options={getUnique(data, (it) => it.project)}
-        />
-        <Filter
-          allValue="GitHub org?"
-          handleChange={handleChange}
-          name="filterOwner"
-          value={state.filterOwner}
-          options={getUnique(data, (it) => it.owner)}
-        />
-        <Filter
-          allValue="Repo?"
-          handleChange={handleChange}
-          name="filterRepo"
-          value={state.filterRepo}
-          options={getUnique(data, fullRepoId)}
-        />
-        <Filter
-          allValue="Include merges"
-          handleChange={handleChange}
-          name="filterMerges"
-          value={state.filterMerges}
-          options={[
-            { value: "y", label: "Show only merges" },
-            { value: "n", label: "Exclude merges" },
-          ]}
-        />
-        <Filter
-          allValue="Include bots"
-          handleChange={handleChange}
-          name="filterBots"
-          value={state.filterBots}
-          options={[
-            { value: "y", label: "Show only bots" },
-            { value: "n", label: "Exclude bots" },
-          ]}
-        />
-      </>
-    )
-  }
-
   const filteredData = getFilteredData()
   const yearMonths = getAllYearMonthBetween(filteredData)
   const filteredDataset: Dataset = {
@@ -162,7 +91,72 @@ export const App: React.FC<Props> = ({ classes }) => {
     <div className={classes.layout}>
       <AppBar>
         <Toolbar>
-          <div className={classes.layout}>{renderFilters()}</div>
+          <div className={classes.layout}>
+            <Filter
+              allValue="Year?"
+              handleChange={handleChange}
+              name="filterYear"
+              value={state.filterYear}
+              options={getUnique(data, (it) =>
+                it.timestamp.getFullYear().toString(),
+              )}
+            />
+            <Filter
+              allValue="Year/month?"
+              handleChange={handleChange}
+              name="filterYearMonth"
+              value={state.filterYearMonth}
+              options={getUnique(data, (it) => getYearMonth(it.timestamp))}
+            />
+            <Filter
+              allValue="Who?"
+              handleChange={handleChange}
+              name="filterAuthorName"
+              value={state.filterAuthorName}
+              options={getUnique(data, (it) => it.authorName)}
+            />
+            <Filter
+              allValue="Project?"
+              handleChange={handleChange}
+              name="filterProject"
+              value={state.filterProject}
+              options={getUnique(data, (it) => it.project)}
+            />
+            <Filter
+              allValue="GitHub org?"
+              handleChange={handleChange}
+              name="filterOwner"
+              value={state.filterOwner}
+              options={getUnique(data, (it) => it.owner)}
+            />
+            <Filter
+              allValue="Repo?"
+              handleChange={handleChange}
+              name="filterRepo"
+              value={state.filterRepo}
+              options={getUnique(data, fullRepoId)}
+            />
+            <Filter
+              allValue="Include merges"
+              handleChange={handleChange}
+              name="filterMerges"
+              value={state.filterMerges}
+              options={[
+                { value: "y", label: "Show only merges" },
+                { value: "n", label: "Exclude merges" },
+              ]}
+            />
+            <Filter
+              allValue="Include bots"
+              handleChange={handleChange}
+              name="filterBots"
+              value={state.filterBots}
+              options={[
+                { value: "y", label: "Show only bots" },
+                { value: "n", label: "Exclude bots" },
+              ]}
+            />
+          </div>
         </Toolbar>
       </AppBar>
       <div
