@@ -4,13 +4,7 @@ import { formatValue } from "../filters"
 import { useFilterStyles } from "../styles"
 import { AppState } from "../types"
 
-export const Filter = ({
-  handleChange,
-  value,
-  name,
-  allValue,
-  options,
-}: {
+interface Props {
   handleChange: (
     field: keyof AppState,
   ) => (e: ChangeEvent<HTMLSelectElement>) => void
@@ -18,6 +12,14 @@ export const Filter = ({
   name: keyof AppState
   allValue: string
   options: (string | { value: string; label: string })[]
+}
+
+export const Filter: React.FC<Props> = ({
+  handleChange,
+  value,
+  name,
+  allValue,
+  options,
 }) => {
   const styles = useFilterStyles()
 

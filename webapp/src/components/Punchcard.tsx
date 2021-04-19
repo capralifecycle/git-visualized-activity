@@ -14,7 +14,11 @@ import { getChartColor } from "../colors"
 import { days } from "../constants"
 import { Row } from "../types"
 
-export const Punchcard = ({ data }: { data: Row[] }) => {
+interface Props {
+  data: Row[]
+}
+
+export const Punchcard: React.FC<Props> = ({ data }) => {
   const transformed = data.reduce<{
     [weekday: number]: { [hour: number]: number }
   }>((acc, row) => {

@@ -3,7 +3,11 @@ import React from "react"
 import { Row } from "../types"
 import { fullRepoId, groupBy } from "../utils"
 
-export const AllRepositories = ({ data }: { data: Row[] }) => {
+interface Props {
+  data: Row[]
+}
+
+export const AllRepositories: React.FC<Props> = ({ data }) => {
   const list = groupBy(data, fullRepoId).sort((a, b) =>
     a.name.localeCompare(b.name),
   )

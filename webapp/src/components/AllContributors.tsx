@@ -3,7 +3,11 @@ import React from "react"
 import { Row } from "../types"
 import { groupBy } from "../utils"
 
-export const AllContributors = ({ data }: { data: Row[] }) => {
+interface Props {
+  data: Row[]
+}
+
+export const AllContributors: React.FC<Props> = ({ data }) => {
   const list = groupBy(data, (row) => row.authorName).sort((a, b) =>
     a.name.localeCompare(b.name),
   )

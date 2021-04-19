@@ -13,12 +13,14 @@ import { getChartColor } from "../colors"
 import { YearMonthPartition } from "../types"
 import { mapToYearMonthTop } from "../utils"
 
-export const CustomLineYearMonthChart = ({
-  data,
-  yearMonths,
-}: {
+interface Props {
   data: YearMonthPartition
   yearMonths: string[]
+}
+
+export const CustomLineYearMonthChart: React.FC<Props> = ({
+  data,
+  yearMonths,
 }) => (
   <ResponsiveContainer width="100%" height={300}>
     <LineChart data={mapToYearMonthTop(data, yearMonths)}>

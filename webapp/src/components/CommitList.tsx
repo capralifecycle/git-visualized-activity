@@ -1,7 +1,11 @@
 import React from "react"
 import { Row } from "../types"
 
-export const CommitList: React.FC<{ data: Row[] }> = ({ data }) => {
+interface Props {
+  data: Row[]
+}
+
+export const CommitList: React.FC<Props> = ({ data }) => {
   const grouped = data.reduce<{
     [authorName: string]: {
       [owner: string]: {

@@ -13,7 +13,11 @@ import { getChartColor } from "../colors"
 import { Dataset, MonthStats } from "../types"
 import { fullRepoId, getYearMonth } from "../utils"
 
-export const OverallMonthly = ({ dataset }: { dataset: Dataset }) => {
+interface Props {
+  dataset: Dataset
+}
+
+export const OverallMonthly: React.FC<Props> = ({ dataset }) => {
   const initial = dataset.yearMonths.reduce<MonthStats>((acc, cur) => {
     acc[cur] = {
       contributors: [],

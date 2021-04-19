@@ -13,7 +13,11 @@ import {
 import { Dataset } from "../types"
 import { getYearMonth, mapToYearMonthTop, yearMonthZeroBasis } from "../utils"
 
-export const AdditionsDeletions = ({ dataset }: { dataset: Dataset }) => {
+interface Props {
+  dataset: Dataset
+}
+
+export const AdditionsDeletions: React.FC<Props> = ({ dataset }) => {
   const grouped = dataset.rows.reduce(
     (acc, row) => {
       const monthMonth = getYearMonth(row.timestamp)
