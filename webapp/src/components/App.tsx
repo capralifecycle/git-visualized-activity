@@ -3,7 +3,8 @@ import AppBar from "@material-ui/core/AppBar"
 import React, { ChangeEvent, useState } from "react"
 import { buildFilter, parseValue } from "../filters"
 import { styles } from "../styles"
-import { AppState, Dataset, Row } from "../types"
+import { AppState, Dataset } from "../types"
+import { useData as useLoadData } from "../use-load-data"
 import {
   filterByPeaks,
   fullRepoId,
@@ -25,9 +26,9 @@ import { OverallMonthly } from "./OverallMonthly"
 import { Punchcard } from "./Punchcard"
 import { TopList } from "./TopList"
 
-type Props = WithStyles<typeof styles> & { data: Row[] }
+type Props = WithStyles<typeof styles>
 
-export const App: React.FC<Props> = ({ classes, data }) => {
+export const App: React.FC<Props> = ({ classes }) => {
   const [state, setState] = useState<AppState>({
     filterYear: null,
     filterYearMonth: null,
@@ -38,6 +39,20 @@ export const App: React.FC<Props> = ({ classes, data }) => {
     filterMerges: null,
     filterBots: null,
   })
+
+  const { data: data1, loading, error } = useLoadData()
+
+  if (loading) {
+    return <Typography variant="body1">Loading data!</Typography>
+  } else if (error) {
+    return <Typography variant="body1">Error: {error}</Typography>
+  }
+
+  if (data1 == null) {
+    throw new Error("Expected data")
+  }
+
+  const data = data1
 
   const handleChange = <T extends keyof AppState>(field: T) => (
     e: ChangeEvent<HTMLSelectElement>,
