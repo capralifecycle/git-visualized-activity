@@ -5,7 +5,7 @@
 Generate `commits.csv` in this directory first.
 
 ```bash
-npm install
+npm ci
 mkdir -p dist/data
 # Make the commits.csv file available with the dev server.
 cp commits.csv dist/data/
