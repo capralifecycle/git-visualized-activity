@@ -88,9 +88,9 @@ const AppWithData: React.FC<PropsWithData> = ({ classes, data }) => {
   }
 
   const [firstDate, lastDate] = useMemo(() => {
-    const timestamps = data.map((it) => it.timestamp)
+    const timestamps = filteredData.map((it) => it.timestamp)
     return [min(timestamps), max(timestamps)]
-  }, [data])
+  }, [filteredData])
 
   const definedRanges = useMemo<DefinedRange[]>(
     () =>
@@ -128,28 +128,28 @@ const AppWithData: React.FC<PropsWithData> = ({ classes, data }) => {
               handleChange={handleChange}
               name="filterAuthorName"
               value={state.filterAuthorName}
-              options={getUnique(data, (it) => it.authorName)}
+              options={getUnique(filteredData, (it) => it.authorName)}
             />
             <Filter
               allValue="Project?"
               handleChange={handleChange}
               name="filterProject"
               value={state.filterProject}
-              options={getUnique(data, (it) => it.project)}
+              options={getUnique(filteredData, (it) => it.project)}
             />
             <Filter
               allValue="GitHub org?"
               handleChange={handleChange}
               name="filterOwner"
               value={state.filterOwner}
-              options={getUnique(data, (it) => it.owner)}
+              options={getUnique(filteredData, (it) => it.owner)}
             />
             <Filter
               allValue="Repo?"
               handleChange={handleChange}
               name="filterRepo"
               value={state.filterRepo}
-              options={getUnique(data, fullRepoId)}
+              options={getUnique(filteredData, fullRepoId)}
             />
             <Filter
               allValue="Include merges"
