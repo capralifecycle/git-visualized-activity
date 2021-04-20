@@ -7,12 +7,12 @@ import {
   WithStyles,
 } from "@material-ui/core"
 import AppBar from "@material-ui/core/AppBar"
-import { add, isBefore } from "date-fns"
+import { add } from "date-fns"
 import { max, min } from "lodash"
 import { DateRangePicker, DefinedRange } from "materialui-daterange-picker"
 import React, { ChangeEvent, useMemo, useState } from "react"
 import { createDefinedRanges, formatDateRange } from "../dates"
-import { buildFilter, parseValue } from "../filters"
+import { filterData, parseValue } from "../filters"
 import { styles, useFilterStyles } from "../styles"
 import { AppState, Dataset, Row } from "../types"
 import { useData as useLoadData } from "../use-load-data"
@@ -79,30 +79,7 @@ const AppWithData: React.FC<PropsWithData> = ({ classes, data }) => {
     })
   }
 
-  const filteredData = useMemo(() => {
-    const filters = [
-      (data: Row[]) => {
-        const filter = state.filterDateFrom
-        return filter == null
-          ? data
-          : data.filter((it) => !isBefore(it.timestamp, filter))
-      },
-      (data: Row[]) => {
-        const filter = state.filterDateUntil
-        return filter == null
-          ? data
-          : data.filter((it) => isBefore(it.timestamp, filter))
-      },
-      buildFilter(state.filterAuthorName, (it) => it.authorName),
-      buildFilter(state.filterProject, (it) => it.project),
-      buildFilter(state.filterOwner, (it) => it.owner),
-      buildFilter(state.filterRepo, fullRepoId),
-      buildFilter(state.filterMerges, (it) => (it.isMerge ? "y" : "n")),
-      buildFilter(state.filterBots, (it) => (isBot(it) ? "y" : "n")),
-    ]
-
-    return filters.reduce((acc, filter) => filter(acc), data)
-  }, [state, data])
+  const filteredData = useMemo(() => filterData(data, state), [state, data])
 
   const yearMonths = getAllYearMonthBetween(filteredData)
   const filteredDataset: Dataset = {
