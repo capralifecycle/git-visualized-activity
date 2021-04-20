@@ -25,6 +25,9 @@ export const styles = (theme: Theme) =>
         marginRight: "auto",
       },
     },
+    dateRangePicker: {
+      marginBottom: theme.spacing(1),
+    },
   })
 
 export const theme = createMuiTheme({

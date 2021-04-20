@@ -1,16 +1,26 @@
-import { Grid, Toolbar, Typography, WithStyles } from "@material-ui/core"
+import {
+  Button,
+  FormControl,
+  Grid,
+  Toolbar,
+  Typography,
+  WithStyles,
+} from "@material-ui/core"
 import AppBar from "@material-ui/core/AppBar"
-import React, { ChangeEvent, useState } from "react"
+import { add, isBefore } from "date-fns"
+import { max, min } from "lodash"
+import { DateRangePicker, DefinedRange } from "materialui-daterange-picker"
+import React, { ChangeEvent, useMemo, useState } from "react"
+import { createDefinedRanges, formatDateRange } from "../dates"
 import { buildFilter, parseValue } from "../filters"
-import { styles } from "../styles"
-import { AppState, Dataset } from "../types"
+import { styles, useFilterStyles } from "../styles"
+import { AppState, Dataset, Row } from "../types"
 import { useData as useLoadData } from "../use-load-data"
 import {
   filterByPeaks,
   fullRepoId,
   getAllYearMonthBetween,
   getUnique,
-  getYearMonth,
   groupByTop,
   groupByYearMonth,
   isBot,
@@ -27,11 +37,28 @@ import { Punchcard } from "./Punchcard"
 import { TopList } from "./TopList"
 
 type Props = WithStyles<typeof styles>
+type PropsWithData = Props & { data: Row[] }
 
 export const App: React.FC<Props> = ({ classes }) => {
+  const { data, loading, error } = useLoadData()
+
+  if (loading) {
+    return <Typography variant="body1">Loading data!</Typography>
+  } else if (error) {
+    return <Typography variant="body1">Error: {error}</Typography>
+  }
+
+  if (data == null) {
+    throw new Error("Expected data")
+  }
+
+  return <AppWithData classes={classes} data={data} />
+}
+
+const AppWithData: React.FC<PropsWithData> = ({ classes, data }) => {
   const [state, setState] = useState<AppState>({
-    filterYear: null,
-    filterYearMonth: null,
+    filterDateFrom: undefined,
+    filterDateUntil: undefined,
     filterAuthorName: null,
     filterProject: null,
     filterOwner: null,
@@ -40,19 +67,8 @@ export const App: React.FC<Props> = ({ classes }) => {
     filterBots: null,
   })
 
-  const { data: data1, loading, error } = useLoadData()
-
-  if (loading) {
-    return <Typography variant="body1">Loading data!</Typography>
-  } else if (error) {
-    return <Typography variant="body1">Error: {error}</Typography>
-  }
-
-  if (data1 == null) {
-    throw new Error("Expected data")
-  }
-
-  const data = data1
+  const [showDatePicker, setShowDatePicker] = useState(false)
+  const filterStyles = useFilterStyles()
 
   const handleChange = <T extends keyof AppState>(field: T) => (
     e: ChangeEvent<HTMLSelectElement>,
@@ -63,12 +79,20 @@ export const App: React.FC<Props> = ({ classes }) => {
     })
   }
 
-  function getFilteredData() {
+  const filteredData = useMemo(() => {
     const filters = [
-      buildFilter(state.filterYear, (it) =>
-        it.timestamp.getFullYear().toString(),
-      ),
-      buildFilter(state.filterYearMonth, (it) => getYearMonth(it.timestamp)),
+      (data: Row[]) => {
+        const filter = state.filterDateFrom
+        return filter == null
+          ? data
+          : data.filter((it) => !isBefore(it.timestamp, filter))
+      },
+      (data: Row[]) => {
+        const filter = state.filterDateUntil
+        return filter == null
+          ? data
+          : data.filter((it) => isBefore(it.timestamp, filter))
+      },
       buildFilter(state.filterAuthorName, (it) => it.authorName),
       buildFilter(state.filterProject, (it) => it.project),
       buildFilter(state.filterOwner, (it) => it.owner),
@@ -78,36 +102,50 @@ export const App: React.FC<Props> = ({ classes }) => {
     ]
 
     return filters.reduce((acc, filter) => filter(acc), data)
-  }
+  }, [state, data])
 
-  const filteredData = getFilteredData()
   const yearMonths = getAllYearMonthBetween(filteredData)
   const filteredDataset: Dataset = {
     rows: filteredData,
     yearMonths,
   }
 
+  const [firstDate, lastDate] = useMemo(() => {
+    const timestamps = data.map((it) => it.timestamp)
+    return [min(timestamps), max(timestamps)]
+  }, [data])
+
+  const definedRanges = useMemo<DefinedRange[]>(
+    () =>
+      firstDate != null && lastDate != null
+        ? createDefinedRanges({
+            first: firstDate,
+            last: lastDate,
+          })
+        : [],
+    [],
+  )
+
   return (
     <div className={classes.layout}>
       <AppBar>
         <Toolbar>
           <div className={classes.layout}>
-            <Filter
-              allValue="Year?"
-              handleChange={handleChange}
-              name="filterYear"
-              value={state.filterYear}
-              options={getUnique(data, (it) =>
-                it.timestamp.getFullYear().toString(),
-              )}
-            />
-            <Filter
-              allValue="Year/month?"
-              handleChange={handleChange}
-              name="filterYearMonth"
-              value={state.filterYearMonth}
-              options={getUnique(data, (it) => getYearMonth(it.timestamp))}
-            />
+            <FormControl className={filterStyles.formControl}>
+              <Button
+                className={filterStyles.input}
+                onClick={() => setShowDatePicker(true)}
+              >
+                {state.filterDateFrom == null && state.filterDateUntil == null
+                  ? formatDateRange(firstDate, lastDate)
+                  : formatDateRange(
+                      state.filterDateFrom,
+                      state.filterDateUntil
+                        ? add(state.filterDateUntil, { days: -1 })
+                        : undefined,
+                    )}
+              </Button>
+            </FormControl>
             <Filter
               allValue="Who?"
               handleChange={handleChange}
@@ -158,6 +196,36 @@ export const App: React.FC<Props> = ({ classes }) => {
             />
           </div>
         </Toolbar>
+        {showDatePicker && (
+          <>
+            <div className={classes.layout}>
+              <div className={classes.dateRangePicker}>
+                <DateRangePicker
+                  open={showDatePicker}
+                  minDate={firstDate}
+                  maxDate={lastDate}
+                  toggle={() => void setShowDatePicker(false)}
+                  onChange={(value) => {
+                    setState({
+                      ...state,
+                      filterDateFrom: value.startDate ?? undefined,
+                      filterDateUntil: value.endDate
+                        ? add(value.endDate, { days: 1 })
+                        : undefined,
+                    })
+                  }}
+                  initialDateRange={{
+                    startDate: state.filterDateFrom ?? undefined,
+                    endDate: state.filterDateUntil
+                      ? add(state.filterDateUntil, { days: -1 })
+                      : undefined,
+                  }}
+                  definedRanges={definedRanges}
+                />
+              </div>
+            </div>
+          </>
+        )}
       </AppBar>
       <div
         style={{

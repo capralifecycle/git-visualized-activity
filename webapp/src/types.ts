@@ -16,8 +16,8 @@ export interface MonthStats {
 }
 
 export interface AppState {
-  filterYear: string | null
-  filterYearMonth: string | null
+  filterDateFrom: Date | undefined
+  filterDateUntil: Date | undefined
   filterAuthorName: string | null
   filterProject: string | null
   filterOwner: string | null
