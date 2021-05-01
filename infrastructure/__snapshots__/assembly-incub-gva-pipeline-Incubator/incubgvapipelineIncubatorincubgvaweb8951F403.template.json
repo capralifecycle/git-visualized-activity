@@ -248,9 +248,7 @@
             "Arn"
           ]
         },
-        "FunctionArn": {
-          "Ref": "SsmParameterValuecfregionuseast1stackincubgvawebedgec8798d4e078c43da5804ce3acd11e07ce76c434abbCheckAuthFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
-        },
+        "FunctionArn": "{{resolve:ssm:/cf/region/us-east-1/stack/incub-gva-web-edge/c8798d4e078c43da5804ce3acd11e07ce76c434abb-CheckAuthFunction-function-arn}}",
         "Config": {
           "httpHeaders": {
             "Content-Security-Policy": "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; connect-src 'self'",
@@ -317,9 +315,7 @@
             "Arn"
           ]
         },
-        "FunctionArn": {
-          "Ref": "SsmParameterValuecfregionuseast1stackincubgvawebedgec8798d4e078c43da5804ce3acd11e07ce76c434abbHttpHeadersFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
-        },
+        "FunctionArn": "{{resolve:ssm:/cf/region/us-east-1/stack/incub-gva-web-edge/c8798d4e078c43da5804ce3acd11e07ce76c434abb-HttpHeadersFunction-function-arn}}",
         "Config": {
           "httpHeaders": {
             "Content-Security-Policy": "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; connect-src 'self'",
@@ -386,9 +382,7 @@
             "Arn"
           ]
         },
-        "FunctionArn": {
-          "Ref": "SsmParameterValuecfregionuseast1stackincubgvawebedgec8798d4e078c43da5804ce3acd11e07ce76c434abbParseAuthFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
-        },
+        "FunctionArn": "{{resolve:ssm:/cf/region/us-east-1/stack/incub-gva-web-edge/c8798d4e078c43da5804ce3acd11e07ce76c434abb-ParseAuthFunction-function-arn}}",
         "Config": {
           "httpHeaders": {
             "Content-Security-Policy": "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; connect-src 'self'",
@@ -455,9 +449,7 @@
             "Arn"
           ]
         },
-        "FunctionArn": {
-          "Ref": "SsmParameterValuecfregionuseast1stackincubgvawebedgec8798d4e078c43da5804ce3acd11e07ce76c434abbRefreshAuthFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
-        },
+        "FunctionArn": "{{resolve:ssm:/cf/region/us-east-1/stack/incub-gva-web-edge/c8798d4e078c43da5804ce3acd11e07ce76c434abb-RefreshAuthFunction-function-arn}}",
         "Config": {
           "httpHeaders": {
             "Content-Security-Policy": "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; connect-src 'self'",
@@ -524,9 +516,7 @@
             "Arn"
           ]
         },
-        "FunctionArn": {
-          "Ref": "SsmParameterValuecfregionuseast1stackincubgvawebedgec8798d4e078c43da5804ce3acd11e07ce76c434abbSignOutFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
-        },
+        "FunctionArn": "{{resolve:ssm:/cf/region/us-east-1/stack/incub-gva-web-edge/c8798d4e078c43da5804ce3acd11e07ce76c434abb-SignOutFunction-function-arn}}",
         "Config": {
           "httpHeaders": {
             "Content-Security-Policy": "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; connect-src 'self'",
@@ -1770,26 +1760,6 @@
     "WebAuthSignOutFnImportNonce7E1414FD": {
       "Type": "String",
       "Default": "snapshot"
-    },
-    "SsmParameterValuecfregionuseast1stackincubgvawebedgec8798d4e078c43da5804ce3acd11e07ce76c434abbCheckAuthFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter": {
-      "Type": "AWS::SSM::Parameter::Value<String>",
-      "Default": "/cf/region/us-east-1/stack/incub-gva-web-edge/c8798d4e078c43da5804ce3acd11e07ce76c434abb-CheckAuthFunction-function-arn"
-    },
-    "SsmParameterValuecfregionuseast1stackincubgvawebedgec8798d4e078c43da5804ce3acd11e07ce76c434abbHttpHeadersFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter": {
-      "Type": "AWS::SSM::Parameter::Value<String>",
-      "Default": "/cf/region/us-east-1/stack/incub-gva-web-edge/c8798d4e078c43da5804ce3acd11e07ce76c434abb-HttpHeadersFunction-function-arn"
-    },
-    "SsmParameterValuecfregionuseast1stackincubgvawebedgec8798d4e078c43da5804ce3acd11e07ce76c434abbParseAuthFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter": {
-      "Type": "AWS::SSM::Parameter::Value<String>",
-      "Default": "/cf/region/us-east-1/stack/incub-gva-web-edge/c8798d4e078c43da5804ce3acd11e07ce76c434abb-ParseAuthFunction-function-arn"
-    },
-    "SsmParameterValuecfregionuseast1stackincubgvawebedgec8798d4e078c43da5804ce3acd11e07ce76c434abbRefreshAuthFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter": {
-      "Type": "AWS::SSM::Parameter::Value<String>",
-      "Default": "/cf/region/us-east-1/stack/incub-gva-web-edge/c8798d4e078c43da5804ce3acd11e07ce76c434abb-RefreshAuthFunction-function-arn"
-    },
-    "SsmParameterValuecfregionuseast1stackincubgvawebedgec8798d4e078c43da5804ce3acd11e07ce76c434abbSignOutFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter": {
-      "Type": "AWS::SSM::Parameter::Value<String>",
-      "Default": "/cf/region/us-east-1/stack/incub-gva-web-edge/c8798d4e078c43da5804ce3acd11e07ce76c434abb-SignOutFunction-function-arn"
     },
     "BootstrapVersion": {
       "Type": "AWS::SSM::Parameter::Value<String>",
