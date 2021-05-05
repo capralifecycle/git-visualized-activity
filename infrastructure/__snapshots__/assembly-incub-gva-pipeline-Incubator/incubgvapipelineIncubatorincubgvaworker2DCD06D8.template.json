@@ -136,7 +136,7 @@
             ],
             "Essential": true,
             "Image": {
-              "Fn::Sub": "001112238813.dkr.ecr.eu-west-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-001112238813-eu-west-1:snapshot-value"
+              "Fn::Sub": "001112238813.dkr.ecr.eu-west-1.${AWS::URLSuffix}/cdk-liflig-container-assets-001112238813-eu-west-1:snapshot-value"
             },
             "LogConfiguration": {
               "LogDriver": "awslogs",
@@ -243,7 +243,7 @@
                     {
                       "Ref": "AWS::Partition"
                     },
-                    ":ecr:eu-west-1:001112238813:repository/cdk-hnb659fds-container-assets-001112238813-eu-west-1"
+                    ":ecr:eu-west-1:001112238813:repository/cdk-liflig-container-assets-001112238813-eu-west-1"
                   ]
                 ]
               }
@@ -543,7 +543,7 @@
   "Parameters": {
     "BootstrapVersion": {
       "Type": "AWS::SSM::Parameter::Value<String>",
-      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Default": "/cdk-bootstrap/liflig/version",
       "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store."
     }
   },

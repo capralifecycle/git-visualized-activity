@@ -458,7 +458,7 @@
                     {
                       "Ref": "AWS::Partition"
                     },
-                    ":iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-us-east-1"
+                    ":iam::001112238813:role/cdk-liflig-deploy-role-001112238813-us-east-1"
                   ]
                 ]
               }
@@ -474,7 +474,7 @@
                     {
                       "Ref": "AWS::Partition"
                     },
-                    ":iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1"
+                    ":iam::001112238813:role/cdk-liflig-deploy-role-001112238813-eu-west-1"
                   ]
                 ]
               }
@@ -946,7 +946,7 @@
                         {
                           "Ref": "AWS::Partition"
                         },
-                        ":iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-us-east-1"
+                        ":iam::001112238813:role/cdk-liflig-cfn-exec-role-001112238813-us-east-1"
                       ]
                     ]
                   },
@@ -970,7 +970,7 @@
                       {
                         "Ref": "AWS::Partition"
                       },
-                      ":iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-us-east-1"
+                      ":iam::001112238813:role/cdk-liflig-deploy-role-001112238813-us-east-1"
                     ]
                   ]
                 },
@@ -998,7 +998,7 @@
                       {
                         "Ref": "AWS::Partition"
                       },
-                      ":iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-us-east-1"
+                      ":iam::001112238813:role/cdk-liflig-deploy-role-001112238813-us-east-1"
                     ]
                   ]
                 },
@@ -1022,7 +1022,7 @@
                         {
                           "Ref": "AWS::Partition"
                         },
-                        ":iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1"
+                        ":iam::001112238813:role/cdk-liflig-cfn-exec-role-001112238813-eu-west-1"
                       ]
                     ]
                   },
@@ -1045,7 +1045,7 @@
                       {
                         "Ref": "AWS::Partition"
                       },
-                      ":iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1"
+                      ":iam::001112238813:role/cdk-liflig-deploy-role-001112238813-eu-west-1"
                     ]
                   ]
                 },
@@ -1072,7 +1072,7 @@
                       {
                         "Ref": "AWS::Partition"
                       },
-                      ":iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1"
+                      ":iam::001112238813:role/cdk-liflig-deploy-role-001112238813-eu-west-1"
                     ]
                   ]
                 },
@@ -1096,7 +1096,7 @@
                         {
                           "Ref": "AWS::Partition"
                         },
-                        ":iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1"
+                        ":iam::001112238813:role/cdk-liflig-cfn-exec-role-001112238813-eu-west-1"
                       ]
                     ]
                   },
@@ -1119,7 +1119,7 @@
                       {
                         "Ref": "AWS::Partition"
                       },
-                      ":iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1"
+                      ":iam::001112238813:role/cdk-liflig-deploy-role-001112238813-eu-west-1"
                     ]
                   ]
                 },
@@ -1146,7 +1146,7 @@
                       {
                         "Ref": "AWS::Partition"
                       },
-                      ":iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1"
+                      ":iam::001112238813:role/cdk-liflig-deploy-role-001112238813-eu-west-1"
                     ]
                   ]
                 },
@@ -2720,7 +2720,7 @@
   "Parameters": {
     "BootstrapVersion": {
       "Type": "AWS::SSM::Parameter::Value<String>",
-      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Default": "/cdk-bootstrap/liflig/version",
       "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store."
     }
   },

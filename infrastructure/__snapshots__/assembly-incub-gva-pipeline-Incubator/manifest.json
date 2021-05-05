@@ -5,7 +5,7 @@
       "properties": {
         "file": "incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json",
         "requiresBootstrapStackVersion": 4,
-        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/liflig/version"
       }
     },
     "incubgvapipelineIncubatorincubgvawebedge823FE13E": {
@@ -18,11 +18,11 @@
           "SourceRepo": "github/capraconsulting/git-visualized-activity",
           "StackName": "incub-gva-web-edge"
         },
-        "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-us-east-1",
-        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-us-east-1/snapshot-value.json",
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-deploy-role-001112238813-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-cfn-exec-role-001112238813-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-liflig-assets-001112238813-us-east-1/snapshot-value.json",
         "requiresBootstrapStackVersion": 4,
-        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/liflig/version",
         "additionalDependencies": [
           "incubgvapipelineIncubatorincubgvawebedge823FE13E.assets"
         ],
@@ -208,7 +208,7 @@
       "properties": {
         "file": "incubgvapipelineIncubatorincubgvaweb8951F403.assets.json",
         "requiresBootstrapStackVersion": 4,
-        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/liflig/version"
       }
     },
     "incubgvapipelineIncubatorincubgvaweb8951F403": {
@@ -221,11 +221,11 @@
           "SourceRepo": "github/capraconsulting/git-visualized-activity",
           "StackName": "incub-gva-web"
         },
-        "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1",
-        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/snapshot-value.json",
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-deploy-role-001112238813-eu-west-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-cfn-exec-role-001112238813-eu-west-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-liflig-assets-001112238813-eu-west-1/snapshot-value.json",
         "requiresBootstrapStackVersion": 4,
-        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/liflig/version",
         "additionalDependencies": [
           "incubgvapipelineIncubatorincubgvaweb8951F403.assets"
         ],
@@ -532,7 +532,7 @@
       "properties": {
         "file": "incubgvapipelineIncubatorincubgvaworker2DCD06D8.assets.json",
         "requiresBootstrapStackVersion": 4,
-        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/liflig/version"
       }
     },
     "incubgvapipelineIncubatorincubgvaworker2DCD06D8": {
@@ -545,11 +545,11 @@
           "SourceRepo": "github/capraconsulting/git-visualized-activity",
           "StackName": "incub-gva-worker"
         },
-        "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1",
-        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-001112238813-eu-west-1/snapshot-value.json",
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-deploy-role-001112238813-eu-west-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-cfn-exec-role-001112238813-eu-west-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-liflig-assets-001112238813-eu-west-1/snapshot-value.json",
         "requiresBootstrapStackVersion": 4,
-        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/liflig/version",
         "additionalDependencies": [
           "incubgvapipelineIncubatorincubgvaworker2DCD06D8.assets"
         ],

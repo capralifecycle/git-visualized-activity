@@ -1011,7 +1011,7 @@
                       {
                         "Ref": "AWS::Partition"
                       },
-                      ":s3:::cdk-hnb659fds-assets-001112238813-eu-west-1"
+                      ":s3:::cdk-liflig-assets-001112238813-eu-west-1"
                     ]
                   ]
                 },
@@ -1023,7 +1023,7 @@
                       {
                         "Ref": "AWS::Partition"
                       },
-                      ":s3:::cdk-hnb659fds-assets-001112238813-eu-west-1/*"
+                      ":s3:::cdk-liflig-assets-001112238813-eu-west-1/*"
                     ]
                   ]
                 }
@@ -1047,7 +1047,7 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "S3Bucket": "cdk-hnb659fds-assets-001112238813-eu-west-1",
+          "S3Bucket": "cdk-liflig-assets-001112238813-eu-west-1",
           "S3Key": "snapshot-value.zip"
         },
         "Role": {
@@ -1163,7 +1163,7 @@
               {
                 "Ref": "WebDeploy056D6F67"
               },
-              "\",\"Payload\":\"{\\\"artifactS3Url\\\":\\\"s3://cdk-hnb659fds-assets-001112238813-eu-west-1/snapshot-value.zip\\\"}\"}}"
+              "\",\"Payload\":\"{\\\"artifactS3Url\\\":\\\"s3://cdk-liflig-assets-001112238813-eu-west-1/snapshot-value.zip\\\"}\"}}"
             ]
           ]
         },
@@ -1175,7 +1175,7 @@
               {
                 "Ref": "WebDeploy056D6F67"
               },
-              "\",\"Payload\":\"{\\\"artifactS3Url\\\":\\\"s3://cdk-hnb659fds-assets-001112238813-eu-west-1/snapshot-value.zip\\\"}\"}}"
+              "\",\"Payload\":\"{\\\"artifactS3Url\\\":\\\"s3://cdk-liflig-assets-001112238813-eu-west-1/snapshot-value.zip\\\"}\"}}"
             ]
           ]
         },
@@ -1242,7 +1242,7 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "S3Bucket": "cdk-hnb659fds-assets-001112238813-eu-west-1",
+          "S3Bucket": "cdk-liflig-assets-001112238813-eu-west-1",
           "S3Key": "snapshot-value.zip"
         },
         "Role": {
@@ -1358,7 +1358,7 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "S3Bucket": "cdk-hnb659fds-assets-001112238813-eu-west-1",
+          "S3Bucket": "cdk-liflig-assets-001112238813-eu-west-1",
           "S3Key": "snapshot-value.zip"
         },
         "Role": {
@@ -1458,7 +1458,7 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "S3Bucket": "cdk-hnb659fds-assets-001112238813-eu-west-1",
+          "S3Bucket": "cdk-liflig-assets-001112238813-eu-west-1",
           "S3Key": "snapshot-value.zip"
         },
         "Role": {
@@ -1573,7 +1573,7 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "S3Bucket": "cdk-hnb659fds-assets-001112238813-eu-west-1",
+          "S3Bucket": "cdk-liflig-assets-001112238813-eu-west-1",
           "S3Key": "snapshot-value.zip"
         },
         "Role": {
@@ -1691,7 +1691,7 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "S3Bucket": "cdk-hnb659fds-assets-001112238813-eu-west-1",
+          "S3Bucket": "cdk-liflig-assets-001112238813-eu-west-1",
           "S3Key": "snapshot-value.zip"
         },
         "Role": {
@@ -1763,7 +1763,7 @@
     },
     "BootstrapVersion": {
       "Type": "AWS::SSM::Parameter::Value<String>",
-      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Default": "/cdk-bootstrap/liflig/version",
       "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store."
     }
   },
