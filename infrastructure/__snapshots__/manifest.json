@@ -220,6 +220,24 @@
             "data": "PipelineCdkPipelineAssetsFileAsset6BD52B215"
           }
         ],
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/DockerRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineCdkPipelineAssetsDockerRole064148FF"
+          }
+        ],
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/DockerRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineCdkPipelineAssetsDockerRoleDefaultPolicy19BE8BF8"
+          }
+        ],
+        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/DockerAsset1/Default/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PipelineCdkPipelineAssetsDockerAsset1EC210797"
+          }
+        ],
         "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/FileAsset7/Default/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -248,24 +266,6 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "PipelineCdkPipelineAssetsFileAsset1160F0FA56"
-          }
-        ],
-        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/DockerRole/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PipelineCdkPipelineAssetsDockerRole064148FF"
-          }
-        ],
-        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/DockerRole/DefaultPolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PipelineCdkPipelineAssetsDockerRoleDefaultPolicy19BE8BF8"
-          }
-        ],
-        "/incub-gva-pipeline/Pipeline/CdkPipeline/Assets/DockerAsset1/Default/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PipelineCdkPipelineAssetsDockerAsset1EC210797"
           }
         ],
         "/incub-gva-pipeline/BootstrapVersion": [

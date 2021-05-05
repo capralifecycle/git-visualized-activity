@@ -59,7 +59,7 @@
                 "s3:GetBucket*",
                 "s3:List*",
                 "s3:DeleteObject*",
-                "s3:PutObject*",
+                "s3:PutObject",
                 "s3:Abort*"
               ],
               "Effect": "Allow",
@@ -157,23 +157,7 @@
         "KeyPolicy": {
           "Statement": [
             {
-              "Action": [
-                "kms:Create*",
-                "kms:Describe*",
-                "kms:Enable*",
-                "kms:List*",
-                "kms:Put*",
-                "kms:Update*",
-                "kms:Revoke*",
-                "kms:Disable*",
-                "kms:Get*",
-                "kms:Delete*",
-                "kms:ScheduleKeyDeletion",
-                "kms:CancelKeyDeletion",
-                "kms:GenerateDataKey",
-                "kms:TagResource",
-                "kms:UntagResource"
-              ],
+              "Action": "kms:*",
               "Effect": "Allow",
               "Principal": {
                 "AWS": {
@@ -185,185 +169,6 @@
                         "Ref": "AWS::Partition"
                       },
                       ":iam::001112238813:root"
-                    ]
-                  ]
-                }
-              },
-              "Resource": "*"
-            },
-            {
-              "Action": [
-                "kms:Decrypt",
-                "kms:DescribeKey",
-                "kms:Encrypt",
-                "kms:ReEncrypt*",
-                "kms:GenerateDataKey*"
-              ],
-              "Effect": "Allow",
-              "Principal": {
-                "AWS": {
-                  "Fn::GetAtt": [
-                    "PipelineCodePipelineRoleEE058E60",
-                    "Arn"
-                  ]
-                }
-              },
-              "Resource": "*"
-            },
-            {
-              "Action": [
-                "kms:Encrypt",
-                "kms:ReEncrypt*",
-                "kms:GenerateDataKey*",
-                "kms:Decrypt"
-              ],
-              "Effect": "Allow",
-              "Principal": {
-                "AWS": {
-                  "Fn::GetAtt": [
-                    "PipelineCodePipelineSourcesourceCodePipelineActionRoleAB26C0AE",
-                    "Arn"
-                  ]
-                }
-              },
-              "Resource": "*"
-            },
-            {
-              "Action": [
-                "kms:Encrypt",
-                "kms:ReEncrypt*",
-                "kms:GenerateDataKey*",
-                "kms:Decrypt"
-              ],
-              "Effect": "Allow",
-              "Principal": {
-                "AWS": {
-                  "Fn::GetAtt": [
-                    "PipelineCodePipelinePrepareCloudAssemblycloudassemblylookupCodePipelineActionRole52243095",
-                    "Arn"
-                  ]
-                }
-              },
-              "Resource": "*"
-            },
-            {
-              "Action": [
-                "kms:Decrypt",
-                "kms:DescribeKey"
-              ],
-              "Effect": "Allow",
-              "Principal": {
-                "AWS": {
-                  "Fn::GetAtt": [
-                    "PipelineCdkPipelineUpdatePipelineSelfMutationRole91D6CBA8",
-                    "Arn"
-                  ]
-                }
-              },
-              "Resource": "*"
-            },
-            {
-              "Action": [
-                "kms:Decrypt",
-                "kms:Encrypt",
-                "kms:ReEncrypt*",
-                "kms:GenerateDataKey*"
-              ],
-              "Effect": "Allow",
-              "Principal": {
-                "AWS": {
-                  "Fn::GetAtt": [
-                    "PipelineCdkPipelineUpdatePipelineSelfMutationRole91D6CBA8",
-                    "Arn"
-                  ]
-                }
-              },
-              "Resource": "*"
-            },
-            {
-              "Action": [
-                "kms:Decrypt",
-                "kms:DescribeKey"
-              ],
-              "Effect": "Allow",
-              "Principal": {
-                "AWS": {
-                  "Fn::GetAtt": [
-                    "PipelineCdkPipelineAssetsFileRole0474FB57",
-                    "Arn"
-                  ]
-                }
-              },
-              "Resource": "*"
-            },
-            {
-              "Action": [
-                "kms:Decrypt",
-                "kms:Encrypt",
-                "kms:ReEncrypt*",
-                "kms:GenerateDataKey*"
-              ],
-              "Effect": "Allow",
-              "Principal": {
-                "AWS": {
-                  "Fn::GetAtt": [
-                    "PipelineCdkPipelineAssetsFileRole0474FB57",
-                    "Arn"
-                  ]
-                }
-              },
-              "Resource": "*"
-            },
-            {
-              "Action": [
-                "kms:Decrypt",
-                "kms:DescribeKey"
-              ],
-              "Effect": "Allow",
-              "Principal": {
-                "AWS": {
-                  "Fn::GetAtt": [
-                    "PipelineCdkPipelineAssetsDockerRole064148FF",
-                    "Arn"
-                  ]
-                }
-              },
-              "Resource": "*"
-            },
-            {
-              "Action": [
-                "kms:Decrypt",
-                "kms:Encrypt",
-                "kms:ReEncrypt*",
-                "kms:GenerateDataKey*"
-              ],
-              "Effect": "Allow",
-              "Principal": {
-                "AWS": {
-                  "Fn::GetAtt": [
-                    "PipelineCdkPipelineAssetsDockerRole064148FF",
-                    "Arn"
-                  ]
-                }
-              },
-              "Resource": "*"
-            },
-            {
-              "Action": [
-                "kms:Decrypt",
-                "kms:DescribeKey"
-              ],
-              "Effect": "Allow",
-              "Principal": {
-                "AWS": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1"
                     ]
                   ]
                 }
@@ -501,7 +306,7 @@
                 "s3:GetBucket*",
                 "s3:List*",
                 "s3:DeleteObject*",
-                "s3:PutObject*",
+                "s3:PutObject",
                 "s3:Abort*"
               ],
               "Effect": "Allow",
@@ -600,7 +405,7 @@
                 "s3:GetBucket*",
                 "s3:List*",
                 "s3:DeleteObject*",
-                "s3:PutObject*",
+                "s3:PutObject",
                 "s3:Abort*"
               ],
               "Effect": "Allow",
@@ -965,6 +770,33 @@
                 },
                 "Configuration": {
                   "ProjectName": {
+                    "Ref": "PipelineCdkPipelineAssetsDockerAsset1EC210797"
+                  },
+                  "EnvironmentVariables": "[{\"name\":\"CDK_CLI_VERSION\",\"type\":\"PLAINTEXT\",\"value\":\"snapshot-value\"}]"
+                },
+                "InputArtifacts": [
+                  {
+                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
+                  }
+                ],
+                "Name": "DockerAsset1",
+                "RoleArn": {
+                  "Fn::GetAtt": [
+                    "PipelineCdkPipelineAssetsDockerRole064148FF",
+                    "Arn"
+                  ]
+                },
+                "RunOrder": 1
+              },
+              {
+                "ActionTypeId": {
+                  "Category": "Build",
+                  "Owner": "AWS",
+                  "Provider": "CodeBuild",
+                  "Version": "1"
+                },
+                "Configuration": {
+                  "ProjectName": {
                     "Ref": "PipelineCdkPipelineAssetsFileAsset712CD7925"
                   },
                   "EnvironmentVariables": "[{\"name\":\"CDK_CLI_VERSION\",\"type\":\"PLAINTEXT\",\"value\":\"snapshot-value\"}]"
@@ -1090,33 +922,6 @@
                   ]
                 },
                 "RunOrder": 1
-              },
-              {
-                "ActionTypeId": {
-                  "Category": "Build",
-                  "Owner": "AWS",
-                  "Provider": "CodeBuild",
-                  "Version": "1"
-                },
-                "Configuration": {
-                  "ProjectName": {
-                    "Ref": "PipelineCdkPipelineAssetsDockerAsset1EC210797"
-                  },
-                  "EnvironmentVariables": "[{\"name\":\"CDK_CLI_VERSION\",\"type\":\"PLAINTEXT\",\"value\":\"snapshot-value\"}]"
-                },
-                "InputArtifacts": [
-                  {
-                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
-                  }
-                ],
-                "Name": "DockerAsset1",
-                "RoleArn": {
-                  "Fn::GetAtt": [
-                    "PipelineCdkPipelineAssetsDockerRole064148FF",
-                    "Arn"
-                  ]
-                },
-                "RunOrder": 1
               }
             ],
             "Name": "Assets"
@@ -1207,6 +1012,80 @@
                   "Version": "1"
                 },
                 "Configuration": {
+                  "StackName": "incub-gva-worker",
+                  "Capabilities": "CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
+                  "RoleArn": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        "arn:",
+                        {
+                          "Ref": "AWS::Partition"
+                        },
+                        ":iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1"
+                      ]
+                    ]
+                  },
+                  "TemplateConfiguration": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup::assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaworker2DCD06D8.template.json.config.json",
+                  "ActionMode": "CHANGE_SET_REPLACE",
+                  "ChangeSetName": "PipelineChange",
+                  "TemplatePath": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup::assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaworker2DCD06D8.template.json"
+                },
+                "InputArtifacts": [
+                  {
+                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
+                  }
+                ],
+                "Name": "incub-gva-worker.Prepare",
+                "RoleArn": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1"
+                    ]
+                  ]
+                },
+                "RunOrder": 1
+              },
+              {
+                "ActionTypeId": {
+                  "Category": "Deploy",
+                  "Owner": "AWS",
+                  "Provider": "CloudFormation",
+                  "Version": "1"
+                },
+                "Configuration": {
+                  "StackName": "incub-gva-worker",
+                  "ActionMode": "CHANGE_SET_EXECUTE",
+                  "ChangeSetName": "PipelineChange"
+                },
+                "Name": "incub-gva-worker.Deploy",
+                "RoleArn": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1"
+                    ]
+                  ]
+                },
+                "RunOrder": 2
+              },
+              {
+                "ActionTypeId": {
+                  "Category": "Deploy",
+                  "Owner": "AWS",
+                  "Provider": "CloudFormation",
+                  "Version": "1"
+                },
+                "Configuration": {
                   "StackName": "incub-gva-web",
                   "Capabilities": "CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
                   "RoleArn": {
@@ -1272,80 +1151,6 @@
                   ]
                 },
                 "RunOrder": 4
-              },
-              {
-                "ActionTypeId": {
-                  "Category": "Deploy",
-                  "Owner": "AWS",
-                  "Provider": "CloudFormation",
-                  "Version": "1"
-                },
-                "Configuration": {
-                  "StackName": "incub-gva-worker",
-                  "Capabilities": "CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
-                  "RoleArn": {
-                    "Fn::Join": [
-                      "",
-                      [
-                        "arn:",
-                        {
-                          "Ref": "AWS::Partition"
-                        },
-                        ":iam::001112238813:role/cdk-hnb659fds-cfn-exec-role-001112238813-eu-west-1"
-                      ]
-                    ]
-                  },
-                  "TemplateConfiguration": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup::assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaworker2DCD06D8.template.json.config.json",
-                  "ActionMode": "CHANGE_SET_REPLACE",
-                  "ChangeSetName": "PipelineChange",
-                  "TemplatePath": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup::assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaworker2DCD06D8.template.json"
-                },
-                "InputArtifacts": [
-                  {
-                    "Name": "Artifact_PrepareCloudAssembly_cloud-assembly-lookup"
-                  }
-                ],
-                "Name": "incub-gva-worker.Prepare",
-                "RoleArn": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1"
-                    ]
-                  ]
-                },
-                "RunOrder": 5
-              },
-              {
-                "ActionTypeId": {
-                  "Category": "Deploy",
-                  "Owner": "AWS",
-                  "Provider": "CloudFormation",
-                  "Version": "1"
-                },
-                "Configuration": {
-                  "StackName": "incub-gva-worker",
-                  "ActionMode": "CHANGE_SET_EXECUTE",
-                  "ChangeSetName": "PipelineChange"
-                },
-                "Name": "incub-gva-worker.Deploy",
-                "RoleArn": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":iam::001112238813:role/cdk-hnb659fds-deploy-role-001112238813-eu-west-1"
-                    ]
-                  ]
-                },
-                "RunOrder": 6
               }
             ],
             "Name": "Incubator"
@@ -1505,7 +1310,7 @@
             {
               "Action": [
                 "s3:DeleteObject*",
-                "s3:PutObject*",
+                "s3:PutObject",
                 "s3:Abort*"
               ],
               "Effect": "Allow",
@@ -1629,7 +1434,7 @@
             {
               "Action": [
                 "s3:DeleteObject*",
-                "s3:PutObject*",
+                "s3:PutObject",
                 "s3:Abort*"
               ],
               "Effect": "Allow",
@@ -2459,6 +2264,218 @@
         "aws:cdk:path": "incub-gva-pipeline/Pipeline/CdkPipeline/Assets/FileAsset6/Default/Resource"
       }
     },
+    "PipelineCdkPipelineAssetsDockerRole064148FF": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "codebuild.amazonaws.com",
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::001112238813:root"
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-pipeline"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-pipeline/Pipeline/CdkPipeline/Assets/DockerRole/Resource"
+      }
+    },
+    "PipelineCdkPipelineAssetsDockerRoleDefaultPolicy19BE8BF8": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":logs:eu-west-1:001112238813:log-group:/aws/codebuild/*"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "codebuild:CreateReportGroup",
+                "codebuild:CreateReport",
+                "codebuild:UpdateReport",
+                "codebuild:BatchPutTestCases",
+                "codebuild:BatchPutCodeCoverages"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":codebuild:eu-west-1:001112238813:report-group/*"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:StopBuild"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": "arn:*:iam::*:role/*-image-publishing-role-*"
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "PipelineCodePipelineArtifactsBucket9E5E7047",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "PipelineCodePipelineArtifactsBucket9E5E7047",
+                          "Arn"
+                        ]
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "kms:Decrypt",
+                "kms:DescribeKey"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "PipelineCdkPipelineAssetsDockerRoleDefaultPolicy19BE8BF8",
+        "Roles": [
+          {
+            "Ref": "PipelineCdkPipelineAssetsDockerRole064148FF"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-pipeline/Pipeline/CdkPipeline/Assets/DockerRole/DefaultPolicy/Resource"
+      }
+    },
+    "PipelineCdkPipelineAssetsDockerAsset1EC210797": {
+      "Type": "AWS::CodeBuild::Project",
+      "Properties": {
+        "Artifacts": {
+          "Type": "CODEPIPELINE"
+        },
+        "Environment": {
+          "ComputeType": "BUILD_GENERAL1_SMALL",
+          "Image": "aws/codebuild/standard:5.0",
+          "ImagePullCredentialsType": "CODEBUILD",
+          "PrivilegedMode": true,
+          "Type": "LINUX_CONTAINER"
+        },
+        "ServiceRole": {
+          "Fn::GetAtt": [
+            "PipelineCdkPipelineAssetsDockerRole064148FF",
+            "Arn"
+          ]
+        },
+        "Source": {
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets@snapshot-value\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaworker2DCD06D8.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
+          "Type": "CODEPIPELINE"
+        },
+        "EncryptionKey": {
+          "Fn::GetAtt": [
+            "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE",
+            "Arn"
+          ]
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-pipeline"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-pipeline/Pipeline/CdkPipeline/Assets/DockerAsset1/Default/Resource"
+      }
+    },
     "PipelineCdkPipelineAssetsFileAsset712CD7925": {
       "Type": "AWS::CodeBuild::Project",
       "Properties": {
@@ -2697,218 +2714,6 @@
       },
       "Metadata": {
         "aws:cdk:path": "incub-gva-pipeline/Pipeline/CdkPipeline/Assets/FileAsset11/Default/Resource"
-      }
-    },
-    "PipelineCdkPipelineAssetsDockerRole064148FF": {
-      "Type": "AWS::IAM::Role",
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": {
-                "Service": "codebuild.amazonaws.com",
-                "AWS": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":iam::001112238813:root"
-                    ]
-                  ]
-                }
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "Tags": [
-          {
-            "Key": "Project",
-            "Value": "git-visualized-activity"
-          },
-          {
-            "Key": "SourceRepo",
-            "Value": "github/capraconsulting/git-visualized-activity"
-          },
-          {
-            "Key": "StackName",
-            "Value": "incub-gva-pipeline"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "incub-gva-pipeline/Pipeline/CdkPipeline/Assets/DockerRole/Resource"
-      }
-    },
-    "PipelineCdkPipelineAssetsDockerRoleDefaultPolicy19BE8BF8": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": [
-                "logs:CreateLogGroup",
-                "logs:CreateLogStream",
-                "logs:PutLogEvents"
-              ],
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":logs:eu-west-1:001112238813:log-group:/aws/codebuild/*"
-                  ]
-                ]
-              }
-            },
-            {
-              "Action": [
-                "codebuild:CreateReportGroup",
-                "codebuild:CreateReport",
-                "codebuild:UpdateReport",
-                "codebuild:BatchPutTestCases",
-                "codebuild:BatchPutCodeCoverages"
-              ],
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":codebuild:eu-west-1:001112238813:report-group/*"
-                  ]
-                ]
-              }
-            },
-            {
-              "Action": [
-                "codebuild:BatchGetBuilds",
-                "codebuild:StartBuild",
-                "codebuild:StopBuild"
-              ],
-              "Effect": "Allow",
-              "Resource": "*"
-            },
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Resource": "arn:*:iam::*:role/*-image-publishing-role-*"
-            },
-            {
-              "Action": [
-                "s3:GetObject*",
-                "s3:GetBucket*",
-                "s3:List*"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                {
-                  "Fn::GetAtt": [
-                    "PipelineCodePipelineArtifactsBucket9E5E7047",
-                    "Arn"
-                  ]
-                },
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      {
-                        "Fn::GetAtt": [
-                          "PipelineCodePipelineArtifactsBucket9E5E7047",
-                          "Arn"
-                        ]
-                      },
-                      "/*"
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Action": [
-                "kms:Decrypt",
-                "kms:DescribeKey"
-              ],
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::GetAtt": [
-                  "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE",
-                  "Arn"
-                ]
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "PolicyName": "PipelineCdkPipelineAssetsDockerRoleDefaultPolicy19BE8BF8",
-        "Roles": [
-          {
-            "Ref": "PipelineCdkPipelineAssetsDockerRole064148FF"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "incub-gva-pipeline/Pipeline/CdkPipeline/Assets/DockerRole/DefaultPolicy/Resource"
-      }
-    },
-    "PipelineCdkPipelineAssetsDockerAsset1EC210797": {
-      "Type": "AWS::CodeBuild::Project",
-      "Properties": {
-        "Artifacts": {
-          "Type": "CODEPIPELINE"
-        },
-        "Environment": {
-          "ComputeType": "BUILD_GENERAL1_SMALL",
-          "Image": "aws/codebuild/standard:5.0",
-          "ImagePullCredentialsType": "CODEBUILD",
-          "PrivilegedMode": true,
-          "Type": "LINUX_CONTAINER"
-        },
-        "ServiceRole": {
-          "Fn::GetAtt": [
-            "PipelineCdkPipelineAssetsDockerRole064148FF",
-            "Arn"
-          ]
-        },
-        "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": \"npm install -g cdk-assets@snapshot-value\"\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaworker2DCD06D8.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
-          "Type": "CODEPIPELINE"
-        },
-        "EncryptionKey": {
-          "Fn::GetAtt": [
-            "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE",
-            "Arn"
-          ]
-        },
-        "Tags": [
-          {
-            "Key": "Project",
-            "Value": "git-visualized-activity"
-          },
-          {
-            "Key": "SourceRepo",
-            "Value": "github/capraconsulting/git-visualized-activity"
-          },
-          {
-            "Key": "StackName",
-            "Value": "incub-gva-pipeline"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "incub-gva-pipeline/Pipeline/CdkPipeline/Assets/DockerAsset1/Default/Resource"
       }
     }
   },

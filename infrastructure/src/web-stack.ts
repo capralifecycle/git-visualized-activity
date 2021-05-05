@@ -52,5 +52,21 @@ export class WebStack extends cdk.Stack {
 
     this.webBucketName = web.webBucket.bucketName
     this.distribution = web.distribution
+
+    // TODO: Cleanup.
+    this.exportValue(web.webBucket.bucketName)
+    this.exportValue(web.distribution.distributionId)
+    ;(this.node
+      .findChild("Exports")
+      .node.findChild(
+        'Output{"Ref":"WebWebBucketAF209868"}',
+      ) as cdk.CfnOutput).exportName =
+      "incub-gva-web:IncubatorincubgvawebExportsOutputRefWebWebBucketAF209868D3D0D698"
+    ;(this.node
+      .findChild("Exports")
+      .node.findChild(
+        'Output{"Ref":"WebDistributionCFDistributionE67D88CA"}',
+      ) as cdk.CfnOutput).exportName =
+      "incub-gva-web:IncubatorincubgvawebExportsOutputRefWebDistributionCFDistributionE67D88CA899576A5"
   }
 }

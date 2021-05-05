@@ -556,7 +556,6 @@
         "stackName": "incub-gva-worker"
       },
       "dependencies": [
-        "incubgvapipelineIncubatorincubgvaweb8951F403",
         "incubgvapipelineIncubatorincubgvaworker2DCD06D8.assets"
       ],
       "metadata": {
