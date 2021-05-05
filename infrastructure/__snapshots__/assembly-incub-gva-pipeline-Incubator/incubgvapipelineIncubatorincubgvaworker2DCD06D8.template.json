@@ -83,7 +83,11 @@
                     {
                       "Ref": "AWS::Partition"
                     },
-                    ":s3:::incub-gva-web-webwebbucketaf209868-e8ahcsl9tf58/*"
+                    ":s3:::",
+                    {
+                      "Fn::ImportValue": "incub-gva-web:ExportsOutputRefWebWebBucketAF209868DA1CE065"
+                    },
+                    "/*"
                   ]
                 ]
               }
@@ -123,11 +127,15 @@
             "Environment": [
               {
                 "Name": "BUCKET_NAME",
-                "Value": "incub-gva-web-webwebbucketaf209868-e8ahcsl9tf58"
+                "Value": {
+                  "Fn::ImportValue": "incub-gva-web:ExportsOutputRefWebWebBucketAF209868DA1CE065"
+                }
               },
               {
                 "Name": "CF_DISTRIBUTION",
-                "Value": "E3TD124E3DBS7O"
+                "Value": {
+                  "Fn::ImportValue": "incub-gva-web:ExportsOutputRefWebDistributionCFDistributionE67D88CAD4DDDA0B"
+                }
               },
               {
                 "Name": "PARAMS_PREFIX",

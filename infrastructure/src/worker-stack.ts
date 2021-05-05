@@ -45,9 +45,7 @@ export class WorkerStack extends cdk.Stack {
     const webBucket = s3.Bucket.fromBucketName(
       this,
       "WebBucket",
-      // TODO: Swith back to import.
-      // props.webStack.webBucketName,
-      "incub-gva-web-webwebbucketaf209868-e8ahcsl9tf58",
+      props.webStack.webBucketName,
     )
 
     // The actual application being run as a task.
@@ -70,9 +68,7 @@ export class WorkerStack extends cdk.Stack {
       }),
       environment: {
         BUCKET_NAME: webBucket.bucketName,
-        // TODO: Switch back to import.
-        // props.webStack.distribution.distributionId,
-        CF_DISTRIBUTION: "E3TD124E3DBS7O",
+        CF_DISTRIBUTION: props.webStack.distribution.distributionId,
         PARAMS_PREFIX: `/${props.resourcePrefix}-worker`,
       },
     })
