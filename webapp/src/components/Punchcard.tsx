@@ -99,11 +99,8 @@ export const Punchcard: React.FC<Props> = ({ data }) => {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           content={(props: any) => {
             if (props.payload.length === 0) return null
-            const {
-              x,
-              y,
-              z,
-            }: { x: number; y: number; z: number } = props.payload[0].payload
+            const { x, y, z }: { x: number; y: number; z: number } =
+              props.payload[0].payload
             return (
               <div
                 style={{

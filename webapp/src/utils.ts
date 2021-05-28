@@ -1,8 +1,8 @@
 import { Dataset, Row, YearMonthPartition } from "./types"
 
-export function yearMonthZeroBasis(
-  yearMonths: string[],
-): { [yearMonth: string]: number } {
+export function yearMonthZeroBasis(yearMonths: string[]): {
+  [yearMonth: string]: number
+} {
   return yearMonths.reduce<{ [yearMonth: string]: number }>((acc, cur) => {
     acc[cur] = 0
     return acc

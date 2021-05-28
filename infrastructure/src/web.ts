@@ -55,10 +55,9 @@ export class Web extends cdk.Construct {
     })
 
     // Workaround to keep old logical ID.
-    ;(this.distribution.node
-      .defaultChild as cloudfront.CfnDistribution).overrideLogicalId(
-      "WebDistributionCFDistributionE67D88CA",
-    )
+    ;(
+      this.distribution.node.defaultChild as cloudfront.CfnDistribution
+    ).overrideLogicalId("WebDistributionCFDistributionE67D88CA")
 
     auth.updateClient("ClientUpdate", {
       signOutUrl: `https://${props.domainName}${auth.signOutRedirectTo}`,
