@@ -70,14 +70,14 @@ const AppWithData: React.FC<PropsWithData> = ({ classes, data }) => {
   const [showDatePicker, setShowDatePicker] = useState(false)
   const filterStyles = useFilterStyles()
 
-  const handleChange = <T extends keyof AppState>(field: T) => (
-    e: ChangeEvent<HTMLSelectElement>,
-  ) => {
-    setState({
-      ...state,
-      [field]: parseValue(e.target.value),
-    })
-  }
+  const handleChange =
+    <T extends keyof AppState>(field: T) =>
+    (e: ChangeEvent<HTMLSelectElement>) => {
+      setState({
+        ...state,
+        [field]: parseValue(e.target.value),
+      })
+    }
 
   const filteredData = useMemo(() => filterData(data, state), [state, data])
 
