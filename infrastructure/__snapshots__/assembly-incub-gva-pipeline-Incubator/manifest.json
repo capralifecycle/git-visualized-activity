@@ -18,6 +18,7 @@
           "SourceRepo": "github/capraconsulting/git-visualized-activity",
           "StackName": "incub-gva-web-edge"
         },
+        "validateOnSynth": true,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-deploy-role-001112238813-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-cfn-exec-role-001112238813-us-east-1",
         "stackTemplateAssetObjectUrl": "s3://cdk-liflig-assets-001112238813-us-east-1/snapshot-value.json",
@@ -201,7 +202,8 @@
             "data": "CheckBootstrapVersion"
           }
         ]
-      }
+      },
+      "displayName": "incub-gva-pipeline/Incubator/incub-gva-web-edge"
     },
     "incubgvapipelineIncubatorincubgvaweb8951F403.assets": {
       "type": "cdk:asset-manifest",
@@ -221,6 +223,7 @@
           "SourceRepo": "github/capraconsulting/git-visualized-activity",
           "StackName": "incub-gva-web"
         },
+        "validateOnSynth": true,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-deploy-role-001112238813-eu-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-cfn-exec-role-001112238813-eu-west-1",
         "stackTemplateAssetObjectUrl": "s3://cdk-liflig-assets-001112238813-eu-west-1/snapshot-value.json",
@@ -459,6 +462,12 @@
             "data": "AWS679f53fac002430cb0da5b7982bd22872D164C4C"
           }
         ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/SsmParameterValue:--cf--region--us-east-1--stack--incub-gva-web-edge--c8798d4e078c43da5804ce3acd11e07ce76c434abb-CheckAuthFunction-function-arn:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SsmParameterValuecfregionuseast1stackincubgvawebedgec8798d4e078c43da5804ce3acd11e07ce76c434abbCheckAuthFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
+          }
+        ],
         "/incub-gva-pipeline/Incubator/incub-gva-web/henrist.lambda-config.provider/UpdateCodeFn/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -495,6 +504,30 @@
             "data": "henristlambdaconfigproviderProviderframeworkonEventB2FC78D4"
           }
         ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/SsmParameterValue:--cf--region--us-east-1--stack--incub-gva-web-edge--c8798d4e078c43da5804ce3acd11e07ce76c434abb-HttpHeadersFunction-function-arn:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SsmParameterValuecfregionuseast1stackincubgvawebedgec8798d4e078c43da5804ce3acd11e07ce76c434abbHttpHeadersFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/SsmParameterValue:--cf--region--us-east-1--stack--incub-gva-web-edge--c8798d4e078c43da5804ce3acd11e07ce76c434abb-ParseAuthFunction-function-arn:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SsmParameterValuecfregionuseast1stackincubgvawebedgec8798d4e078c43da5804ce3acd11e07ce76c434abbParseAuthFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/SsmParameterValue:--cf--region--us-east-1--stack--incub-gva-web-edge--c8798d4e078c43da5804ce3acd11e07ce76c434abb-RefreshAuthFunction-function-arn:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SsmParameterValuecfregionuseast1stackincubgvawebedgec8798d4e078c43da5804ce3acd11e07ce76c434abbRefreshAuthFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/SsmParameterValue:--cf--region--us-east-1--stack--incub-gva-web-edge--c8798d4e078c43da5804ce3acd11e07ce76c434abb-SignOutFunction-function-arn:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SsmParameterValuecfregionuseast1stackincubgvawebedgec8798d4e078c43da5804ce3acd11e07ce76c434abbSignOutFunctionfunctionarnC96584B6F00A464EAD1953AFF4B05118Parameter"
+          }
+        ],
         "/incub-gva-pipeline/Incubator/incub-gva-web/AWSCloudFrontPartitionHostedZoneIdMap": [
           {
             "type": "aws:cdk:logicalId",
@@ -525,7 +558,8 @@
             "data": "CheckBootstrapVersion"
           }
         ]
-      }
+      },
+      "displayName": "incub-gva-pipeline/Incubator/incub-gva-web"
     },
     "incubgvapipelineIncubatorincubgvaworker2DCD06D8.assets": {
       "type": "cdk:asset-manifest",
@@ -545,6 +579,7 @@
           "SourceRepo": "github/capraconsulting/git-visualized-activity",
           "StackName": "incub-gva-worker"
         },
+        "validateOnSynth": true,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-deploy-role-001112238813-eu-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-cfn-exec-role-001112238813-eu-west-1",
         "stackTemplateAssetObjectUrl": "s3://cdk-liflig-assets-001112238813-eu-west-1/snapshot-value.json",
@@ -681,7 +716,8 @@
             "data": "CheckBootstrapVersion"
           }
         ]
-      }
+      },
+      "displayName": "incub-gva-pipeline/Incubator/incub-gva-worker"
     }
   }
 }

@@ -31,6 +31,7 @@
           "SourceRepo": "github/capraconsulting/git-visualized-activity",
           "StackName": "incub-gva-pipeline"
         },
+        "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-deploy-role-001112238813-eu-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-cfn-exec-role-001112238813-eu-west-1",
         "stackTemplateAssetObjectUrl": "s3://cdk-liflig-assets-001112238813-eu-west-1/snapshot-value.json",
@@ -280,13 +281,15 @@
             "data": "CheckBootstrapVersion"
           }
         ]
-      }
+      },
+      "displayName": "incub-gva-pipeline"
     },
     "cross-region-stack-001112238813:us-east-1": {
       "type": "aws:cloudformation:stack",
       "environment": "aws://001112238813/us-east-1",
       "properties": {
         "templateFile": "cross-region-stack-001112238813:us-east-1.template.json",
+        "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-deploy-role-001112238813-eu-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-cfn-exec-role-001112238813-eu-west-1",
         "stackName": "incub-gva-pipeline-support-us-east-1"
@@ -310,7 +313,8 @@
             "data": "CrossRegionCodePipelineReplicationBucketFC3227F2"
           }
         ]
-      }
+      },
+      "displayName": "cross-region-stack-001112238813:us-east-1"
     }
   }
 }
