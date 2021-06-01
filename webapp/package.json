@@ -29,7 +29,7 @@
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-deprecation": "1.2.1",
     "eslint-plugin-prettier": "3.4.0",
-    "eslint-plugin-react": "7.23.2",
+    "eslint-plugin-react": "7.24.0",
     "jest": "27.0.1",
     "lodash": "4.17.21",
     "materialui-daterange-picker": "1.1.92",
