@@ -12,7 +12,7 @@ import { max, min } from "lodash"
 import { DateRangePicker, DefinedRange } from "materialui-daterange-picker"
 import React, { ChangeEvent, useMemo, useState } from "react"
 import { createDefinedRanges, formatDateRange } from "../dates"
-import { filterData, parseValue } from "../filters"
+import { filterDataNotByDate, filterDataOnlyDate, parseValue } from "../filters"
 import { styles, useFilterStyles } from "../styles"
 import { AppState, Dataset, Row } from "../types"
 import { useData as useLoadData } from "../use-load-data"
@@ -79,7 +79,14 @@ const AppWithData: React.FC<PropsWithData> = ({ classes, data }) => {
       })
     }
 
-  const filteredData = useMemo(() => filterData(data, state), [state, data])
+  const filteredDataNoDate = useMemo(
+    () => filterDataNotByDate(data, state),
+    [state, data],
+  )
+  const filteredData = useMemo(
+    () => filterDataOnlyDate(filteredDataNoDate, state),
+    [state, filteredDataNoDate],
+  )
 
   const yearMonths = getAllYearMonthBetween(filteredData)
   const filteredDataset: Dataset = {
@@ -87,10 +94,13 @@ const AppWithData: React.FC<PropsWithData> = ({ classes, data }) => {
     yearMonths,
   }
 
+  // When determining date ranges, use the data not already filtered
+  // by dates. This is needed so that we can expand the date range
+  // after selecting a specific range.
   const [firstDate, lastDate] = useMemo(() => {
-    const timestamps = filteredData.map((it) => it.timestamp)
+    const timestamps = filteredDataNoDate.map((it) => it.timestamp)
     return [min(timestamps), max(timestamps)]
-  }, [filteredData])
+  }, [filteredDataNoDate])
 
   const definedRanges = useMemo<DefinedRange[]>(
     () =>
@@ -100,7 +110,7 @@ const AppWithData: React.FC<PropsWithData> = ({ classes, data }) => {
             last: lastDate,
           })
         : [],
-    [],
+    [firstDate, lastDate],
   )
 
   return (
@@ -183,10 +193,18 @@ const AppWithData: React.FC<PropsWithData> = ({ classes, data }) => {
                   maxDate={lastDate}
                   toggle={() => void setShowDatePicker(false)}
                   onChange={(value) => {
+                    const isAll =
+                      value.startDate != null &&
+                      value.endDate != null &&
+                      value.startDate.getTime() == firstDate?.getTime() &&
+                      value.endDate.getTime() == lastDate?.getTime()
+
                     setState({
                       ...state,
-                      filterDateFrom: value.startDate ?? undefined,
-                      filterDateUntil: value.endDate
+                      filterDateFrom: isAll ? undefined : value.startDate,
+                      filterDateUntil: isAll
+                        ? undefined
+                        : value.endDate
                         ? add(value.endDate, { days: 1 })
                         : undefined,
                     })

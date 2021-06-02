@@ -17,7 +17,20 @@ export function parseValue(value: string) {
   return value === "" ? null : value
 }
 
-export function filterData(data: Row[], state: AppState): Row[] {
+export function filterDataNotByDate(data: Row[], state: AppState): Row[] {
+  const filters = [
+    buildFilter(state.filterAuthorName, (it) => it.authorName),
+    buildFilter(state.filterProject, (it) => it.project),
+    buildFilter(state.filterOwner, (it) => it.owner),
+    buildFilter(state.filterRepo, fullRepoId),
+    buildFilter(state.filterMerges, (it) => (it.isMerge ? "y" : "n")),
+    buildFilter(state.filterBots, (it) => (isBot(it) ? "y" : "n")),
+  ]
+
+  return filters.reduce((acc, filter) => filter(acc), data)
+}
+
+export function filterDataOnlyDate(data: Row[], state: AppState): Row[] {
   const filters = [
     (data: Row[]) => {
       const filter = state.filterDateFrom
@@ -31,12 +44,6 @@ export function filterData(data: Row[], state: AppState): Row[] {
         ? data
         : data.filter((it) => isBefore(it.timestamp, filter))
     },
-    buildFilter(state.filterAuthorName, (it) => it.authorName),
-    buildFilter(state.filterProject, (it) => it.project),
-    buildFilter(state.filterOwner, (it) => it.owner),
-    buildFilter(state.filterRepo, fullRepoId),
-    buildFilter(state.filterMerges, (it) => (it.isMerge ? "y" : "n")),
-    buildFilter(state.filterBots, (it) => (isBot(it) ? "y" : "n")),
   ]
 
   return filters.reduce((acc, filter) => filter(acc), data)
