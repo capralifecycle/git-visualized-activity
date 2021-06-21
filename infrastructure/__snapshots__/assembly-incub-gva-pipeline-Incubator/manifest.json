@@ -4,7 +4,7 @@
       "type": "cdk:asset-manifest",
       "properties": {
         "file": "incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json",
-        "requiresBootstrapStackVersion": 4,
+        "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/liflig/version"
       }
     },
@@ -22,7 +22,7 @@
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-deploy-role-001112238813-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-cfn-exec-role-001112238813-us-east-1",
         "stackTemplateAssetObjectUrl": "s3://cdk-liflig-assets-001112238813-us-east-1/snapshot-value.json",
-        "requiresBootstrapStackVersion": 4,
+        "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/liflig/version",
         "additionalDependencies": [
           "incubgvapipelineIncubatorincubgvawebedge823FE13E.assets"
@@ -209,7 +209,7 @@
       "type": "cdk:asset-manifest",
       "properties": {
         "file": "incubgvapipelineIncubatorincubgvaweb8951F403.assets.json",
-        "requiresBootstrapStackVersion": 4,
+        "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/liflig/version"
       }
     },
@@ -227,7 +227,7 @@
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-deploy-role-001112238813-eu-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-cfn-exec-role-001112238813-eu-west-1",
         "stackTemplateAssetObjectUrl": "s3://cdk-liflig-assets-001112238813-eu-west-1/snapshot-value.json",
-        "requiresBootstrapStackVersion": 4,
+        "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/liflig/version",
         "additionalDependencies": [
           "incubgvapipelineIncubatorincubgvaweb8951F403.assets"
@@ -565,7 +565,7 @@
       "type": "cdk:asset-manifest",
       "properties": {
         "file": "incubgvapipelineIncubatorincubgvaworker2DCD06D8.assets.json",
-        "requiresBootstrapStackVersion": 4,
+        "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/liflig/version"
       }
     },
@@ -583,7 +583,7 @@
         "assumeRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-deploy-role-001112238813-eu-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-cfn-exec-role-001112238813-eu-west-1",
         "stackTemplateAssetObjectUrl": "s3://cdk-liflig-assets-001112238813-eu-west-1/snapshot-value.json",
-        "requiresBootstrapStackVersion": 4,
+        "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/liflig/version",
         "additionalDependencies": [
           "incubgvapipelineIncubatorincubgvaworker2DCD06D8.assets"
