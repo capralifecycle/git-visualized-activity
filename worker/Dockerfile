@@ -1,4 +1,4 @@
-FROM alpine:3.15@sha256:02cab15358692fb7baa1c9f0a798e9709b6333441b9d5b8aa5960db6becfc613
+FROM alpine:3.15@sha256:fb150366bfb5a297a7f8852e0cec462a12f638374f8a04ad235c56a97e780add
 
 RUN set -eux; \
     apk add --no-cache \
