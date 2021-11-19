@@ -21,15 +21,14 @@
     "@types/react": "17.0.35",
     "@types/react-dom": "17.0.11",
     "@types/recharts": "1.8.23",
-    "@typescript-eslint/eslint-plugin": "4.33.0",
-    "@typescript-eslint/parser": "4.33.0",
-    "date-fns": "2.25.0",
+    "@typescript-eslint/eslint-plugin": "5.4.0",
+    "@typescript-eslint/parser": "5.4.0",
+    "date-fns": "2.26.0",
     "domready": "1.0.8",
-    "eslint": "7.32.0",
+    "eslint": "8.2.0",
     "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-deprecation": "1.2.1",
     "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-react": "7.27.0",
+    "eslint-plugin-react": "7.27.1",
     "jest": "27.3.1",
     "lodash": "4.17.21",
     "materialui-daterange-picker": "1.1.92",
@@ -40,6 +39,6 @@
     "react-dom": "17.0.2",
     "recharts": "1.8.5",
     "ts-jest": "27.0.7",
-    "typescript": "4.3.5"
+    "typescript": "4.5.2"
   }
 }

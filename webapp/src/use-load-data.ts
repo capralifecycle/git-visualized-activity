@@ -58,7 +58,8 @@ export function useData(): UseDataResponse {
         const result = await loadData()
         setData(result)
       } catch (e) {
-        setError(e)
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+        setError(e as any)
       } finally {
         setLoading(false)
       }
