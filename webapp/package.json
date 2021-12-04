@@ -23,7 +23,7 @@
     "@types/recharts": "1.8.23",
     "@typescript-eslint/eslint-plugin": "5.5.0",
     "@typescript-eslint/parser": "5.5.0",
-    "date-fns": "2.26.0",
+    "date-fns": "2.27.0",
     "domready": "1.0.8",
     "eslint": "8.3.0",
     "eslint-config-prettier": "8.3.0",
