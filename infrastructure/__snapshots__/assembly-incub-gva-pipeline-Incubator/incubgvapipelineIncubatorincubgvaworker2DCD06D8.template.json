@@ -25,7 +25,21 @@
     "LogGroupF5B46931": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "RetentionInDays": 30
+        "RetentionInDays": 30,
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "git-visualized-activity"
+          },
+          {
+            "Key": "SourceRepo",
+            "Value": "github/capraconsulting/git-visualized-activity"
+          },
+          {
+            "Key": "StackName",
+            "Value": "incub-gva-worker"
+          }
+        ]
       },
       "UpdateReplacePolicy": "Retain",
       "DeletionPolicy": "Retain",
