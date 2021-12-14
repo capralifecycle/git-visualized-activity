@@ -122,7 +122,13 @@
             }
           ]
         },
-        "BucketName": "incub-gva-pipeline-supporeplicationbucket6934b6d8c237dbbd9cda"
+        "BucketName": "incub-gva-pipeline-supporeplicationbucket6934b6d8c237dbbd9cda",
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true
+        }
       },
       "UpdateReplacePolicy": "Retain",
       "DeletionPolicy": "Retain",

@@ -1124,6 +1124,7 @@
       "Metadata": {
         "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/Resource/Resource",
         "aws:asset:path": "asset.snapshot-value",
+        "aws:asset:is-bundled": false,
         "aws:asset:property": "Code"
       }
     },
@@ -1284,6 +1285,7 @@
       "Metadata": {
         "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-web/henrist.cloudfront-auth.generate-secret.provider/Function/Resource",
         "aws:asset:path": "asset.snapshot-value",
+        "aws:asset:is-bundled": false,
         "aws:asset:property": "Code"
       }
     },
@@ -1413,6 +1415,7 @@
       "Metadata": {
         "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-web/henrist.cloudfront-auth.generate-secret.provider/Provider/framework-onEvent/Resource",
         "aws:asset:path": "asset.snapshot-value",
+        "aws:asset:is-bundled": false,
         "aws:asset:property": "Code"
       }
     },
@@ -1501,6 +1504,7 @@
       "Metadata": {
         "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-web/AWS679f53fac002430cb0da5b7982bd2287/Resource",
         "aws:asset:path": "asset.snapshot-value",
+        "aws:asset:is-bundled": false,
         "aws:asset:property": "Code"
       }
     },
@@ -1617,6 +1621,7 @@
       "Metadata": {
         "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-web/henrist.lambda-config.provider/UpdateCodeFn/Resource",
         "aws:asset:path": "asset.snapshot-value",
+        "aws:asset:is-bundled": false,
         "aws:asset:property": "Code"
       }
     },
@@ -1746,6 +1751,7 @@
       "Metadata": {
         "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-web/henrist.lambda-config.provider/Provider/framework-onEvent/Resource",
         "aws:asset:path": "asset.snapshot-value",
+        "aws:asset:is-bundled": false,
         "aws:asset:property": "Code"
       }
     }
