@@ -11,7 +11,7 @@
     "lint:fix": "eslint --fix ."
   },
   "devDependencies": {
-    "@babel/core": "7.16.7",
+    "@babel/core": "7.16.12",
     "@material-ui/core": "4.12.3",
     "@material-ui/styles": "4.11.4",
     "@types/domready": "1.0.0",
