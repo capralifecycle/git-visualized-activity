@@ -103,7 +103,7 @@ class GvaPipelineStack extends Stack {
       artifactsBucket,
     })
 
-    pipeline.cdkPipeline.addApplicationStage(
+    pipeline.cdkPipeline.addStage(
       new GvaApp(this, "Incubator", {
         env: {
           account: incubatorAccountId,
