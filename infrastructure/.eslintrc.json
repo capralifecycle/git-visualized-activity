@@ -4,6 +4,7 @@
     "prettier",
     "plugin:prettier/recommended"
   ],
+  "plugins": ["deprecation"],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -16,7 +17,10 @@
       }
     }
   ],
+  "rules": {
+    "deprecation/deprecation": "warn"
+  },
   "parserOptions": {
-    "ecmaVersion": 2018
+    "project": "./tsconfig.json"
   }
 }
