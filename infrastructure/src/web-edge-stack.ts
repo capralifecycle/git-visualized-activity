@@ -1,5 +1,6 @@
-import { CfnFunction } from "@aws-cdk/aws-lambda"
-import * as cdk from "@aws-cdk/core"
+import * as constructs from "constructs"
+import { CfnFunction } from "aws-cdk-lib/aws-lambda"
+import * as cdk from "aws-cdk-lib"
 import { AuthLambdas } from "@henrist/cdk-cloudfront-auth"
 
 /**
@@ -9,7 +10,7 @@ export class WebEdgeStack extends cdk.Stack {
   public readonly authLambdas: AuthLambdas
 
   constructor(
-    scope: cdk.Construct,
+    scope: constructs.Construct,
     id: string,
     props: cdk.StackProps & {
       resourcePrefix: string

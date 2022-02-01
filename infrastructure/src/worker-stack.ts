@@ -1,21 +1,22 @@
-import * as ec2 from "@aws-cdk/aws-ec2"
-import { DockerImageAsset } from "@aws-cdk/aws-ecr-assets"
-import * as ecs from "@aws-cdk/aws-ecs"
-import * as events from "@aws-cdk/aws-events"
-import * as targets from "@aws-cdk/aws-events-targets"
-import * as iam from "@aws-cdk/aws-iam"
-import * as lambda from "@aws-cdk/aws-lambda"
-import * as logs from "@aws-cdk/aws-logs"
-import * as s3 from "@aws-cdk/aws-s3"
-import * as ssm from "@aws-cdk/aws-ssm"
-import * as cdk from "@aws-cdk/core"
+import * as constructs from "constructs"
+import * as ec2 from "aws-cdk-lib/aws-ec2"
+import { DockerImageAsset } from "aws-cdk-lib/aws-ecr-assets"
+import * as ecs from "aws-cdk-lib/aws-ecs"
+import * as events from "aws-cdk-lib/aws-events"
+import * as targets from "aws-cdk-lib/aws-events-targets"
+import * as iam from "aws-cdk-lib/aws-iam"
+import * as lambda from "aws-cdk-lib/aws-lambda"
+import * as logs from "aws-cdk-lib/aws-logs"
+import * as s3 from "aws-cdk-lib/aws-s3"
+import * as ssm from "aws-cdk-lib/aws-ssm"
+import * as cdk from "aws-cdk-lib"
 import type { Handler } from "aws-lambda"
 import type * as _AWS from "aws-sdk"
 import { WebStack } from "./web-stack"
 
 export class WorkerStack extends cdk.Stack {
   constructor(
-    scope: cdk.Construct,
+    scope: constructs.Construct,
     id: string,
     props: cdk.StackProps & {
       resourcePrefix: string
@@ -108,7 +109,7 @@ export class WorkerStack extends cdk.Stack {
       environment: {
         CLUSTER_NAME: cluster.clusterName,
         SUBNETS: vpc.publicSubnets.map((it) => it.subnetId).join(","),
-        SECURITY_GROUPS: securityGroup.securityGroupName,
+        SECURITY_GROUPS: securityGroup.securityGroupId,
         TASK_DEFINITION: taskDef.taskDefinitionArn,
       },
       handler: "index.handler",
