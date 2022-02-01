@@ -863,7 +863,7 @@
           "PriceClass": "PriceClass_100",
           "ViewerCertificate": {
             "AcmCertificateArn": "arn:aws:acm:us-east-1:001112238813:certificate/6a82ce2d-fbe7-418a-8b8a-06e609b8d61d",
-            "MinimumProtocolVersion": "TLSv1.2_2019",
+            "MinimumProtocolVersion": "TLSv1.2_2021",
             "SslSupportMethod": "sni-only"
           }
         },
@@ -979,6 +979,10 @@
                 "s3:List*",
                 "s3:DeleteObject*",
                 "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
                 "s3:Abort*"
               ],
               "Effect": "Allow",

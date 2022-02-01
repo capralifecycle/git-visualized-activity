@@ -1,11 +1,12 @@
-import * as certificatemanager from "@aws-cdk/aws-certificatemanager"
-import * as cloudfront from "@aws-cdk/aws-cloudfront"
-import * as origins from "@aws-cdk/aws-cloudfront-origins"
-import { IUserPool } from "@aws-cdk/aws-cognito"
-import * as r53 from "@aws-cdk/aws-route53"
-import * as r53t from "@aws-cdk/aws-route53-targets"
-import * as s3 from "@aws-cdk/aws-s3"
-import * as cdk from "@aws-cdk/core"
+import * as constructs from "constructs"
+import * as certificatemanager from "aws-cdk-lib/aws-certificatemanager"
+import * as cloudfront from "aws-cdk-lib/aws-cloudfront"
+import * as origins from "aws-cdk-lib/aws-cloudfront-origins"
+import { IUserPool } from "aws-cdk-lib/aws-cognito"
+import * as r53 from "aws-cdk-lib/aws-route53"
+import * as r53t from "aws-cdk-lib/aws-route53-targets"
+import * as s3 from "aws-cdk-lib/aws-s3"
+import * as cdk from "aws-cdk-lib"
 import * as webappDeploy from "@capraconsulting/webapp-deploy-lambda"
 import { AuthLambdas, CloudFrontAuth } from "@henrist/cdk-cloudfront-auth"
 import * as path from "path"
@@ -19,11 +20,11 @@ interface Props {
   authDomain: string
 }
 
-export class Web extends cdk.Construct {
+export class Web extends constructs.Construct {
   public readonly webBucket: s3.Bucket
   public readonly distribution: cloudfront.Distribution
 
-  constructor(scope: cdk.Construct, id: string, props: Props) {
+  constructor(scope: constructs.Construct, id: string, props: Props) {
     super(scope, id)
 
     this.webBucket = new s3.Bucket(this, "WebBucket", {

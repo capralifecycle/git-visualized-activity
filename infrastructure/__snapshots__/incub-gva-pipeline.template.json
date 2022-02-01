@@ -60,6 +60,10 @@
                 "s3:List*",
                 "s3:DeleteObject*",
                 "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
                 "s3:Abort*"
               ],
               "Effect": "Allow",
@@ -292,6 +296,40 @@
         "PolicyDocument": {
           "Statement": [
             {
+              "Action": "s3:*",
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false"
+                }
+              },
+              "Effect": "Deny",
+              "Principal": {
+                "AWS": "*"
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "PipelineCodePipelineArtifactsBucket9E5E7047",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "PipelineCodePipelineArtifactsBucket9E5E7047",
+                          "Arn"
+                        ]
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
               "Action": [
                 "s3:GetObject*",
                 "s3:GetBucket*",
@@ -389,6 +427,10 @@
                 "s3:List*",
                 "s3:DeleteObject*",
                 "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
                 "s3:Abort*"
               ],
               "Effect": "Allow",
@@ -588,6 +630,10 @@
                 "s3:List*",
                 "s3:DeleteObject*",
                 "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
                 "s3:Abort*"
               ],
               "Effect": "Allow",
@@ -1481,6 +1527,10 @@
               "Action": [
                 "s3:DeleteObject*",
                 "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
                 "s3:Abort*"
               ],
               "Effect": "Allow",
@@ -1605,6 +1655,10 @@
               "Action": [
                 "s3:DeleteObject*",
                 "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
                 "s3:Abort*"
               ],
               "Effect": "Allow",
@@ -2714,9 +2768,13 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g aws-cdk\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk -a . deploy incub-gva-pipeline --require-approval=never --verbose\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g aws-cdk@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk -a . deploy incub-gva-pipeline --require-approval=never --verbose\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
+        "Cache": {
+          "Type": "NO_CACHE"
+        },
+        "Description": "Pipeline step incub-gva-pipeline/CodePipeline/UpdatePipeline/SelfMutate",
         "EncryptionKey": {
           "Fn::GetAtt": [
             "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE",
@@ -2936,9 +2994,13 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaworker2DCD06D8.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaworker2DCD06D8.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
+        "Cache": {
+          "Type": "NO_CACHE"
+        },
+        "Description": "Pipeline step incub-gva-pipeline/CodePipeline/Assets/DockerAsset1",
         "EncryptionKey": {
           "Fn::GetAtt": [
             "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE",
@@ -3161,9 +3223,13 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
+        "Cache": {
+          "Type": "NO_CACHE"
+        },
+        "Description": "Pipeline step incub-gva-pipeline/CodePipeline/Assets/FileAsset1",
         "EncryptionKey": {
           "Fn::GetAtt": [
             "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE",
@@ -3209,9 +3275,13 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
+        "Cache": {
+          "Type": "NO_CACHE"
+        },
+        "Description": "Pipeline step incub-gva-pipeline/CodePipeline/Assets/FileAsset10",
         "EncryptionKey": {
           "Fn::GetAtt": [
             "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE",
@@ -3257,9 +3327,13 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
+        "Cache": {
+          "Type": "NO_CACHE"
+        },
+        "Description": "Pipeline step incub-gva-pipeline/CodePipeline/Assets/FileAsset11",
         "EncryptionKey": {
           "Fn::GetAtt": [
             "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE",
@@ -3305,9 +3379,13 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-us-east-1\\\"\",\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-us-east-1\\\"\",\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
+        "Cache": {
+          "Type": "NO_CACHE"
+        },
+        "Description": "Pipeline step incub-gva-pipeline/CodePipeline/Assets/FileAsset2",
         "EncryptionKey": {
           "Fn::GetAtt": [
             "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE",
@@ -3353,9 +3431,13 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
+        "Cache": {
+          "Type": "NO_CACHE"
+        },
+        "Description": "Pipeline step incub-gva-pipeline/CodePipeline/Assets/FileAsset3",
         "EncryptionKey": {
           "Fn::GetAtt": [
             "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE",
@@ -3401,9 +3483,13 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
+        "Cache": {
+          "Type": "NO_CACHE"
+        },
+        "Description": "Pipeline step incub-gva-pipeline/CodePipeline/Assets/FileAsset4",
         "EncryptionKey": {
           "Fn::GetAtt": [
             "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE",
@@ -3449,9 +3535,13 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
+        "Cache": {
+          "Type": "NO_CACHE"
+        },
+        "Description": "Pipeline step incub-gva-pipeline/CodePipeline/Assets/FileAsset5",
         "EncryptionKey": {
           "Fn::GetAtt": [
             "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE",
@@ -3497,9 +3587,13 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvawebedge823FE13E.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
+        "Cache": {
+          "Type": "NO_CACHE"
+        },
+        "Description": "Pipeline step incub-gva-pipeline/CodePipeline/Assets/FileAsset6",
         "EncryptionKey": {
           "Fn::GetAtt": [
             "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE",
@@ -3545,9 +3639,13 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
+        "Cache": {
+          "Type": "NO_CACHE"
+        },
+        "Description": "Pipeline step incub-gva-pipeline/CodePipeline/Assets/FileAsset7",
         "EncryptionKey": {
           "Fn::GetAtt": [
             "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE",
@@ -3593,9 +3691,13 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
+        "Cache": {
+          "Type": "NO_CACHE"
+        },
+        "Description": "Pipeline step incub-gva-pipeline/CodePipeline/Assets/FileAsset8",
         "EncryptionKey": {
           "Fn::GetAtt": [
             "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE",
@@ -3641,9 +3743,13 @@
           ]
         },
         "Source": {
-          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
+          "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-incub-gva-pipeline-Incubator/incubgvapipelineIncubatorincubgvaweb8951F403.assets.json\\\" --verbose publish \\\"snapshot-value:001112238813-eu-west-1\\\"\"\n      ]\n    }\n  }\n}",
           "Type": "CODEPIPELINE"
         },
+        "Cache": {
+          "Type": "NO_CACHE"
+        },
+        "Description": "Pipeline step incub-gva-pipeline/CodePipeline/Assets/FileAsset9",
         "EncryptionKey": {
           "Fn::GetAtt": [
             "PipelineCodePipelineArtifactsBucketEncryptionKey0E77C3AE",

@@ -1,8 +1,9 @@
-import * as acm from "@aws-cdk/aws-certificatemanager"
-import * as cloudfront from "@aws-cdk/aws-cloudfront"
-import { UserPool, UserPoolIdentityProvider } from "@aws-cdk/aws-cognito"
-import * as r53 from "@aws-cdk/aws-route53"
-import * as cdk from "@aws-cdk/core"
+import * as constructs from "constructs"
+import * as acm from "aws-cdk-lib/aws-certificatemanager"
+import * as cloudfront from "aws-cdk-lib/aws-cloudfront"
+import { UserPool, UserPoolIdentityProvider } from "aws-cdk-lib/aws-cognito"
+import * as r53 from "aws-cdk-lib/aws-route53"
+import * as cdk from "aws-cdk-lib"
 import { Web } from "./web"
 import { WebEdgeStack } from "./web-edge-stack"
 
@@ -19,7 +20,7 @@ export class WebStack extends cdk.Stack {
   public readonly webBucketName: string
   public readonly distribution: cloudfront.Distribution
 
-  constructor(scope: cdk.Construct, id: string, props: Props) {
+  constructor(scope: constructs.Construct, id: string, props: Props) {
     super(scope, id, props)
 
     const hostedZone = props.hostedZoneId

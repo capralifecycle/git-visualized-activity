@@ -39,7 +39,12 @@
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/liflig/version",
         "additionalDependencies": [
           "incub-gva-pipeline.assets"
-        ]
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::001112238813:role/cdk-liflig-lookup-role-001112238813-eu-west-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/liflig/version"
+        }
       },
       "dependencies": [
         "cross-region-stack-001112238813:us-east-1",

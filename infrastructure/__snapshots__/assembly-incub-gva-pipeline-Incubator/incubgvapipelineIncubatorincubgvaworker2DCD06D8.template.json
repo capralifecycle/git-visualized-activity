@@ -454,7 +454,10 @@
             },
             "SUBNETS": "subnet-07e2239d3d09b9759,subnet-0b4c305426dd627d4,subnet-0659d04ade348a053",
             "SECURITY_GROUPS": {
-              "Ref": "SecurityGroupDD263621"
+              "Fn::GetAtt": [
+                "SecurityGroupDD263621",
+                "GroupId"
+              ]
             },
             "TASK_DEFINITION": {
               "Ref": "TaskDef54694570"
