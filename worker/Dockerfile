@@ -19,7 +19,7 @@ RUN set -eux; \
     mkdir /app
 
 # renovate: datasource=npm depName=@capraconsulting/cals-cli
-ENV CALS_CLI_VERSION=2.23.1
+ENV CALS_CLI_VERSION=2.23.2
 
 RUN npm install -g @capraconsulting/cals-cli@${CALS_CLI_VERSION}
 
