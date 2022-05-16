@@ -37,7 +37,7 @@ buildConfig([
     def webappS3Url
     stage("Build webapp") {
       dir("webapp") {
-        insideToolImage("node:14") {
+        insideToolImage("node:16") {
           sh """
             npm ci
             ../worker/generate-commits.sh clean
@@ -65,7 +65,7 @@ buildConfig([
     }
 
     dir("infrastructure") {
-      insideToolImage("node:14") {
+      insideToolImage("node:16") {
         stage("Build cdk") {
           sh """
             npm ci
