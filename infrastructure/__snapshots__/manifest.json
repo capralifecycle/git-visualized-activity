@@ -424,6 +424,12 @@
             "data": "PipelineCdkPipelineAssetsFileAsset9E9701DDD"
           }
         ],
+        "/incub-gva-pipeline/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
         "/incub-gva-pipeline/BootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
@@ -472,6 +478,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "CrossRegionCodePipelineReplicationBucketPolicyB7BA2BCA"
+          }
+        ],
+        "/cross-region-stack-001112238813:us-east-1/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
           }
         ]
       },

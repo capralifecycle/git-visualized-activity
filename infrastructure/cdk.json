@@ -1,7 +1,6 @@
 {
   "app": "ts-node src/app.ts",
   "requireApproval": "never",
-  "versionReporting": false,
   "context": {
     "@aws-cdk/core:bootstrapQualifier": "liflig"
   }

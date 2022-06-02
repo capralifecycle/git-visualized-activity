@@ -195,6 +195,12 @@
             "data": "AWS679f53fac002430cb0da5b7982bd22872D164C4C"
           }
         ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
         "/incub-gva-pipeline/Incubator/incub-gva-web-edge/BootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
@@ -544,6 +550,12 @@
             "data": "AWSCloudFrontPartitionHostedZoneIdMap"
           }
         ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
         "/incub-gva-pipeline/Incubator/incub-gva-web/Exports/Output{\"Ref\":\"WebWebBucketAF209868\"}": [
           {
             "type": "aws:cdk:logicalId",
@@ -717,6 +729,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "ScheduleRuleAllowEventRuleincubgvapipelineIncubatorincubgvaworkerLauncher04B2AFA356194A92"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-worker/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
           }
         ],
         "/incub-gva-pipeline/Incubator/incub-gva-worker/BootstrapVersion": [
