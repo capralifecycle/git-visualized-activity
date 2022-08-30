@@ -75,16 +75,16 @@
             "data": "AuthLambdasCheckAuthFunctionCurrentVersionF10C4D62xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
           }
         ],
-        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/CheckAuthFunctionVersionParam/Parameu-west-1/Resoure/CustomResourcePolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "AuthLambdasCheckAuthFunctionVersionParamParameuwest1ResoureCustomResourcePolicy088F1114"
-          }
-        ],
         "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/CheckAuthFunctionVersionParam/Parameu-west-1/Resoure/Resource/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AuthLambdasCheckAuthFunctionVersionParamParameuwest1Resoure8ACD3434"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/CheckAuthFunctionVersionParam/Parameu-west-1/Resoure/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasCheckAuthFunctionVersionParamParameuwest1ResoureCustomResourcePolicy088F1114"
           }
         ],
         "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/HttpHeadersFunction/Resource": [
@@ -99,16 +99,16 @@
             "data": "AuthLambdasHttpHeadersFunctionCurrentVersion8B8CDE2Exxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
           }
         ],
-        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/HttpHeadersFunctionVersionParam/Parameu-west-1/Resoure/CustomResourcePolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "AuthLambdasHttpHeadersFunctionVersionParamParameuwest1ResoureCustomResourcePolicyC99B8AA6"
-          }
-        ],
         "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/HttpHeadersFunctionVersionParam/Parameu-west-1/Resoure/Resource/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AuthLambdasHttpHeadersFunctionVersionParamParameuwest1Resoure0C3C81F2"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/HttpHeadersFunctionVersionParam/Parameu-west-1/Resoure/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasHttpHeadersFunctionVersionParamParameuwest1ResoureCustomResourcePolicyC99B8AA6"
           }
         ],
         "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/ParseAuthFunction/Resource": [
@@ -123,16 +123,16 @@
             "data": "AuthLambdasParseAuthFunctionCurrentVersionA32A5991xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
           }
         ],
-        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/ParseAuthFunctionVersionParam/Parameu-west-1/Resoure/CustomResourcePolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "AuthLambdasParseAuthFunctionVersionParamParameuwest1ResoureCustomResourcePolicyCEAE27DB"
-          }
-        ],
         "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/ParseAuthFunctionVersionParam/Parameu-west-1/Resoure/Resource/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AuthLambdasParseAuthFunctionVersionParamParameuwest1Resoure934661C6"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/ParseAuthFunctionVersionParam/Parameu-west-1/Resoure/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasParseAuthFunctionVersionParamParameuwest1ResoureCustomResourcePolicyCEAE27DB"
           }
         ],
         "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/RefreshAuthFunction/Resource": [
@@ -147,16 +147,16 @@
             "data": "AuthLambdasRefreshAuthFunctionCurrentVersion632285F6xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
           }
         ],
-        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/RefreshAuthFunctionVersionParam/Parameu-west-1/Resoure/CustomResourcePolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "AuthLambdasRefreshAuthFunctionVersionParamParameuwest1ResoureCustomResourcePolicy095CEC70"
-          }
-        ],
         "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/RefreshAuthFunctionVersionParam/Parameu-west-1/Resoure/Resource/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AuthLambdasRefreshAuthFunctionVersionParamParameuwest1Resoure0C0D8913"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/RefreshAuthFunctionVersionParam/Parameu-west-1/Resoure/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasRefreshAuthFunctionVersionParamParameuwest1ResoureCustomResourcePolicy095CEC70"
           }
         ],
         "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/SignOutFunction/Resource": [
@@ -171,16 +171,16 @@
             "data": "AuthLambdasSignOutFunctionCurrentVersion0576BBB1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
           }
         ],
-        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/SignOutFunctionVersionParam/Parameu-west-1/Resoure/CustomResourcePolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "AuthLambdasSignOutFunctionVersionParamParameuwest1ResoureCustomResourcePolicy16B30BE4"
-          }
-        ],
         "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/SignOutFunctionVersionParam/Parameu-west-1/Resoure/Resource/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AuthLambdasSignOutFunctionVersionParamParameuwest1Resoure18583D2D"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AuthLambdas/SignOutFunctionVersionParam/Parameu-west-1/Resoure/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdasSignOutFunctionVersionParamParameuwest1ResoureCustomResourcePolicy16B30BE4"
           }
         ],
         "/incub-gva-pipeline/Incubator/incub-gva-web-edge/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/Resource": [
@@ -298,16 +298,16 @@
             "data": "WebAuthNonceSigningSecretE26C05D1"
           }
         ],
-        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ClientSecret/Resource/CustomResourcePolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "WebAuthClientSecretCustomResourcePolicy78CA0B49"
-          }
-        ],
         "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ClientSecret/Resource/Resource/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "WebAuthClientSecret8C3CE634"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ClientSecret/Resource/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthClientSecretCustomResourcePolicy78CA0B49"
           }
         ],
         "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/CheckAuthFnImportNonce": [
@@ -370,16 +370,16 @@
             "data": "WebAuthSignOutFn31AE8481"
           }
         ],
-        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ClientUpdate/Resource/CustomResourcePolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "WebAuthClientUpdateCustomResourcePolicyD285008F"
-          }
-        ],
         "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ClientUpdate/Resource/Resource/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "WebAuthClientUpdate97DF5190"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ClientUpdate/Resource/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAuthClientUpdateCustomResourcePolicyD285008F"
           }
         ],
         "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Distribution/Origin1/S3Origin/Resource": [
@@ -424,16 +424,16 @@
             "data": "WebDeploy056D6F67"
           }
         ],
-        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/CustomResource/CustomResourcePolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "WebDeployCustomResourceCustomResourcePolicy52AAFDAF"
-          }
-        ],
         "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/CustomResource/Resource/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "WebDeployCustomResourceD1B17E5C"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/CustomResource/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebDeployCustomResourceCustomResourcePolicy52AAFDAF"
           }
         ],
         "/incub-gva-pipeline/Incubator/incub-gva-web/henrist.cloudfront-auth.generate-secret.provider/Function/ServiceRole/Resource": [

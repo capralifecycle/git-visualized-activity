@@ -152,41 +152,6 @@
         "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/NonceSigningSecret/Resource/Default"
       }
     },
-    "WebAuthClientSecretCustomResourcePolicy78CA0B49": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": "cognito-idp:DescribeUserPoolClient",
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":cognito-idp:eu-west-1:001112238813:userpool/eu-west-1_oGQHzXmbo"
-                  ]
-                ]
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "PolicyName": "WebAuthClientSecretCustomResourcePolicy78CA0B49",
-        "Roles": [
-          {
-            "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ClientSecret/Resource/CustomResourcePolicy/Resource"
-      }
-    },
     "WebAuthClientSecret8C3CE634": {
       "Type": "Custom::AWS",
       "Properties": {
@@ -237,6 +202,41 @@
       "DeletionPolicy": "Delete",
       "Metadata": {
         "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ClientSecret/Resource/Resource/Default"
+      }
+    },
+    "WebAuthClientSecretCustomResourcePolicy78CA0B49": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "cognito-idp:DescribeUserPoolClient",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":cognito-idp:eu-west-1:001112238813:userpool/eu-west-1_oGQHzXmbo"
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "WebAuthClientSecretCustomResourcePolicy78CA0B49",
+        "Roles": [
+          {
+            "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ClientSecret/Resource/CustomResourcePolicy/Resource"
       }
     },
     "WebAuthCheckAuthFn098F7B34": {
@@ -584,41 +584,6 @@
         "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/SignOutFn/Resource/Default"
       }
     },
-    "WebAuthClientUpdateCustomResourcePolicyD285008F": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": "cognito-idp:UpdateUserPoolClient",
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":cognito-idp:eu-west-1:001112238813:userpool/eu-west-1_oGQHzXmbo"
-                  ]
-                ]
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "PolicyName": "WebAuthClientUpdateCustomResourcePolicyD285008F",
-        "Roles": [
-          {
-            "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ClientUpdate/Resource/CustomResourcePolicy/Resource"
-      }
-    },
     "WebAuthClientUpdate97DF5190": {
       "Type": "Custom::AWS",
       "Properties": {
@@ -669,6 +634,41 @@
       "DeletionPolicy": "Delete",
       "Metadata": {
         "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ClientUpdate/Resource/Resource/Default"
+      }
+    },
+    "WebAuthClientUpdateCustomResourcePolicyD285008F": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "cognito-idp:UpdateUserPoolClient",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":cognito-idp:eu-west-1:001112238813:userpool/eu-west-1_oGQHzXmbo"
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "WebAuthClientUpdateCustomResourcePolicyD285008F",
+        "Roles": [
+          {
+            "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ClientUpdate/Resource/CustomResourcePolicy/Resource"
       }
     },
     "WebDistributionOrigin1S3Origin084DE486": {
@@ -1132,35 +1132,6 @@
         "aws:asset:property": "Code"
       }
     },
-    "WebDeployCustomResourceCustomResourcePolicy52AAFDAF": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": "lambda:InvokeFunction",
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::GetAtt": [
-                  "WebDeploy056D6F67",
-                  "Arn"
-                ]
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "PolicyName": "WebDeployCustomResourceCustomResourcePolicy52AAFDAF",
-        "Roles": [
-          {
-            "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/CustomResource/CustomResourcePolicy/Resource"
-      }
-    },
     "WebDeployCustomResourceD1B17E5C": {
       "Type": "Custom::AWS",
       "Properties": {
@@ -1203,6 +1174,35 @@
       "DeletionPolicy": "Delete",
       "Metadata": {
         "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/CustomResource/Resource/Default"
+      }
+    },
+    "WebDeployCustomResourceCustomResourcePolicy52AAFDAF": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "WebDeploy056D6F67",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "WebDeployCustomResourceCustomResourcePolicy52AAFDAF",
+        "Roles": [
+          {
+            "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "incub-gva-pipeline/Incubator/incub-gva-web/Web/Deploy/CustomResource/CustomResourcePolicy/Resource"
       }
     },
     "henristcloudfrontauthgeneratesecretproviderFunctionServiceRole4523A59B": {
@@ -1411,7 +1411,7 @@
           }
         },
         "Handler": "framework.onEvent",
-        "Runtime": "nodejs12.x",
+        "Runtime": "nodejs14.x",
         "Tags": [
           {
             "Key": "Project",
@@ -1501,7 +1501,7 @@
           ]
         },
         "Handler": "index.handler",
-        "Runtime": "nodejs12.x",
+        "Runtime": "nodejs14.x",
         "Tags": [
           {
             "Key": "Project",
@@ -1763,7 +1763,7 @@
           }
         },
         "Handler": "framework.onEvent",
-        "Runtime": "nodejs12.x",
+        "Runtime": "nodejs14.x",
         "Tags": [
           {
             "Key": "Project",
