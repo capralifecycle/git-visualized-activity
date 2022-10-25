@@ -113,7 +113,7 @@ export class WorkerStack extends cdk.Stack {
         TASK_DEFINITION: taskDef.taskDefinitionArn,
       },
       handler: "index.handler",
-      runtime: lambda.Runtime.NODEJS_12_X,
+      runtime: lambda.Runtime.NODEJS_16_X,
       code: new lambda.InlineCode(`exports.handler = ${runTask.toString()};`),
       timeout: cdk.Duration.minutes(1),
     })
