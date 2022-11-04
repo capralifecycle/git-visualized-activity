@@ -1267,7 +1267,7 @@
           ]
         },
         "Handler": "index.handler",
-        "Runtime": "nodejs12.x",
+        "Runtime": "nodejs16.x",
         "Tags": [
           {
             "Key": "Project",
@@ -1617,7 +1617,7 @@
           ]
         },
         "Handler": "index.handler",
-        "Runtime": "nodejs12.x",
+        "Runtime": "nodejs16.x",
         "Tags": [
           {
             "Key": "Project",
