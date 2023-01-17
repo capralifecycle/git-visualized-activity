@@ -298,6 +298,12 @@
             "data": "WebAuthNonceSigningSecretE26C05D1"
           }
         ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ClientSecret/Resource": [
+          {
+            "type": "aws:cdk:warning",
+            "data": "installLatestAwsSdk was not specified, and defaults to true. You probably do not want this. Set the global context flag '@aws-cdk/customresources:installLatestAwsSdkDefault' to false to switch this behavior off project-wide, or set the property explicitly to true if you know you need to call APIs that are not in Lambda's built-in SDK version."
+          }
+        ],
         "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ClientSecret/Resource/Resource/Default": [
           {
             "type": "aws:cdk:logicalId",
@@ -368,6 +374,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "WebAuthSignOutFn31AE8481"
+          }
+        ],
+        "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ClientUpdate/Resource": [
+          {
+            "type": "aws:cdk:warning",
+            "data": "installLatestAwsSdk was not specified, and defaults to true. You probably do not want this. Set the global context flag '@aws-cdk/customresources:installLatestAwsSdkDefault' to false to switch this behavior off project-wide, or set the property explicitly to true if you know you need to call APIs that are not in Lambda's built-in SDK version."
           }
         ],
         "/incub-gva-pipeline/Incubator/incub-gva-web/Web/Auth/ClientUpdate/Resource/Resource/Default": [

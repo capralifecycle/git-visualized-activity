@@ -7,12 +7,6 @@
         "displayName": "incub-gva-pipeline/Incubator"
       }
     },
-    "Tree": {
-      "type": "cdk:tree",
-      "properties": {
-        "file": "tree.json"
-      }
-    },
     "incub-gva-pipeline.assets": {
       "type": "cdk:asset-manifest",
       "properties": {
@@ -300,6 +294,12 @@
         ]
       },
       "displayName": "incub-gva-pipeline"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
     },
     "cross-region-stack-001112238813:us-east-1": {
       "type": "aws:cloudformation:stack",
