@@ -12,7 +12,7 @@
     "lint:fix": "eslint --fix ."
   },
   "devDependencies": {
-    "@material-ui/core": "4.12.4",
+    "@mui/material": "5.0.0",
     "@material-ui/styles": "4.11.5",
     "@types/domready": "1.0.0",
     "@types/jest": "27.5.2",
