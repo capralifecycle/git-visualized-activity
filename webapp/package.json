@@ -12,7 +12,7 @@
     "lint:fix": "eslint --fix ."
   },
   "devDependencies": {
-    "@mui/material": "5.11.13",
+    "@mui/material": "5.11.14",
     "@mui/styles": "5.11.13",
     "@types/domready": "1.0.0",
     "@types/jest": "27.5.2",
