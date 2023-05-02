@@ -19,7 +19,7 @@
     "@types/lodash": "4.14.194",
     "@types/papaparse": "5.3.7",
     "@types/react": "17.0.58",
-    "@types/react-dom": "17.0.19",
+    "@types/react-dom": "17.0.20",
     "@types/recharts": "1.8.24",
     "@typescript-eslint/eslint-plugin": "5.59.0",
     "@typescript-eslint/parser": "5.59.0",
