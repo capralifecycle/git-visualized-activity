@@ -12,8 +12,8 @@
     "lint:fix": "eslint --fix ."
   },
   "devDependencies": {
-    "@mui/material": "5.13.0",
-    "@mui/styles": "5.12.3",
+    "@mui/material": "5.13.1",
+    "@mui/styles": "5.13.1",
     "@types/domready": "1.0.0",
     "@types/jest": "27.5.2",
     "@types/lodash": "4.14.194",
